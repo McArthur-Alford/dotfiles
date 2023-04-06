@@ -7,11 +7,10 @@
       ./configuration.nix
       ./desktop
       hyprland.nixosModules.default
-
       home-manager.nixosModules.home-manager {				# Home Manager Module
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
-	home-manager.extraSpecialArgs = { inherit user; };		# Pass flake variables
+	home-manager.extraSpecialArgs = { inherit user; };	# Pass flake variables
         home-manager.users.${user} = {
           home.stateVersion = "22.11";
           imports = [(import ./home.nix)] ++ [(import ./desktop/home.nix)];

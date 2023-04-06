@@ -17,9 +17,14 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    helix = {
+      url = "github:helix-editor/helix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, hyprland }: # Tells flake which to use and what to do with dependencies
+  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, helix }: # Tells flake which to use and what to do with dependencies
   let								# Variables that can be used in the config files
     system = "x86_64-linux";					# System Architecture
     user = "mcarthur";
@@ -31,11 +36,14 @@
 
     lib = nixpkgs.lib;
   in {
+    imports = [ helix.nixosModule ];
+    packages.helix.enabled = true;
     nixosConfigurations = (
       import ./hosts { 						# Imports ./hosts/default.nix, where available configs are located
         inherit (nixpkgs) lib;
         inherit inputs user system home-manager; 		# Inherit home manager so it does not need to be defined here
 	inherit hyprland;
+        inherit helix;
       }
     );
   };
