@@ -10,8 +10,9 @@
   
   home.packages = with pkgs; [
     # Terminal
-    btop	# Resource Management
+    btop	  # Resource Management
     ranger	# File management
+    unzip   # Unzipper
 
     # Video/Audio
     feh			# Image Viewer
@@ -25,6 +26,12 @@
     google-chrome
 
   ];
+
+  programs.bash = {
+    shellAliases = {
+      helix = "nix run helix";
+    };
+  };
 
   xsession.enable = true;
   home.pointerCursor = {

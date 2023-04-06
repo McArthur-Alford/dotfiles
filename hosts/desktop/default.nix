@@ -28,13 +28,17 @@
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
       discord
     ];
+
+    shells = with pkgs; [ bash zsh ];
   };
 
   programs = {
     # steam.enabled = true;
     # gamemode.enable = true;						# Better performance
     									# Steam: Launch Options: gamemoderun %command%
+    zsh.enable = true;
   };
+  users.users.${user}.shell = pkgs.zsh;
   
   nixpkgs.overlays = [							# Keeps discord up to date
     (self: super: {
