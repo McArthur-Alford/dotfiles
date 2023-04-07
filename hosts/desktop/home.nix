@@ -1,7 +1,8 @@
-{ cfg, pkgs, libs, user, ... }:
+{ cfg, pkgs, libs, user, config, ... }:
 {
   imports = [
     ../../modules/desktop/hyprland/home.nix
+    ../../modules/programs/wofi/home.nix
   ];
 
   programs.zsh = {
@@ -15,5 +16,13 @@
     };
   };
 
+  # Alacritty
   xdg.configFile."alacritty/alacritty.yml".source = ../../dotfiles/desktop/alacritty/alacritty.yml;
+
+  # Helix
+  xdg.configFile."helix/config.toml".source = ../../dotfiles/desktop/helix/config.toml;
+
+  # Ranger
+  xdg.configFile."ranger/rc.conf".source = ../../dotfiles/desktop/ranger/rc.conf;
+  xdg.configFile."ranger/colorschemes/dracula.py".source = ../../dotfiles/desktop/ranger/colorschemes/dracula.py;
 }

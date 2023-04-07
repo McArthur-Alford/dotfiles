@@ -1,7 +1,7 @@
 { config, pkgs, user, system, ...}:
 
 {
-  imports = [ ../../modules/desktop/hyprland ];
+  imports = [ ../../modules/desktop/hyprland ../../modules/programs/wofi ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;				# Kernel 
@@ -27,6 +27,7 @@
   environment = {
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
       discord
+      freshfetch
     ];
 
     shells = with pkgs; [ bash zsh ];

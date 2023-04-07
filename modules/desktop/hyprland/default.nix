@@ -29,6 +29,9 @@
     hyprland = {
       enable = true;
     };
+    waybar = {
+      enable = true;
+    };
   };
 
   # nixpkgs.overlays = [
