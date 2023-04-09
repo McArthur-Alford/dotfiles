@@ -22,9 +22,20 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, helix }: # Tells flake which to use and what to do with dependencies
+  outputs = inputs @ { self, 
+    nixpkgs, 
+    home-manager, 
+    hyprland, 
+    helix, 
+    spicetify-nix 
+  }:
   let								# Variables that can be used in the config files
     system = "x86_64-linux";					# System Architecture
     user = "mcarthur";
@@ -42,8 +53,7 @@
       import ./hosts { 						# Imports ./hosts/default.nix, where available configs are located
         inherit (nixpkgs) lib;
         inherit inputs user system home-manager; 		# Inherit home manager so it does not need to be defined here
-	inherit hyprland;
-        inherit helix;
+      	inherit hyprland helix spicetify-nix;
       }
     );
   };

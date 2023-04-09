@@ -40,6 +40,8 @@
     ];
 
     shells = with pkgs; [ bash zsh ];
+
+    etc."spotify".source = "${pkgs.spotify}"; # Spotify fixed path for spicetify to use
   };
 
   programs = {

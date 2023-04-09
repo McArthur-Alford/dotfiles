@@ -1,8 +1,9 @@
-{ cfg, pkgs, libs, user, config, ... }:
+{ cfg, pkgs, libs, user, config, spicetify-nix, ... }:
 {
   imports = [
     ../../modules/desktop/hyprland/home.nix
     ../../modules/programs/wofi/home.nix
+    ../../modules/programs/spicetify.nix
   ];
 
   programs = {
@@ -23,8 +24,6 @@
 
   home.packages = with pkgs; [
     materia-kde-theme
-    spotify
-    spicetify-cli
     sway-contrib.grimshot
   ];
 
@@ -41,7 +40,4 @@
 
   # QT5
   xdg.configFile."qt5ct/colors/Dracula.conf".source = ../../dotfiles/desktop/qt5ct/colors/Dracula.conf;
-
-  # Spicetify
-  xdg.configFile."spicetify".source = ../../dotfiles/desktop/spicetify;
 }
