@@ -25,6 +25,9 @@
     appimage-run
     google-chrome
 
+    # 
+    cargo
+    rustc
   ];
 
   programs.bash = {

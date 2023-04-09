@@ -97,6 +97,7 @@
       wget
       alacritty
       git 
+      killall
     ];
   };
 

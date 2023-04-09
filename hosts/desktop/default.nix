@@ -1,7 +1,11 @@
 { config, pkgs, user, system, ...}:
 
 {
-  imports = [ ../../modules/desktop/hyprland ../../modules/programs/wofi ];
+  imports = [ 
+    ../../modules/desktop/hyprland 
+    ../../modules/programs/wofi
+    ../../modules/programs/python.nix
+   ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;				# Kernel 
@@ -15,7 +19,7 @@
       };
       efi.canTouchEfiVariables = true;
       efi.efiSysMountPoint = "/boot/efi";
-      timeout = 3;							# Grub auto select time
+      timeout = 5;							# Grub auto select time
     };
   };
 
@@ -28,13 +32,18 @@
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
       discord
       freshfetch
+      steam
+      libsForQt5.dolphin
+      gnome.nautilus
+      nautilus-open-any-terminal
+      libsForQt5.qt5ct
     ];
 
     shells = with pkgs; [ bash zsh ];
   };
 
   programs = {
-    # steam.enabled = true;
+    steam.enable = true;
     # gamemode.enable = true;						# Better performance
     									# Steam: Launch Options: gamemoderun %command%
     zsh.enable = true;
