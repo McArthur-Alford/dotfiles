@@ -25,6 +25,7 @@
   home.packages = with pkgs; [
     materia-kde-theme
     sway-contrib.grimshot
+    betterdiscordctl
   ];
 
   # Alacritty
@@ -40,4 +41,8 @@
 
   # QT5
   xdg.configFile."qt5ct/colors/Dracula.conf".source = ../../dotfiles/desktop/qt5ct/colors/Dracula.conf;
+
+  # Better Discord
+  xdg.configFile."BetterDiscord/plugins".source = ../../dotfiles/desktop/BetterDiscord/plugins;
+  xdg.configFile."BetterDiscord/themes".source = ../../dotfiles/desktop/BetterDiscord/themes;
 }
