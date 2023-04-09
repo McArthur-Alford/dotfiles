@@ -22,6 +22,7 @@
       swappy
       wl-clipboard
       wlr-randr
+      hyprpaper
     ];
   };
 

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, host, ... }:
+{ config, lib, pkgs, host, user, ... }:
 let
   workspaces = with host;
     if hostName == "desktop" then ''
@@ -15,4 +15,12 @@ let
 in
 {
   xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/desktop/hypr/hyprland.conf;
+
+  xdg.configFile."hypr/hyprpaper.conf".text = ''
+      preload = /home/${user}/wallpapers/wallpaper.png
+      # .. more preloads
+
+      wallpaper = DP-2,/home/${user}/wallpapers/wallpaper.png
+      # .. more wallpapers
+    '';
 }
