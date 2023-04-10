@@ -27,6 +27,7 @@
     sway-contrib.grimshot
     betterdiscordctl
     direnv
+    nix-direnv
 
     # keyring stuff
     gnome.gnome-keyring
