@@ -26,6 +26,12 @@
     materia-kde-theme
     sway-contrib.grimshot
     betterdiscordctl
+    direnv
+
+    # keyring stuff
+    gnome.gnome-keyring
+    libsecret
+    libgnome-keyring
   ];
 
   # Alacritty
@@ -45,4 +51,7 @@
   # Better Discord
   xdg.configFile."BetterDiscord/plugins".source = ../../dotfiles/desktop/BetterDiscord/plugins;
   xdg.configFile."BetterDiscord/themes".source = ../../dotfiles/desktop/BetterDiscord/themes;
+
+  # btop theme
+  xdg.configFile."bashtop".source = ../../dotfiles/desktop/bashtop;
 }

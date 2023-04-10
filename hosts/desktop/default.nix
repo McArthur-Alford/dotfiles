@@ -5,6 +5,7 @@
     ../../modules/desktop/hyprland 
     ../../modules/programs/wofi
     ../../modules/programs/python.nix
+    ../../modules/programs/podman.nix
    ];
 
   boot = {

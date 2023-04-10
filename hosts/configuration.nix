@@ -98,6 +98,7 @@
       alacritty
       git 
       killall
+      libgcc
     ];
   };
 

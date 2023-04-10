@@ -45,29 +45,34 @@
         }
         window#waybar {
             opacity: 0.9;
-            background: @background-darker;
+            background: @background-darker; /* transparent; */
             color: @foreground;
-            border-bottom: 2px solid @background;
+            border-bottom: 2px solid @background-darker; /* transparent; */
         }
         #workspaces button {
-            padding: 0 10px;
             background: @background;
             color: @foreground;
+            border-bottom: 2px solid @foreground;
         }
         #workspaces button:hover {
             box-shadow: inherit;
             text-shadow: inherit;
-            background-image: linear-gradient(0deg, @selection, @background-darker);
+            background: @green;
+            color: @background-darker;
+            border-bottom: 2px solid @background-darker;
         }
         #workspaces button.active {
-            background-image: linear-gradient(0deg, @purple, @selection);
+            background: @green;
+            color: @background-darker;
+            border-bottom: 2px solid @background-darker;
         }
         #taskbar button.active {
-            background-image: linear-gradient(0deg, @selection, @background-darker);
         }
         #clock {
-            padding: 0 4px;
-            background: @background;
+        }
+        .modules-left {
+            background: @background-darker;
+            padding: 0px 20px 0px 0px;
         }
       '';
 
@@ -75,12 +80,13 @@
         Main = {
           layer = "top";
           position = "top";
-          height = 16;
+          height = 30;
           tray = { spacing = 7; };
           modules-left = [ "wlr/workspaces" ];
-          modules-right = [ "network" "cpu" "memory" "custom/pad" "pulseaudio" "custom/sink" "custom/pad" "clock" "tray" ];
+          modules-right = [ "tray" "network" "cpu" "memory" "custom/pad" "pulseaudio" "custom/sink" "custom/pad" "clock" ];
+          modules-center = [ ];
           "wlr/workspaces" = {
-            format = "<span font='12'>{icon}</span>";
+            format = "<span font='11'>{icon}</span>";
             format-icons = {
               "1"="";
               "2"="";
