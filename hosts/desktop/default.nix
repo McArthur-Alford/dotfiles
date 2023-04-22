@@ -5,8 +5,20 @@
     ../../modules/desktop/hyprland 
     ../../modules/programs/wofi
     ../../modules/programs/python.nix
-    ../../modules/programs/podman.nix
+    # ../../modules/programs/podman.nix
+    ../../modules/programs/docker.nix
+    # ../../modules/services/gnome-keyring.nix
+    ../../modules/programs/haskell.nix
+    ../../modules/programs/godot.nix
    ];
+
+  services.gnome.gnome-keyring.enable = true;
+  services.passSecretService.enable = true;
+
+  # auto usb mounting stuff
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;				# Kernel 
@@ -38,6 +50,29 @@
       gnome.nautilus
       nautilus-open-any-terminal
       libsForQt5.qt5ct
+
+      # polkit
+      polkit
+
+      # Blender
+      blender
+      qsynth
+
+      # AMD Rocm TODO trim this, a lot is uncessary
+      rocm-smi
+      radeontop
+      rocm-opencl-icd
+      amdvlk
+      rocminfo
+      miopengemm
+      rocm-cmake
+      boost
+      sqlite
+      rocblas
+      rocmlir
+      llvmPackages_rocm.llvm
+      llvmPackages_rocm.clang
+      llvmPackages_rocm.rocmClangStdenv
     ];
 
     shells = with pkgs; [ bash zsh ];
@@ -56,14 +91,19 @@
   nixpkgs.overlays = [							# Keeps discord up to date
     (self: super: {
       discord = super.discord.overrideAttrs (
-        _: { src = builtins.fetchTarball {
-	  url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-	  sha256 = "04r1yx6aqd4f4lq7wfcgs3jfpn40gz7gwajzai1aqz12ny78rs7z";
-	};}
+        _: { 
+          src = builtins.fetchTarball {
+      	  url = "https://discord.com/api/download?platform=linux&format=tar.gz";
+      	  sha256 = "04r1yx6aqd4f4lq7wfcgs3jfpn40gz7gwajzai1aqz12ny78rs7z";
+        };}
       );
     })
-   ];
-  
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "python-2.7.18.6"
+  ];
+
   services = {
     blueman.enable = true;
     xserver = {
@@ -81,4 +121,24 @@
       ];
     };
   };
+
+  # --- AMD GPU ---
+  nixpkgs.config.rocmTargets = [ "gfx1030" ];
+  hardware.opengl.enable = true;
+  hardware.opengl.extraPackages = with pkgs; [
+    rocm-opencl-icd
+    rocm-opencl-runtime
+    amdvlk
+    vulkan-tools
+    miopengemm
+    rocm-cmake
+    llvmPackages_rocm.llvm
+    llvmPackages_rocm.clang
+    llvmPackages_rocm.rocmClangStdenv
+  ];
+  hardware.opengl.driSupport = true;
+
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
+  ];
 }

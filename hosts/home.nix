@@ -1,7 +1,7 @@
 { config, pkgs, lib, user, ... }:
 {
   imports = [ ];
-  
+
   programs.home-manager.enable = true;
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";

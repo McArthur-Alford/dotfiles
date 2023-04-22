@@ -33,6 +33,7 @@
     waybar = {
       enable = true;
     };
+    xwayland.enable = true;
   };
 
   # nixpkgs.overlays = [

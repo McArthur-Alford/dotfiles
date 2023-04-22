@@ -20,6 +20,9 @@
     vscode = {
       enable = true;
     };
+    zathura = {
+      enable = true;
+    };
   };
 
   home.packages = with pkgs; [
@@ -29,11 +32,47 @@
     direnv
     nix-direnv
 
+    # Gparted (spooOoooky)
+    gparted
+    parted
+
+    # Bitwarden!
+    bitwarden
+
+    # Obsidian!
+    obsidian
+
     # keyring stuff
     gnome.gnome-keyring
     libsecret
     libgnome-keyring
+
+    # Work Comms
+    slack
+    zoom-us
+
+    # Office
+    onlyoffice-bin
+
+    # texlive
+    texlive.combined.scheme-full
+
+    # Libs
+    dotnet-sdk_7
   ];
+
+  # mimetypes
+  #xdg.mimeApps = {
+    #enable  = true;
+    #associations.added = {
+      #"applications/pdf" = ["org.gnome.Zathura.desktop"];
+      ##"image/*" = ["org.gnome.Feh.desktop"];
+    #};
+    #defaultApplications = {
+      #"applications/pdf" = ["org.gnome.Zathura.desktop"];
+      ##"image/*" = ["org.gnome.Feh.desktop"];
+    #};
+  #};
 
   # Alacritty
   xdg.configFile."alacritty/alacritty.yml".source = ../../dotfiles/desktop/alacritty/alacritty.yml;
@@ -55,4 +94,7 @@
 
   # btop theme
   xdg.configFile."bashtop".source = ../../dotfiles/desktop/bashtop;
+
+  # Godot theme
+  xdg.configFile."godot/themes".source = ../../dotfiles/desktop/godot/themes;
 }

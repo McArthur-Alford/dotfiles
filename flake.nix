@@ -34,7 +34,7 @@
     home-manager, 
     hyprland, 
     helix, 
-    spicetify-nix 
+    spicetify-nix,
   }:
   let								# Variables that can be used in the config files
     system = "x86_64-linux";					# System Architecture
@@ -54,6 +54,7 @@
         inherit (nixpkgs) lib;
         inherit inputs user system home-manager; 		# Inherit home manager so it does not need to be defined here
       	inherit hyprland helix spicetify-nix;
+        inherit nixpkgs;
       }
     );
   };

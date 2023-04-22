@@ -1,4 +1,4 @@
-{ lib, inputs, system, home-manager, user, hyprland, spicetify-nix, ... }:
+{ lib, inputs, system, home-manager, user, hyprland, spicetify-nix, nixpkgs, ... }:
 {
   desktop = lib.nixosSystem {						# Desktop Profile
     inherit system;
@@ -16,6 +16,14 @@
           imports = [(import ./home.nix)] ++ [(import ./desktop/home.nix)];
         };
       }
+      {
+        environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
+        nix.nixPath = ["nixpkgs=/etc/nix/inputs/nixpkgs"];
+      }
+      # TODO figure out how this works:
+      #homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
+      #  
+      #}
     ];
   };
 
