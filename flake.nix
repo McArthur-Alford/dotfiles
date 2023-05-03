@@ -7,7 +7,7 @@
 
   inputs = {							# All flake references used to build NixOS
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";	# Nix Packages
-    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";	# Unstable Packages
+
     home-manager = {						# Home Package Management
       url = github:nix-community/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,7 +46,8 @@
     };
 
     lib = nixpkgs.lib;
-  in {
+  in 
+  {
     imports = [ helix.nixosModule ];
     packages.helix.enabled = true;
     nixosConfigurations = (

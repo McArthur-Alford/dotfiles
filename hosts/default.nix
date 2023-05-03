@@ -20,10 +20,6 @@
         environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
         nix.nixPath = ["nixpkgs=/etc/nix/inputs/nixpkgs"];
       }
-      # TODO figure out how this works:
-      #homeConfigurations.${user} = home-manager.lib.homeManagerConfiguration {
-      #  
-      #}
     ];
   };
 
