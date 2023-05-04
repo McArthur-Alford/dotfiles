@@ -26,6 +26,9 @@
   };
 
   home.packages = with pkgs; [
+    # Dungeondraft/Wonderdraft (requires the .zip from humble bundle in the module directory)
+    (callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
+
     materia-kde-theme
     sway-contrib.grimshot
     betterdiscordctl
