@@ -20,7 +20,7 @@ in
       preload = /home/${user}/wallpapers/wallpaper.png
       # .. more preloads
 
-      wallpaper = DP-2,/home/${user}/wallpapers/wallpaper.png
+      wallpaper = DP-1,/home/${user}/wallpapers/wallpaper.png
       # .. more wallpapers
     '';
 }

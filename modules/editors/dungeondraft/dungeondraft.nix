@@ -1,9 +1,10 @@
-{ pkgs, stdenv }:
+{ pkgs, stdenv, lib, gdb, gnome }:
 
 let
+  inherit (gnome) zenity;
   name = "dungeondraft";
-  version = "1.1.0.1";
-
+  version = "1.0.3.2";
+  path = lib.makeBinPath [ zenity gdb ];
 in
 stdenv.mkDerivation rec {
   inherit name version;
@@ -26,6 +27,13 @@ stdenv.mkDerivation rec {
     libpulseaudio
     libglvnd
     libGL
+    libGLU
+    krb5
+    zlib
+    alsaLib
+    libpulseaudio
+    makeWrapper
+    stdenv.cc.cc.lib
   ];
 
   unpackCmd = "unzip $curSrc -d ./dungeondraft";
@@ -33,18 +41,25 @@ stdenv.mkDerivation rec {
   sourceRoot = "dungeondraft";
 
   installPhase = ''
+    name=${name}
+
     mkdir -p $out/bin
     mkdir -p $out/share/applications
 
     chmod +x Dungeondraft.x86_64
 
-    mv ./Dungeondraft.desktop $out/share/applications/
-    mv ./Dungeondraft.x86_64 $out/bin/dungeondraft
-    mv ./Dungeondraft.pck $out/bin/dungeondraft.pck
-
-    substituteInPlace $out/share/applications/Dungeondraft.desktop \
-      --replace '/opt/Dungeondraft/Dungeondraft.x86_64' "$out/bin/dungeondraft" \
+    substituteInPlace ./Dungeondraft.desktop \
+      --replace '/opt/Dungeondraft/Dungeondraft.x86_64' "$out/bin/$name" \
       --replace '/opt/Dungeondraft' $out \
-      --replace '/opt/Dungeondraft/Dungeondraft.png' "$out/dungeondraft.png"
+      --replace '/opt/Dungeondraft/Dungeondraft.png' "$out/Dungeondraft.png"
+
+    mv ./Dungeondraft.desktop $out/share/applications/
+    mv ./Dungeondraft.x86_64 "$out/$name"
+    mv ./Dungeondraft.pck $out/$name.pck
+
+    makeWrapper $out/$name $out/bin/$name \
+        --prefix PATH : ${path}
+
+    mv ./* $out
   '';
 }
