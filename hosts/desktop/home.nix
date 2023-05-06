@@ -35,6 +35,12 @@
     betterdiscordctl
     direnv
     nix-direnv
+    
+    libsForQt5.okular
+
+    # image editors
+    gimp
+    krita
 
     # Gparted (spooOoooky)
     gparted
