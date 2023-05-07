@@ -62,7 +62,7 @@
           border-radius: 10 0 0 10;
           padding-left: 15px;
           padding-right: 0px;
-          margin-right: 15px;
+          margin-right: 5px;
           background: @background-bright;
         }
         #workspaces button {
@@ -86,6 +86,7 @@
           color: @purple;
           padding-right: 8px;
           padding-left: 8px;
+          margin-right: 15px;
         }
         #pulseaudio {
           color: @green;
@@ -93,10 +94,11 @@
           margin-left: 8px;
         }
         #tray {
-          padding-left: 8px;
+          padding-left: 5px;
           margin-left: 8px;
         }
         #network {
+          color: @red;
           padding-left: 8px;
           margin-left: 8px;
         }
@@ -121,29 +123,15 @@
           tray = { spacing = 7; };
           modules-left = [ ];
           modules-right = [ ];
-          modules-center = [ "wlr/workspaces" "tray" "network" "cpu" "memory" "pulseaudio" "clock"];
+          modules-center = [ "wlr/workspaces" "tray" "pulseaudio" "clock"];
           "wlr/workspaces" = {
             format = "<span font='11'>{icon}</span>";
-            # format-icons = {
-            #   "1"="";
-            #   "2"="";
-            #   "3"="";
-            #   "4"="";
-            #   "5"="";
-            #   "6"="";
-            #   "7"="";
-            #   "8"="";
-            #   "9"="";
-            #   "10"="";
-            # };
             all-outputs = true;
             active-only = false;
             on-click = "activate";
           };
           clock = {
             format = " {:%b %d %y %H:%M}";
-            #tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{}</small></tt>";
-            #format-alt = "{:%A, %B %d, %Y} ";
           };
           cpu = {
             format = " {usage}% <span font='11'></span> ";
@@ -177,32 +165,15 @@
             max-length = 25;
           };
           network = {
-            format-wifi = "<span font='11'></span>";
-            format-ethernet = "<span font='11'></span>";
-            #format-ethernet = "<span font='11'></span> {ifname}: {ipaddr}/{cidr}";
+            format-ethernet = "Eth: {ipaddr}/{cidr}";
             format-linked = "<span font='11'>睊</span> {ifname} (No IP)";
             format-disconnected = "<span font='11'>睊</span> Not connected";
-            #format-alt = "{ifname}: {ipaddr}/{cidr}";
-            tooltip-format = "{essid} {ipaddr}/{cidr}";
-            #on-click-right = "${pkgs.alacritty}/bin/alacritty -e nmtui";
+            on-click-right = "nm-applet";
           };
           pulseaudio = {
-            format = "<span font='11'>{icon}</span> {volume}% {format_source} ";
-            format-bluetooth = "<span font='11'>{icon}</span> {volume}% {format_source} ";
-            format-bluetooth-muted = "<span font='11'>x</span> {volume}% {format_source} ";
-            format-muted = "<span font='11'>x</span> {volume}% {format_source} ";
-            #format-source = "{volume}% <span font='11'></span>";
+            format = "{volume}% {format_source} ";
             format-source = "<span font='10'></span> ";
-            format-source-muted = "<span font='11'> </span> ";
-            format-icons = {
-              default = [ "" "" "" ];
-              headphone = "";
-              hands-free = "";
-              headset = "";
-              phone = "";
-              portable = "";
-              car = "";
-            };
+            format-source-muted = "<span font='11'></span> ";
             tooltip-format = "{desc}, {volume}%";
             on-click = "${pkgs.pamixer}/bin/pamixer -t";
             on-click-right = "${pkgs.pamixer}/bin/pamixer --default-source -t";

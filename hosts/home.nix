@@ -43,20 +43,5 @@
     size = 16;
   };
   
-  gtk = {		# GTK Theme
-    enable = true;
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    font = {
-      name = "FiraCode Nerd Font Mono Medium";
-    };
-  };
-
   home.file.".config/wall".source = config.lib.file.mkOutOfStoreSymlink ../modules/themes/wall;
 }

@@ -38,6 +38,9 @@
     
     libsForQt5.okular
 
+    # Protonupqt
+    protonup-ng
+
     # image editors
     gimp
     krita
@@ -89,6 +92,28 @@
       ##"image/*" = ["org.gnome.Feh.desktop"];
     #};
   #};
+
+  # GTK Theme
+  gtk = {		# GTK Theme
+    enable = true;
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    font = {
+      name = "FiraCode Nerd Font Mono Medium";
+    };
+    gtk4.extraConfig = {
+      settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+  };
+  home.sessionVariables.GTK_THEME = "Dracula";
 
   # Alacritty
   xdg.configFile."alacritty/alacritty.yml".source = ../../dotfiles/desktop/alacritty/alacritty.yml;
