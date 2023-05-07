@@ -51,15 +51,15 @@
             color: @foreground;
         }
         window > box {
-          margin-top: 8px;
+          margin-top: 0px;
           background: none;
         }
         .modules-center {
-          border-radius: 10;
+          border-radius: 0 0 10 10;
           background: @background;
         }
         #workspaces {
-          border-radius: 10 0 0 10;
+          border-radius: 0 0 0 10;
           padding-left: 15px;
           padding-right: 0px;
           margin-right: 5px;
@@ -118,7 +118,7 @@
         Main = {
           layer = "top";
           position = "top";
-          height = 40;
+          height = 30;
           width = 400;
           tray = { spacing = 7; };
           modules-left = [ ];
