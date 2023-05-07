@@ -93,6 +93,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.settings.passwordAuthentication = false;
 
   # Pulseaudio setup
   sound.enable = true;
