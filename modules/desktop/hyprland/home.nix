@@ -3,6 +3,8 @@ let
   workspaces = with host;
     if hostName == "desktop" then ''
       monitor=${toString mainMonitor},5120x1440@120,5140x0,1
+    '' else if hostName == "laptop" then ''
+      monitor=${toString mainMonitor},1920x1080@60,1920x0,1
     '' else "";
   monitors = with host;
     if hostName == "desktop" then ''
@@ -21,6 +23,7 @@ in
       # .. more preloads
 
       wallpaper = DP-1,/home/${user}/wallpapers/wallpaper.png
+      wallpaper = eDP-1,/home/${user}/wallpapers/wallpaper.png
       # .. more wallpapers
     '';
 }
