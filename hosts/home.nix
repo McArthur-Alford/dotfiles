@@ -30,12 +30,6 @@
     rustc
   ];
 
-  programs.bash = {
-    shellAliases = {
-      helix = "nix run helix";
-    };
-  };
-
   xsession.enable = true;
   home.pointerCursor = {
     name = "Dracula-cursors";

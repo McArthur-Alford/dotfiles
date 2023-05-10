@@ -10,9 +10,6 @@
   programs = {
     zsh = {
       enable = true;
-      shellAliases = {
-        #helix = "nix run helix";
-      };
       oh-my-zsh = {
         plugins = [ "git" ];
         theme = "bira";
