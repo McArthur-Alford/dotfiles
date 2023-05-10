@@ -48,8 +48,6 @@
     lib = nixpkgs.lib;
   in 
   {
-    imports = [ helix.nixosModule ];
-    packages.helix.enabled = true;
     nixosConfigurations = (
       import ./hosts { 						# Imports ./hosts/default.nix, where available configs are located
         inherit (nixpkgs) lib;

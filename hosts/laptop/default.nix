@@ -1,5 +1,8 @@
 { config, pkgs, user, system, ...}:
-
+let
+  intelBusId = "PCI:01:00:0";
+  nvidiaBusId = "PCI:00:02:0";
+in
 {
   imports = [ 
     ./hardware-configuration.nix
@@ -9,31 +12,17 @@
     ../../modules/programs/docker.nix
     ../../modules/programs/haskell.nix
     ../../modules/programs/godot.nix
+    ../../modules/programs/discord.nix
+    ../../modules/services/gnome-keyring.nix
+    ../../modules/kernels/latest.nix
+    ../../modules/services/systemd-boot.nix
+    (import ../../modules/gpu/nvidia-optimus.nix {inherit pkgs config intelBusId nvidiaBusId;})
    ];
-
-  services.gnome.gnome-keyring.enable = true;
-  services.passSecretService.enable = true;
 
   # auto usb mounting stuff
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-
-  boot = {
-    kernelPackages = pkgs.linuxPackages_latest;				# Kernel 
-
-    initrd.kernelModules = ["amdgpu"];					# Video Drivers
-
-    loader = {
-      systemd-boot = {
-        enable = true;
-      	configurationLimit = 5;						# Limit amount of configurations
-      };
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/efi";
-      timeout = 5;							# Grub auto select time
-    };
-  };
 
   networking = {
     hostName = "nixos-desktop";
@@ -42,7 +31,6 @@
 
   environment = {
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
-      discord
       freshfetch
       steam
       libsForQt5.dolphin
@@ -56,22 +44,6 @@
       # Blender
       blender
       qsynth
-
-      # AMD Rocm TODO trim this, a lot is uncessary
-      rocm-smi
-      radeontop
-      rocm-opencl-icd
-      amdvlk
-      rocminfo
-      miopengemm
-      rocm-cmake
-      boost
-      sqlite
-      rocblas
-      rocmlir
-      llvmPackages_rocm.llvm
-      llvmPackages_rocm.clang
-      llvmPackages_rocm.rocmClangStdenv
     ];
 
     shells = with pkgs; [ bash zsh ];
@@ -87,59 +59,9 @@
   };
   users.users.${user}.shell = pkgs.zsh;
   
-  nixpkgs.overlays = [							# Keeps discord up to date
-    (self: super: {
-      discord = super.discord.overrideAttrs (
-        _: { 
-          src = builtins.fetchTarball {
-      	  url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-      	  sha256 = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
-        };}
-      );
-    })
-  ];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "python-2.7.18.6"
-  ];
-
   services = {
     blueman.enable = true;
-    xserver = {
-      enable = true;
-
-      displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
-
-      displayManager.defaultSession = "hyprland";
-
-      videoDrivers = [
-        "amdgpu"
-      ];
-    };
   };
-
-  # --- AMD GPU ---
-  nixpkgs.config.rocmTargets = [ "gfx1030" ];
-  hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [
-    rocm-opencl-icd
-    rocm-opencl-runtime
-    amdvlk
-    vulkan-tools
-    miopengemm
-    rocm-cmake
-    llvmPackages_rocm.llvm
-    llvmPackages_rocm.clang
-    llvmPackages_rocm.rocmClangStdenv
-  ];
-  hardware.opengl.driSupport = true;
-
-  systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

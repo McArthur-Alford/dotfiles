@@ -65,8 +65,8 @@
   environment = {
     variables = {
       TERMINAL = "alacritty";
-      EDITOR = "nix run helix";
-      VISUAL = "nix run helix";
+      EDITOR = "hx";
+      VISUAL = "hx";
     };
     systemPackages = with pkgs; [
       vim

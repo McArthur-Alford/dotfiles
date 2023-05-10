@@ -4,13 +4,14 @@
     ../../modules/desktop/hyprland/home.nix
     ../../modules/programs/wofi/home.nix
     ../../modules/programs/spicetify.nix
+    ../../modules/programs/zellij.nix
   ];
 
   programs = {
     zsh = {
       enable = true;
       shellAliases = {
-        helix = "nix run helix";
+        #helix = "nix run helix";
       };
       oh-my-zsh = {
         plugins = [ "git" ];
@@ -23,11 +24,16 @@
     zathura = {
       enable = true;
     };
+    helix = {
+      enable = true;
+    };
   };
+  services.network-manager-applet.enable = true;
 
   home.packages = with pkgs; [
-    # Dungeondraft/Wonderdraft (requires the .zip from humble bundle in the module directory)
-
+    networkmanagerapplet
+    acpi
+    
     materia-kde-theme
     sway-contrib.grimshot
     betterdiscordctl
