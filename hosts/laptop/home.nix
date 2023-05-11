@@ -3,18 +3,12 @@
   imports = [
     ../../modules/desktop/hyprland/home.nix
     ../../modules/programs/wofi/home.nix
-    ../../modules/programs/spicetify.nix
-    ../../modules/programs/zellij.nix
+    ../../modules/programs/spicetify.home.nix
+    ../../modules/programs/zellij.home.nix
+    ../../modules/programs/zsh.home.nix
   ];
 
   programs = {
-    zsh = {
-      enable = true;
-      oh-my-zsh = {
-        plugins = [ "git" ];
-        theme = "bira";
-      };
-    };
     vscode = {
       enable = true;
     };

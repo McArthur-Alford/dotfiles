@@ -16,6 +16,7 @@ in
       inherit pkgs;
       discordHash = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
     })
+    ../../modules/programs/zsh.nix
     ../../modules/services/gnome-keyring.nix
     ../../modules/kernels/latest.nix
     ../../modules/services/systemd-boot.nix
@@ -49,8 +50,6 @@ in
       qsynth
     ];
 
-    shells = with pkgs; [ bash zsh ];
-
     etc."spotify".source = "${pkgs.spotify}"; # Spotify fixed path for spicetify to use
   };
 
@@ -58,9 +57,7 @@ in
     steam.enable = true;
     # gamemode.enable = true;						# Better performance
     									# Steam: Launch Options: gamemoderun %command%
-    zsh.enable = true;
   };
-  users.users.${user}.shell = pkgs.zsh;
   
   services = {
     blueman.enable = true;
