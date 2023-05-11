@@ -12,7 +12,10 @@ in
     ../../modules/programs/docker.nix
     ../../modules/programs/haskell.nix
     ../../modules/programs/godot.nix
-    ../../modules/programs/discord.nix
+    (import ../../modules/programs/discord.nix {
+      inherit pkgs;
+      discordHash = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
+    })
     ../../modules/services/gnome-keyring.nix
     ../../modules/kernels/latest.nix
     ../../modules/services/systemd-boot.nix

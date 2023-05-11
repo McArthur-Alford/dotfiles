@@ -27,6 +27,7 @@
   };
 
   services = {
+    blueman.enable = true;
     xserver = {
       enable = true;
 

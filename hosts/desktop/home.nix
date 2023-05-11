@@ -3,17 +3,12 @@
   imports = [
     ../../modules/desktop/hyprland/home.nix
     ../../modules/programs/wofi/home.nix
-    ../../modules/programs/spicetify.nix
+    ../../modules/programs/spicetify.home.nix
+    ../../modules/programs/zellij.home.nix
+    ../../modules/programs/zsh.home.nix
   ];
 
   programs = {
-    zsh = {
-      enable = true;
-      oh-my-zsh = {
-        plugins = [ "git" ];
-        theme = "bira";
-      };
-    };
     vscode = {
       enable = true;
     };
@@ -27,8 +22,8 @@
 
   home.packages = with pkgs; [
     # Dungeondraft/Wonderdraft (requires the .zip from humble bundle in the module directory)
-    (callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
-    (callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
+    #(callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
+    #(callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
 
     materia-kde-theme
     sway-contrib.grimshot
