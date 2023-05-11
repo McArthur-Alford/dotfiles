@@ -4,10 +4,11 @@
     zellij = {
       enable = true;
       settings = {
+        mouse_mode = true;
         theme = "dracula";
         themes.dracula.fg = "#f8f8f2";
         themes.dracula.bg = "#282a36";
-        themes.dracula.black = "#000000";
+        themes.dracula.black = "#282a36";
         themes.dracula.red = "#ff5555";
         themes.dracula.green = "#50fa7b";
         themes.dracula.yellow = "#f1fa8c";

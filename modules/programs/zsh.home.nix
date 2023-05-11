@@ -4,8 +4,15 @@
     zsh = {
       enable = true;
       oh-my-zsh = {
-        plugins = [ "git" ];
-        theme = "bira";
+        enable = true;
+        theme = "agnoster";
+      };
+      zplug = {
+        enable = true;
+        plugins = [
+          { name = "dracula/zsh"; tags = [ "as:theme" "depth:1" ]; }
+          { name = "plugins/colored-man-pages"; tags = [from:oh-my-zsh]; }
+        ];
       };
       enableAutosuggestions = true;
       enableSyntaxHighlighting = true;
