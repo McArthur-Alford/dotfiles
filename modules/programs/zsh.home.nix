@@ -22,6 +22,11 @@
       shellAliases = {
         ls = "exa";
         cat = "bat";
+        grep = "rga";
+        find = "fd";
+        diff = "delta";
+        du = "dust";
+        calc = "kalker";
       };
     };
     bat = {
