@@ -16,7 +16,6 @@
     })
   ];
 
-
   home-manager.users.${user} = {
     programs.waybar = {
       enable = true;
@@ -27,7 +26,6 @@
       style = ''
         @define-color background-darker rgba(30, 31, 41, 230);
         @define-color background #282a36;
-        @define-color background-bright #3c3f52;
         @define-color selection #44475a;
         @define-color foreground #f8f8f2;
         @define-color comment #6272a4;
@@ -38,7 +36,6 @@
         @define-color purple #bd93f9;
         @define-color red #ff5555;
         @define-color yellow #f1fa8c;
-        @define-color transparent rgba(20, 31, 41, 0);
         * {
             border: none;
             border-radius: 0;
@@ -47,71 +44,35 @@
             min-height: 0;
         }
         window#waybar {
-            margin-top: 4px;
-            background: none;
+            opacity: 0.9;
+            background: @background-darker; /* transparent; */
             color: @foreground;
-        }
-        window > box {
-          margin-top: 0px;
-          background: none;
-        }
-        .modules-center {
-          border-radius: 0 0 10 10;
-          background: @background;
-        }
-        #workspaces {
-          border-radius: 0 0 0 10;
-          padding-left: 15px;
-          padding-right: 0px;
-          margin-right: 5px;
-          background: @background-bright;
+            border-bottom: 2px solid @background-darker; /* transparent; */
         }
         #workspaces button {
-            background: @background-bright;
+            background: @background;
             color: @foreground;
-            /* border-bottom: 2px solid @foreground;*/
+            border-bottom: 2px solid @foreground;
         }
         #workspaces button:hover {
             box-shadow: inherit;
             text-shadow: inherit;
             background: @green;
             color: @background-darker;
-            /*border-bottom: 2px solid @background-darker;*/
+            border-bottom: 2px solid @background-darker;
         }
         #workspaces button.active {
             background: @green;
             color: @background-darker;
-            /* border-bottom: 2px solid @background-darker; */
+            border-bottom: 2px solid @background-darker;
+        }
+        #taskbar button.active {
         }
         #clock {
-          color: @purple;
-          padding-right: 8px;
-          padding-left: 8px;
-          margin-right: 15px;
         }
-        #pulseaudio {
-          color: @green;
-          padding-left: 8px;
-          margin-left: 8px;
-        }
-        #tray {
-          padding-left: 5px;
-          margin-left: 8px;
-        }
-        #network {
-          color: @red;
-          padding-left: 8px;
-          margin-left: 8px;
-        }
-        #cpu {
-          padding-left: 8px;
-          margin-left: 8px;
-        }
-        #memory {
-          padding-left: 8px;
-          margin-left: 8px;
-          padding-right: 8px;
-          margin-right: 8px;
+        .modules-left {
+            background: @background-darker;
+            padding: 0px 20px 0px 0px;
         }
       '';
 
@@ -120,26 +81,39 @@
           layer = "top";
           position = "top";
           height = 30;
-          width = 400;
           tray = { spacing = 7; };
-          modules-left = [ ];
-          modules-right = [ ];
-          modules-center = [ "wlr/workspaces" "tray" "pulseaudio" "clock"];
+          modules-left = [ "wlr/workspaces" ];
+          modules-right = [ "tray" "network" "cpu" "memory" "custom/pad" "pulseaudio" "custom/sink" "custom/pad" "clock" ];
+          modules-center = [ ];
           "wlr/workspaces" = {
             format = "<span font='11'>{icon}</span>";
+            format-icons = {
+              "1"="";
+              "2"="";
+              "3"="";
+              "4"="";
+              "5"="";
+              "6"="";
+              "7"="";
+              "8"="";
+              "9"="";
+              "10"="";
+            };
             all-outputs = true;
             active-only = false;
             on-click = "activate";
           };
           clock = {
-            format = " {:%b %d %y %H:%M}";
+            format = "{:%b %d %H:%M}  ";
+            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+            #format-alt = "{:%A, %B %d, %Y} ";
           };
           cpu = {
-            format = " {usage}% <span font='11'></span> ";
+            format = " {usage}% <span font='11'></span> ";
             interval = 1;
           };
           disk = {
-            format = "{percentage_used}% <span font='11'></span>";
+            format = "{percentage_used}% <span font='11'></span>";
             path = "/";
             interval = 30;
           };
@@ -166,15 +140,32 @@
             max-length = 25;
           };
           network = {
-            format-ethernet = "Eth: {ipaddr}/{cidr}";
+            format-wifi = "<span font='11'></span>";
+            format-ethernet = "<span font='11'></span>";
+            #format-ethernet = "<span font='11'></span> {ifname}: {ipaddr}/{cidr}";
             format-linked = "<span font='11'>睊</span> {ifname} (No IP)";
             format-disconnected = "<span font='11'>睊</span> Not connected";
-            on-click-right = "nm-applet";
+            #format-alt = "{ifname}: {ipaddr}/{cidr}";
+            tooltip-format = "{essid} {ipaddr}/{cidr}";
+            #on-click-right = "${pkgs.alacritty}/bin/alacritty -e nmtui";
           };
           pulseaudio = {
-            format = "{volume}% {format_source} ";
+            format = "<span font='11'>{icon}</span> {volume}% {format_source} ";
+            format-bluetooth = "<span font='11'>{icon}</span> {volume}% {format_source} ";
+            format-bluetooth-muted = "<span font='11'>x</span> {volume}% {format_source} ";
+            format-muted = "<span font='11'>x</span> {volume}% {format_source} ";
+            #format-source = "{volume}% <span font='11'></span>";
             format-source = "<span font='10'></span> ";
-            format-source-muted = "<span font='11'></span> ";
+            format-source-muted = "<span font='11'> </span> ";
+            format-icons = {
+              default = [ "" "" "" ];
+              headphone = "";
+              #hands-free = "";
+              #headset = "";
+              #phone = "";
+              #portable = "";
+              #car = "";
+            };
             tooltip-format = "{desc}, {volume}%";
             on-click = "${pkgs.pamixer}/bin/pamixer -t";
             on-click-right = "${pkgs.pamixer}/bin/pamixer --default-source -t";

@@ -58,8 +58,8 @@
   environment = {
     variables = {
       TERMINAL = "alacritty";
-      EDITOR = "nix run helix";
-      VISUAL = "nix run helix";
+      EDITOR = "hx";
+      VISUAL = "hx";
     };
     systemPackages = with pkgs; [
       vim
@@ -85,7 +85,14 @@
   };
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "yes";
+    };
+  };
 
   # Pulseaudio setup
   sound.enable = true;

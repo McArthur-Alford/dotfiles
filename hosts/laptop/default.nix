@@ -1,5 +1,8 @@
 { config, pkgs, user, system, ...}:
-
+let
+  intelBusId = "PCI:01:00:0";
+  nvidiaBusId = "PCI:00:02:0";
+in
 {
   imports = [ 
     ./hardware-configuration.nix
@@ -11,15 +14,16 @@
     ../../modules/programs/godot.nix
     (import ../../modules/programs/discord.nix {
       inherit pkgs;
-      discordHash = "04r1yx6aqd4f4lq7wfcgs3jfpn40gz7gwajzai1aqz12ny78rs7z";
+      discordHash = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
     })
+    ../../modules/programs/zsh.nix
     ../../modules/services/gnome-keyring.nix
     ../../modules/kernels/latest.nix
     ../../modules/services/systemd-boot.nix
-    ../../modules/gpu/amd.nix
-    ../../modules/programs/zsh.nix
-  ];
- 
+    (import ../../modules/gpu/nvidia-optimus.nix {inherit pkgs config intelBusId nvidiaBusId;})
+   ];
+
+  # auto usb mounting stuff
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
@@ -44,22 +48,6 @@
       # Blender
       blender
       qsynth
-
-      # AMD Rocm TODO trim this, a lot is uncessary
-      rocm-smi
-      radeontop
-      rocm-opencl-icd
-      amdvlk
-      rocminfo
-      miopengemm
-      rocm-cmake
-      boost
-      sqlite
-      rocblas
-      rocmlir
-      llvmPackages_rocm.llvm
-      llvmPackages_rocm.clang
-      llvmPackages_rocm.rocmClangStdenv
     ];
 
     etc."spotify".source = "${pkgs.spotify}"; # Spotify fixed path for spicetify to use
@@ -67,17 +55,13 @@
 
   programs = {
     steam.enable = true;
-    gamemode.enable = true;						# Better performance
-    									                # Steam: Launch Options: gamemoderun %command%
+    # gamemode.enable = true;						# Better performance
+    									# Steam: Launch Options: gamemoderun %command%
   };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${user} = {
-    isNormalUser = true;
-    description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+  
+  services = {
+    blueman.enable = true;
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

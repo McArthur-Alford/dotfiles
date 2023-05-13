@@ -19,12 +19,12 @@
       enable = true;
     };
   };
+  services.network-manager-applet.enable = true;
 
   home.packages = with pkgs; [
-    # Dungeondraft/Wonderdraft (requires the .zip from humble bundle in the module directory)
-    #(callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
-    #(callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
-
+    networkmanagerapplet
+    acpi
+    
     materia-kde-theme
     sway-contrib.grimshot
     betterdiscordctl

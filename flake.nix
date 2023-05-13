@@ -18,11 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    helix = {
-      url = "github:helix-editor/helix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     spicetify-nix = {
       url = "github:the-argus/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +28,6 @@
     nixpkgs, 
     home-manager, 
     hyprland, 
-    helix, 
     spicetify-nix,
   }:
   let								# Variables that can be used in the config files
@@ -48,13 +42,11 @@
     lib = nixpkgs.lib;
   in 
   {
-    imports = [ helix.nixosModule ];
-    packages.helix.enabled = true;
     nixosConfigurations = (
       import ./hosts { 						# Imports ./hosts/default.nix, where available configs are located
         inherit (nixpkgs) lib;
         inherit inputs user system home-manager; 		# Inherit home manager so it does not need to be defined here
-      	inherit hyprland helix spicetify-nix;
+      	inherit hyprland spicetify-nix;
         inherit nixpkgs;
       }
     );

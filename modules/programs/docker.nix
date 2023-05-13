@@ -4,7 +4,7 @@
   users.users.${user}.extraGroups = [ "docker" ];
 
   virtualisation.docker.rootless = {
-    enable = true;
+    enable = false;
     setSocketVariable = true;
   };
   
