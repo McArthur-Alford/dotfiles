@@ -36,6 +36,9 @@
         wayland = true;
       };
 
+      desktopManager.xterm.enable = false;
+      excludePackages = [ pkgs.xterm ];
+
       displayManager.defaultSession = "hyprland";
     };
   };
