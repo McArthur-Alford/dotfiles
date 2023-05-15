@@ -33,7 +33,6 @@
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
       freshfetch
       steam
-      libsForQt5.dolphin
       gnome.nautilus
       nautilus-open-any-terminal
       libsForQt5.qt5ct

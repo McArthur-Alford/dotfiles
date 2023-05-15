@@ -11,5 +11,6 @@
     du-dust
     delta
     kalker
+    tldr
   ];
 }

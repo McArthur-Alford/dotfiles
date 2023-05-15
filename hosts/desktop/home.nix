@@ -25,6 +25,9 @@
     #(callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
     #(callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
 
+    evince 
+    texlab
+
     materia-kde-theme
     sway-contrib.grimshot
     betterdiscordctl
