@@ -4,6 +4,12 @@ let
   nvidiaBusId = "PCI:00:02:0";
 in
 {
+  users.users.${user} = {
+    isNormalUser = true;
+    description = "${user}";
+    extraGroups = [ "networkmanager" "wheel" "audio" ];
+  };
+
   imports = [ 
     ./hardware-configuration.nix
     ../../modules/desktop/hyprland 
@@ -29,7 +35,7 @@ in
   services.udisks2.enable = true;
 
   networking = {
-    hostName = "nixos-desktop";
+    hostName = "nixos-laptop";
     networkmanager.enable = true;
   };
 
