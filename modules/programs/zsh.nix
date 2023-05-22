@@ -12,5 +12,6 @@
     delta
     kalker
     tldr
+    sshs
   ];
 }
