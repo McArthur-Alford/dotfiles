@@ -13,5 +13,6 @@
     kalker
     tldr
     sshs
+    rm-improved
   ];
 }
