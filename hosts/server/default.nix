@@ -94,6 +94,7 @@
 
   environment = {
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
+      nginx
       freshfetch
       gnome.nautilus
       nautilus-open-any-terminal
