@@ -95,6 +95,8 @@
   };
   users.users.${user}.openssh.authorizedKeys.keyFiles = [
     ../sshKeys/desktop.pub
+    ../sshKeys/laptop.pub
+    ../sshKeys/server.pub
   ];
 
   # Pulseaudio setup
