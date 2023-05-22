@@ -1,5 +1,5 @@
 # Global Configuration For All Devices
-{ config, pkgs, user, ... }:
+{ lib, config, pkgs, user, ... }:
 {
   # Set your time zone.
   time.timeZone = "Australia/Brisbane";
@@ -93,6 +93,9 @@
       PermitRootLogin = "yes";
     };
   };
+  users.users.${user}.openssh.authorizedKeys.keyFiles = [
+    ../sshKeys/desktop.pub
+  ];
 
   # Pulseaudio setup
   sound.enable = true;
