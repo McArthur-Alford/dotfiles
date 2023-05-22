@@ -27,6 +27,7 @@
 
     evince 
     texlab
+    xorg.xhost
 
     materia-kde-theme
     sway-contrib.grimshot
