@@ -56,6 +56,7 @@
       displayManager.gdm = {
         enable = true;
         wayland = true;
+        autoSuspend = false;
       };
 
       displayManager.defaultSession = "hyprland";
@@ -90,6 +91,13 @@
       libsForQt5.qt5ct
     ];
   };
+
+  # Not sure if this is necessary to disable autosuspend, but keep it anyway
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+  powerManagement.enable = false;
 
   system.stateVersion = "22.11"; # Did you read the comment?
 }
