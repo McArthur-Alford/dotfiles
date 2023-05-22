@@ -33,6 +33,10 @@
     
     libsForQt5.okular
 
+    texlab
+    typst
+    typst-lsp
+    
     # Protonupqt
     protonup-ng
 
