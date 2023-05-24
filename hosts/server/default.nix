@@ -12,7 +12,7 @@
       ../../modules/programs/wofi
       ../../modules/programs/docker.nix
       ../../modules/programs/python.nix
-      ../../modules/programs/haskell.nix
+      # ../../modules/programs/haskell.nix
       ../../modules/programs/zsh.nix
       ../../modules/services/gnome-keyring.nix
       ../../modules/kernels/latest.nix
@@ -29,11 +29,18 @@
     virtualHosts =  {
       "thaumaturgy.tech" = {
         enableACME = true;
+        forceSSL = true;
         locations."/".proxyPass = "http://localhost:30000";
       };
       "foundry.thaumaturgy.tech" = {
         locations."/".proxyPass = "http://127.0.0.1:30000";
         locations."/".proxyWebsockets = true;
+        forceSSL = true;
+        enableACME = true;
+      };
+      "cloud.thaumaturgy.tech" = {
+        forceSSL = true;
+        enableACME = true;
       };
     };
   };
@@ -41,6 +48,18 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "mcarthur.alford@pm.me";
+  };
+
+  # NextCloud
+  services.nextcloud = {
+    enable = true;
+    https = true;
+    package = pkgs.nextcloud26;
+    hostName = "cloud.thaumaturgy.tech";
+    config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
+    extraApps = with pkgs.nextcloud26Packages.apps; {
+    };
+    extraAppsEnable = true;
   };
 
   # Use the GRUB 2 boot loader.
@@ -54,7 +73,7 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 80 443 22 3000 ];
+    allowedTCPPorts = [ 80 443 22 3000 8080 8000 9000 ];
     allowedUDPPortRanges = [
       { from = 4000; to = 4007; }
       { from = 8000; to = 8010; }
