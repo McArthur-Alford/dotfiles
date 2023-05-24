@@ -20,6 +20,29 @@
       # ../../modules/services/systemd-boot.nix
     ];
 
+  # nginx TODO factor this out into a module
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    # other Nginx options
+    virtualHosts =  {
+      "thaumaturgy.tech" = {
+        enableACME = true;
+        locations."/".proxyPass = "http://localhost:30000";
+      };
+      "foundry.thaumaturgy.tech" = {
+        locations."/".proxyPass = "http://127.0.0.1:30000";
+        locations."/".proxyWebsockets = true;
+      };
+    };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "mcarthur.alford@pm.me";
+  };
+
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
@@ -95,6 +118,7 @@
   environment = {
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
       nginx
+      gparted
       freshfetch
       gnome.nautilus
       nautilus-open-any-terminal
