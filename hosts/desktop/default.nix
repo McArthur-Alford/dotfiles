@@ -4,6 +4,7 @@
   imports = [ 
     ./hardware-configuration.nix
     ../../modules/desktop/hyprland 
+    ../../modules/programs/eww.nix
     ../../modules/programs/wofi
     ../../modules/programs/python.nix
     ../../modules/programs/docker.nix
@@ -19,6 +20,8 @@
     ../../modules/gpu/amd.nix
     ../../modules/programs/zsh.nix
   ];
+
+  hardware.keyboard.qmk.enable = true;
  
   services.devmon.enable = true;
   services.gvfs.enable = true;

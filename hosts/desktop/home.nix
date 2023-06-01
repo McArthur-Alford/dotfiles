@@ -25,6 +25,13 @@
     #(callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
     #(callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
 
+    # Keyboard management for charybdis
+    via
+    vial
+    qmk
+    # qmk_hid
+    qmk-udev-rules
+
     evince 
     texlab
     xorg.xhost

@@ -1,6 +1,6 @@
 { config, lib, pkgs, host, system, hyprland, ...}:
 {
-  imports = [ ../../programs/waybar.nix ];
+  # imports = [ ../../programs/waybar.nix ];
   environment = {
     variables = {
       XDG_CURRENT_DESKTOP="Hyprland";
@@ -45,9 +45,6 @@
 
   programs = {
     hyprland = {
-      enable = true;
-    };
-    waybar = {
       enable = true;
     };
     xwayland.enable = true;
