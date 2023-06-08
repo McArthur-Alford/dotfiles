@@ -4,7 +4,8 @@
   imports = [ 
     ./hardware-configuration.nix
     ../../modules/desktop/hyprland 
-    ../../modules/programs/eww.nix
+    # ../../modules/programs/eww.nix
+    ../../modules/programs/waybar.nix
     ../../modules/programs/wofi
     ../../modules/programs/python.nix
     ../../modules/programs/docker.nix
@@ -26,6 +27,9 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
 
   networking = {
     hostName = "nixos-desktop";
