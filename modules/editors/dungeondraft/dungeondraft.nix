@@ -9,9 +9,19 @@ in
 stdenv.mkDerivation rec {
   inherit name version;
 
-  src = (pkgs.fetchurl { 
-    url = "https://github.com/McArthur-Alford/dotfiles/blob/main/modules/editors/dungeondraft/Dungeondraft-${version}-Linux64.zip"
-  });
+  # src = (pkgs.fetchurl { 
+  #   url = "https://github.com/McArthur-Alford/dotfiles/blob/main/modules/editors/dungeondraft/Dungeondraft-${version}-Linux64.zip";
+  #   # hash = "sha256-+Zb7fez1LBLpqnjGLutF3AcnZ5oCRiO/jV/txfUXwhM=";
+  #   sha256= "+Zb7fez1LBLpqnjGLutF3AcnZ5oCRiO/jV/txfUXwhM=";
+  # });
+
+  # src = pkgs.fetchurl {
+  #   url = "https://github.com/McArthur-Alford/dotfiles/blob/main/modules/editors/dungeondraft/Dungeondraft-${version}-Linux64.zip";
+	 #  sha256 = "+Zb7fez1LBLpqnjGLutF3AcnZ5oCRiO/jV/txfUXwhM=";
+  # };
+
+  src = ./Dungeondraft-${version}-Linux64.zip;
+
 
   nativeBuildInputs = with pkgs; [
     autoPatchelfHook
