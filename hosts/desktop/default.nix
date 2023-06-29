@@ -38,8 +38,13 @@
 
   environment = {
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
+      # Dungeondraft/Wonderdraft
+      # (callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
+      # (callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
+
       freshfetch
       steam
+      lutris
       gnome.nautilus
       nautilus-open-any-terminal
       libsForQt5.qt5ct

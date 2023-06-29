@@ -25,6 +25,8 @@
     #(callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
     #(callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
 
+    git-lfs
+
     # Keyboard management for charybdis
     via
     vial

@@ -9,7 +9,11 @@ in
 stdenv.mkDerivation rec {
   inherit name version;
 
-  src = ./. + "/Dungeondraft-${version}-Linux64.zip";
+  # src = ./. + "/Dungeondraft-${version}-Linux64.zip";
+  src = (pkgs.fetchurl { 
+    url = "https://drive.proton.me/urls/XV7K05MPX0#xfPKZDoC6SU0";
+    hash = "sha256-gBN1PUJgg7ptNY2LHEylSziHQNsg0VOK9RN5yA4CCwc="; 
+  });
 
   nativeBuildInputs = with pkgs; [
     autoPatchelfHook
