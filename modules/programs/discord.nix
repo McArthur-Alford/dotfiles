@@ -1,6 +1,6 @@
 { pkgs, discordHash, ... }:
 {
-  environment.systemPackages = with pkgs; [ discord ];
+  environment.systemPackages = with pkgs; [ discord xdg-desktop-portal xdg-desktop-portal-gnome ];
   nixpkgs.overlays = [							# Keeps discord up to date
     (self: super: {
       discord = super.discord.overrideAttrs (

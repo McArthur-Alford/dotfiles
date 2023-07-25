@@ -1,4 +1,4 @@
-theme = "dracula"
+theme = "alucard"
 
 [editor.lsp]
 display-inlay-hints	= true

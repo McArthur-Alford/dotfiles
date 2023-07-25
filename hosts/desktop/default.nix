@@ -1,4 +1,4 @@
-{ config, pkgs, user, system, ...}:
+{ config, pkgs, user, system, lib, ...}:
 
 {
   imports = [ 
@@ -23,6 +23,13 @@
   ];
 
   hardware.keyboard.qmk.enable = true;
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+          fcitx5-mozc
+          fcitx5-gtk
+      ];
+  };
  
   services.devmon.enable = true;
   services.gvfs.enable = true;
@@ -31,16 +38,52 @@
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
 
+  fonts = {
+    enableDefaultFonts = true;
+
+    fonts = with pkgs; [
+      carlito
+      dejavu_fonts
+      ipafont
+      kochi-substitute
+      source-code-pro
+      ttf_bitstream_vera
+    ];
+
+    fontconfig.defaultFonts = {
+      monospace = [
+        "DejaVu Sans Mono"
+        "IPAGothic"
+      ];
+      sansSerif = [
+        "DejaVu Sans"
+        "IPAPGothic"
+      ];
+      serif = [
+        "DejaVu Serif"
+        "IPAPMincho"
+      ];
+    };
+  };  
+
+
   networking = {
     hostName = "nixos-desktop";
     networkmanager.enable = true;
   };
+
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
 
   environment = {
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
       # Dungeondraft/Wonderdraft
       # (callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
       (callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
+      (callPackage ../../weird.nix {})
+      pipewire
+
+      anki-bin
 
       freshfetch
       steam
@@ -48,6 +91,11 @@
       gnome.nautilus
       nautilus-open-any-terminal
       libsForQt5.qt5ct
+      gamescope
+
+      # wine
+      wineWowPackages.stable
+      winetricks
 
       # polkit
       polkit
