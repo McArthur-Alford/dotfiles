@@ -62,6 +62,7 @@
       VISUAL = "hx";
     };
     systemPackages = with pkgs; [
+      nil # Nix language server, HANDY TO HAVE ON NIXOS
       vim
       wget
       alacritty

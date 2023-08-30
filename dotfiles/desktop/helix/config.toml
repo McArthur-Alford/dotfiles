@@ -1,4 +1,9 @@
 theme = "dracula"
 
+[editor]
+true-color=true
+undercurl=true
+bufferline="multiple"
+
 [editor.lsp]
 display-inlay-hints	= true

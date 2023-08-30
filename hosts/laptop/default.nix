@@ -14,6 +14,7 @@ in
     ./hardware-configuration.nix
     ../../modules/desktop/hyprland 
     ../../modules/programs/wofi
+    ../../modules/programs/waybar.nix
     ../../modules/programs/python.nix
     ../../modules/programs/docker.nix
     ../../modules/programs/haskell.nix
@@ -29,6 +30,8 @@ in
     (import ../../modules/gpu/nvidia-optimus.nix {inherit pkgs config intelBusId nvidiaBusId;})
    ];
 
+  nixpkgs.overlays = [ (import ../../overlays/xwaylandvideobridge.nix) ];
+
   # auto usb mounting stuff
   services.devmon.enable = true;
   services.gvfs.enable = true;
@@ -41,6 +44,20 @@ in
 
   environment = {
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
+      # Nix language server
+      nil
+
+      wine
+
+      # v4loopback?
+      linuxPackages.v4l2loopback
+
+      # Firefoxy
+      firefox
+
+      # MS Teams
+      teams
+    
       freshfetch
       steam
       libsForQt5.dolphin
