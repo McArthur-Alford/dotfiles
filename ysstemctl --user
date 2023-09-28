@@ -1,0 +1,34 @@
+○ pipewire-pulse.service - PipeWire PulseAudio
+     Loaded: loaded (]8;;file://nixos-desktop/etc/systemd/user/pipewire-pulse.service/etc/systemd/user/pipewire-pulse.service]8;;; [0;1;38;5;185mdisabled[0m; preset: [0;1;32menabled[0m)
+     Active: inactive (dead)
+TriggeredBy: [0;1;32m●[0m pipewire-pulse.socket
+
+[0;1;32m●[0m pulseaudio.service
+     Loaded: [0;1;31mnot-found[0m (Reason: Unit pulseaudio.service not found.)
+     Active: [0;1;32mactive (running)[0m since Thu 2023-09-28 14:12:22 AEST; 46min ago
+   Main PID: 3945 (pulseaudio)
+        CPU: 1min 20.046s
+     CGroup: /user.slice/user-1000.slice/user@1000.service/session.slice/pulseaudio.service
+             ├─[0;38;5;245m3945 /nix/store/mc4qfckp6x9k690wsqvba8zdybnqvjxh-pulseaudio-16.1/bin/pulseaudio --daemonize=no --log-target=journal[0m
+             └─[0;38;5;245m3971 /nix/store/mc4qfckp6x9k690wsqvba8zdybnqvjxh-pulseaudio-16.1/libexec/pulse/gsettings-helper[0m
+
+Sep 28 14:12:21 nixos-desktop systemd[2778]: Starting Sound Service...
+Sep 28 14:12:22 nixos-desktop pulseaudio[3945]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mstat('/etc/pulse/default.pa.d'): No such file or directory[0m
+Sep 28 14:12:22 nixos-desktop systemd[2778]: Started Sound Service.
+Sep 28 14:12:22 nixos-desktop pulseaudio[3945]: [0;1;39m[0;1;31m[0;1;39mCould not find org.bluez.BatteryProviderManager1.RegisterBatteryProvider(), is bluetoothd started with experimental features enabled (-E flag)?[0m
+Sep 28 14:13:06 nixos-desktop pulseaudio[3945]: [0;1;31m[0;1;39m[0;1;31mALSA woke us up to write new data to the device, but there was actually nothing to write.[0m
+Sep 28 14:13:06 nixos-desktop pulseaudio[3945]: [0;1;31m[0;1;39m[0;1;31mMost likely this is a bug in the ALSA driver 'snd_usb_audio'. Please report this issue to the ALSA developers.[0m
+Sep 28 14:13:06 nixos-desktop pulseaudio[3945]: [0;1;31m[0;1;39m[0;1;31mWe were woken up with POLLOUT set -- however a subsequent snd_pcm_avail() returned 0 or another value < min_avail.[0m
+
+[0;1;32m●[0m xdg-desktop-portal-hyprland.service - Portal service (Hyprland implementation)
+     Loaded: loaded (]8;;file://nixos-desktop/etc/systemd/user/xdg-desktop-portal-hyprland.service/etc/systemd/user/xdg-desktop-portal-hyprland.service]8;;; linked-runtime; preset: [0;1;32menabled[0m)
+     Active: [0;1;32mactive (running)[0m since Thu 2023-09-28 14:21:46 AEST; 36min ago
+   Main PID: 22338 (.xdg-desktop-po)
+      Tasks: 6 (limit: 76915)
+     Memory: 12.4M
+        CPU: 176ms
+     CGroup: /user.slice/user-1000.slice/user@1000.service/app.slice/xdg-desktop-portal-hyprland.service
+             └─[0;38;5;245m22338 /nix/store/h44s9nggi0q61giq1f679kv79s8nq54n-xdg-desktop-portal-hyprland-0.pre+date=2023-01-07_d479c84/libexec/xdg-desktop-portal-hyprland[0m
+
+Sep 28 14:21:46 nixos-desktop systemd[2778]: Starting Portal service (Hyprland implementation)...
+Sep 28 14:21:46 nixos-desktop systemd[2778]: Started Portal service (Hyprland implementation).

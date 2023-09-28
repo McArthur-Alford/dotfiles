@@ -81,9 +81,6 @@
     # Libs
     dotnet-sdk_7
 
-    # Jetbrains
-    jetbrains.idea-community
-
     # Element
     element-desktop
   ];

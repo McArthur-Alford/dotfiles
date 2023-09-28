@@ -16,6 +16,7 @@
       MOZ_ENABLE_WAYLAND = "1";
     };
     systemPackages = with pkgs; [
+      xdg-desktop-portal-hyprland
       grim
       mpvpaper
       slurp
@@ -23,10 +24,12 @@
       wl-clipboard
       wlr-randr
       hyprpaper
+      qt6.full
     ];
   };
 
   services = {
+
     blueman.enable = true;
     xserver = {
       enable = true;
