@@ -24,6 +24,7 @@
     # Apps
     appimage-run
     google-chrome
+    firefox
 
     # 
     cargo

@@ -11,10 +11,10 @@
     ../../modules/programs/docker.nix
     ../../modules/programs/haskell.nix
     ../../modules/programs/godot.nix
-    (import ../../modules/programs/discord.nix {
-      inherit pkgs;
-      discordHash = "04r1yx6aqd4f4lq7wfcgs3jfpn40gz7gwajzai1aqz12ny78rs7z";
-    })
+    # (import ../../modules/programs/discord.nix {
+    #   inherit pkgs;
+    #   discordHash = "04r1yx6aqd4f4lq7wfcgs3jfpn40gz7gwajzai1aqz12ny78rs7z";
+    # })
     ../../modules/services/gnome-keyring.nix
     ../../modules/kernels/latest.nix
     ../../modules/services/systemd-boot.nix
@@ -114,6 +114,8 @@
       wineWowPackages.stable
       winetricks
 
+      webcord
+
       pandoc
 
       # polkit
@@ -129,21 +131,9 @@
       # Minecraft
       prismlauncher
 
-      # AMD Rocm experimentation TODO trim this, a lot is uncessary
-      # rocm-smi
-      # radeontop
-      # rocm-opencl-icd
-      # amdvlk
-      # rocminfo
-      # miopengemm
-      # rocm-cmake
-      # boost
-      # sqlite
-      # rocblas
-      # rocmlir
-      # llvmPackages_rocm.llvm
-      # llvmPackages_rocm.clang
-      # llvmPackages_rocm.rocmClangStdenv
+      mousai
+
+      element-desktop
     ];
 
     etc."spotify".source = "${pkgs.spotify}"; # Spotify fixed path for spicetify to use

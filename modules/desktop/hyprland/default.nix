@@ -25,6 +25,7 @@
       wlr-randr
       hyprpaper
       qt6.full
+      xwayland
     ];
   };
 
