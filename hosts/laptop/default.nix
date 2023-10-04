@@ -14,13 +14,16 @@ in
     ./hardware-configuration.nix
     ../../modules/desktop/hyprland 
     ../../modules/programs/wofi
+    ../../modules/programs/waybar.nix
     ../../modules/programs/python.nix
     ../../modules/programs/docker.nix
     ../../modules/programs/haskell.nix
     ../../modules/programs/godot.nix
     (import ../../modules/programs/discord.nix {
       inherit pkgs;
-      discordHash = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
+      # discordHash = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
+      # discordHash = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
+      discordHash = "04r1yx6aqd4f4lq7wfcgs3jfpn40gz7gwajzai1aqz12ny78rs7z";
     })
     ../../modules/programs/zsh.nix
     ../../modules/services/gnome-keyring.nix
@@ -28,6 +31,8 @@ in
     ../../modules/services/systemd-boot.nix
     (import ../../modules/gpu/nvidia-optimus.nix {inherit pkgs config intelBusId nvidiaBusId;})
    ];
+
+  nixpkgs.overlays = [ (import ../../overlays/xwaylandvideobridge.nix) ];
 
   # auto usb mounting stuff
   services.devmon.enable = true;
@@ -41,6 +46,20 @@ in
 
   environment = {
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
+      # Nix language server
+      nil
+
+      wine
+
+      # v4loopback?
+      linuxPackages.v4l2loopback
+
+      # Firefoxy
+      firefox
+
+      # MS Teams
+      teams
+    
       freshfetch
       steam
       libsForQt5.dolphin
