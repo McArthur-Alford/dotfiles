@@ -1,9 +1,14 @@
 theme = "dracula"
 
 [editor]
-true-color=true
-undercurl=true
-bufferline="multiple"
+true-color = true
+undercurl = true
+bufferline = "always"
+rulers = [80]
 
 [editor.lsp]
 display-inlay-hints	= true
+
+[editor.soft-wrap]
+enable = true
+wrap-at-text-width = true
