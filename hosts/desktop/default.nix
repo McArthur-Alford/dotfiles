@@ -88,7 +88,7 @@
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
       # Dungeondraft/Wonderdraft
       # (callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
-      (callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
+      # (callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
       # (callPackage ../../weird.nix {})
       pipewire
 
