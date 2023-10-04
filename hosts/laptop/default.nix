@@ -12,7 +12,7 @@ in
 
   imports = [ 
     ./hardware-configuration.nix
-    ../../modules/desktop/hyprland 
+    ../../modules/desktop/hyprland
     ../../modules/programs/wofi
     ../../modules/programs/waybar.nix
     ../../modules/programs/python.nix
@@ -22,8 +22,8 @@ in
     (import ../../modules/programs/discord.nix {
       inherit pkgs;
       # discordHash = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
-      # discordHash = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
-      discordHash = "04r1yx6aqd4f4lq7wfcgs3jfpn40gz7gwajzai1aqz12ny78rs7z";
+      discordHash = "0mr1az32rcfdnqh61jq7jil6ki1dpg7bdld88y2jjfl2bk14vq4s";
+      # discordHash = "04r1yx6aqd4f4lq7wfcgs3jfpn40gz7gwajzai1aqz12ny78rs7z";
     })
     ../../modules/programs/zsh.nix
     ../../modules/services/gnome-keyring.nix
