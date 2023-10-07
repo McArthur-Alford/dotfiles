@@ -1,7 +1,13 @@
-{ cfg, pkgs, libs, user, config, spicetify-nix, ... }:
+{ cfg, pkgs, libs, lib, user, config, spicetify-nix, ... }:
+let
+  host = {
+    hostName = "laptop";
+    mainMonitor = "MAIN";
+  };
+in
 {
   imports = [
-    ../../modules/desktop/hyprland/home.nix
+    (import ../../modules/desktop/hyprland/home.nix {inherit host user pkgs config libs lib;})
     ../../modules/programs/wofi/home.nix
     ../../modules/programs/spicetify.home.nix
     ../../modules/programs/zellij.home.nix

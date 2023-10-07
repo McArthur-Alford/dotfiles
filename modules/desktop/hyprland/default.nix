@@ -1,4 +1,4 @@
-{ config, lib, pkgs, host, system, hyprland, ...}:
+{ config, lib, pkgs, system, hyprland, ...}:
 {
   # imports = [ ../../programs/waybar.nix ];
   environment = {
@@ -7,7 +7,7 @@
       XDG_SESSION_TYPE="wayland";
       XDG_SESSION_DESKTOP="Hyprland";
     };
-    sessionVariables = with host; {
+    sessionVariables = {
       QT_QPA_PLATFORM = "wayland";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
 

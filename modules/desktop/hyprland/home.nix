@@ -4,7 +4,7 @@ let
     if hostName == "desktop" then ''
       monitor=${toString mainMonitor},5120x1440@120,5140x0,1
     '' else if hostName == "laptop" then ''
-      monitor=${toString mainMonitor},1920x1080@60,1920x0,1
+      monitor=${toString mainMonitor},3840x2160@60,3840x0,1
     '' else "";
   monitors = with host;
     if hostName == "desktop" then ''
@@ -17,6 +17,7 @@ let
 in
 {
   xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/desktop/hypr/hyprland.conf;
+  xdg.configFile."hypr/hyprmonitors.conf".text = workspaces;
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
       preload = /home/${user}/wallpapers/wallpaper.png
