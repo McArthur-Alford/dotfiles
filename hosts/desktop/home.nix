@@ -31,6 +31,11 @@ in
     #(callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
     #(callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
 
+    protonmail-bridge
+    thunderbird
+
+    visidata
+
     git-lfs
 
     # Keyboard management for charybdis
@@ -77,6 +82,9 @@ in
     # Work Comms
     slack
     zoom-us
+
+
+    eww-wayland
 
     # Office
     onlyoffice-bin
