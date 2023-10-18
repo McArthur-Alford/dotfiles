@@ -1,7 +1,13 @@
-{ cfg, pkgs, libs, user, config, spicetify-nix, ... }:
+{ cfg, pkgs, libs, lib, user, config, spicetify-nix, ... }:
+let
+  host = {
+    hostName = "desktop";
+    mainMonitor = "MAIN";
+  };
+in
 {
   imports = [
-    ../../modules/desktop/hyprland/home.nix
+    (import ../../modules/desktop/hyprland/home.nix {inherit host user pkgs config libs lib;})
     ../../modules/programs/wofi/home.nix
     ../../modules/programs/spicetify.home.nix
     ../../modules/programs/zellij.home.nix
@@ -24,6 +30,11 @@
     # Dungeondraft/Wonderdraft (requires the .zip from humble bundle in the module directory)
     #(callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
     #(callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
+
+    protonmail-bridge
+    thunderbird
+
+    visidata
 
     git-lfs
 
@@ -71,6 +82,9 @@
     # Work Comms
     slack
     zoom-us
+
+
+    eww-wayland
 
     # Office
     onlyoffice-bin

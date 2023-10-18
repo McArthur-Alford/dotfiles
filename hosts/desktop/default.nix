@@ -125,6 +125,9 @@
       blender
       qsynth
 
+      # only useful for AMD gpu
+      radeontop
+
       # Jetbrains
       jetbrains.idea-community
 
