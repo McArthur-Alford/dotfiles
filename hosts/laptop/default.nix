@@ -38,6 +38,11 @@ in
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  services.xserver.libinput.touchpad.naturalScrolling = false; 
+  services.xserver.libinput.enable = true; 
+  services.xserver.libinput.touchpad.middleEmulation = true; 
+  services.xserver.libinput.touchpad.tapping = true;
+  services.xserver.libinput.touchpad.disableWhileTyping = false;
 
   networking = {
     hostName = "nixos-laptop";
