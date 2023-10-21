@@ -6,7 +6,7 @@
     modules = [
       ./configuration.nix
       ./desktop
-      devtemplates.nixosModules.yee
+      devtemplates.nixosModules.default
       hyprland.nixosModules.default
       home-manager.nixosModules.home-manager {				# Home Manager Module
         home-manager.useGlobalPkgs = true;
@@ -30,7 +30,7 @@
     modules = [
       ./configuration.nix
       ./laptop
-      devtemplates.nixosModules.yee
+      devtemplates.nixosModules.default
       hyprland.nixosModules.default
       home-manager.nixosModules.home-manager {				# Home Manager Module
         home-manager.useGlobalPkgs = true;
