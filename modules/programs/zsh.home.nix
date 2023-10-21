@@ -20,7 +20,7 @@
         enable = true;
       };
       shellAliases = {
-        ls = "exa";
+        ls = "eza";
         cat = "bat";
         grep = "rga";
         find = "fd";
@@ -47,7 +47,7 @@
       enable = true;
       enableZshIntegration = true;
     };
-    exa = {
+    eza = {
       enable = true;
     };
   };

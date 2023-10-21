@@ -23,10 +23,10 @@
   hardware.keyboard.qmk.enable = true;
   i18n.inputMethod = {
     enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [
-          fcitx5-mozc
-          fcitx5-gtk
-      ];
+    fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+    ];
   };
 
   networking.firewall = {
@@ -46,9 +46,9 @@
   hardware.bluetooth.enable = true;
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
 
-    fonts = with pkgs; [
+    packages = with pkgs; [
       carlito
       dejavu_fonts
       ipafont
