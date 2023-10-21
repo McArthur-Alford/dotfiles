@@ -52,8 +52,6 @@ in
     materia-kde-theme
     sway-contrib.grimshot
     betterdiscordctl
-    direnv
-    nix-direnv
     
     libsForQt5.okular
 

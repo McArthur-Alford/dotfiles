@@ -15,8 +15,6 @@
 
   home.packages = with pkgs; [
     materia-kde-theme
-    direnv
-    nix-direnv
     gnome.gnome-keyring
     libsecret
     libgnome-keyring

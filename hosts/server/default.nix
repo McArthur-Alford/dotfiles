@@ -11,8 +11,6 @@
       ../../modules/desktop/hyprland 
       ../../modules/programs/wofi
       ../../modules/programs/docker.nix
-      ../../modules/programs/python.nix
-      # ../../modules/programs/haskell.nix
       ../../modules/programs/zsh.nix
       ../../modules/services/gnome-keyring.nix
       ../../modules/kernels/latest.nix

@@ -6,7 +6,9 @@
   environment.systemPackages = with pkgs; [
     fd
     ripgrep
-    ripgrep-all
+    (ripgrep-all.overrideAttrs (old: {
+      doInstallCheck = false;
+    }))
     procs
     du-dust
     delta

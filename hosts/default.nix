@@ -1,11 +1,12 @@
-{ lib, inputs, system, home-manager, user, hyprland, spicetify-nix, nixpkgs, ... }:
+{ lib, inputs, system, home-manager, user, hyprland, spicetify-nix, nixpkgs, devtemplates, ... }:
 {
   desktop = lib.nixosSystem {						# Desktop Profile
     inherit system;
-    specialArgs = { inherit user inputs hyprland spicetify-nix; };
+    specialArgs = { inherit user inputs hyprland spicetify-nix devtemplates; };
     modules = [
       ./configuration.nix
       ./desktop
+      devtemplates.nixosModules.yee
       hyprland.nixosModules.default
       home-manager.nixosModules.home-manager {				# Home Manager Module
         home-manager.useGlobalPkgs = true;
@@ -25,10 +26,11 @@
 
   laptop = lib.nixosSystem {						# Desktop Profile
     inherit system;
-    specialArgs = { inherit user inputs hyprland spicetify-nix; };
+    specialArgs = { inherit user inputs hyprland spicetify-nix devtemplates; };
     modules = [
       ./configuration.nix
       ./laptop
+      devtemplates.nixosModules.yee
       hyprland.nixosModules.default
       home-manager.nixosModules.home-manager {				# Home Manager Module
         home-manager.useGlobalPkgs = true;

@@ -1,7 +1,3 @@
-# flake.nix
-#  ┕━ ./hosts
-#      ┕━ default.nix
-
 {
   description = "Magical NixOS/Home-Manager Configuration";
 
@@ -22,6 +18,11 @@
       url = "github:the-argus/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    devtemplates = {
+      url = "github:McArthur-Alford/nix-templates";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ { self, 
@@ -29,6 +30,7 @@
     home-manager, 
     hyprland, 
     spicetify-nix,
+    devtemplates,
   }:
   let								# Variables that can be used in the config files
     system = "x86_64-linux";					# System Architecture
@@ -48,6 +50,7 @@
         inherit inputs user system home-manager; 		# Inherit home manager so it does not need to be defined here
       	inherit hyprland spicetify-nix;
         inherit nixpkgs;
+        inherit devtemplates;
       }
     );
   };

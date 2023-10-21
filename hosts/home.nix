@@ -1,6 +1,8 @@
 { config, pkgs, lib, user, ... }:
 {
-  imports = [ ];
+  imports = [
+    ../modules/services/direnv.home.nix
+  ];
 
   programs.home-manager.enable = true;
   home.username = "${user}";
@@ -25,10 +27,6 @@
     appimage-run
     google-chrome
     firefox
-
-    # 
-    cargo
-    rustc
   ];
 
   xsession.enable = true;

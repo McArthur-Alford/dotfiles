@@ -15,9 +15,7 @@ in
     ../../modules/desktop/hyprland
     ../../modules/programs/wofi
     ../../modules/programs/waybar.nix
-    ../../modules/programs/python.nix
     ../../modules/programs/docker.nix
-    ../../modules/programs/haskell.nix
     ../../modules/programs/godot.nix
     (import ../../modules/programs/discord.nix {
       inherit pkgs;

@@ -7,9 +7,7 @@
     # ../../modules/programs/eww.nix
     ../../modules/programs/waybar.nix
     ../../modules/programs/wofi
-    ../../modules/programs/python.nix
     ../../modules/programs/docker.nix
-    ../../modules/programs/haskell.nix
     ../../modules/programs/godot.nix
     # (import ../../modules/programs/discord.nix {
     #   inherit pkgs;
@@ -97,8 +95,8 @@
       xorg.libXxf86vm
 
       # Screen recording!
-      gpu-screen-recorder
-      gpu-screen-recorder-gtk
+      # gpu-screen-recorder
+      # gpu-screen-recorder-gtk
 
       freshfetch
       steam
