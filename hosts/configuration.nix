@@ -63,6 +63,7 @@
     };
     systemPackages = with pkgs; [
       nil # Nix language server, HANDY TO HAVE ON NIXOS
+      # nixd # not as good as nil :)
       vim
       wget
       alacritty

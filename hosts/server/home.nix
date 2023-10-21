@@ -48,6 +48,8 @@
 
   # Helix
   xdg.configFile."helix/config.toml".source = ../../dotfiles/desktop/helix/config.toml;
+  xdg.configFile."helix/languages.toml".source = ../../dotfiles/desktop/helix/languages.toml;
+
 
   # Ranger
   # xdg.configFile."ranger/rifle/rifle.conf".source = ../../dotfiles/desktop/ranger/rifle/rifle.conf;
