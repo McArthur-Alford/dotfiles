@@ -19,14 +19,6 @@ in
   # xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/desktop/hypr/hyprland.conf;
   xdg.configFile."hypr/hyprmonitors.conf".text = workspaces;
 
-  # xdg.configFile."hypr/hyprpaper.conf".text = ''
-  #     preload = /home/${user}/wallpapers/wallpaper.png
-  #     # .. more preloads
-
-  #     wallpaper = DP-1,/home/${user}/wallpapers/wallpaper.png
-  #     wallpaper = eDP-1,/home/${user}/wallpapers/wallpaper.png
-  #     # .. more wallpapers
-    # '';
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
@@ -36,12 +28,14 @@ in
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "~/.config/hypr/hyprmonitors.conf"
-        "waybar"
         "swww init"
-        "eww open bar"
-        "eww daemon"
-        "eww reload"
         # "if ! [ command nm-applet ] then nm-applet --indicator fi"
+      ];
+      exec = [
+        "pkill .eww-wrapped"
+        "eww daemon"
+        "eww open bar"
+        # "eww reload"
       ];
 
       env = "XCURSOR_SIZE,24";
@@ -136,10 +130,7 @@ in
         "$mainMod, S, exec, grimshot copy area"
         "$mainMod, B, exec, pkill waybar || waybar"
 
-        "$mainMod, Q, exec, alacritty"
-        "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
-        "$mainMod, E, exec, dolphin"
         "$mainMod, V, togglefloating,"
         "$mainMod, D, exec, wofi --show drun"
         "$mainMod, P, pseudo,"
