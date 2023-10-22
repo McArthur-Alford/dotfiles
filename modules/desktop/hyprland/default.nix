@@ -23,7 +23,8 @@
       swappy
       wl-clipboard
       wlr-randr
-      hyprpaper
+      # hyprpaper
+      swww
       qt6.full
       xwayland
     ];

@@ -8,7 +8,7 @@
 # https://github.com/alacritty/alacritty/blob/master/alacritty.yml
 
 window:
-  opacity: 0.9
+  opacity: 0.7
 colors:
   primary:
     background: '#282a36'
