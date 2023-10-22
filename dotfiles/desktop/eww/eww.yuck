@@ -1,0 +1,79 @@
+(defwidget bar []
+  (centerbox :orientation "v"
+    (workspaces)
+    (music)
+    (sidestuff)))
+
+(defvar time-visible true)   ; for :run-while property of below variable
+                              ; when this turns true, the polling starts and
+                              ; var gets updated with given interval
+
+(defpoll time :interval "1s"
+              :initial "initial-value"  ; optional, defaults to poll at startup
+              :run-while time-visible   ; optional, defaults to 'true'
+  `date +%H:%M:%S`)
+
+; Music Widget Stuff
+
+(defwidget music []
+  (box :class "music"
+       :orientation "v"
+       :space-evenly false
+       :halign "center"
+    {music != "" ? "🎵${music}" : ""}))
+
+(defwidget workspaces [] "w")
+
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "v" :space-evenly false :halign "end"
+    (metric :label "🔊"
+            :value volume
+            :onchange "amixer sset Master {}%")
+    (metric :label ""
+            :value {EWW_RAM.used_mem_perc}
+            :onchange "")
+    (metric :label "💾"
+            :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
+            :onchange "")
+    time))
+
+(defwidget metric [label value onchange]
+  (box :orientation "v"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :flipped true
+           :orientation "v"
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+; Variables
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+
+(defpoll volume :interval "1s"
+  "amixer sget Master | awk -F '[^0-9]+' '/Left:/{print $3}'")
+
+; Main Bar
+
+(defwindow bar
+           :monitor 0
+           :geometry (geometry :x "5px"
+                               :y "0%"
+                               :width "30px"
+                               :height "90%"
+                               :anchor "right center")
+           :stacking "fg"
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+					 :exclusive true
+  (bar))
+  ; (button :onclick "notify-send Left"
+  ; :onrightclick "notify-send Right"
+  ; (label :text "${time}")))
+

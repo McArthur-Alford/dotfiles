@@ -12,6 +12,7 @@ in
     ../../modules/programs/spicetify.home.nix
     ../../modules/programs/zellij.home.nix
     ../../modules/programs/zsh.home.nix
+    ../../modules/programs/eww.home.nix
   ];
 
   programs = {
@@ -85,9 +86,6 @@ in
     # Work Comms
     slack
     zoom-us
-
-
-    eww-wayland
 
     # Office
     onlyoffice-bin
