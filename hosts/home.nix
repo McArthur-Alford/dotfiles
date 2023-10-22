@@ -27,7 +27,15 @@
     appimage-run
     google-chrome
     firefox
+
+    # comma
+    comma
   ];
+
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   xsession.enable = true;
   home.pointerCursor = {

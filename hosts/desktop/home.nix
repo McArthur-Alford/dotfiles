@@ -38,6 +38,11 @@ in
 
     git-lfs
 
+    # fan control stuff
+    lm_sensors
+    liquidctl
+    corectrl
+
     # Keyboard management for charybdis
     via
     vial

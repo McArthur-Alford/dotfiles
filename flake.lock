@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1697874954,
-        "narHash": "sha256-pDIrwJpw3OGMy5t0vG8ddQADlzRh3Vn1dCYUcbpIsms=",
+        "lastModified": 1697885578,
+        "narHash": "sha256-9WL2XgZeYQc0SmGRZfTpU/nhgl+ToGJnsH0d0ZGAasE=",
         "owner": "McArthur-Alford",
         "repo": "nix-templates",
-        "rev": "c2cfe364d69cf250189a5328955e8d49012b8f7b",
+        "rev": "a976a72e081a9b780f887f65c263750323de64da",
         "type": "github"
       },
       "original": {

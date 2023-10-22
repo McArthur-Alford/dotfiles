@@ -3,6 +3,7 @@
   programs = {
     zellij = {
       enable = true;
+      # enableZshIntegration = true;
       settings = {
         mouse_mode = true;
         theme = "dracula";
