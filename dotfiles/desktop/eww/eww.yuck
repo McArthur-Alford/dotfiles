@@ -61,6 +61,7 @@
 ; Main Bar
 
 (defwindow bar
+           :class bar
            :monitor 0
            :geometry (geometry :x "5px"
                                :y "0%"

@@ -32,9 +32,8 @@ in
         # "if ! [ command nm-applet ] then nm-applet --indicator fi"
       ];
       exec = [
-        "pkill .eww-wrapped"
+        "pkill .eww-wrapped && eww open bar"
         "eww daemon"
-        "eww open bar"
         # "eww reload"
       ];
 
@@ -62,7 +61,7 @@ in
       };
 
       decoration = {
-        rounding = "5";
+        rounding = "10";
 
         blur = {
           enabled = "true";
@@ -87,12 +86,12 @@ in
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
         animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+          "windows,     1, 10, myBezier"
+          # "windowsOut,  1, 10, default"
+          "border,      1, 10, default"
+          "borderangle, 1, 8,  default"
+          "fade,        1, 7,  default"
+          "workspaces,  1, 6,  default, slidevert"
         ];
       };
 
@@ -172,8 +171,8 @@ in
         "$mainMod SHIFT, 0, movetoworkspace, 10"
 
         # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+        "$mainMod, mouse_down, workspace, e-1"
+        "$mainMod, mouse_up, workspace, e+1"
 
         # Move/resize windows with mainMod + LMB/RMB and dragging
         # "$mainMod, mouse:272, movewindow"
