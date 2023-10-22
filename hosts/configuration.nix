@@ -32,6 +32,7 @@
     source-code-pro
     font-awesome
     corefonts
+    material-design-icons
     (nerdfonts.override {
       fonts = [
         "FiraCode"

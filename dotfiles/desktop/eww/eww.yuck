@@ -1,7 +1,7 @@
 (defwidget bar []
   (centerbox :orientation "v"
     (workspaces)
-    (music)
+    (label :text "M")
     (sidestuff)))
 
 (defvar time-visible true)   ; for :run-while property of below variable
@@ -13,8 +13,6 @@
               :run-while time-visible   ; optional, defaults to 'true'
   `date +%H:%M:%S`)
 
-; Music Widget Stuff
-
 (defwidget music []
   (box :class "music"
        :orientation "v"
@@ -22,43 +20,79 @@
        :halign "center"
     {music != "" ? "🎵${music}" : ""}))
 
-(defwidget workspaces [] "w")
+(defwidget workspaces
+  (literal :content workspace))
+
+(deflisten workspace "scripts/workspace")
 
 (defwidget sidestuff []
-  (box :class "sidestuff" :orientation "v" :space-evenly false :halign "end"
-    (metric :label "🔊"
+  (box :class "sidestuff" 
+       :orientation "v" 
+       :space-evenly false 
+       :halign "center"
+       :valign "end"
+    (volumebar)
+    (metric :value 75
+            :tooltipmessage "RAM Usage"
+            :circleclass "ramcircle")
+    (metric :value cpuusage
+            :tooltipmessage "CPU Usage"
+            :circleclass "cpucircle")
+    (metric :value 75
+            :tooltipmessage "Disk Usage"
+            :circleclass "diskcircle")))
+
+; volume stuff
+
+(defwidget volumebar []
+  (eventbox :onhover "eww update showvolume=true"
+            :onhoverlost "eww update showvolume=false"
+  (box      :orientation "v"
+            :space-evenly "false"
+            :spacing "2"
+  (revealer :transition "slideup"
+            :reveal showvolume
+            :duration "550ms"
+  (scale    :class {mute.right ? "volumebar" : "volumebar muted"}
             :value volume
-            :onchange "amixer sset Master {}%")
-    (metric :label ""
-            :value {EWW_RAM.used_mem_perc}
-            :onchange "")
-    (metric :label "💾"
-            :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
-            :onchange "")
-    time))
-
-(defwidget metric [label value onchange]
-  (box :orientation "v"
-       :class "metric"
-       :space-evenly false
-    (box :class "label" label)
-    (scale :min 0
-           :max 101
-           :flipped true
-           :orientation "v"
-           :active {onchange != ""}
-           :value value
-           :onchange onchange)))
-
-; Variables
-
-(deflisten music :initial ""
-  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+            :orientation "v"
+            :flipped true
+            :tooltip "Volume: ${volume}%"
+            :max 101
+            :min 0
+            :onchange "amixer set Master {}%"))
+    (button :onclick {mute.right ? "amixer set Master mute" : "amixer set Master unmute"}
+            :class {mute.right ? "volume-icon" : "volume-icon muted" }
+            {mute.right ? "" : ""}))))
 
 (defpoll volume :interval "1s"
   "amixer sget Master | awk -F '[^0-9]+' '/Left:/{print $3}'")
 
-; Main Bar
+(defpoll mute :initial `{"left": "false", "right": "true"}` 
+              :interval "0.1s" 
+              `scripts/mutedness.sh`)
+
+(defvar showvolume false)
+
+; circles
+
+(defpoll cpuusage :interval "10s"
+                  :initial "scripts/cpuusage.sh"
+                  "scripts/cpuusage.sh")
+
+(defwidget metric [value circleclass tooltipmessage]
+  (box :orientation "v"
+       :class "metric"
+       :space-evenly false
+       :tooltip tooltipmessage
+    (circular-progress :value value
+                       :class circleclass
+                       :start-at 0
+                       :thickness 10
+                       :clockwise: true)))
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
 (defwindow bar
            :class bar
@@ -74,7 +108,4 @@
            :wm-ignore false
 					 :exclusive true
   (bar))
-  ; (button :onclick "notify-send Left"
-  ; :onrightclick "notify-send Right"
-  ; (label :text "${time}")))
 

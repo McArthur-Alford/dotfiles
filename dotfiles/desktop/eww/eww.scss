@@ -1,7 +1,83 @@
-.bar {
-	background-color: rgba(40, 42, 54, 0.95);
+*{
+	all: unset;
 }
 
-.metric scale trough {
-  min-height: 50px;
+$background: #282A36;
+$currentline: #44475A;
+$foreground: #F8F8F2;
+$comment: #6272A4;
+$cyan: #8BE9FD;
+$green: #50FA7B;
+$orange: #FFB86C;
+$pink: #FF79C6;
+$purple: #BD93F9;
+$red: #FF5555;
+$yellow: #F1FA8C;
+
+.bar {
+	background-color: rgba(40, 42, 54, 0.95);
+	min-width: 80px;
+	border-radius: 15px;
 }
+
+.sidestuff {
+	font-family: "Font Awesome 6 Free";
+	margin: .3rem 0 .3rem 0;
+}
+
+// Circular Widget:
+circular-progress {
+	all: unset;
+	background-color: $currentline;
+	min-height: 80px;
+	min-width: 80px;
+	margin: 1rem 1rem 1rem 1rem;
+
+	&.ramcircle {
+			color: $pink;
+	}
+	&.cpucircle {
+		color: $cyan;
+	}
+	&.diskcircle {
+		color: $orange;
+	}
+}
+
+// Volumebar Stuff:
+
+scale trough {
+	all: unset;
+	background-color: $currentline;
+	border-radius: 5px;
+	min-height: 80px;
+	min-width: 10px;
+	margin: .3rem 0 .3rem 0;
+}
+
+.volumebar {
+	min-height: 50px;
+}
+
+.volumebar trough highlight {
+	background-color: $green;
+	border-radius: 5px;
+}
+
+.volumebar.muted trough highlight {
+	background-color: $red;
+}
+
+.volume-icon {
+	margin: 1rem 0 1rem 0;
+	color: $green;
+
+	&.muted {
+		color: $red;
+	}
+
+	&:hover {
+		color: $cyan;
+	}
+}
+
