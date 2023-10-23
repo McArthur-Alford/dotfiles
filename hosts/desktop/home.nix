@@ -52,7 +52,7 @@ in
     qmk-udev-rules
 
     evince 
-    texlab
+    # texlab
     xorg.xhost
 
     materia-kde-theme
@@ -91,7 +91,7 @@ in
     onlyoffice-bin
 
     # texlive
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
 
     # Libs
     dotnet-sdk_7

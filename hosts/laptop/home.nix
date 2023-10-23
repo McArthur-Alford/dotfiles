@@ -37,9 +37,9 @@ in
     
     libsForQt5.okular
 
-    texlab
-    typst
-    typst-lsp
+    # texlab
+    # typst
+    # typst-lsp
     
     # Protonupqt
     protonup-ng
@@ -71,7 +71,7 @@ in
     onlyoffice-bin
 
     # texlive
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
 
     # Libs
     dotnet-sdk_7
