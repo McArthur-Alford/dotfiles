@@ -1,6 +1,13 @@
 { pkgs, ... }:
 {
   programs = {
+    lazygit = {
+      enable = true;
+    };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     zsh = {
       enable = true;
       oh-my-zsh = {
@@ -27,6 +34,7 @@
         diff = "delta";
         du = "dust";
         calc = "kalker";
+        lgit = "lazygit";
       };
     };
     bat = {
