@@ -60,9 +60,6 @@ in
       # Firefoxy
       firefox
 
-      # MS Teams
-      teams
-    
       freshfetch
       steam
       libsForQt5.dolphin
