@@ -1,5 +1,5 @@
 # Global Configuration For All Devices
-{ lib, config, pkgs, user, ... }:
+{ lib, config, pkgs, user, nixpkgs, ... }:
 {
   # Set your time zone.
   time.timeZone = "Australia/Brisbane";
@@ -23,6 +23,10 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
   services.flatpak.enable = true;
+
+  # nixpkgs stuff
+  environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
+  nix.nixPath = ["nixpkgs=/etc/nix/inputs/nixpkgs"];
 
   # Dconf
   programs.dconf.enable = true;

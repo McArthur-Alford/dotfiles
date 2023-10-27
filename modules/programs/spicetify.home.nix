@@ -1,12 +1,13 @@
-{ pkgs, lib, spicetify-nix, ... }:
+{ pkgs, lib, inputs, ... }:
 let 
-  spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
+  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
 in
 {
-  imports = [ spicetify-nix.homeManagerModule ];
+  imports = [ inputs.spicetify-nix.homeManagerModule ];
 
   programs.spicetify = {
     enable = true;
+    
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay
       shuffle

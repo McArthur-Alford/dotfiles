@@ -1,18 +1,10 @@
-{ config, lib, pkgs, host, user, ... }:
+{system, host, inputs, ... }:
 let
   workspaces = with host;
     if hostName == "desktop" then ''
       monitor=${toString mainMonitor},5120x1440@120,5140x0,1
     '' else if hostName == "laptop" then ''
       monitor=${toString mainMonitor},3840x2160@60,3840x0,1
-    '' else "";
-  monitors = with host;
-    if hostName == "desktop" then ''
-      workspaces=${toString mainMonitor},1
-    '' else "";
-  execute = with host;
-    if hostName == "desktop" then ''
-      
     '' else "";
 in
 {
@@ -21,7 +13,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
+    package = inputs.hyprland.packages.${system}.default;
     xwayland.enable = true;
     systemd.enable = true;
     settings = {

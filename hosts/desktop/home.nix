@@ -1,4 +1,4 @@
-{ cfg, pkgs, libs, lib, user, config, spicetify-nix, ... }:
+{ pkgs, inputs, system, ... }:
 let
   host = {
     hostName = "desktop";
@@ -7,7 +7,7 @@ let
 in
 {
   imports = [
-    (import ../../modules/desktop/hyprland/home.nix {inherit host user pkgs config libs lib;})
+    (import ../../modules/desktop/hyprland/home.nix {inherit host system inputs;})
     ../../modules/programs/wofi/home.nix
     ../../modules/programs/spicetify.home.nix
     ../../modules/programs/zellij.home.nix

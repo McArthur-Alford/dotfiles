@@ -1,7 +1,13 @@
-{ cfg, pkgs, libs, user, config, ... }:
+{ pkgs, inputs, system, ... }:
+let
+  host = {
+    hostName = "server";
+    mainMonitor = "MAIN";
+  };
+in
 {
   imports = [
-    ../../modules/desktop/hyprland/home.nix
+    (import ../../modules/desktop/hyprland/home.nix {inherit pkgs system inputs host;})
     ../../modules/programs/wofi/home.nix
     ../../modules/programs/zellij.home.nix
     ../../modules/programs/zsh.home.nix
