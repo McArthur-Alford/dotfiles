@@ -1,4 +1,4 @@
-{ lib, inputs, system, home-manager, user, hyprland, nixpkgs, devtemplates, ... }:
+{ lib, inputs, system, home-manager, user, nixpkgs, devtemplates, ... }:
 {
   desktop = lib.nixosSystem {						# Desktop Profile
     inherit system;

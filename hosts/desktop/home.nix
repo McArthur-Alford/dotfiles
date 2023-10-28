@@ -31,6 +31,7 @@ in
     # Dungeondraft/Wonderdraft (requires the .zip from humble bundle in the module directory)
     #(callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
     #(callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
+    gh
 
     protonmail-bridge
     thunderbird

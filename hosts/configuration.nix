@@ -83,6 +83,7 @@
   nix = {
     settings = {
       auto-optimise-store = true;
+      sandbox = true;
     };
     gc = {
       automatic = true;

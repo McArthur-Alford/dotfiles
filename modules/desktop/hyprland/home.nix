@@ -107,10 +107,11 @@ in
       };
 
       windowrule = [
-        "float, ^(Matplotlib)$"
-        "float, ^(vampireSurvivors)$"
-        "float, ^(spacegame)$"
-        "float, ^(arcade_platformer)$"
+        "float,^(Matplotlib)$"
+        "float,^(vampireSurvivors)$"
+        "float,^(spacegame)$"
+        "float,^(arcade_platformer)$"
+        "float,title:^(winit window)$"
       ];
 
       "$mainMod" = "SUPER";
