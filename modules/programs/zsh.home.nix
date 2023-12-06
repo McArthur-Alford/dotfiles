@@ -58,5 +58,34 @@
     eza = {
       enable = true;
     };
+    tmux = {
+      enable = true;
+      tmuxinator.enable = true;
+      sensibleOnTop = true;
+      plugins = with pkgs.tmuxPlugins; [
+        yank
+        {
+          plugin = dracula;
+          extraConfig = ''
+            set -g @dracula-plugins "cpu-usage gpu-usage ram-usage"
+            set -g @dracula-show-powerline true
+    				set -g @dracula-refresh-rate 10
+            set -g @dracula-show-left-icon session
+          '';
+        }
+        vim-tmux-navigator
+      ];
+      keyMode = "vi";
+      extraConfig = ''
+        bind h select-pane -L
+        bind j select-pane -D
+        bind k select-pane -U
+        bind l select-pane -R
+        set -g default-terminal "tmux-256color"
+        set -ag terminal-overrides ",xterm-256color:RGB"
+        set-option -s escape-time 0
+      '';
+      mouse = true;
+    };
   };
 }

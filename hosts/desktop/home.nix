@@ -36,8 +36,6 @@ in
     protonmail-bridge
     thunderbird
 
-    visidata
-
     git-lfs
 
     # fan control stuff
@@ -113,6 +111,13 @@ in
       ##"image/*" = ["org.gnome.Feh.desktop"];
     #};
   #};
+
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
 
   # GTK Theme
   gtk = {		# GTK Theme

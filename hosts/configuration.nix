@@ -80,6 +80,10 @@
     ];
   };
 
+  systemd.services.nix-daemon.serviceConfig = {
+    CPUQuota = ["90%"];
+  };
+
   nix = {
     settings = {
       auto-optimise-store = true;

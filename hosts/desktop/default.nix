@@ -1,5 +1,4 @@
 { config, pkgs, user, system, lib, ...}:
-
 {
   imports = [ 
     ./hardware-configuration.nix
@@ -19,6 +18,11 @@
     # ../../modules/gpu/amd.nix
     ../../modules/programs/zsh.nix
   ];
+
+  # "i2c-piix4" for amd chipset?
+  # boot.kernelModules = [ "i2c-dev" "i2c-i801" ];
+  # services.udev.packages = [ pkgs.openrgb ];
+  # hardware.i2c.enable = true;
 
   hardware.keyboard.qmk.enable = true;
   i18n.inputMethod = {
@@ -44,6 +48,8 @@
 
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
+
+  services.dnsmasq.enable = true;
 
   fonts = {
     enableDefaultPackages = true;
@@ -79,8 +85,11 @@
     networkmanager.enable = true;
   };
 
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "user-with-access-to-virtualbox" ];
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  # users.extraGroups.vboxusers.members = [ "mcarthur" ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   environment = {
     systemPackages = with pkgs; [					# Packages not offered by Home-Manager
@@ -89,6 +98,11 @@
       # (callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
       # (callPackage ../../weird.nix {})
       pipewire
+
+      
+      # openrgb-with-all-plugins.out
+      # # openrgb
+      # i2c-tools
 
       anki-bin
 
@@ -107,6 +121,8 @@
       gamescope
 
       mangohud
+
+      dnsmasq
 
       # wine
       wineWowPackages.stable
@@ -141,6 +157,8 @@
   };
 
   programs = {
+    virt-manager.enable = true;
+
     steam = {
       enable = true;
       # gamescopeSession = {
@@ -155,7 +173,7 @@
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "libvirtd" "wheel" "audio" ];
   };
 
   # Disable autosleep

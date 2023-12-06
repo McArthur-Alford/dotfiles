@@ -1,3 +1,6 @@
+[language-server.nil]
+command = "nil"
+
 [[language]]
 name = "nix"
-language-server = { command = "nil" }
+language-servers = [ "nil" ]

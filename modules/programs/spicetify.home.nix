@@ -17,7 +17,7 @@ in
       new-releases
     ];
     # custom Dribbblish theme
-    theme = spicePkgs.themes.catppuccin-mocha;
+    theme = spicePkgs.themes.Dracula;
     colorScheme = "custom";
     customColorScheme = {
       text               = "f8f8f2";
