@@ -106,6 +106,8 @@
 
       anki-bin
 
+      usbutils
+
       xorg.libXxf86vm
 
       # Screen recording!
@@ -113,14 +115,12 @@
       # gpu-screen-recorder-gtk
 
       freshfetch
-      steam
+      # steam
       lutris
       gnome.nautilus
       nautilus-open-any-terminal
       libsForQt5.qt5ct
       gamescope
-
-      mangohud
 
       dnsmasq
 
@@ -156,15 +156,57 @@
     etc."spotify".source = "${pkgs.spotify}"; # Spotify fixed path for spicetify to use
   };
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    steam = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        libkrb5
+        keyutils
+      ];
+    };
+  };
+
   programs = {
     virt-manager.enable = true;
 
+    # gamescope = {
+    #   enable = true;
+    #   capSysNice = true;
+    # };
+
     steam = {
       enable = true;
-      # gamescopeSession = {
-      #   enable = true;
-      # };
     };
+  
+    # steam = {
+    #   enable = true;
+    #   package = pkgs.steam.override {
+    #     extraPkgs = pkgs: with pkgs; [
+    #       gamescope
+    #       mangohud
+    #       xorg.libXcursor
+    #       xorg.libXi
+    #       xorg.libXinerama
+    #       xorg.libXScrnSaver
+    #       libpng
+    #       libpulseaudio
+    #       libvorbis
+    #       stdenv.cc.cc.lib
+    #       libkrb5
+    #       keyutils
+    #     ];
+    #   };
+    #   gamescopeSession = {
+    #     enable = true;
+    #   };
+    # };
     gamemode.enable = true;						# Better performance
     									                # Steam: Launch Options: gamemoderun %command%
   };

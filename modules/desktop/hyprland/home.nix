@@ -10,6 +10,14 @@ in
 {
   # xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/desktop/hypr/hyprland.conf;
   xdg.configFile."hypr/hyprmonitors.conf".text = workspaces;
+  
+  home.sessionVariables = {
+    GDK_BACKEND = "wayland,x11";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    #SDL_VIDEODRIVER = "x11";
+    CLUTTER_BACKEND = "wayland";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;

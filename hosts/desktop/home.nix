@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }:
+{ pkgs, inputs, system, user, ... }:
 let
   host = {
     hostName = "desktop";

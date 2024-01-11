@@ -1,6 +1,7 @@
 { config, lib, pkgs, system, hyprland, ...}:
 {
   # imports = [ ../../programs/waybar.nix ];
+
   environment = {
     variables = {
       XDG_CURRENT_DESKTOP="Hyprland";
