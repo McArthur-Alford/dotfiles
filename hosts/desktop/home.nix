@@ -143,6 +143,7 @@ in
 
   # Alacritty
   xdg.configFile."alacritty/alacritty.yml".source = ../../dotfiles/desktop/alacritty/alacritty.yml;
+  xdg.configFile."alacritty/alacritty.toml".source = ../../dotfiles/desktop/alacritty/alacritty.toml;
 
   # Helix
   xdg.configFile."helix/config.toml".source = ../../dotfiles/desktop/helix/config.toml;
