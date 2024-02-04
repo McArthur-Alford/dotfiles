@@ -6,6 +6,7 @@
       # enableZshIntegration = true;
       settings = {
         mouse_mode = true;
+        pane_frames = false;
         theme = "dracula";
         themes.dracula.fg = "#f8f8f2";
         themes.dracula.bg = "#282a36";

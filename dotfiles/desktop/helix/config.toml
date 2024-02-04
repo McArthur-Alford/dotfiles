@@ -4,8 +4,8 @@ theme = "alucard"
 true-color = true
 undercurl = true
 bufferline = "always"
-rulers = [100]
-text-width = 100
+rulers = [80]
+text-width = 80
 
 [editor.lsp]
 display-inlay-hints	= true
