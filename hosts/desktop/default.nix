@@ -19,6 +19,17 @@
     ../../modules/programs/zsh.nix
   ];
 
+  # Mount drives
+  fileSystems."/mnt/storage" = {
+    device = "/dev/nvme0n1p1";
+    fsType = "ext4";
+  };
+
+  fileSystems."/mnt/fedora" = {
+    device = "/dev/nvme2n1p3";
+    fsType = "ext4";
+  };
+
   # "i2c-piix4" for amd chipset?
   # boot.kernelModules = [ "i2c-dev" "i2c-i801" ];
   # services.udev.packages = [ pkgs.openrgb ];
@@ -41,7 +52,6 @@
     ];
     allowedUDPPorts = [ 3000 ];
   };
-
  
   services.devmon.enable = true;
   services.gvfs.enable = true;
@@ -49,6 +59,22 @@
 
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
+
+  hardware.fancontrol.enable = true;
+  hardware.fancontrol.config = ''
+  Common Settings:
+  INTERVAL=10
+
+  Settings of hwmon8/pwm1:
+    Depends on hwmon8/temp1_input
+    Controls hwmon8/fan1_input
+    MINTEMP=20
+    MAXTEMP=50
+    MINSTART=150
+    MINSTOP=0
+    MAXPWM=255
+  '';
+  programs.corectrl.enable = true;
 
   services.dnsmasq.enable = true;
 
@@ -139,7 +165,8 @@
         };
       }))
 
-      webcord
+      # webcord
+      discord
 
       pandoc
 
@@ -230,7 +257,7 @@
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "libvirtd" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "libvirtd" "wheel" "audio" "corectrl" ];
   };
 
   # Disable autosleep
@@ -238,8 +265,6 @@
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
-
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

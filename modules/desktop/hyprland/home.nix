@@ -43,6 +43,8 @@ in
         kb_layout = "us";
         follow_mouse = "1";
 
+        # mouse_refocus = "1";
+
         touchpad = {
           natural_scroll = "no";
           disable_while_typing = "false";
@@ -120,6 +122,11 @@ in
         "float,^(spacegame)$"
         "float,^(arcade_platformer)$"
         "float,title:^(winit window)$"
+      ];
+
+      windowrulev2 = [
+        "stayfocused, title:^()$,class:^(steam)$"
+        "minsize 1 1, title:^()$,class:^(steam)$"
       ];
 
       "$mainMod" = "SUPER";

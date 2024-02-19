@@ -4,6 +4,7 @@
   programs.zsh.enable = true;
   users.users.${user}.shell = pkgs.zsh;
   environment.systemPackages = with pkgs; [
+    xclip
     fd
     ripgrep
     (ripgrep-all.overrideAttrs (old: {
