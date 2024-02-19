@@ -108,11 +108,11 @@ in
         workspace_swipe = "off";
       };
 
-      device = { 
-        "epic-mouse-v1" = {
-          sensitivity = "-0.5";
-        };
-      };
+      # device = { 
+      #   "epic-mouse-v1" = {
+      #     sensitivity = "-0.5";
+      #   };
+      # };
 
       windowrule = [
         "float,^(Matplotlib)$"
@@ -125,7 +125,7 @@ in
       "$mainMod" = "SUPER";
 
       bind = [
-        "$mainMod, Q, exec, alacritty"
+        "$mainMod, Q, exec, kitty"
         "$mainMod, C, killactive,"
         "$mainMod, S, exec, grimshot copy area"
         "$mainMod, B, exec, pkill waybar || waybar"
