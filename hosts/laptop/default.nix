@@ -27,6 +27,7 @@ in
     ../../modules/services/gnome-keyring.nix
     ../../modules/kernels/latest.nix
     ../../modules/services/systemd-boot.nix
+    ../../modules/programs/swaylock.nix
     (import ../../modules/gpu/nvidia-optimus.nix {inherit pkgs config intelBusId nvidiaBusId;})
    ];
 

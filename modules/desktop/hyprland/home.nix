@@ -54,16 +54,16 @@ in
       };
 
       general = {
-        gaps_in = "5";
-        gaps_out = "10";
+        gaps_in = "2";
+        gaps_out = "3";
         border_size = "2";
-        "col.inactive_border" = "rgba(50fa7b20) rgba(ff555520) 90deg";
-        "col.active_border" = "rgba(50fa7b80) rgba(ff79c680) 90deg";
+        "col.inactive_border" = "rgba(44475AFF)";#rgba(ff555520) 90deg";
+        "col.active_border" = "rgba(6272A4FF)";#rgba(ff79c680) 90deg";
         layout = "dwindle";
       };
 
       decoration = {
-        rounding = "10";
+        rounding = "5";
 
         blur = {
           enabled = "true";
@@ -110,11 +110,11 @@ in
         workspace_swipe = "off";
       };
 
-      device = { 
-        "epic-mouse-v1" = {
-          sensitivity = "-0.5";
-        };
-      };
+      # device = { 
+      #   "epic-mouse-v1" = {
+      #     sensitivity = "-0.5";
+      #   };
+      # };
 
       windowrule = [
         "float,^(Matplotlib)$"
@@ -132,7 +132,7 @@ in
       "$mainMod" = "SUPER";
 
       bind = [
-        "$mainMod, Q, exec, alacritty"
+        "$mainMod, Q, exec, kitty"
         "$mainMod, C, killactive,"
         "$mainMod, S, exec, grimshot copy area"
         "$mainMod, B, exec, pkill waybar || waybar"

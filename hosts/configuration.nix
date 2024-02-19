@@ -66,7 +66,7 @@
   # $ nix search wget
   environment = {
     variables = {
-      TERMINAL = "alacritty";
+      TERMINAL = "kitty";
       EDITOR = "hx";
       VISUAL = "hx";
     };
@@ -75,7 +75,7 @@
       # nixd # not as good as nil :)
       vim
       wget
-      alacritty
+      kitty
       git 
       killall
       libgcc

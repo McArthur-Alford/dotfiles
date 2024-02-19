@@ -17,6 +17,7 @@
     ../../modules/services/systemd-boot.nix
     # ../../modules/gpu/amd.nix
     ../../modules/programs/zsh.nix
+    ../../modules/programs/swaylock.nix
   ];
 
   # Mount drives

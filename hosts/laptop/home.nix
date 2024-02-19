@@ -12,6 +12,8 @@ in
     ../../modules/programs/spicetify.home.nix
     ../../modules/programs/zellij.home.nix
     ../../modules/programs/zsh.home.nix
+    ../../modules/programs/kitty.home.nix
+    ../../modules/programs/swaylock.home.nix
   ];
 
   programs = {
@@ -119,7 +121,7 @@ in
   home.sessionVariables.GTK_THEME = "Dracula";
 
   # Alacritty
-  xdg.configFile."alacritty/alacritty.yml".source = ../../dotfiles/desktop/alacritty/alacritty.yml;
+  # xdg.configFile."alacritty/alacritty.yml".source = ../../dotfiles/desktop/alacritty/alacritty.yml;
 
   # Helix
   xdg.configFile."helix/config.toml".source = ../../dotfiles/desktop/helix/config.toml;

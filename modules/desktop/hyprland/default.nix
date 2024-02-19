@@ -54,6 +54,10 @@
       enable = true;
     };
     xwayland.enable = true;
+    xss-lock = {
+      enable = true;
+      lockerCommand = "swaylock";
+    };
   };
 
   # nixpkgs.overlays = [
