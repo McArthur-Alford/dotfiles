@@ -13,6 +13,7 @@ in
     ../../modules/programs/zellij.home.nix
     ../../modules/programs/zsh.home.nix
     ../../modules/programs/kitty.home.nix
+    ../../modules/programs/swaylock.home.nix
   ];
 
   programs = {
