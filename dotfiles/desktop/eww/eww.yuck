@@ -1,111 +1,151 @@
+; VARS
+(defvar eww "eww") ; maybe eww -c $HOME/.config/eww
+(deflisten cpu_percent :interval "1s" :initial "0.00" "scripts/cpu_stats.sh")
+
+(deflisten launch4 "scripts/cpu_info")
+
+(defwindow bar 
+  :monitor 0
+  :exclusive true
+  :stacking "fg"
+  :geometry (geometry 
+    :x "0%"
+    :y "0px"
+    :width "100%"
+    :height "30px"
+    :anchor "top center"
+  )
+  (bar)
+)
+
 (defwidget bar []
-  (centerbox :orientation "v"
-    (workspaces)
-    (label :text "M")
-    (sidestuff)))
+  (centerbox 
+    :orientation "h" 
+    :space-evenly true
+    :class "bar"
+    (left)
+    (center)
+    (right)
+  )
+)
 
-(defvar time-visible true)   ; for :run-while property of below variable
-                              ; when this turns true, the polling starts and
-                              ; var gets updated with given interval
+(defwidget left []
+  (box 
+    :class "left-content" 
+    (box 
+      :class "nix-logo" 
+      "Nix-Logo"
+    )
+    (box 
+      :class "workspaces box" 
+      "workspaces"
+    )
+  )
+)
 
-(defpoll time :interval "1s"
-              :initial "initial-value"  ; optional, defaults to poll at startup
-              :run-while time-visible   ; optional, defaults to 'true'
-  `date +%H:%M:%S`)
+(defwidget center [] 
+  (box
+    :class "center-content"
+    "Center"
+  )
+)
 
-(defwidget music []
-  (box :class "music"
-       :orientation "v"
-       :space-evenly false
-       :halign "center"
-    {music != "" ? "🎵${music}" : ""}))
+(defwidget right [] 
+  (box
+    :class "right-content"
+    (status_monitor)
+  )
+)
 
-(defwidget workspaces
-  (literal :content workspace))
+(defwidget status_monitor []
+  (box
+    :space-evenly "true"
+    :orientation "h"
+    :halign "center"
+    (cpu_status)
+    (ram_status)
+    (temperature_status)
+    (disk_status)
+    (battery_status)
+  )
+)
 
-(deflisten workspace "scripts/workspace")
-
-(defwidget sidestuff []
-  (box :class "sidestuff" 
-       :orientation "v" 
-       :space-evenly false 
-       :halign "center"
-       :valign "end"
-    (volumebar)
-    (metric :value 75
-            :tooltipmessage "RAM Usage"
-            :circleclass "ramcircle")
-    (metric :value cpuusage
-            :tooltipmessage "CPU Usage"
-            :circleclass "cpucircle")
-    (metric :value 75
-            :tooltipmessage "Disk Usage"
-            :circleclass "diskcircle")))
-
-; volume stuff
-
-(defwidget volumebar []
-  (eventbox :onhover "eww update showvolume=true"
-            :onhoverlost "eww update showvolume=false"
-  (box      :orientation "v"
-            :space-evenly "false"
-            :spacing "2"
-  (revealer :transition "slideup"
-            :reveal showvolume
-            :duration "550ms"
-  (scale    :class {mute.right ? "volumebar" : "volumebar muted"}
-            :value volume
+(defvar cpu_reveal false) ; Associated var for hover functionality
+(defwidget cpu_status [] 
+  (eventbox
+    :onhover "${eww} update cpu_reveal='true'"
+    :onhoverlost "${eww} update cpu_reveal='false'"
+    :tooltip "CPU usage"
+    (box
+      :orientation "h"
+      :space-evenly false
+      :class "cpu_box"
+      (box 
+        :class "status_icon"
+        ""
+      )
+      (box
+        :orientation "v"
+        :space-evenly false
+        :valign "center"
+        :halign "fill"
+        :class "status_boxes"
+        (revealer
+          :reveal "${!cpu_reveal}"
+          :transition "slidedown"
+          :duration "350ms"
+          (box
             :orientation "v"
-            :flipped true
-            :tooltip "Volume: ${volume}%"
-            :max 101
-            :min 0
-            :onchange "amixer set Master {}%"))
-    (button :onclick {mute.right ? "amixer set Master mute" : "amixer set Master unmute"}
-            :class {mute.right ? "volume-icon" : "volume-icon muted" }
-            {mute.right ? "" : ""}))))
+            :class "status_info"
+            :space-evenly false
+            (label
+              :class "status_labels"
+              :text "${cpu_percent}%"
+              :halign "fill"
+            )
+            (scale
+              :min 0
+              :max 100
+              :value cpu_percent
+              :orientation "h"
+            )
+          )
+        )
+        (revealer
+          :reveal cpu_reveal
+          :transition "slideup"
+          :duration "350ms"
+          (box
+            :orientation "h"
+            :class "status_revealers"
+            (graph
+              :thickness 2
+              :value cpu_percent
+              :time-range "20s"
+              :min 0
+              :max 100
+              :dynamic true
+              :line-style "round"
+            )
+          )
+        )
+      )
+    )
+  )
+)
 
-(defpoll volume :interval "1s"
-  "amixer sget Master | awk -F '[^0-9]+' '/Left:/{print $3}'")
+(defwidget ram_status [] 
+  "ram"
+)
 
-(defpoll mute :initial `{"left": "false", "right": "true"}` 
-              :interval "0.1s" 
-              `scripts/mutedness.sh`)
+(defwidget temperature_status [] 
+  "temperature"
+)
 
-(defvar showvolume false)
+(defwidget disk_status [] 
+  "disk"
+)
 
-; circles
-
-(defpoll cpuusage :interval "10s"
-                  :initial "scripts/cpuusage.sh"
-                  "scripts/cpuusage.sh")
-
-(defwidget metric [value circleclass tooltipmessage]
-  (box :orientation "v"
-       :class "metric"
-       :space-evenly false
-       :tooltip tooltipmessage
-    (circular-progress :value value
-                       :class circleclass
-                       :start-at 0
-                       :thickness 10
-                       :clockwise: true)))
-
-(deflisten music :initial ""
-  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
-
-(defwindow bar
-           :class bar
-           :monitor 0
-           :geometry (geometry :x "5px"
-                               :y "0%"
-                               :width "30px"
-                               :height "90%"
-                               :anchor "right center")
-           :stacking "fg"
-           :reserve (struts :distance "40px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-					 :exclusive true
-  (bar))
-
+(defwidget battery_status [] 
+  "battery"
+)

@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, config, ...}:
 {
   home.packages = with pkgs; [
     libnotify
@@ -12,5 +12,6 @@
     enable = true;
     package = pkgs.eww-wayland;
     configDir = ../../dotfiles/desktop/eww;
+    # configDir = config.lib.file.mkOutOfStoreSymlink ../../dotfiles/desktop/eww;
   };
 }

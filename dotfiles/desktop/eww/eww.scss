@@ -1,83 +1,64 @@
-*{
-	all: unset;
-}
+// =========================
+// █▀▀ █▀█ █░░ █▀█ █▀█ █▀
+// █▄▄ █▄█ █▄▄ █▄█ █▀▄ ▄█
+// =========================
+$background: #282a36;
+$current-line: #44475a;
+$foreground: #f8f8f2;
+$comment: #6272a4;
+$cyan: #8be9fd;
+$green: #50fa7b;
+$orange: #ffb86c;
+$pink: #ff79c6;
+$purple: #bd93f9;
+$red: #ff5555;
+$yellow: #f1fa8c;
 
-$background: #282A36;
-$currentline: #44475A;
-$foreground: #F8F8F2;
-$comment: #6272A4;
-$cyan: #8BE9FD;
-$green: #50FA7B;
-$orange: #FFB86C;
-$pink: #FF79C6;
-$purple: #BD93F9;
-$red: #FF5555;
-$yellow: #F1FA8C;
+$selection-background: #44475a;
+$selection-color: #f8f8f2;
+
+$title: #ffffff;
+$subtitle: #6272a4;
+
+* {
+  all: unset;
+  font-family: "Fire Code";
+  font-weight: 800;
+}
 
 .bar {
-	background-color: rgba(40, 42, 54, 0.95);
-	min-width: 80px;
-	border-radius: 15px;
+  background-color: $background;
 }
 
-.sidestuff {
-	font-family: "Font Awesome 6 Free";
-	margin: .3rem 0 .3rem 0;
+.left-content {
 }
 
-// Circular Widget:
-circular-progress {
-	all: unset;
-	background-color: $currentline;
-	min-height: 80px;
-	min-width: 80px;
-	margin: 1rem 1rem 1rem 1rem;
-
-	&.ramcircle {
-			color: $pink;
-	}
-	&.cpucircle {
-		color: $cyan;
-	}
-	&.diskcircle {
-		color: $orange;
-	}
+.center-content {
 }
 
-// Volumebar Stuff:
-
-scale trough {
-	all: unset;
-	background-color: $currentline;
-	border-radius: 5px;
-	min-height: 80px;
-	min-width: 10px;
-	margin: .3rem 0 .3rem 0;
+.right-content {
 }
 
-.volumebar {
-	min-height: 50px;
+.cpu_box {
+  background-color: $background;
+  padding: 0 10;
 }
 
-.volumebar trough highlight {
-	background-color: $green;
-	border-radius: 5px;
+.status_icon {
+  font-size: 20;
+  margin-right: 5;
 }
 
-.volumebar.muted trough highlight {
-	background-color: $red;
+.cpu_box scale trough {
+  all: unset;
+  background-color: $red;
+  border-radius: 10px;
+  min-height: 10px;
+  min-width: 110px;
 }
 
-.volume-icon {
-	margin: 1rem 0 1rem 0;
-	color: $green;
-
-	&.muted {
-		color: $red;
-	}
-
-	&:hover {
-		color: $cyan;
-	}
+.status_revealers {
+  background-color: $background;
+  color: $red;
+  min-height: 30px;
 }
-
