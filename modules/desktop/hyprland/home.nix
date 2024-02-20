@@ -134,7 +134,10 @@ in
       bind = [
         "$mainMod, Q, exec, kitty"
         "$mainMod, C, killactive,"
-        "$mainMod, S, exec, grimshot copy area"
+        # "$mainMod, S, exec, grimshot copy area"
+        ''$mainMod, S, exec, grim -g "$(slurp)" - | wl-copy''
+        ''$mainMod SHIFT, S, exec, grim -g "$(slurp)" - | satty --filename -''
+        # ''$mainMod, S, exec, grim -g "$(slurp -o -r -c '#ff0000ff')" - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y%m%d-%H:%M:%S').png''
         "$mainMod, B, exec, pkill waybar || waybar"
 
         "$mainMod, M, exit,"

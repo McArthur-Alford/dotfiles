@@ -127,6 +127,10 @@
       # (callPackage ../../weird.nix {})
       pipewire
 
+
+      # Cisco any connect for uq network vpn
+      openconnect
+
       
       # openrgb-with-all-plugins.out
       # # openrgb

@@ -39,6 +39,8 @@ in
     
     libsForQt5.okular
 
+    satty
+
     # texlab
     # typst
     # typst-lsp

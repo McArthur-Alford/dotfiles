@@ -57,6 +57,7 @@ in
 
     materia-kde-theme
     sway-contrib.grimshot
+    satty
     betterdiscordctl
     
     libsForQt5.okular
