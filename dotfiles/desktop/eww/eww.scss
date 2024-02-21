@@ -2,6 +2,8 @@
 // █▀▀ █▀█ █░░ █▀█ █▀█ █▀
 // █▄▄ █▄█ █▄▄ █▄█ █▀▄ ▄█
 // =========================
+// $theme: transparent;
+$theme: opaque;
 $background: #282a36;
 $current-line: #44475a;
 $foreground: #f8f8f2;
@@ -27,10 +29,18 @@ $subtitle: #6272a4;
 }
 
 .bar {
-  background-color: $background;
+  background-color: if($theme == transparent, rgba(0,0,0,0), $background);
+}
+
+.content {
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: if($theme == transparent, $background, $current-line);
+  border-radius: 20px;
 }
 
 .left-content {
+  padding: 0 5;
 }
 
 .center-content {
@@ -39,26 +49,73 @@ $subtitle: #6272a4;
 .right-content {
 }
 
-.cpu_box {
-  background-color: $background;
-  padding: 0 10;
+.status_low {
+  background-color: $green;
+  color: $background;
+}
+
+.status_medium {
+  background-color: $orange;
+  color: $background;
+}
+
+.status_high {
+  background-color: $red;
+  color: $background
 }
 
 .status_icon {
-  font-size: 20;
+  font-size: 15;
   margin-right: 5;
 }
 
-.cpu_box scale trough {
-  all: unset;
-  background-color: $red;
-  border-radius: 10px;
-  min-height: 10px;
-  min-width: 110px;
+.status_revealers {
+  background-color: if($theme == transparent, $background, $current-line);
+  color: $foreground;
 }
 
-.status_revealers {
-  background-color: $background;
+.status_box {
+  padding: 0 10;
+  margin: 0 0;
+  border-radius: 10px;
+}
+
+.status_spacer {
+  min-width: 15px;
+}
+
+.workspace_button {
+  color: $comment;
+  margin: 0 -4px;
+
+  &.occupied {
+    color: $yellow;
+  }
+
+  &.empty {
+    color: $comment;
+  }
+
+  &.active {
+    color: $green;
+    // margin: 0 5px;
+  }
+}
+
+.workspace_icon {
+  font-size: 16;
+  margin: 0 5;
+}
+
+.active_window {
+  padding: 0 10;
+}
+
+.nix-logo {
+  margin-left: 0;
+}
+
+.yeet {
+  background-color: $red;
   color: $red;
-  min-height: 30px;
 }

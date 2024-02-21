@@ -26,10 +26,10 @@
     fsType = "ext4";
   };
 
-  fileSystems."/mnt/fedora" = {
-    device = "/dev/nvme2n1p3";
-    fsType = "ext4";
-  };
+   fileSystems."/mnt/fedora" = {
+     device = "/dev/nvme2n1p3";
+     fsType = "ext4";
+   };
 
   # "i2c-piix4" for amd chipset?
   # boot.kernelModules = [ "i2c-dev" "i2c-i801" ];
