@@ -3,6 +3,8 @@
 
   inputs = {							# All flake references used to build NixOS
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";	# Nix Packages
+    nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack";
+    nix-index-database.url = "github:Mic92/nix-index-database";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,31 +14,80 @@
     devtemplates.url = "github:McArthur-Alford/nix-templates";
   };
 
-  outputs = inputs @ { 
-    self, 
-    nixpkgs, 
-    home-manager, 
-    hyprland, 
-    spicetify-nix,
-    devtemplates,
-  }:
-  let								# Variables that can be used in the config files
-    system = "x86_64-linux";					# System Architecture
-    user = "mcarthur";
-
-    # pkgs = import nixpkgs {
-    #   inherit system;
-    #   config.allowUnfree = true; 				# Allow proprietary software
-    # };
-
-    lib = nixpkgs.lib;
+  outputs = { nixpkgs, self, ... }@inputs:
+  let
+    stateVersion = "22.11";
+    outputs = outputs;
+    lib = import ./lib { inherit inputs stateVersion outputs self; };
   in 
   {
-    nixosConfigurations = (
-      import ./hosts { 						# Imports ./hosts/default.nix, where available configs are located
-        inherit nixpkgs lib inputs user system home-manager;
-        inherit hyprland spicetify-nix devtemplates;
-      }
+    homeConfigurations = {
+      # "mcarthur@yggdrasil" = lib.mkHome {
+      #   hostname = "yggdrasil";
+      #   username = "mcarthur";
+      #   system = "x86_64-linux";
+      # };
+      # "mcarthur@grimoire" = lib.mkHome {
+      #   hostname = "grimoire";
+      #   username = "mcarthur";
+      #   system = "x86_64-linux";
+      #   desktop  = "nocturne";
+      # };
+      "mcarthur@thaumaturge" = lib.mkHome {
+        hostname = "thaumaturge";
+        username = "mcarthur";
+        system = "x86_64-linux";
+        desktop  = "nocturne";
+      };
+    };
+    nixosConfigurations = {
+      # yggdrasil   = lib.mkHost {
+      #   hostname = "yggdrasil";
+      #   username = "mcarthur";
+      #   system = "x86_64-linux";
+      # };
+      # grimoire    = lib.mkHost {
+      #   hostname = "grimoire";
+      #   username = "mcarthur";
+      #   system = "x86_64-linux";
+      #   desktop  = "nocturne";
+      # };
+      thaumaturge = lib.mkHost {
+        hostname = "thaumaturge";
+        username = "mcarthur";
+        system = "x86_64-linux";
+        desktop  = "nocturne";
+      };
+    };
+
+    devShells = lib.forAllSystems (system:
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in import ./shell.nix { inherit pkgs; }
     );
+
+    formatter = lib.forAllSystems (system:
+        inputs.nix-formatter-pack.lib.mkFormatter {
+          pkgs = nixpkgs.legacyPackages.${system};
+          config.tools = {
+            alejandra.enable = false;
+            deadnix.enable = true;
+            nixpkgs-fmt.enable = true;
+            statix.enable = true;
+          };
+        }
+    );
+
+    overlays = import ./overlays { inherit inputs; };
+
+    packages = lib.forAllSystems (system:
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in import ./pkgs { inherit pkgs; }
+    );
+
+    # nixosConfigurations = (
+    #   import ./hosts {
+    #     inherit nixpkgs lib globals inputs self;
+    #   }
+    # );
   };
 }

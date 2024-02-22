@@ -1,13 +1,13 @@
-{ lib, inputs, system, home-manager, user, nixpkgs, devtemplates, ... }:
+{ lib, inputs, globals, nixpkgs, ... }:
 {
   desktop = lib.nixosSystem {						# Desktop Profile
-    inherit system;
-    specialArgs = { inherit user inputs nixpkgs; };
+    system = globals.system;
+    specialArgs = { inherit globals inputs nixpkgs; };
     modules = [
       ./configuration.nix
       ./desktop
-      devtemplates.nixosModules.default
-      home-manager.nixosModules.home-manager {				# Home Manager Module
+      inputs.devtemplates.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager {				# Home Manager Module
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
       	home-manager.extraSpecialArgs = { inherit user system inputs; };	# Pass flake variables
@@ -20,13 +20,13 @@
   };
 
   laptop = lib.nixosSystem {						# Laptop Profile
-    inherit system;
-    specialArgs = { inherit user inputs nixpkgs; };
+    system = globals.system;
+    specialArgs = { inherit globals inputs nixpkgs; };
     modules = [
       ./configuration.nix
       ./laptop
-      devtemplates.nixosModules.default
-      home-manager.nixosModules.home-manager {				# Home Manager Module
+      inputs.devtemplates.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager {				# Home Manager Module
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
       	home-manager.extraSpecialArgs = { inherit user system inputs; };	# Pass flake variables
@@ -39,13 +39,13 @@
   };
 
   server = lib.nixosSystem {						# Server Profile
-    inherit system;
-    specialArgs = { inherit user inputs nixpkgs; };
+    system = globals.system;
+    specialArgs = { inherit globals inputs nixpkgs; };
     modules = [
       ./configuration.nix
       ./server
-      devtemplates.nixosModules.default
-      home-manager.nixosModules.home-manager {				# Home Manager Module
+      inputs.devtemplates.nixosModules.default
+      inputs.home-manager.nixosModules.home-manager {				# Home Manager Module
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
       	home-manager.extraSpecialArgs = { inherit user system inputs; };		# Pass flake variables
