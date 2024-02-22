@@ -129,7 +129,7 @@
 
 
       # Cisco any connect for uq network vpn
-      openconnect
+      openconnect_openssl
 
       
       # openrgb-with-all-plugins.out
