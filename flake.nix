@@ -12,7 +12,6 @@
     };
     hyprland.url = "github:hyprwm/Hyprland";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
-    devtemplates.url = "github:McArthur-Alford/nix-templates";
   };
 
   outputs = { nixpkgs, self, ... }@inputs:
@@ -20,6 +19,7 @@
       inherit (self) outputs;
       stateVersion = "22.11";
       lib = import ./lib { inherit inputs stateVersion outputs nixpkgs; };
+      templates = (import ./templates { });
     in
     {
       homeConfigurations = {
@@ -85,5 +85,7 @@
         let pkgs = nixpkgs.legacyPackages.${system};
         in import ./pkgs { inherit pkgs; }
       );
+
+      inherit templates;
     };
 }

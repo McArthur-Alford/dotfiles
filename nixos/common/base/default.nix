@@ -89,6 +89,18 @@
       experimental-features = [ "nix-command" "flakes" ];
       sandbox = true;
     };
+
+      registry.devtemplates = {
+        to = {
+          owner = "McArthur-Alford";
+          repo = "nix-templates";
+          type = "github";
+        };
+        from = {
+          id = "devtemplates";
+          type = "indirect";
+        };
+      };
   };
 
   system.stateVersion = stateVersion;
