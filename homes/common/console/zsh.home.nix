@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  imports = [../services/direnv.home.nix ];
   home.packages = with pkgs; [
     xclip
     fd
