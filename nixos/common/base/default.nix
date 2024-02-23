@@ -90,17 +90,17 @@
       sandbox = true;
     };
 
-      registry.devtemplates = {
-        to = {
-          owner = "McArthur-Alford";
-          repo = "nix-templates";
-          type = "github";
-        };
-        from = {
-          id = "devtemplates";
-          type = "indirect";
-        };
+    registry.devtemplates = {
+      to = {
+        owner = "McArthur-Alford";
+        repo = "nix-templates";
+        type = "github";
       };
+      from = {
+        id = "devtemplates";
+        type = "indirect";
+      };
+    };
   };
 
   system.stateVersion = stateVersion;

@@ -4,7 +4,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
+  outputs = { nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         openconnectOverlay = import ''${(builtins.fetchTarball {
@@ -13,7 +13,7 @@
           }
         )}/overlay.nix'';
         pkgs = import nixpkgs {
-          overlays = [openconnectOverlay];
+          overlays = [ openconnectOverlay ];
           inherit system;
         };
       in
@@ -21,7 +21,7 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             openconnect-sso
-          ]; 
+          ];
         };
       });
 }

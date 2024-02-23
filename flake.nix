@@ -19,7 +19,7 @@
       inherit (self) outputs;
       stateVersion = "22.11";
       lib = import ./lib { inherit inputs stateVersion outputs nixpkgs; };
-      templates = (import ./templates { });
+      templates = import ./templates { };
     in
     {
       homeConfigurations = {
