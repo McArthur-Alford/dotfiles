@@ -1,5 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
+  home.packages = with pkgs; [
+    xclip
+    fd
+    ripgrep
+    (ripgrep-all.overrideAttrs (old: {
+      doInstallCheck = false;
+    }))
+    procs
+    du-dust
+    delta
+    kalker
+    tldr
+    sshs
+    rm-improved
+  ];
+
   programs = {
     lazygit = {
       enable = true;
