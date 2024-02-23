@@ -1,4 +1,4 @@
-{ config, desktop, hostname, inputs, lib, modulesPath, outputs, pkgs, system, stateVersion, username, nixpkgs, ...}: {
+{ config, desktop, hostname, inputs, lib, modulesPath, outputs, pkgs, system, stateVersion, username, nixpkgs, kernel, ...}: {
   imports = [
     inputs.nix-index-database.nixosModules.nix-index
     ./${hostname}
@@ -7,6 +7,7 @@
     ./common/services/firewall.nix
     ./common/services/openssh.nix
     ./common/users/root
+    ./common/kernels/${kernel}
   ]
   ++ lib.optional (builtins.pathExists (./. + "/common/users/${username}")) ./common/users/${username}
   ++ lib.optional (desktop != null) ./common/desktop;

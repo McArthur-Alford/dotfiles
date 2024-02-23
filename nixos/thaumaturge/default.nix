@@ -2,11 +2,9 @@
 {
   imports = [
     ./hardware.nix
-    (../../nixos/common/hardware/systemd-boot.nix)
-    (../../nixos/common/services/audio.nix)
-
-    # TODO remove these eventually, move them into nixos
-    ../../../modules/programs/waybar.nix
+    ../../nixos/common/hardware/systemd-boot.nix
+    ../../nixos/common/services/audio.nix
+    ../../nixos/common/services/gnome-keyring.nix
   ];
 
   networking = {

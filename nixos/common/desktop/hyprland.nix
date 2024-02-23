@@ -1,4 +1,4 @@
-{ config, lib, pkgs, system, hyprland, ...}:
+{ pkgs, ... }:
 {
   environment = {
     variables = {
@@ -22,7 +22,6 @@
       swappy
       wl-clipboard
       wlr-randr
-      # hyprpaper
       swww
       qt6.full
       xwayland
@@ -30,7 +29,6 @@
   };
 
   services = {
-
     blueman.enable = true;
     xserver = {
       enable = true;
@@ -58,8 +56,3 @@
     };
   };
 }
-
-
-
-
-
