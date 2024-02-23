@@ -1,20 +1,20 @@
-{ inputs, stateVersion, outputs, self, ... }: {
+{ inputs, stateVersion, outputs, nixpkgs, ... }: {
   # Helper function for generating home-manager configs
   mkHome = { hostname, username, desktop ? null, system? "x86_64-linux" }: inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = inputs.nixpkgs.legacyPackages.${system};
     extraSpecialArgs = {
       inherit inputs outputs desktop hostname system username stateVersion;
     };
-    modules = [ (self + "/homes") ];
+    modules = [ ../homes ];
   };
 
   # Helper function for generating host configs
-  mkHost = { hostname, username, desktop ? null, installer ? null,  system ? "x86_64-linux" }: inputs.nixpkgs.lib.nixosSystem {
+  mkHost = { hostname, username, desktop ? null, installer ? null, system ? "x86_64-linux" }: inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
-      inherit inputs outputs desktop hostname system username stateVersion;
+      inherit inputs outputs desktop hostname system username stateVersion nixpkgs;
     };
     modules = [
-      (self + "/nixos")
+      ../nixos
     ] ++ (inputs.nixpkgs.lib.optionals (installer != null) [ installer ]);
   };
 

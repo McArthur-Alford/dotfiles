@@ -23,6 +23,18 @@
       fsType = "vfat";
     };
 
+  # Mount drives
+  fileSystems."/mnt/storage" = {
+    device = "/dev/nvme0n1p1";
+    fsType = "ext4";
+  };
+
+  fileSystems."/mnt/fedora" = {
+    device = "/dev/nvme2n1p3";
+    fsType = "ext4";
+  };
+
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/00ecdf63-d1e7-4318-bb66-8b0c6e43e220"; }
     ];

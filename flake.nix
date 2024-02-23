@@ -16,9 +16,9 @@
 
   outputs = { nixpkgs, self, ... }@inputs:
   let
+    inherit (self) outputs;
     stateVersion = "22.11";
-    outputs = outputs;
-    lib = import ./lib { inherit inputs stateVersion outputs self; };
+    lib = import ./lib { inherit inputs stateVersion outputs nixpkgs; };
   in 
   {
     homeConfigurations = {
@@ -83,11 +83,5 @@
       let pkgs = nixpkgs.legacyPackages.${system};
       in import ./pkgs { inherit pkgs; }
     );
-
-    # nixosConfigurations = (
-    #   import ./hosts {
-    #     inherit nixpkgs lib globals inputs self;
-    #   }
-    # );
   };
 }
