@@ -40,6 +40,7 @@
         desktop  = "nocturne";
       };
     };
+
     nixosConfigurations = {
       # yggdrasil   = lib.mkHost {
       #   hostname = "yggdrasil";

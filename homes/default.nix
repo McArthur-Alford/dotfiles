@@ -1,5 +1,7 @@
 {config, desktop, hostname, inputs, lib, outputs, pkgs, stateVersion, username, ...}:
 {
+  programs.home-manager.enable = true;
+
   imports = [
     inputs.nix-index-database.hmModules.nix-index
   ]
