@@ -51,26 +51,26 @@
   home.sessionVariables.GTK_THEME = "Dracula";
 
   # Helix
-  xdg.configFile."helix/config.toml".source = ../../../desktop/helix/config.toml;
-  xdg.configFile."helix/themes/alucard.toml".source = ../../../desktop/helix/themes/alucard.toml;
-  xdg.configFile."helix/languages.toml".source = ../../../desktop/helix/languages.toml;
+  xdg.configFile."helix/config.toml".source = ../../../dotfiles/helix/config.toml;
+  xdg.configFile."helix/themes/alucard.toml".source = ../../../dotfiles/helix/themes/alucard.toml;
+  xdg.configFile."helix/languages.toml".source = ../../../dotfiles/helix/languages.toml;
 
   # Ranger
-  # xdg.configFile."ranger/rifle/rifle.conf".source = ../../desktop/ranger/rifle/rifle.conf;
-  xdg.configFile."ranger/rc.conf".source = ../../../desktop/ranger/rc.conf;
-  xdg.configFile."ranger/colorschemes/dracula.py".source = ../../../desktop/ranger/colorschemes/dracula.py;
+  # xdg.configFile."ranger/rifle/rifle.conf".source = ../../dotfiles/ranger/rifle/rifle.conf;
+  xdg.configFile."ranger/rc.conf".source = ../../../dotfiles/ranger/rc.conf;
+  xdg.configFile."ranger/colorschemes/dracula.py".source = ../../../dotfiles/ranger/colorschemes/dracula.py;
 
   # QT5
-  xdg.configFile."qt5ct/colors/Dracula.conf".source = ../../../desktop/qt5ct/colors/Dracula.conf;
+  xdg.configFile."qt5ct/colors/Dracula.conf".source = ../../../dotfiles/qt5ct/colors/Dracula.conf;
 
   # Vencord
-  # xdg.configFile."BetterDiscord/plugins".source = ../../../desktop/BetterDiscord/plugins;
-  xdg.configFile."vesktop/themes".source = ../../../desktop/BetterDiscord/themes;
+  # xdg.configFile."BetterDiscord/plugins".source = ../../../dotfiles/BetterDiscord/plugins;
+  xdg.configFile."vesktop/themes".source = ../../../dotfiles/BetterDiscord/themes;
 
   # btop theme
-  xdg.configFile."bashtop".source = ../../../desktop/bashtop;
+  xdg.configFile."bashtop".source = ../../../dotfiles/bashtop;
 
   # Godot theme
-  xdg.configFile."godot/themes".source = ../../../desktop/godot/themes;
+  xdg.configFile."godot/themes".source = ../../../dotfiles/godot/themes;
 
 }
