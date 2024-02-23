@@ -1,4 +1,4 @@
-{ config, desktop, hostname, inputs, lib, pkgs, stateVersion, username, ... }:
+{ desktop, hostname, inputs, lib, pkgs, stateVersion, username, ... }:
 {
   programs.home-manager.enable = true;
 

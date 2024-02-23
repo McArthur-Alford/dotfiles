@@ -6,6 +6,8 @@
     ../../nixos/common/services/audio.nix
     ../../nixos/common/services/gnome-keyring.nix
     ../../nixos/common/services/bluetooth.nix
+    ../../nixos/common/programs/steam.nix
+    ../../nixos/common/programs/vencord.nix
   ];
 
   networking = {
@@ -71,68 +73,9 @@
     };
   };
 
-  environment = {
-    systemPackages = with pkgs; [
-      # Packages not offered by Home-Manager
-      anki-bin
-      usbutils
-      xorg.libXxf86vm
-      neofetch
-      lutris
-      gnome.nautilus
-      nautilus-open-any-terminal
-      libsForQt5.qt5ct
-      gamescope
-      dnsmasq
-      wineWowPackages.stable
-      winetricks
-      (headsetcontrol.overrideAttrs (_finalAttrs: _previousAttrs: {
-        src = fetchFromGitHub {
-          owner = "Sapd";
-          repo = "HeadsetControl";
-          rev = "464a12a5679d431b148aea53bceba88b9414ad1f";
-          sha256 = "sha256-tAndkfLEgj81JWzXtDBNspRxzKAL6XaRw0aDI1XbC1E=";
-        };
-      }))
-      discord
-      polkit
-      blender
-      qsynth
-      radeontop
-      jetbrains.idea-community
-      element-desktop
-    ];
-
-    etc."spotify".source = "${pkgs.spotify}";
-  };
-
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="12e0", TAG+="uaccess"
   '';
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    steam = pkgs.steam.override {
-      extraPkgs = pkgs: with pkgs; [
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
-        libpng
-        libpulseaudio
-        libvorbis
-        stdenv.cc.cc.lib
-        libkrb5
-        keyutils
-      ];
-    };
-  };
-
-  programs = {
-    steam = {
-      enable = true;
-    };
-    gamemode.enable = true;
-  };
 
   systemd.targets = {
     sleep.enable = false;

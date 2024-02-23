@@ -2,11 +2,11 @@
 {
   imports = [
     ./hyprland.home.nix
-    ../services/wofi.home.nix
+    ../programs/wofi.home.nix
     ../console/zellij.home.nix
     ../console/zsh.home.nix
     ../services/eww.home.nix
-    ../console/kitty.home.nix
+    ../programs/kitty.home.nix
     ../services/swaylock.home.nix
   ];
 
@@ -63,9 +63,9 @@
   # QT5
   xdg.configFile."qt5ct/colors/Dracula.conf".source = ../../../dotfiles/desktop/qt5ct/colors/Dracula.conf;
 
-  # Better Discord
-  xdg.configFile."BetterDiscord/plugins".source = ../../../dotfiles/desktop/BetterDiscord/plugins;
-  xdg.configFile."BetterDiscord/themes".source = ../../../dotfiles/desktop/BetterDiscord/themes;
+  # Vencord
+  # xdg.configFile."BetterDiscord/plugins".source = ../../../dotfiles/desktop/BetterDiscord/plugins;
+  xdg.configFile."vesktop/themes".source = ../../../dotfiles/desktop/BetterDiscord/themes;
 
   # btop theme
   xdg.configFile."bashtop".source = ../../../dotfiles/desktop/bashtop;

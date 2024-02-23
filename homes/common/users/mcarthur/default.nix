@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  imports = [
+    ../../programs/spotify.home.nix
+  ];
+
   home.packages = with pkgs; [
     # Terminal
     btop # Resource Management
@@ -88,6 +92,32 @@
     dotnet-sdk_7
 
     # Element
+    element-desktop
+
+    anki-bin
+    gnome.nautilus
+    usbutils
+    xorg.libXxf86vm
+    neofetch
+    lutris
+    nautilus-open-any-terminal
+    libsForQt5.qt5ct
+    dnsmasq
+    wineWowPackages.stable
+    winetricks
+    (headsetcontrol.overrideAttrs (_finalAttrs: _previousAttrs: {
+      src = fetchFromGitHub {
+        owner = "Sapd";
+        repo = "HeadsetControl";
+        rev = "464a12a5679d431b148aea53bceba88b9414ad1f";
+        sha256 = "sha256-tAndkfLEgj81JWzXtDBNspRxzKAL6XaRw0aDI1XbC1E=";
+      };
+    }))
+    polkit
+    blender
+    qsynth
+    radeontop
+    jetbrains.idea-community
     element-desktop
   ];
 }
