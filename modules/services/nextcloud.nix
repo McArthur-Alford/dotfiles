@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   services.nextcloud = {
     enable = true;
@@ -6,5 +6,5 @@
     hostName = "magic";
     config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
   };
-  
+
 }

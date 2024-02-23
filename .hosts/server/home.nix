@@ -1,107 +1,35 @@
-{ pkgs, system, inputs, ... }:
+{ pkgs, inputs, system, ... }:
 let
   host = {
-    hostName = "laptop";
+    hostName = "server";
     mainMonitor = "MAIN";
   };
 in
 {
   imports = [
-    (import ../../modules/desktop/hyprland/home.nix {inherit host system inputs;})
+    (import ../../modules/desktop/hyprland/home.nix { inherit pkgs system inputs host; })
     ../../modules/programs/wofi/home.nix
-    ../../modules/programs/spicetify.home.nix
     ../../modules/programs/zellij.home.nix
     ../../modules/programs/zsh.home.nix
-    ../../modules/programs/kitty.home.nix
-    ../../modules/programs/swaylock.home.nix
   ];
 
   programs = {
-    vscode = {
-      enable = true;
-    };
-    zathura = {
-      enable = true;
-    };
     helix = {
       enable = true;
     };
   };
-  services.network-manager-applet.enable = true;
 
   home.packages = with pkgs; [
-    networkmanagerapplet
-    acpi
-    
     materia-kde-theme
-    sway-contrib.grimshot
-    betterdiscordctl
-    
-    libsForQt5.okular
-
-    satty
-
-    # texlab
-    # typst
-    # typst-lsp
-    
-    # Protonupqt
-    protonup-ng
-
-    # image editors
-    gimp
-    krita
-
-    # Gparted (spooOoooky)
-    gparted
-    parted
-
-    # Bitwarden!
-    bitwarden
-
-    # Obsidian!
-    obsidian
-
-    # keyring stuff
     gnome.gnome-keyring
     libsecret
     libgnome-keyring
-
-    # Work Comms
-    slack
-    zoom-us
-
-    # Office
-    onlyoffice-bin
-
-    # texlive
-    # texlive.combined.scheme-full
-
-    # Libs
-    dotnet-sdk_7
-
-    # Jetbrains
-    jetbrains.idea-community
-
-    # Element
-    element-desktop
+    xorg.xhost
   ];
 
-  # mimetypes
-  #xdg.mimeApps = {
-    #enable  = true;
-    #associations.added = {
-      #"applications/pdf" = ["org.gnome.Zathura.desktop"];
-      ##"image/*" = ["org.gnome.Feh.desktop"];
-    #};
-    #defaultApplications = {
-      #"applications/pdf" = ["org.gnome.Zathura.desktop"];
-      ##"image/*" = ["org.gnome.Feh.desktop"];
-    #};
-  #};
-
   # GTK Theme
-  gtk = {		# GTK Theme
+  gtk = {
+    # GTK Theme
     enable = true;
     theme = {
       name = "Dracula";
@@ -123,12 +51,12 @@ in
   home.sessionVariables.GTK_THEME = "Dracula";
 
   # Alacritty
-  # xdg.configFile."alacritty/alacritty.yml".source = ../../dotfiles/desktop/alacritty/alacritty.yml;
+  xdg.configFile."alacritty/alacritty.yml".source = ../../dotfiles/desktop/alacritty/alacritty.yml;
 
   # Helix
   xdg.configFile."helix/config.toml".source = ../../dotfiles/desktop/helix/config.toml;
-  xdg.configFile."helix/themes/alucard.toml".source = ../../dotfiles/desktop/helix/themes/alucard.toml;
   xdg.configFile."helix/languages.toml".source = ../../dotfiles/desktop/helix/languages.toml;
+
 
   # Ranger
   # xdg.configFile."ranger/rifle/rifle.conf".source = ../../dotfiles/desktop/ranger/rifle/rifle.conf;

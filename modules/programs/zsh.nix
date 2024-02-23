@@ -7,7 +7,7 @@
     xclip
     fd
     ripgrep
-    (ripgrep-all.overrideAttrs (old: {
+    (ripgrep-all.overrideAttrs (_old: {
       doInstallCheck = false;
     }))
     procs

@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, user, ... }:
+{ pkgs, inputs, system, ... }:
 let
   host = {
     hostName = "desktop";
@@ -7,7 +7,7 @@ let
 in
 {
   imports = [
-    (import ../../modules/desktop/hyprland/home.nix {inherit host system inputs;})
+    (import ../../modules/desktop/hyprland/home.nix { inherit host system inputs; })
     ../../modules/programs/wofi/home.nix
     ../../modules/programs/spicetify.home.nix
     ../../modules/programs/zellij.home.nix
@@ -51,7 +51,7 @@ in
     # qmk_hid
     qmk-udev-rules
 
-    evince 
+    evince
     # texlab
     xorg.xhost
 
@@ -59,7 +59,7 @@ in
     sway-contrib.grimshot
     satty
     betterdiscordctl
-    
+
     libsForQt5.okular
 
     # Protonupqt
@@ -103,26 +103,27 @@ in
 
   # mimetypes
   #xdg.mimeApps = {
-    #enable  = true;
-    #associations.added = {
-      #"applications/pdf" = ["org.gnome.Zathura.desktop"];
-      ##"image/*" = ["org.gnome.Feh.desktop"];
-    #};
-    #defaultApplications = {
-      #"applications/pdf" = ["org.gnome.Zathura.desktop"];
-      ##"image/*" = ["org.gnome.Feh.desktop"];
-    #};
+  #enable  = true;
+  #associations.added = {
+  #"applications/pdf" = ["org.gnome.Zathura.desktop"];
+  ##"image/*" = ["org.gnome.Feh.desktop"];
+  #};
+  #defaultApplications = {
+  #"applications/pdf" = ["org.gnome.Zathura.desktop"];
+  ##"image/*" = ["org.gnome.Feh.desktop"];
+  #};
   #};
 
   dconf.settings = {
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
     };
   };
 
   # GTK Theme
-  gtk = {		# GTK Theme
+  gtk = {
+    # GTK Theme
     enable = true;
     theme = {
       name = "Dracula";

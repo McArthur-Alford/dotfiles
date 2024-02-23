@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   imports = [
     ./hyprland.home.nix
@@ -20,7 +20,7 @@
   };
 
   home.packages = with pkgs; [
-    
+
   ];
 
   home.pointerCursor = {

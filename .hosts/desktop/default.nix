@@ -1,8 +1,8 @@
-{ config, pkgs, user, system, lib, ...}:
+{ config, pkgs, user, system, lib, ... }:
 {
-  imports = [ 
+  imports = [
     ./hardware-configuration.nix
-    ../../modules/desktop/hyprland 
+    ../../modules/desktop/hyprland
     # ../../modules/programs/eww.nix
     ../../modules/programs/waybar.nix
     ../../modules/programs/wofi
@@ -26,10 +26,10 @@
     fsType = "ext4";
   };
 
-   fileSystems."/mnt/fedora" = {
-     device = "/dev/nvme2n1p3";
-     fsType = "ext4";
-   };
+  fileSystems."/mnt/fedora" = {
+    device = "/dev/nvme2n1p3";
+    fsType = "ext4";
+  };
 
   # "i2c-piix4" for amd chipset?
   # boot.kernelModules = [ "i2c-dev" "i2c-i801" ];
@@ -40,8 +40,8 @@
   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
+      fcitx5-mozc
+      fcitx5-gtk
     ];
   };
 
@@ -53,7 +53,7 @@
     ];
     allowedUDPPorts = [ 3000 ];
   };
- 
+
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
@@ -63,17 +63,17 @@
 
   hardware.fancontrol.enable = true;
   hardware.fancontrol.config = ''
-  Common Settings:
-  INTERVAL=10
+    Common Settings:
+    INTERVAL=10
 
-  Settings of hwmon8/pwm1:
-    Depends on hwmon8/temp1_input
-    Controls hwmon8/fan1_input
-    MINTEMP=20
-    MAXTEMP=50
-    MINSTART=150
-    MINSTOP=0
-    MAXPWM=255
+    Settings of hwmon8/pwm1:
+      Depends on hwmon8/temp1_input
+      Controls hwmon8/fan1_input
+      MINTEMP=20
+      MAXTEMP=50
+      MINSTART=150
+      MINSTOP=0
+      MAXPWM=255
   '';
   programs.corectrl.enable = true;
 
@@ -105,7 +105,7 @@
         "IPAPMincho"
       ];
     };
-  };  
+  };
 
 
   networking = {
@@ -120,7 +120,8 @@
   virtualisation.spiceUSBRedirection.enable = true;
 
   environment = {
-    systemPackages = with pkgs; [					# Packages not offered by Home-Manager
+    systemPackages = with pkgs; [
+      # Packages not offered by Home-Manager
       # Dungeondraft/Wonderdraft
       # (callPackage ../../modules/editors/wonderdraft/wonderdraft.nix {})
       # (callPackage ../../modules/editors/dungeondraft/dungeondraft.nix {})
@@ -131,7 +132,7 @@
       # Cisco any connect for uq network vpn
       openconnect_openssl
 
-      
+
       # openrgb-with-all-plugins.out
       # # openrgb
       # i2c-tools
@@ -161,7 +162,7 @@
       winetricks
 
       # headset
-      (headsetcontrol.overrideAttrs (finalAttrs: previousAttrs: {
+      (headsetcontrol.overrideAttrs (_finalAttrs: _previousAttrs: {
         src = fetchFromGitHub {
           owner = "Sapd";
           repo = "HeadsetControl";
@@ -203,7 +204,7 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="12e0", TAG+="uaccess"
   '';
 
-   nixpkgs.config.packageOverrides = pkgs: {
+  nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
       extraPkgs = pkgs: with pkgs; [
         xorg.libXcursor
@@ -231,7 +232,7 @@
     steam = {
       enable = true;
     };
-  
+
     # steam = {
     #   enable = true;
     #   package = pkgs.steam.override {
@@ -254,8 +255,8 @@
     #     enable = true;
     #   };
     # };
-    gamemode.enable = true;						# Better performance
-    									                # Steam: Launch Options: gamemoderun %command%
+    gamemode.enable = true; # Better performance
+    # Steam: Launch Options: gamemoderun %command%
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

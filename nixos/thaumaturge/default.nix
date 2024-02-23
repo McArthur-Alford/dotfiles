@@ -5,6 +5,7 @@
     ../../nixos/common/hardware/systemd-boot.nix
     ../../nixos/common/services/audio.nix
     ../../nixos/common/services/gnome-keyring.nix
+    ../../nixos/common/services/bluetooth.nix
   ];
 
   networking = {
@@ -24,22 +25,19 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
-  services.blueman.enable = true;
-  hardware.bluetooth.enable = true;
-
   hardware.fancontrol.enable = true;
   hardware.fancontrol.config = ''
-  Common Settings:
-  INTERVAL=10
+    Common Settings:
+    INTERVAL=10
 
-  Settings of hwmon8/pwm1:
-    Depends on hwmon8/temp1_input
-    Controls hwmon8/fan1_input
-    MINTEMP=20
-    MAXTEMP=50
-    MINSTART=150
-    MINSTOP=0
-    MAXPWM=255
+    Settings of hwmon8/pwm1:
+      Depends on hwmon8/temp1_input
+      Controls hwmon8/fan1_input
+      MINTEMP=20
+      MAXTEMP=50
+      MINSTART=150
+      MINSTOP=0
+      MAXPWM=255
   '';
   programs.corectrl.enable = true;
 
@@ -71,15 +69,16 @@
         "IPAPMincho"
       ];
     };
-  };  
+  };
 
   environment = {
-    systemPackages = with pkgs; [ # Packages not offered by Home-Manager
+    systemPackages = with pkgs; [
+      # Packages not offered by Home-Manager
       anki-bin
       usbutils
       xorg.libXxf86vm
       neofetch
-      lutris    
+      lutris
       gnome.nautilus
       nautilus-open-any-terminal
       libsForQt5.qt5ct
@@ -87,7 +86,7 @@
       dnsmasq
       wineWowPackages.stable
       winetricks
-      (headsetcontrol.overrideAttrs (finalAttrs: previousAttrs: {
+      (headsetcontrol.overrideAttrs (_finalAttrs: _previousAttrs: {
         src = fetchFromGitHub {
           owner = "Sapd";
           repo = "HeadsetControl";
@@ -111,7 +110,7 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="12e0", TAG+="uaccess"
   '';
 
-   nixpkgs.config.packageOverrides = pkgs: {
+  nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
       extraPkgs = pkgs: with pkgs; [
         xorg.libXcursor

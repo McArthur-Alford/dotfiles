@@ -1,4 +1,4 @@
-{ config, pkgs, user, system, ...}:
+{ config, pkgs, user, system, ... }:
 let
   intelBusId = "PCI:01:00:0";
   nvidiaBusId = "PCI:00:02:0";
@@ -10,7 +10,7 @@ in
     extraGroups = [ "networkmanager" "wheel" "audio" ];
   };
 
-  imports = [ 
+  imports = [
     ./hardware-configuration.nix
     ../../modules/desktop/hyprland
     ../../modules/programs/wofi
@@ -28,8 +28,8 @@ in
     ../../modules/kernels/latest.nix
     ../../modules/services/systemd-boot.nix
     ../../modules/programs/swaylock.nix
-    (import ../../modules/gpu/nvidia-optimus.nix {inherit pkgs config intelBusId nvidiaBusId;})
-   ];
+    (import ../../modules/gpu/nvidia-optimus.nix { inherit pkgs config intelBusId nvidiaBusId; })
+  ];
 
   nixpkgs.overlays = [ (import ../../overlays/xwaylandvideobridge.nix) ];
 
@@ -37,9 +37,9 @@ in
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-  services.xserver.libinput.touchpad.naturalScrolling = false; 
-  services.xserver.libinput.enable = true; 
-  services.xserver.libinput.touchpad.middleEmulation = true; 
+  services.xserver.libinput.touchpad.naturalScrolling = false;
+  services.xserver.libinput.enable = true;
+  services.xserver.libinput.touchpad.middleEmulation = true;
   services.xserver.libinput.touchpad.tapping = true;
   services.xserver.libinput.touchpad.disableWhileTyping = false;
 
@@ -49,7 +49,8 @@ in
   };
 
   environment = {
-    systemPackages = with pkgs; [					# Packages not offered by Home-Manager
+    systemPackages = with pkgs; [
+      # Packages not offered by Home-Manager
       # Nix language server
       nil
 
@@ -82,9 +83,9 @@ in
   programs = {
     steam.enable = true;
     # gamemode.enable = true;						# Better performance
-    									# Steam: Launch Options: gamemoderun %command%
+    # Steam: Launch Options: gamemoderun %command%
   };
-  
+
   services = {
     blueman.enable = true;
   };

@@ -1,5 +1,5 @@
 # Global Configuration For All Devices
-{ lib, config, pkgs, user, nixpkgs, ... }:
+{ config, pkgs, user, nixpkgs, ... }:
 {
   # Set your time zone.
   time.timeZone = "Australia/Brisbane";
@@ -21,12 +21,12 @@
 
   # Flatpak
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   services.flatpak.enable = true;
 
   # nixpkgs stuff
   environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
-  nix.nixPath = ["nixpkgs=/etc/nix/inputs/nixpkgs"];
+  nix.nixPath = [ "nixpkgs=/etc/nix/inputs/nixpkgs" ];
 
   # Dconf
   programs.dconf.enable = true;
@@ -76,7 +76,7 @@
       vim
       wget
       kitty
-      git 
+      git
       killall
       libgcc
       wireplumber
@@ -85,7 +85,7 @@
   };
 
   systemd.services.nix-daemon.serviceConfig = {
-    CPUQuota = ["90%"];
+    CPUQuota = [ "90%" ];
   };
 
   nix = {

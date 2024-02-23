@@ -6,9 +6,10 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../modules/desktop/hyprland 
+      ../../modules/desktop/hyprland
       ../../modules/programs/wofi
       ../../modules/programs/docker.nix
       ../../modules/programs/zsh.nix
@@ -24,7 +25,7 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     # other Nginx options
-    virtualHosts =  {
+    virtualHosts = {
       "thaumaturgy.tech" = {
         enableACME = true;
         forceSSL = true;
@@ -55,8 +56,7 @@
     package = pkgs.nextcloud26;
     hostName = "cloud.thaumaturgy.tech";
     config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
-    extraApps = with pkgs.nextcloud26Packages.apps; {
-    };
+    extraApps = with pkgs.nextcloud26Packages.apps; { };
     extraAppsEnable = true;
   };
 
@@ -133,7 +133,8 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [					# Packages not offered by Home-Manager
+    systemPackages = with pkgs; [
+      # Packages not offered by Home-Manager
       nginx
       gparted
       freshfetch

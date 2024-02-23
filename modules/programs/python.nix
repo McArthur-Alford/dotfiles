@@ -1,4 +1,4 @@
-{ config, lib, pkgs, host, user, ...}:
+{ pkgs, user, ... }:
 {
   environment.systemPackages = with pkgs; [
     python39
@@ -8,7 +8,5 @@
     tk
   ];
 
-  home-manager.users.${user} = {
-
-  };
+  home-manager.users.${user} = { };
 }

@@ -1,6 +1,4 @@
-{desktop, lib, pkgs, ...}:
+{ desktop, lib, ... }:
 {
-  imports = [
-    
-  ]  ++ lib.optional (builtins.pathExists (./. + "/${desktop}")) ./${desktop};
+  imports = lib.optional (builtins.pathExists (./. + "/${desktop}")) ./${desktop};
 }

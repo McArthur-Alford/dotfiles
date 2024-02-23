@@ -1,12 +1,13 @@
-{ config, lib, pkgs, host, user, ...}:
+{ pkgs, user, ... }:
 
 {
   environment.systemPackages = with pkgs; [
     waybar
   ];
 
-  nixpkgs.overlays = [                                      # Waybar needs to be compiled with the experimental flag for wlr/workspaces to work (for now done with hyprland.nix)
-    (self: super: {
+  nixpkgs.overlays = [
+    # Waybar needs to be compiled with the experimental flag for wlr/workspaces to work (for now done with hyprland.nix)
+    (_self: super: {
       waybar = super.waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
         patchPhase = ''
@@ -378,11 +379,11 @@
       '';
 
       settings = {
-     
+
         Main = {
           layer = "top";
           position = "top";
-          modules-left = ["hyprland/workspaces" "custom/arrow10" "hyprland/window" ];
+          modules-left = [ "hyprland/workspaces" "custom/arrow10" "hyprland/window" ];
           modules-right = [ "custom/arrow9" "pulseaudio" "custom/arrow8" "network" "custom/arrow7" "memory" "custom/arrow6" "cpu" "custom/arrow5" "temperature" "custom/arrow4" "battery" "custom/arrow3" "custom/arrow2" "tray" "clock#date" "custom/arrow1" "clock#time" ];
 
           battery = {
@@ -480,10 +481,10 @@
           };
 
           "hyprland/workspaces" = {
-        		disable-scroll-wraparound = true;
-        		smooth-scrolling-threshold = 4;
-        		enable-bar-scroll = true;
-        		format = "{name}";
+            disable-scroll-wraparound = true;
+            smooth-scrolling-threshold = 4;
+            enable-bar-scroll = true;
+            format = "{name}";
           };
 
           "custom/arrow1" = { format = ""; tooltip = false; };

@@ -7,7 +7,7 @@
     enable = false;
     setSocketVariable = true;
   };
-  
+
   environment.systemPackages = with pkgs; [
     docker
   ];

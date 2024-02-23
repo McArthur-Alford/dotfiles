@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ ... }: {
   imports = [
     ../hyprland.nix
     # ../../programs/waybar.nix

@@ -1,7 +1,7 @@
-{system, hostname, inputs, ... }:
+{ system, hostname, inputs, ... }:
 let
-  workspaces = 
-    if hostname  == "thaumaturge" then ''
+  workspaces =
+    if hostname == "thaumaturge" then ''
       monitor=MAIN,5120x1440@120,5140x0,1
     '' else if hostname == "grimoire" then ''
       monitor=MAIN,3840x2160@60,3840x0,1
@@ -10,7 +10,7 @@ in
 {
   # xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/desktop/hypr/hyprland.conf;
   xdg.configFile."hypr/hyprmonitors.conf".text = workspaces;
-  
+
   home.sessionVariables = {
     GDK_BACKEND = "wayland,x11";
     QT_QPA_PLATFORM = "wayland;xcb";
@@ -57,8 +57,8 @@ in
         gaps_in = "2";
         gaps_out = "3";
         border_size = "2";
-        "col.inactive_border" = "rgba(44475AFF)";#rgba(ff555520) 90deg";
-        "col.active_border" = "rgba(6272A4FF)";#rgba(ff79c680) 90deg";
+        "col.inactive_border" = "rgba(44475AFF)"; #rgba(ff555520) 90deg";
+        "col.active_border" = "rgba(6272A4FF)"; #rgba(ff79c680) 90deg";
         layout = "dwindle";
       };
 
@@ -203,7 +203,7 @@ in
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
- 
+
     };
   };
 }

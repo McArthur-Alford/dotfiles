@@ -1,10 +1,10 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   boot = {
-    initrd.kernelModules = ["amdgpu"];					# Video Drivers
+    initrd.kernelModules = [ "amdgpu" ]; # Video Drivers
   };
 
-  services.xserver.videoDrivers = ["amdgpu"];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # --- AMD GPU ---
   nixpkgs.config.rocmTargets = [ "gfx1030" ];

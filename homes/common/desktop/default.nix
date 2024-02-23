@@ -1,4 +1,4 @@
-{config, desktop, lib, pkgs, username, ...}:
+{ desktop, lib, username, ... }:
 {
   imports = [
     (./. + "/${desktop}.nix")

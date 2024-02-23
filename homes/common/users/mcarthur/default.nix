@@ -1,17 +1,17 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     # Terminal
-    btop	  # Resource Management
-    ranger	# File management
-    unzip   # Unzipper
+    btop # Resource Management
+    ranger # File management
+    unzip # Unzipper
 
     # Video/Audio
-    feh			# Image Viewer
-    mpv			# Media Player
-    obs-studio 		# Recording
-    pavucontrol 	# Audio Control
-    vlc			# Media Player
+    feh # Image Viewer
+    mpv # Media Player
+    obs-studio # Recording
+    pavucontrol # Audio Control
+    vlc # Media Player
 
     # Apps
     appimage-run
@@ -41,7 +41,7 @@
     # qmk_hid
     qmk-udev-rules
 
-    evince 
+    evince
     # texlab
     xorg.xhost
 
@@ -49,7 +49,7 @@
     sway-contrib.grimshot
     satty
     betterdiscordctl
-    
+
     libsForQt5.okular
 
     # Protonupqt

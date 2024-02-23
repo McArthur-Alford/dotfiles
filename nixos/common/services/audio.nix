@@ -1,4 +1,4 @@
-{...}:
+_:
 {
   # Pulseaudio setup
   sound.enable = true;
@@ -11,7 +11,8 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
+    # If you want to use JACK applications:
     jack.enable = true;
+    wireplumber.enable = true;
   };
 }

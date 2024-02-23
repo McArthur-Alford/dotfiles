@@ -1,14 +1,16 @@
 { pkgs, discordHash, ... }:
 {
   environment.systemPackages = with pkgs; [ discord xdg-desktop-portal xdg-desktop-portal-hyprland ];
-  nixpkgs.overlays = [							# Keeps discord up to date
-    (self: super: {
+  nixpkgs.overlays = [
+    # Keeps discord up to date
+    (_self: super: {
       discord = super.discord.overrideAttrs (
-        _: { 
+        _: {
           src = builtins.fetchTarball {
-      	  url = "https://discord.com/api/download?platform=linux&format=tar.gz";
-      	  sha256 = discordHash;
-        };}
+            url = "https://discord.com/api/download?platform=linux&format=tar.gz";
+            sha256 = discordHash;
+          };
+        }
       );
     })
   ];
