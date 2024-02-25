@@ -88,9 +88,6 @@
     # texlive
     # texlive.combined.scheme-full
 
-    # Libs
-    dotnet-sdk_7
-
     # Element
     element-desktop
 
@@ -114,10 +111,8 @@
       };
     }))
     polkit
-    blender
     qsynth
     radeontop
-    jetbrains.idea-community
     element-desktop
   ];
 }

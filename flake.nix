@@ -28,12 +28,12 @@
         #   username = "mcarthur";
         #   system = "x86_64-linux";
         # };
-        # "mcarthur@grimoire" = lib.mkHome {
-        #   hostname = "grimoire";
-        #   username = "mcarthur";
-        #   system = "x86_64-linux";
-        #   desktop  = "nocturne";
-        # };
+        "mcarthur@grimoire" = lib.mkHome {
+          hostname = "grimoire";
+          username = "mcarthur";
+          system = "x86_64-linux";
+          desktop  = "nocturne";
+        };
         "mcarthur@thaumaturge" = lib.mkHome {
           hostname = "thaumaturge";
           username = "mcarthur";
@@ -48,12 +48,12 @@
         #   username = "mcarthur";
         #   system = "x86_64-linux";
         # };
-        # grimoire    = lib.mkHost {
-        #   hostname = "grimoire";
-        #   username = "mcarthur";
-        #   system = "x86_64-linux";
-        #   desktop  = "nocturne";
-        # };
+        grimoire    = lib.mkHost {
+          hostname = "grimoire";
+          username = "mcarthur";
+          system = "x86_64-linux";
+          desktop  = "nocturne";
+        };
         thaumaturge = lib.mkHost {
           hostname = "thaumaturge";
           username = "mcarthur";
