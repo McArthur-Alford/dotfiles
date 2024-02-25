@@ -32,13 +32,13 @@
           hostname = "grimoire";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop  = "nocturne";
+          desktop  = "alucard";
         };
         "mcarthur@thaumaturge" = lib.mkHome {
           hostname = "thaumaturge";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop = "nocturne";
+          desktop = "alucard";
         };
       };
 
@@ -52,13 +52,13 @@
           hostname = "grimoire";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop  = "nocturne";
+          desktop  = "alucard";
         };
         thaumaturge = lib.mkHost {
           hostname = "thaumaturge";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop = "nocturne";
+          desktop = "alucard";
         };
       };
 
