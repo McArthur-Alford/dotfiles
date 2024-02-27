@@ -1,27 +1,55 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    sourcelib = {
+      url = "github:uqembeddedsys/sourcelib";
+      flake = false;
+    };
   };
 
-  outputs = { nixpkgs, flake-utils, ... }:
+  outputs = { self, nixpkgs, flake-utils, sourcelib, ... } @ inputs:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        openconnectOverlay = import ''${(builtins.fetchTarball {
-            url = "https://github.com/vlaci/openconnect-sso/archive/master.tar.gz";
-            sha256 = "sha256:08cqd40p9vld1liyl6qrsdrilzc709scyfghfzmmja3m1m7nym94";
-          }
-        )}/overlay.nix'';
         pkgs = import nixpkgs {
-          overlays = [ openconnectOverlay ];
           inherit system;
+          # overlays = [ openconnectOverlay ];
+          config.allowUnfree = true;
+          config.segger-jlink.acceptLicense = true; # Make sure you accept this
         };
-      in
-      {
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            openconnect-sso
+
+        customJLink = pkgs.segger-jlink.overrideAttrs (oldAttrs: rec {
+          version = "V794j"; # TODO this doesnt actually work, but does it matter really??? Only time will tell.
+        });
+
+        # openconnectOverlay = import ''${(builtins.fetchTarball {
+        #     url = "https://github.com/vlaci/openconnect-sso/archive/master.tar.gz";
+        #     sha256 = "sha256:08cqd40p9vld1liyl6qrsdrilzc709scyfghfzmmja3m1m7nym94";
+        #   }
+        # )}/overlay.nix'';
+      in {
+        devShell = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            gcc-arm-embedded-12
+            gdb
+            newlib
+            screen
+            python311Packages.pip
+            python311Packages.pylink-square
+            customJLink # note: reason for Unfree and Insecure
+            clang-tools
+            bear
+            lldb_17
+            # openconnect-sso
           ];
+
+          shellHook = ''
+            export SOURCELIB_ROOT="${sourcelib}"
+            export PATH="$SOURCELIB_ROOT/tools:$SOURCELIB_ROOT/components/boards/nucleo-f429zi/Inc:$PATH"
+          
+              echo "Dont forget to run 'sudo usermod -aG dialout $USER', the flake cant do this for you."
+          '';
         };
-      });
+      }
+    );
 }
