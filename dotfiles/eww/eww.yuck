@@ -82,6 +82,8 @@
 (defvar battery_reveal false)
 (defvar gpu_reveal false)
 
+;; --- HARDWARE STATS ---------------------------------------------------------
+
 (defwidget hardware_stats []
   (box
     :space-evenly false
@@ -139,6 +141,8 @@
   )
 )
 
+;; --- STATUS MONITOR ---------------------------------------------------------
+
 (defwidget status_monitor [?tooltip symbol variable reveal_var reveal] 
   (eventbox
     :visible "${variable!='false'}"
@@ -188,6 +192,7 @@
   )
 )
 
+;; --- WORKSPACES -------------------------------------------------------------
 
 (defwidget workspaces []
   (box 

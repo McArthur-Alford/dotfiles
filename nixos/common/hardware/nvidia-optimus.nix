@@ -11,13 +11,39 @@ in
 {
   environment.systemPackages = [ nvidia-offload ];
 
-  hardware.opengl.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.prime = {
-    offload.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
 
-    inherit intelBusId nvidiaBusId;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+
+  hardware.nvidia = {
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+
+    open = false;
+
+    nvidiaSettings = true;
+
+    modesetting.enable = true;
+    prime = {
+     #  offload = {
+     #    enable = true;
+  			# enableOffloadCmd = true;
+     #  };
+
+      # sync.enable = true;
+
+      reverseSync.enable = true;
+
+      inherit intelBusId nvidiaBusId;
+    };
   };
 
   environment.sessionVariables = rec {
