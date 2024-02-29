@@ -37,7 +37,13 @@ in
         # "eww reload"
       ];
 
-      env = "XCURSOR_SIZE,24";
+      env = ["XCURSOR_SIZE,24"]
+            ++ (if hostname == "grimoire" then
+            ["LIBVA_DRIVER_NAME,nvidia"
+            "XDG_SESSION_TYPE,wayland"
+            "GBM_BACKEND,nvidia-drm"
+            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+            "WLR_NO_HARDWARE_CURSORS,1"] else []);
 
       input = {
         kb_layout = "us";
@@ -56,14 +62,14 @@ in
       general = {
         gaps_in = "2";
         gaps_out = "3";
-        border_size = "2";
-        "col.inactive_border" = "rgba(44475AFF)"; #rgba(ff555520) 90deg";
+        border_size = "1";
+        "col.inactive_border" = "rgba(44475A00)"; #rgba(ff555520) 90deg";
         "col.active_border" = "rgba(6272A4FF)"; #rgba(ff79c680) 90deg";
         layout = "dwindle";
       };
 
       decoration = {
-        rounding = "5";
+        rounding = "10";
 
         blur = {
           enabled = "true";

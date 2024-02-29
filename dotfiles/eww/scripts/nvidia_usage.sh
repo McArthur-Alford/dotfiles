@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i bash -p nvidia-smi
+#! nix-shell -i bash -p cowsay
 
 # Infinite loop to continuously monitor GPU usage
 while true;
