@@ -38,6 +38,8 @@
     lm_sensors
     liquidctl
 
+    zotero_7
+    
     # Keyboard management for charybdis
     via
     vial

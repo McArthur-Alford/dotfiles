@@ -3,6 +3,7 @@
   imports = [
     ./hardware.nix
     ../../nixos/common/hardware/systemd-boot.nix
+    ../../nixos/common/hardware/amd.nix
     ../../nixos/common/services/audio.nix
     ../../nixos/common/services/gnome-keyring.nix
     ../../nixos/common/services/bluetooth.nix

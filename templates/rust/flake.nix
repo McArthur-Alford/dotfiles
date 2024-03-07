@@ -32,6 +32,7 @@
           libX11
         ]);
 
+        tomlExists = builtins.isPath (./. + "cargo.toml");
         my-crate = craneLib.buildPackage rec {
           pname = "rust-program";
           src = ./.;
@@ -49,11 +50,11 @@
         };
       in
       {
-        checks = {
+        checks = if tomlExists then {
           inherit my-crate;
-        };
+        } else {};
 
-        packages.default = my-crate;
+        packages.default = if tomlExists then my-crate else {};
 
         devShells.default = craneLib.devShell {
           checks = self.checks.${system};
