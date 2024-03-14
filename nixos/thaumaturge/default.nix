@@ -9,6 +9,7 @@
     ../../nixos/common/services/bluetooth.nix
     ../../nixos/common/programs/steam.nix
     ../../nixos/common/programs/vencord.nix
+    ../../nixos/common/services/virtualisation.nix
   ];
 
   networking = {
