@@ -12,6 +12,11 @@
     };
     hyprland.url = "github:hyprwm/Hyprland";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs = { nixpkgs, self, ... }@inputs:
@@ -81,9 +86,17 @@
 
       overlays = import ./overlays { inherit inputs; };
 
+      generators = {
+        pi4 = lib.mkGenerator {
+          name = "pi4";
+          system = "aarch64-linux";
+          format = "sd-aarch64";
+        };
+      };
+
       packages = lib.forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs; }
+        in ((import ./pkgs { inherit pkgs inputs; }))
       );
 
       inherit templates;

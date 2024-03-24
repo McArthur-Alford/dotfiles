@@ -18,6 +18,17 @@
     ] ++ (inputs.nixpkgs.lib.optionals (installer != null) [ installer ]);
   };
 
+  mkGenerator = { name, format, system}: inputs.nixos-generators.nixosGenerate {
+    specialArgs = {
+      inherit inputs outputs name system stateVersion nixpkgs;
+    };
+    system = system;
+    format = format;
+    modules = [
+      ../generators/${name}.nix
+    ];
+  };
+
   forAllSystems = inputs.nixpkgs.lib.genAttrs [
     "aarch64-linux"
     "i686-linux"
