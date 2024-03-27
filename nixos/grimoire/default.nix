@@ -8,6 +8,7 @@
     ../../nixos/common/services/bluetooth.nix
     ../../nixos/common/programs/steam.nix
     ../../nixos/common/programs/vencord.nix
+    ../../nixos/common/services/virtualisation.nix
     (import ../../nixos/common/hardware/nvidia-optimus.nix {
       inherit pkgs config;
       intelBusId = "PCI:01:00:0";
@@ -20,9 +21,9 @@
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      allowedTCPPorts = [ ];
+      allowedTCPPorts = [ 3000 ];
       allowedUDPPortRanges = [ ];
-      allowedUDPPorts = [ ];
+      allowedUDPPorts = [ 3000 ];
     };
   };
 

@@ -21,10 +21,12 @@
 
         runtimeDeps = with pkgs; [
           libxkbcommon
+          # The following deps arent necessary AT ALL, but so many packages depend on them (atleast in the GPU/ML/Gamedev spaces i occupy) that its sensible to just always have them on hand
           alsa-lib
           udev
           vulkan-loader
           wayland
+          openssl
         ] ++ (with xorg; [
           libXcursor
           libXrandr
