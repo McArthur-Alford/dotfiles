@@ -2,6 +2,7 @@
 {
   imports = [
     ../../programs/spotify.home.nix
+    ../../programs/firefox.home.nix
   ];
 
   home.packages = with pkgs; [
@@ -20,7 +21,6 @@
     # Apps
     appimage-run
     google-chrome
-    firefox
 
     # comma
     comma
@@ -37,6 +37,10 @@
     # fan control stuff
     lm_sensors
     liquidctl
+
+    jetbrains.rust-rover
+
+    ani-cli
 
     zotero_7
     
@@ -104,14 +108,6 @@
     dnsmasq
     wineWowPackages.stable
     winetricks
-    (headsetcontrol.overrideAttrs (_finalAttrs: _previousAttrs: {
-      src = fetchFromGitHub {
-        owner = "Sapd";
-        repo = "HeadsetControl";
-        rev = "464a12a5679d431b148aea53bceba88b9414ad1f";
-        sha256 = "sha256-tAndkfLEgj81JWzXtDBNspRxzKAL6XaRw0aDI1XbC1E=";
-      };
-    }))
     polkit
     qsynth
     radeontop

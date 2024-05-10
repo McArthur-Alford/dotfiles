@@ -56,7 +56,7 @@
   xdg.configFile."helix/languages.toml".source = ../../../dotfiles/helix/languages.toml;
 
   # Ranger
-  # xdg.configFile."ranger/rifle/rifle.conf".source = ../../dotfiles/ranger/rifle/rifle.conf;
+  xdg.configFile."ranger/rifle/rifle.conf".source = ../../../dotfiles/ranger/rifle/rifle.conf;
   xdg.configFile."ranger/rc.conf".source = ../../../dotfiles/ranger/rc.conf;
   xdg.configFile."ranger/colorschemes/dracula.py".source = ../../../dotfiles/ranger/colorschemes/dracula.py;
 

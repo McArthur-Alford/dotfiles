@@ -1,4 +1,4 @@
-{ lib, system, stateVersion, pkgs, nixpkgs, ... }:
+{ lib, system, stateVersion, pkgs, nixpkgs, inputs, ... }:
 {
   nixpkgs.hostPlatform = lib.mkDefault system;
 
@@ -44,7 +44,9 @@
   environment = {
     systemPackages = with pkgs; [
       git
+      # inputs.helix.packages.${system}.default
       helix
+      helix-gpt
       nil
       wget
       curl

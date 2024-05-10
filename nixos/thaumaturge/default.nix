@@ -10,6 +10,8 @@
     ../../nixos/common/programs/steam.nix
     ../../nixos/common/programs/vencord.nix
     ../../nixos/common/services/virtualisation.nix
+    ../../nixos/common/services/avahi.nix
+    ../../nixos/common/services/ratbag.nix
   ];
 
   # Enable binfmt emulation of aarch64-linux.

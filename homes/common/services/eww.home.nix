@@ -10,7 +10,7 @@
   };
   programs.eww = {
     enable = true;
-    package = pkgs.eww-wayland;
+    package = pkgs.eww;
     configDir = ../../../dotfiles/eww;
     # configDir = config.lib.file.mkOutOfStoreSymlink ../../dotfiles/desktop/eww;
   };

@@ -21,7 +21,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${system}.default;
+    # package = inputs.hyprland.packages.${system}.default;
     xwayland.enable = true;
     systemd.enable = true;
     settings = {
@@ -128,6 +128,7 @@ in
         "float,^(spacegame)$"
         "float,^(arcade_platformer)$"
         "float,title:^(winit window)$"
+        "float,^(pathfinder)"
       ];
 
       windowrulev2 = [
