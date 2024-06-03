@@ -28,12 +28,14 @@
 
   # Mount drives
   fileSystems."/mnt/storage" = {
-    device = "/dev/nvme0n1p1";
+    # device = "/dev/nvme0n1p1";
+    device = "/dev/disk/by-uuid/02f0b38a-ef48-4aaa-be05-028502f6c929";
     fsType = "ext4";
   };
 
   fileSystems."/mnt/fedora" = {
-    device = "/dev/nvme2n1p3";
+    # device = "/dev/nvme2n1p3";
+    device = "/dev/disk/by-uuid/53f51728-6984-47b9-b7d3-64e19c3310e2";
     fsType = "ext4";
   };
 
