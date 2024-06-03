@@ -5,17 +5,21 @@ in
 {
   imports = [ inputs.spicetify-nix.homeManagerModule ];
 
-  programs.spicetify = {
-    enable = true;
+  home.packages = with pkgs; [
+    spotify
+  ];
 
-    enabledExtensions = with spicePkgs.extensions; [
-      fullAppDisplay
-      shuffle
-      hidePodcasts
-    ];
-    enabledCustomApps = with spicePkgs.apps; [
-      new-releases
-    ];
+  programs.spicetify = {
+    # enable = true;
+
+    # enabledExtensions = with spicePkgs.extensions; [
+    #   fullAppDisplay
+    #   shuffle
+    #   hidePodcasts
+    # ];
+    # enabledCustomApps = with spicePkgs.apps; [
+    #   new-releases
+    # ];
     # custom Dribbblish theme
     # theme = spicePkgs.themes.Dracula;
     # colorScheme = "custom";

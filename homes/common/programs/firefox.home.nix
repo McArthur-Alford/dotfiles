@@ -7,6 +7,7 @@
           id = 0;
           isDefault = true;
 
+          search.force = true;
           search.engines = {
             "Nix Packages" = {
               urls = [{
