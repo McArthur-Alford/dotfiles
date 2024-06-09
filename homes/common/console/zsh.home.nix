@@ -38,7 +38,7 @@
           { name = "plugins/colored-man-pages"; tags = [ "from:oh-my-zsh" ]; }
         ];
       };
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       historySubstringSearch = {
         enable = true;

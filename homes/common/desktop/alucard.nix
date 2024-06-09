@@ -5,7 +5,8 @@
     ../programs/wofi.home.nix
     ../console/zellij.home.nix
     ../console/zsh.home.nix
-    ../services/eww.home.nix
+    # ../services/eww.home.nix
+    ../services/waybar.home.nix
     ../programs/kitty.home.nix
     ../services/swaylock.home.nix
   ];

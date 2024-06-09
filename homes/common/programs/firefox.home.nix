@@ -1,9 +1,21 @@
-{pkgs,...}:
+{pkgs,config,...}:
+let
+  profileName = "mcarthur.alford@proton.me";
+  mozillaPath = ".mozilla/firefox/${profileName}";
+  shyfox = builtins.fetchGit {
+    url = "https://github.com/Naezr/ShyFox";
+  };
+  userjs = shyfox + "/user.js";
+  chrome = builtins.path {path = shyfox + "/chrome"; filter=(path: type: !pkgs.lib.hasSuffix ".png" path);};
+in
 {
+    home.file."${mozillaPath}/chrome".source = chrome;
+    home.file."${mozillaPath}/user.js".source = userjs;
+
     programs.firefox = {
       enable = true;
       profiles = {
-        "mcarthur" = {
+        "${profileName}" = {
           id = 0;
           isDefault = true;
 
