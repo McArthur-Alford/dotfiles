@@ -18,6 +18,7 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     helix.url = "github:helix-editor/helix/2cadec0";
+    ags.url = "github:Aylur/ags";
   };
 
   outputs = { nixpkgs, self, ... }@inputs:
