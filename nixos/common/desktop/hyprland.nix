@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, username, lib, config, ... }:
+let
+  tuigreetBin = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  hyprland = config.programs.hyprland.package;
+  hyprlandBin = "${hyprland}/bin/Hyprland";
+  hyprland-sessions = "${hyprland}/share/wayland-sessions";
+in
 {
   environment = {
     variables = {
@@ -28,20 +34,30 @@
     ];
   };
 
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
+
   services = {
     blueman.enable = true;
-    xserver = {
+    greetd = {
       enable = true;
-
-      displayManager.gdm = {
-        enable = true;
-        wayland = true;
+      settings = {
+        default_session = {
+          command = "
+            ${tuigreetBin} --time --asterisks --remember --cmd ${hyprlandBin} --remember-session --sessions ${hyprland-sessions} --theme border=magenta;text=white;prompt=green;time=red;action=magenta;button=yellow;container=black;input=cyan
+            
+          ";
+          user = "greeter";
+        };
       };
-
-      desktopManager.xterm.enable = false;
-      excludePackages = [ pkgs.xterm ];
-
-      displayManager.defaultSession = "hyprland";
     };
   };
 
@@ -50,9 +66,5 @@
       enable = true;
     };
     xwayland.enable = true;
-    xss-lock = {
-      enable = true;
-      lockerCommand = "swaylock";
-    };
   };
 }

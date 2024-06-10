@@ -1,4 +1,4 @@
-{ lib, system, stateVersion, pkgs, nixpkgs, inputs, ... }:
+{ lib, system, stateVersion, pkgs, nixpkgs, ... }:
 {
   nixpkgs.hostPlatform = lib.mkDefault system;
 
@@ -15,10 +15,6 @@
       LC_TELEPHONE = "en_AU.UTF-8";
       LC_TIME = "en_AU.UTF-8";
     };
-  };
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
   };
 
   documentation = {

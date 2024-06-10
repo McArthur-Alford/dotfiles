@@ -1,4 +1,4 @@
-{ system, hostname, inputs, ... }:
+{ hostname, ... }:
 let
   workspaces =
     if hostname == "thaumaturge" then ''
@@ -37,13 +37,15 @@ in
         # "eww reload"
       ];
 
-      env = ["XCURSOR_SIZE,24"]
-            ++ (if hostname == "grimoire" then
-            ["LIBVA_DRIVER_NAME,nvidia"
-            "XDG_SESSION_TYPE,wayland"
-            "GBM_BACKEND,nvidia-drm"
-            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-            "WLR_NO_HARDWARE_CURSORS,1"] else []);
+      env = [ "XCURSOR_SIZE,24" ]
+        ++ (if hostname == "grimoire" then
+        [
+          "LIBVA_DRIVER_NAME,nvidia"
+          "XDG_SESSION_TYPE,wayland"
+          "GBM_BACKEND,nvidia-drm"
+          "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+          "WLR_NO_HARDWARE_CURSORS,1"
+        ] else [ ]);
 
       input = {
         kb_layout = "us";

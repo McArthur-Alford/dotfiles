@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+_:
 {
   boot = {
     initrd.kernelModules = [ "amdgpu" ]; # Video Drivers

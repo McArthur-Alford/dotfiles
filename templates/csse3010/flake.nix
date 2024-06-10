@@ -8,7 +8,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, sourcelib, ... } @ inputs:
+  outputs = { nixpkgs, flake-utils, sourcelib, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
@@ -18,7 +18,7 @@
           config.segger-jlink.acceptLicense = true; # Make sure you accept this
         };
 
-        customJLink = pkgs.segger-jlink.overrideAttrs (oldAttrs: rec {
+        customJLink = pkgs.segger-jlink.overrideAttrs (_oldAttrs: rec {
           version = "V794j"; # TODO this doesnt actually work, but does it matter really??? Only time will tell.
         });
 
@@ -27,7 +27,8 @@
         #     sha256 = "sha256:08cqd40p9vld1liyl6qrsdrilzc709scyfghfzmmja3m1m7nym94";
         #   }
         # )}/overlay.nix'';
-      in {
+      in
+      {
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             gcc-arm-embedded-12

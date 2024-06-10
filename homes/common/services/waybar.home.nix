@@ -1,4 +1,4 @@
-{ ... } :
+_:
 {
   programs.waybar = {
     enable = true;
@@ -20,19 +20,19 @@
         ];
         "cava" = {
           framerate = 60;
-          format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▆" "▇" "█"];
+          format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▆" "▇" "█" ];
           bar_delimiter = 0;
           bars = 30;
           input_delay = 0;
           sleep_timer = 300;
-          };
+        };
         "hyprland/window" = {
           format = "{}";
           icon = true;
           icon-size = 18;
           rewrite = {
-              "(.*)Mozilla Firefox" = "Mozilla Firefox";
-              "(.*)Ablaze Floorp" = "Ablaze Floorp";
+            "(.*)Mozilla Firefox" = "Mozilla Firefox";
+            "(.*)Ablaze Floorp" = "Ablaze Floorp";
           };
         };
         "group/powermenu" = {
@@ -69,7 +69,7 @@
           tooltip = false;
         };
         "custom/logout" = {
-          format =  "<span color='#63c773'>󰍃</span>";
+          format = "<span color='#63c773'>󰍃</span>";
           on-click = "pkill -u $USER";
           tooltip = false;
         };
@@ -130,7 +130,7 @@
           "modules" = [
             "custom/cog"
             "custom/vpn"
-	    "custom/weather"
+            "custom/weather"
             "network"
             "memory"
             "cpu"
@@ -258,7 +258,7 @@
         };
         "temperature" = {
           interval = 1;
-          hwmon-path = ["/sys/class/hwmon/hwmon0/temp1_input" "/sys/class/hwmon/hwmon1/temp1_input" "/sys/class/hwmon/hwmon2/temp1_input" "/sys/class/hwmon/hwmon3/temp1_input"];
+          hwmon-path = [ "/sys/class/hwmon/hwmon0/temp1_input" "/sys/class/hwmon/hwmon1/temp1_input" "/sys/class/hwmon/hwmon2/temp1_input" "/sys/class/hwmon/hwmon3/temp1_input" ];
           format = "<span color='#7AA2F7'> {temperatureC}°C  </span>";
           tooltip-format = "Core Temp: {temperatureC}°C ";
         };
@@ -386,205 +386,205 @@
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
           tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
           on-click = "rofi-bluetooth -config ~/.config/rofi/menu.d/network.rasi -i";
+        };
       };
     };
-  };
     style = ''
-    @define-color accent #bd93f9;
-    @define-color background #282a36;
-    @define-color foreground #f8f8f2;
-    @define-color current_line #44475a;
-    @define-color selection #44475a;
-    @define-color comment #6272a4;
-    @define-color cyan #8be9fd;
-    @define-color green #50fa7b;
-    @define-color orange #ffb86c;
-    @define-color pink #ff79c6;
-    @define-color purple #bd93f9;
-    @define-color red #ff5555;
-    @define-color yellow #f1fa8c;
+      @define-color accent #bd93f9;
+      @define-color background #282a36;
+      @define-color foreground #f8f8f2;
+      @define-color current_line #44475a;
+      @define-color selection #44475a;
+      @define-color comment #6272a4;
+      @define-color cyan #8be9fd;
+      @define-color green #50fa7b;
+      @define-color orange #ffb86c;
+      @define-color pink #ff79c6;
+      @define-color purple #bd93f9;
+      @define-color red #ff5555;
+      @define-color yellow #f1fa8c;
 
-    * {
-      font-family: "Noto Sans", "JetBrainsMono NF";
-      font-size: 13px;
-      font-weight: 600;
-      color: @foreground;
-      min-height: 0px;
-      min-width: 0px;
-    }
-    #custom-notification {
-      font-size: 16px;
-    }
-    #waybar {
-      background: @background;
-    }
-    .modules-left, .modules-center, .modules-right {
-      background: @current_line;
-      border-radius: 0 0 15px 0;
-      padding: 0 10px;
-    }
-    .modules-center {
-      border-radius: 0 0 15px 15px;
-      padding: 0 20px;
-    }
-    .modules-right {
-      border-radius: 0 0 0 15px;
-      padding: 0 0 0 10px;
-    }
-    #custom-cog {
-      font-size: 16px;
-    }
-    #custom-nixos {
-      font-size: 20px;
-      border-radius: 0px;
-      padding: 1px 0px 0px 0px;
-      margin-left: 8px;
-    }
-    #scroll, #cava, #clock, #hardware, #scripts, #window, #cpu, #custom-gpu, #network, #pulseaudio, #pulseaudio-mic, #custom-lock, #custom-reboot, #custom-logout, #custom-shutdown, #custom-notification, #custom-weather, #batteries, #tray {
-      border-radius: 8px;
-    }
-    #window {
-      font-size: 14px;
-      opacity: 100;
-      transition: opacity 1s ease-in-out;
-    }
-    window#waybar.empty #window {
-      opacity: 0;
-    }
-    window#waybar.empty .modules-center {
-      background: none;
-    }
-    @keyframes gradient {
-      0% {
-        background-position: 100% 0%;
-      }
-      100% {
-        background-position: 15% 100%;
-      }
-    }
-    #cava {
-      padding: 5px 10px 0px 10px;
-      color: @purple;
-    }
-    #custom-notification {
-      padding: 0px 10px 0px 8px;
-    }
-    #tray {
-      padding: 0px 8px 0px 8px;
-    }
-    #custom-shutdown, #custom-lock, #custom-logout, #custom-reboot {
-      padding: 0 13px 0 8px;
-      margin-left: 4px;
-      font-size: 18px;
-    }
-    #custom-notification, #cpu, #network, #custom-gpu, #pulseaudio, #pulseaudio-mic, #custom-logout, #custom-reboot, #custom-shutdown, #custom-lock {
-      margin-top: 2px;
-      margin-bottom: 2px;
-      transition: background-color 200ms;
-    }
-    #custom-notification:hover, #cpu:hover, #network:hover, #custom-gpu:hover, #pulseaudio:hover, #pulseaudio-mic:hover, #custom-logout:hover, #custom-reboot:hover, #custom-shutdown:hover, #custom-lock:hover {
-      transition: background-color 200ms;
-      background-color: rgba(255,255,255,0.2);
-    }
-    #workspaces button {
-      padding: 0px 10px 0 5px;
-      margin: 4px 0px;
-      border-radius: 0;
-    }
-    #workspaces button:hover {
-      background-color: rgba(255,255,255,0.25);
-    }
-    #workspaces button.active {
-      animation-name: workspacesanim;
-      animation-fill-mode: both;
-      animation-duration: 300ms;
-      animation-direction: normal;
-    }
-    @keyframes workspacesanim {
-      0% {
-        background: linear-gradient(to bottom, rgba(0,0,0,0) 20px, @accent 20px);
-      }
-      100% {
-        background: linear-gradient(to bottom, rgba(0,0,0,0) 0px, @accent 0px);
-      }
-    }
-    #cpu, #clock, #network, #custom-vpn, #custom-cputemp, #custom-colorpicker, #submap, #idle_inhibitor, #custom-updates, #gamemode, #custom-camera, #custom-notifications, #custom-recorder, #custom-batterysaver, #bluetooth, #disk, #memory, #pulseaudio, #pulseaudio.mic, #backlight {
-      padding: 0px 6px 0px 3px;
-    }
-    #custom-github {
-      padding-right: 6px;
-    }
-    #gamemode, #submap, #custom-recorder, #custom-vpn, #custom-github, #custom-updates, #bluetooth.connected {
-      background: shade(alpha(@foreground, 0.1), 0.8);
-      border-radius: 8px;
-    }
-    #language {
-      color: @cyan;
-      margin-top: 3px;
-    }
-    #idle_inhibitor, #pulseaudio, #pulseaudio.mic {
-      color: @cyan;
-    }
-    #backlight {
-      color: @orange;
-    }
-    #memory {
-      color: @purple;
-    }
-    #disk {
-      color: @cyan;
-    }
-    #custom-recorder {
-      color: @red;
-    }
-    #cpu {
-      color: @green;
-    }
-    #custom-batterysaver.powersave, #custom-batterysaver.power {
-      color: @green;
-    }
-    #custom-batterysaver.default, #custom-batterysaver.normal {
-      color: @cyan;
-    }
-    #custom-batterysaver.performance {
-      color: @red;
-    }
-    #network {
-      color: @green;
-    }
-    #network.disabled, #network.disconnected {
-      color: @red;
-    }
-    @keyframes blink {
-      to {
-        background-color: alpha(@red, 0.6);
+      * {
+        font-family: "Noto Sans", "JetBrainsMono NF";
+        font-size: 13px;
+        font-weight: 600;
         color: @foreground;
+        min-height: 0px;
+        min-width: 0px;
       }
-    }
-    @keyframes blink-blue {
-      to {
-        background-color: alpha(@cyan, 0.6);
-        color: @foreground;
+      #custom-notification {
+        font-size: 16px;
       }
-    }
-    #battery.warning:not(.charging), #battery.critical:not(.charging) {
-      animation-name: blink;
-      animation-duration: 1s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-    }
-    #bluetooth.discoverable, #bluetooth.discovering, #bluetooth.pairable {
-      animation-name: blink-blue;
-      animation-duration: 1s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-    }
-    #batteries {
-      margin-right: 0px;
-      border-radius: 8px 0px 0px 8px;
-    }
-  '';
-};
+      #waybar {
+        background: @background;
+      }
+      .modules-left, .modules-center, .modules-right {
+        background: @current_line;
+        border-radius: 0 0 15px 0;
+        padding: 0 10px;
+      }
+      .modules-center {
+        border-radius: 0 0 15px 15px;
+        padding: 0 20px;
+      }
+      .modules-right {
+        border-radius: 0 0 0 15px;
+        padding: 0 0 0 10px;
+      }
+      #custom-cog {
+        font-size: 16px;
+      }
+      #custom-nixos {
+        font-size: 20px;
+        border-radius: 0px;
+        padding: 1px 0px 0px 0px;
+        margin-left: 8px;
+      }
+      #scroll, #cava, #clock, #hardware, #scripts, #window, #cpu, #custom-gpu, #network, #pulseaudio, #pulseaudio-mic, #custom-lock, #custom-reboot, #custom-logout, #custom-shutdown, #custom-notification, #custom-weather, #batteries, #tray {
+        border-radius: 8px;
+      }
+      #window {
+        font-size: 14px;
+        opacity: 100;
+        transition: opacity 1s ease-in-out;
+      }
+      window#waybar.empty #window {
+        opacity: 0;
+      }
+      window#waybar.empty .modules-center {
+        background: none;
+      }
+      @keyframes gradient {
+        0% {
+          background-position: 100% 0%;
+        }
+        100% {
+          background-position: 15% 100%;
+        }
+      }
+      #cava {
+        padding: 5px 10px 0px 10px;
+        color: @purple;
+      }
+      #custom-notification {
+        padding: 0px 10px 0px 8px;
+      }
+      #tray {
+        padding: 0px 8px 0px 8px;
+      }
+      #custom-shutdown, #custom-lock, #custom-logout, #custom-reboot {
+        padding: 0 13px 0 8px;
+        margin-left: 4px;
+        font-size: 18px;
+      }
+      #custom-notification, #cpu, #network, #custom-gpu, #pulseaudio, #pulseaudio-mic, #custom-logout, #custom-reboot, #custom-shutdown, #custom-lock {
+        margin-top: 2px;
+        margin-bottom: 2px;
+        transition: background-color 200ms;
+      }
+      #custom-notification:hover, #cpu:hover, #network:hover, #custom-gpu:hover, #pulseaudio:hover, #pulseaudio-mic:hover, #custom-logout:hover, #custom-reboot:hover, #custom-shutdown:hover, #custom-lock:hover {
+        transition: background-color 200ms;
+        background-color: rgba(255,255,255,0.2);
+      }
+      #workspaces button {
+        padding: 0px 10px 0 5px;
+        margin: 4px 0px;
+        border-radius: 0;
+      }
+      #workspaces button:hover {
+        background-color: rgba(255,255,255,0.25);
+      }
+      #workspaces button.active {
+        animation-name: workspacesanim;
+        animation-fill-mode: both;
+        animation-duration: 300ms;
+        animation-direction: normal;
+      }
+      @keyframes workspacesanim {
+        0% {
+          background: linear-gradient(to bottom, rgba(0,0,0,0) 20px, @accent 20px);
+        }
+        100% {
+          background: linear-gradient(to bottom, rgba(0,0,0,0) 0px, @accent 0px);
+        }
+      }
+      #cpu, #clock, #network, #custom-vpn, #custom-cputemp, #custom-colorpicker, #submap, #idle_inhibitor, #custom-updates, #gamemode, #custom-camera, #custom-notifications, #custom-recorder, #custom-batterysaver, #bluetooth, #disk, #memory, #pulseaudio, #pulseaudio.mic, #backlight {
+        padding: 0px 6px 0px 3px;
+      }
+      #custom-github {
+        padding-right: 6px;
+      }
+      #gamemode, #submap, #custom-recorder, #custom-vpn, #custom-github, #custom-updates, #bluetooth.connected {
+        background: shade(alpha(@foreground, 0.1), 0.8);
+        border-radius: 8px;
+      }
+      #language {
+        color: @cyan;
+        margin-top: 3px;
+      }
+      #idle_inhibitor, #pulseaudio, #pulseaudio.mic {
+        color: @cyan;
+      }
+      #backlight {
+        color: @orange;
+      }
+      #memory {
+        color: @purple;
+      }
+      #disk {
+        color: @cyan;
+      }
+      #custom-recorder {
+        color: @red;
+      }
+      #cpu {
+        color: @green;
+      }
+      #custom-batterysaver.powersave, #custom-batterysaver.power {
+        color: @green;
+      }
+      #custom-batterysaver.default, #custom-batterysaver.normal {
+        color: @cyan;
+      }
+      #custom-batterysaver.performance {
+        color: @red;
+      }
+      #network {
+        color: @green;
+      }
+      #network.disabled, #network.disconnected {
+        color: @red;
+      }
+      @keyframes blink {
+        to {
+          background-color: alpha(@red, 0.6);
+          color: @foreground;
+        }
+      }
+      @keyframes blink-blue {
+        to {
+          background-color: alpha(@cyan, 0.6);
+          color: @foreground;
+        }
+      }
+      #battery.warning:not(.charging), #battery.critical:not(.charging) {
+        animation-name: blink;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+      #bluetooth.discoverable, #bluetooth.discovering, #bluetooth.pairable {
+        animation-name: blink-blue;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+      #batteries {
+        margin-right: 0px;
+        border-radius: 8px 0px 0px 8px;
+      }
+    '';
+  };
 }

@@ -18,12 +18,12 @@
     ] ++ (inputs.nixpkgs.lib.optionals (installer != null) [ installer ]);
   };
 
-  mkGenerator = { name, format, system}: inputs.nixos-generators.nixosGenerate {
+  mkGenerator = { name, format, system }: inputs.nixos-generators.nixosGenerate {
     specialArgs = {
       inherit inputs outputs name system stateVersion nixpkgs;
     };
-    system = system;
-    format = format;
+    inherit system;
+    inherit format;
     modules = [
       ../generators/${name}.nix
     ];

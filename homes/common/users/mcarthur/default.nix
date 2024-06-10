@@ -43,7 +43,7 @@
     ani-cli
 
     zotero_7
-    
+
     # Keyboard management for charybdis
     via
     vial

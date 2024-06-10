@@ -39,7 +39,7 @@
           hostname = "grimoire";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop  = "alucard";
+          desktop = "alucard";
         };
         "mcarthur@thaumaturge" = lib.mkHome {
           hostname = "thaumaturge";
@@ -55,11 +55,11 @@
         #   username = "mcarthur";
         #   system = "x86_64-linux";
         # };
-        grimoire    = lib.mkHost {
+        grimoire = lib.mkHost {
           hostname = "grimoire";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop  = "alucard";
+          desktop = "alucard";
         };
         thaumaturge = lib.mkHost {
           hostname = "thaumaturge";
@@ -98,7 +98,7 @@
 
       packages = lib.forAllSystems (system:
         let pkgs = nixpkgs.legacyPackages.${system};
-        in ((import ./pkgs { inherit pkgs inputs; }))
+        in import ./pkgs { inherit pkgs inputs; }
       );
 
       inherit templates;

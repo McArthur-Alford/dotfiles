@@ -33,10 +33,10 @@ in
 
     modesetting.enable = true;
     prime = {
-     #  offload = {
-     #    enable = true;
-  			# enableOffloadCmd = true;
-     #  };
+      #  offload = {
+      #    enable = true;
+      # enableOffloadCmd = true;
+      #  };
 
       # sync.enable = true;
 

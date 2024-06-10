@@ -1,15 +1,16 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   user = "mmwave";
   password = "mmwave";
   hostname = "mmwave";
   overlays = [
-    (final: super: {
+    (_final: super: {
       makeModulesClosure = x:
         super.makeModulesClosure (x // { allowMissing = true; });
     })
   ];
-in {
+in
+{
   nixpkgs.overlays = overlays;
 
   boot = {
@@ -50,7 +51,7 @@ in {
     mutableUsers = false;
     users."${user}" = {
       isNormalUser = true;
-      password = password;
+      inherit password;
       extraGroups = [ "wheel" ];
     };
   };

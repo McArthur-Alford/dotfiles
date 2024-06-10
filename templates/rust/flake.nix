@@ -52,11 +52,12 @@
         };
       in
       {
-        checks = if tomlExists then {
-          inherit my-crate;
-        } else {};
+        checks =
+          if tomlExists then {
+            inherit my-crate;
+          } else { };
 
-        packages.default = if tomlExists then my-crate else {};
+        packages.default = if tomlExists then my-crate else { };
 
         devShells.default = craneLib.devShell {
           checks = self.checks.${system};

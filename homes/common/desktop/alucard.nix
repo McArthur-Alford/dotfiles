@@ -7,7 +7,7 @@
     ../console/zsh.home.nix
     # ../services/eww.home.nix
     # ../services/waybar.home.nix
-    ../services/ags.home.nix
+    # ../services/ags.home.nix
     ../programs/kitty.home.nix
     ../services/swaylock.home.nix
   ];
