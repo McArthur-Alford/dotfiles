@@ -52,8 +52,7 @@ in
       settings = {
         default_session = {
           command = "
-            ${tuigreetBin} --time --asterisks --remember --cmd ${hyprlandBin} --remember-session --sessions ${hyprland-sessions} --theme border=magenta;text=white;prompt=green;time=red;action=magenta;button=yellow;container=black;input=cyan
-            
+            ${tuigreetBin} --theme border=magenta;text=white;prompt=green;time=red;action=magenta;button=yellow;container=black;input=cyan --time --asterisks --remember --cmd ${hyprlandBin} --remember-session --sessions ${hyprland-sessions} 
           ";
           user = "greeter";
         };
