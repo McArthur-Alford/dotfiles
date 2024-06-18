@@ -10,8 +10,8 @@
         name = "Fira Code";
       };
       settings = {
-        # background_opacity = "0.9";
-        # background_blur = "10";
+        background_opacity = "0.9";
+        background_blur = "10";
         confirm_os_window_close = 0;
       };
     };

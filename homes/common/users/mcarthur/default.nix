@@ -21,7 +21,7 @@
 
     # Apps
     appimage-run
-    google-chrome
+    # google-chrome
 
     # comma
     comma
