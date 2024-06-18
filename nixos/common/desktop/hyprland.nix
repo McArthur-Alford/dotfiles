@@ -3,6 +3,11 @@ let
   tuigreetBin = "${pkgs.greetd.tuigreet}/bin/tuigreet";
   hyprland = config.programs.hyprland.package;
   hyprlandBin = "${hyprland}/bin/Hyprland";
+  dbusHyprlandBin = 
+      (pkgs.writeShellScriptBin "dbusHyprland" ''
+        #!/usr/bin/env bash
+        dbus-run-session ${hyprlandBin}
+      '');
   hyprland-sessions = "${hyprland}/share/wayland-sessions";
 in
 {
@@ -21,7 +26,6 @@ in
       MOZ_ENABLE_WAYLAND = "1";
     };
     systemPackages = with pkgs; [
-      xdg-desktop-portal-hyprland
       grim
       mpvpaper
       slurp
@@ -45,6 +49,20 @@ in
     TTYVTDisallocate = true;
   };
 
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    config = {
+      common.default = ["gtk"];
+      hyprland.default = ["gtk" "hyprland"];
+    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+  };
+
   services = {
     blueman.enable = true;
     greetd = {
@@ -52,7 +70,7 @@ in
       settings = {
         default_session = {
           command = "
-            ${tuigreetBin} --theme border=magenta;text=white;prompt=green;time=red;action=magenta;button=yellow;container=black;input=cyan --time --asterisks --remember --cmd ${hyprlandBin} --remember-session --sessions ${hyprland-sessions} 
+            ${tuigreetBin} --theme border=magenta;text=white;prompt=green;time=red;action=magenta;button=yellow;container=black;input=cyan --time --asterisks --remember --cmd ${dbusHyprlandBin} --remember-session --sessions ${hyprland-sessions} 
           ";
           user = "greeter";
         };

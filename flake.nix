@@ -3,7 +3,7 @@
 
   inputs = {
     # All flake references used to build NixOS
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Nix Packages
     nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack";
     nix-index-database.url = "github:Mic92/nix-index-database";
     home-manager = {

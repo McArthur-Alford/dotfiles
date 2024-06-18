@@ -3,6 +3,7 @@
   imports = [
     ../../programs/spotify.home.nix
     ../../programs/firefox.home.nix
+    ../../programs/fastfetch.home.nix
   ];
 
   home.packages = with pkgs; [
@@ -101,7 +102,6 @@
     gnome.nautilus
     usbutils
     xorg.libXxf86vm
-    fastfetch
     lutris
     nautilus-open-any-terminal
     libsForQt5.qt5ct
