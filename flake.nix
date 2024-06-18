@@ -41,6 +41,12 @@
           system = "x86_64-linux";
           desktop = "alucard";
         };
+        "mcarthur@mosaic" = lib.mkHome {
+          hostname = "mosaic";
+          username = "mcarthur";
+          system = "x86_64-linux";
+          desktop = "alucard";
+        };
         "mcarthur@thaumaturge" = lib.mkHome {
           hostname = "thaumaturge";
           username = "mcarthur";
@@ -57,6 +63,12 @@
         # };
         grimoire = lib.mkHost {
           hostname = "grimoire";
+          username = "mcarthur";
+          system = "x86_64-linux";
+          desktop = "alucard";
+        };
+        mosaic = lib.mkHost {
+          hostname = "mosaic";
           username = "mcarthur";
           system = "x86_64-linux";
           desktop = "alucard";

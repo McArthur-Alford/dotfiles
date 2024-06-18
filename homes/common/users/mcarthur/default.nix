@@ -77,7 +77,7 @@
     bitwarden
 
     # Obsidian!
-    obsidian
+    # obsidian
 
     # keyring stuff
     gnome.gnome-keyring
@@ -101,7 +101,7 @@
     gnome.nautilus
     usbutils
     xorg.libXxf86vm
-    neofetch
+    fastfetch
     lutris
     nautilus-open-any-terminal
     libsForQt5.qt5ct

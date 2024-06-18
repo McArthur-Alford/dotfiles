@@ -1,7 +1,7 @@
 _:
 {
   # Pulseaudio setup
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   nixpkgs.config.pulseaudio = true;
 
