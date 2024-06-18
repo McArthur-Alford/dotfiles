@@ -1,4 +1,4 @@
-{ hostname, ... }:
+{ hostname, pkgs, ... }:
 let
   workspaces =
     if hostname == "thaumaturge" then ''
@@ -64,19 +64,19 @@ in
       general = {
         gaps_in = "2";
         gaps_out = "3";
-        border_size = "1";
+        border_size = "0";
         "col.inactive_border" = "rgba(44475A00)"; #rgba(ff555520) 90deg";
         "col.active_border" = "rgba(6272A4FF)"; #rgba(ff79c680) 90deg";
         layout = "dwindle";
       };
 
       decoration = {
-        rounding = "10";
+        rounding = "1";
 
         blur = {
           enabled = "true";
           size = "3";
-          passes = "3";
+          passes = "1";
           noise = "0.0025";
           contrast = "1";
           new_optimizations = "true";
@@ -108,6 +108,7 @@ in
       dwindle = {
         pseudotile = "yes";
         preserve_split = "yes";
+        no_gaps_when_only = 1;
       };
 
       master = {
@@ -139,6 +140,10 @@ in
       ];
 
       "$mainMod" = "SUPER";
+
+      bindl = [
+        ",switch:on:Lid Switch,exec,systemctl suspend"
+      ];
 
       bind = [
         "$mainMod, Q, exec, kitty"

@@ -19,6 +19,9 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     helix.url = "github:helix-editor/helix/2cadec0";
     ags.url = "github:Aylur/ags";
+    matugen = {
+      url = "github:/InioX/Matugen";
+    };
   };
 
   outputs = { nixpkgs, self, ... }@inputs:

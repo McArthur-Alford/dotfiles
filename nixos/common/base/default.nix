@@ -35,6 +35,9 @@
         "FiraCode"
       ];
     })
+    jetbrains-mono
+    nerdfonts
+    comic-mono
   ];
 
   environment = {

@@ -3,6 +3,11 @@
   home.packages = with pkgs; [
     libnotify
     playerctl
+    brightnessctl
+    socat
+    jq
+    acpi
+    playerctl
   ];
   services.mako = {
     enable = true;

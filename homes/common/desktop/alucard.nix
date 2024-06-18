@@ -1,16 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, inputs, system, ... }:
 {
   imports = [
     ./hyprland.home.nix
     ../programs/wofi.home.nix
     ../console/zellij.home.nix
     ../console/zsh.home.nix
-    ../services/eww.home.nix
+    # ../services/eww.home.nix
     # ../services/waybar.home.nix
     # ../services/ags.home.nix
     ../programs/kitty.home.nix
     ../services/swaylock.home.nix
   ];
+
+  services.mako = {
+    enable = true;
+    defaultTimeout = 3000;
+  };
 
   programs = {
     helix = {
@@ -25,7 +30,13 @@
   };
 
   home.packages = with pkgs; [
-
+    inputs.matugen.packages.${system}.default
+    jq
+    playerctl
+    brightnessctl
+    acpi
+    playerctl
+    libnotify
   ];
 
   home.pointerCursor = {

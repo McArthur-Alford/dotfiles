@@ -1,15 +1,4 @@
-{ pkgs, username, lib, config, ... }:
-let
-  tuigreetBin = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-  hyprland = config.programs.hyprland.package;
-  hyprlandBin = "${hyprland}/bin/Hyprland";
-  dbusHyprlandBin = 
-      (pkgs.writeShellScriptBin "dbusHyprland" ''
-        #!/usr/bin/env bash
-        dbus-run-session ${hyprlandBin}
-      '');
-  hyprland-sessions = "${hyprland}/share/wayland-sessions";
-in
+{ pkgs, cfg, username, lib, config, ... }:
 {
   environment = {
     variables = {
@@ -66,12 +55,13 @@ in
 
   services = {
     blueman.enable = true;
+    fprintd.enable = true;
     greetd = {
       enable = true;
       settings = {
         default_session = {
           command = "
-            ${tuigreetBin} --theme border=magenta;text=white;prompt=green;time=red;action=magenta;button=yellow;container=black;input=cyan --time --asterisks --remember --cmd ${dbusHyprlandBin} --remember-session --sessions ${hyprland-sessions} 
+            dbus-run-session ${pkgs.cage}/bin/cage -s -- ${lib.getExe config.programs.regreet.package}
           ";
           user = "greeter";
         };
@@ -80,6 +70,10 @@ in
   };
 
   programs = {
+    regreet = {
+      enable = true;
+      settings = ./regreet-config.toml;
+    };
     hyprland = {
       enable = true;
     };
