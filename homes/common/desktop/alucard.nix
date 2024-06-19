@@ -10,6 +10,7 @@
     # ../services/ags.home.nix
     ../programs/kitty.home.nix
     ../services/swaylock.home.nix
+    ../services/xdg-mime.home.nix
   ];
 
   services.mako = {

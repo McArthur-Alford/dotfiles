@@ -78,7 +78,7 @@
     bitwarden
 
     # Obsidian!
-    # obsidian
+    obsidian
 
     # keyring stuff
     gnome.gnome-keyring
