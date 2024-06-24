@@ -6,9 +6,10 @@
     ../../nixos/common/services/audio.nix
     ../../nixos/common/services/gnome-keyring.nix
     ../../nixos/common/services/bluetooth.nix
-    ../../nixos/common/programs/steam.nix
+    # ../../nixos/common/programs/steam.nix
     ../../nixos/common/programs/vencord.nix
     ../../nixos/common/services/virtualisation.nix
+    ../../nixos/common/services/avahi.nix
   ];
 
   networking = {

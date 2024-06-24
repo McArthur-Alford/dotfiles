@@ -1,4 +1,4 @@
-{ hostname, pkgs, ... }:
+{ inputs, hostname, pkgs, ... }:
 let
   workspaces =
     if hostname == "thaumaturge" then ''
@@ -24,6 +24,11 @@ in
     # package = inputs.hyprland.packages.${system}.default;
     xwayland.enable = true;
     systemd.enable = true;
+
+    plugins = [
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    ];
+    
     settings = {
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -156,7 +161,7 @@ in
 
         "$mainMod CTRL, M, exit,"
         "$mainMod, V, togglefloating,"
-        "$mainMod, D, exec, wofi --show drun"
+        "$mainMod, D, exec, rofi -show drun"
         "$mainMod, P, pseudo,"
         "$mainMod CTRL, J, togglesplit,"
         "$mainMod, F, fullscreen"
