@@ -1,9 +1,9 @@
 { inputs, stateVersion, outputs, nixpkgs, ... }: {
   # Helper function for generating home-manager configs
-  mkHome = { hostname, username, desktop ? null, system ? "x86_64-linux" }: inputs.home-manager.lib.homeManagerConfiguration {
+  mkHome = { hostname, username, desktop ? null, shell ? null, system ? "x86_64-linux" }: inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = inputs.nixpkgs.legacyPackages.${system};
     extraSpecialArgs = {
-      inherit inputs outputs desktop hostname system username stateVersion;
+      inherit inputs outputs desktop hostname system username stateVersion shell;
     };
     modules = [ ../homes ];
   };

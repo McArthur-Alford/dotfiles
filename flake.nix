@@ -33,37 +33,41 @@
     in
     {
       homeConfigurations = {
-        # "mcarthur@yggdrasil" = lib.mkHome {
-        #   hostname = "yggdrasil";
-        #   username = "mcarthur";
-        #   system = "x86_64-linux";
-        # };
+        "mcarthur@benefactor" = lib.mkHome {
+          hostname = "benefactor";
+          username = "mcarthur";
+          system = "x86_64-linux";
+          shell = "alucard";
+        };
         "mcarthur@grimoire" = lib.mkHome {
           hostname = "grimoire";
           username = "mcarthur";
           system = "x86_64-linux";
           desktop = "alucard";
+          shell = "alucard";
         };
         "mcarthur@mosaic" = lib.mkHome {
           hostname = "mosaic";
           username = "mcarthur";
           system = "x86_64-linux";
           desktop = "alucard";
+          shell = "alucard";
         };
         "mcarthur@thaumaturge" = lib.mkHome {
           hostname = "thaumaturge";
           username = "mcarthur";
           system = "x86_64-linux";
           desktop = "alucard";
+          shell = "alucard";
         };
       };
 
       nixosConfigurations = {
-        # yggdrasil   = lib.mkHost {
-        #   hostname = "yggdrasil";
-        #   username = "mcarthur";
-        #   system = "x86_64-linux";
-        # };
+        benefactor = lib.mkHost {
+          hostname = "benefactor";
+          username = "mcarthur";
+          system = "x86_64-linux";
+        };
         grimoire = lib.mkHost {
           hostname = "grimoire";
           username = "mcarthur";

@@ -1,4 +1,4 @@
-{ desktop, hostname, inputs, lib, pkgs, stateVersion, username, ... }:
+{ desktop, shell, hostname, inputs, lib, pkgs, stateVersion, username, ... }:
 {
   programs.home-manager.enable = true;
 
@@ -7,7 +7,8 @@
   ]
   ++ lib.optional (builtins.isPath (./. + "common/users/${username}")) ./common/users/${username}
   ++ lib.optional (builtins.isPath (./. + "common/users/${username}/hosts/${hostname}")) ./common/users/${username}/hosts/${hostname}
-  ++ lib.optional (desktop != null) ./common/desktop;
+  ++ lib.optional (desktop != null) ./common/desktop
+  ++ lib.optional (shell != null) ./common/console;
 
   home = {
     username = "${username}";
