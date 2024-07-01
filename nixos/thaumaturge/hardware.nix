@@ -20,6 +20,8 @@
       fsType = "ext4";
     };
 
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
   fileSystems."/boot/efi" =
     {
       device = "/dev/disk/by-uuid/94D9-F57D";

@@ -9,20 +9,22 @@
     ../../nixos/common/services/bluetooth.nix
     ../../nixos/common/programs/steam.nix
     ../../nixos/common/programs/vencord.nix
+    ../../nixos/common/programs/cachix.nix
     ../../nixos/common/services/virtualisation.nix
     ../../nixos/common/services/avahi.nix
     ../../nixos/common/services/ratbag.nix
+    ../../nixos/common/services/cachix.nix
   ];
 
   # Enable binfmt emulation of aarch64-linux.
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
 
   networking = {
     hostName = "thaumaturge";
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 25565 25566 3000 ];
+      allowedTCPPorts = [ 25565 25566 3000 5432 ];
       allowedUDPPortRanges = [
         { from = 25565; to = 25566; }
       ];
@@ -34,20 +36,30 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
-  hardware.fancontrol.enable = true;
-  hardware.fancontrol.config = ''
-    Common Settings:
-    INTERVAL=10
 
-    Settings of hwmon8/pwm1:
-      Depends on hwmon8/temp1_input
-      Controls hwmon8/fan1_input
-      MINTEMP=20
-      MAXTEMP=50
-      MINSTART=150
-      MINSTOP=0
-      MAXPWM=255
-  '';
+  systemd.services.magic = {
+    enable = true;
+    description = "magic";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = ''${pkgs.bash}/bin/bash -c "echo magic"'';
+    };
+  };
+
+  # hardware.fancontrol.enable = true;
+  # hardware.fancontrol.config = ''
+  #   Common Settings:
+  #   INTERVAL=10
+
+  #   Settings of hwmon8/pwm1:
+  #     Depends on hwmon8/temp1_input
+  #     Controls hwmon8/fan1_input
+  #     MINTEMP=20
+  #     MAXTEMP=50
+  #     MINSTART=150
+  #     MINSTOP=0
+  #     MAXPWM=255
+  # '';
   programs.corectrl.enable = true;
 
   services.dnsmasq.enable = true;

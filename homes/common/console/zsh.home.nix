@@ -46,7 +46,7 @@
       shellAliases = {
         ls = "eza";
         cat = "bat";
-        grep = "rga";
+        # grep = "rga";
         find = "fd";
         diff = "delta";
         du = "dust";

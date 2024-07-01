@@ -1,8 +1,8 @@
-{ hostname, pkgs, ... }:
+{ hostname, ... }:
 let
   workspaces =
     if hostname == "thaumaturge" then ''
-      monitor=MAIN,5120x1440@120,5140x0,1
+      monitor=MAIN,5120x1440@240,0x0,1
     '' else if hostname == "grimoire" then ''
       monitor=MAIN,3840x2160@60,3840x0,1
     '' else "";
@@ -25,6 +25,10 @@ in
     xwayland.enable = true;
     systemd.enable = true;
     settings = {
+      misc = {
+        vrr=1;
+      };
+    
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "~/.config/hypr/hyprmonitors.conf"
