@@ -105,7 +105,7 @@ in
 
         animation = [
           "windows,1,8,default,popin 90%"
-          "windowsMove,1,0.1,default"
+          "windowsMove,1,0.4,default"
           # "windowsOut,  1, 10, default"
           "border,      1, 10, default"
           "borderangle, 1, 8,  default"
