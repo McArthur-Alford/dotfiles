@@ -14,6 +14,7 @@
     ../../nixos/common/services/avahi.nix
     ../../nixos/common/services/ratbag.nix
     ../../nixos/common/services/cachix.nix
+    ../../nixos/common/kernels/patches/odysseyg9.nix
   ];
 
   # Enable binfmt emulation of aarch64-linux.
