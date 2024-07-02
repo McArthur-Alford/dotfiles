@@ -37,11 +37,6 @@
     in
     {
       homeConfigurations = {
-        # "mcarthur@yggdrasil" = lib.mkHome {
-        #   hostname = "yggdrasil";
-        #   username = "mcarthur";
-        #   system = "x86_64-linux";
-        # };
         "mcarthur@grimoire" = lib.mkHome {
           hostname = "grimoire";
           username = "mcarthur";
@@ -63,11 +58,6 @@
       };
 
       nixosConfigurations = {
-        # yggdrasil   = lib.mkHost {
-        #   hostname = "yggdrasil";
-        #   username = "mcarthur";
-        #   system = "x86_64-linux";
-        # };
         grimoire = lib.mkHost {
           hostname = "grimoire";
           username = "mcarthur";
@@ -111,7 +101,12 @@
         pi4 = lib.mkGenerator {
           name = "pi4";
           system = "aarch64-linux";
-          format = "sd-aarch64";
+          format = "iso";
+        };
+        pi0 = lib.mkGenerator {
+          name = "pi0";
+          system = "armv6l-linux";
+          format = "iso";
         };
       };
 

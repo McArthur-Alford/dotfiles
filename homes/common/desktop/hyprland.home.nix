@@ -41,8 +41,9 @@ in
         # "if ! [ command nm-applet ] then nm-applet --indicator fi"
       ];
       exec = [
-        "pkill .eww-wrapped && eww open bar"
-        "eww daemon"
+        "unset NIXOS_XDG_OPEN_USE_PORTAL"
+        # "pkill .eww-wrapped && eww open bar"
+        # "eww daemon"
         # "eww reload"
       ];
 
@@ -164,7 +165,7 @@ in
 
         "$mainMod CTRL, M, exit,"
         "$mainMod, V, togglefloating,"
-        "$mainMod, D, exec, wofi --show drun"
+        "$mainMod, D, exec, rofi -show drun"
         "$mainMod, P, pseudo,"
         "$mainMod CTRL, J, togglesplit,"
         "$mainMod, F, fullscreen"
