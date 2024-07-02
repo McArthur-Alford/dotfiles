@@ -35,9 +35,9 @@
     fsType = "ext4";
   };
 
-  fileSystems."/mnt/fedora" = {
+  fileSystems."/mnt/storage2" = {
     # device = "/dev/nvme2n1p3";
-    device = "/dev/disk/by-uuid/53f51728-6984-47b9-b7d3-64e19c3310e2";
+    device = "/dev/disk/by-uuid/e64fdf2d-57cc-487f-872b-95cdc8fd3639";
     fsType = "ext4";
   };
 

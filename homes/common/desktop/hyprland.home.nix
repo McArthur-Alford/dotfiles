@@ -1,4 +1,4 @@
-{ hostname, ... }:
+{ hostname, inputs, system, ... }:
 let
   workspaces =
     if hostname == "thaumaturge" then ''
@@ -24,6 +24,11 @@ in
     # package = inputs.hyprland.packages.${system}.default;
     xwayland.enable = true;
     systemd.enable = true;
+
+    # plugins = [
+      # inputs.Hyprspace.packages.${system}.Hyprspace
+    # ];
+    
     settings = {
       misc = {
         vrr=1;
@@ -97,10 +102,9 @@ in
       animations = {
         enabled = "true";
 
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-
         animation = [
-          "windows,     1, 10, myBezier"
+          "windows,1,8,default,popin 90%"
+          "windowsMove,1,0.1,default"
           # "windowsOut,  1, 10, default"
           "border,      1, 10, default"
           "borderangle, 1, 8,  default"
