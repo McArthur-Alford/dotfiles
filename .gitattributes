@@ -1,3 +1,4 @@
 modules/editors/dungeondraft/Dungeondraft-1.0.4.7-Linux64.zip filter=lfs diff=lfs merge=lfs -text
 modules/editors/dungeondraft/Dungeondraft-1.1.0.1-Linux64.zip filter=lfs diff=lfs merge=lfs -text
 modules/editors/dungeondraft/Dungeondraft-1.0.3.2-Linux64.zip filter=lfs diff=lfs merge=lfs -text
+nixos/common/kernels/patches/edid.bin filter=lfs diff=lfs merge=lfs -text
