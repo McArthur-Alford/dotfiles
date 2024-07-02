@@ -25,28 +25,9 @@ in
 
   # Automatic WIFI connection
   networking = {
-    wireless = {
-      enable = true;
-      networks = {
-        TelstraDC701F = {
-          psk = "ha4c6rh7s44qcrtt";
-        };
-      };
-    };
-  imports = [
-    "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-  ];
-
-  networking = {
     useDHCP = true;
     hostName = hostname;
-    wireless = {
-      enable = true;
-      networks = { };
-    };
   };
-
-  # environment.systemPackages = with pkgs; [ helix ];
 
   # SSH Config
   environment.systemPackages = with pkgs; [ helix git ];

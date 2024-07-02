@@ -1,5 +1,4 @@
 { inputs, hostname, pkgs, ... }:
-{ hostname, ... }:
 let
   workspaces =
     if hostname == "thaumaturge" then ''
