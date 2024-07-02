@@ -1,15 +1,15 @@
-{ nixpkgs, pkgs, ... }:
+{ nixpkgs, pkgs, lib, ... }:
 let
-  user = "pi4";
-  password = "pi4";
-  hostname = "pi4";
+  user = "pi0";
+  password = "pi0";
+  hostname = "pi0";
   overlays = [
     (_final: super: { })
   ];
 in
 {
   imports = [
-    "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+    "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
   ];
 
   time.timeZone = "Australia/brisbane";
@@ -19,21 +19,8 @@ in
   
   nixpkgs.overlays = overlays;
 
-  # Automatic WIFI connection
-  networking = {
-    wireless = {
-      enable = true;
-      networks = {
-        TelstraDC701F = {
-          psk = "ha4c6rh7s44qcrtt";
-        };
-      };
-    };
-    useDHCP = true;
-    hostName = hostname;
-  };
-
-  # environment.systemPackages = with pkgs; [ helix ];
+  boot.loader.grub.efiSupport = lib.mkForce false;
+  isoImage.makeEfiBootable = lib.mkForce false;
 
   # SSH Config
   services.openssh = {
@@ -48,7 +35,21 @@ in
   programs.ssh.startAgent = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
 
-  # Basic user
+  # Automatic Wifi
+  networking = {
+    wireless = {
+      enable = true;
+      networks = {
+        ammwbase = {
+          psk = "Z57TH2JCYW";
+        };
+      };
+    };
+    useDHCP = true;
+    hostName = hostname;
+  };
+
+  # Basic user, not very secure though
   users = {
     mutableUsers = false;
     users."${user}" = {
@@ -60,6 +61,7 @@ in
       inherit password;
     };
   };
+
 
   hardware.enableRedistributableFirmware = true;
 

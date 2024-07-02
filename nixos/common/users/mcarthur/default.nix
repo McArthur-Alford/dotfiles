@@ -7,4 +7,8 @@
     description = "${username}";
     extraGroups = [ "networkmanager" "libvirtd" "wheel" "audio" "corectrl" ];
   };
+  nix.settings.trusted-users = [
+    "root"
+    username
+  ];
 }

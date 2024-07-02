@@ -37,8 +37,9 @@ in
         # "if ! [ command nm-applet ] then nm-applet --indicator fi"
       ];
       exec = [
-        "pkill .eww-wrapped && eww open bar"
-        "eww daemon"
+        "unset NIXOS_XDG_OPEN_USE_PORTAL"
+        # "pkill .eww-wrapped && eww open bar"
+        # "eww daemon"
         # "eww reload"
       ];
 

@@ -1,16 +1,25 @@
 {pkgs, config, ...}:
 {
+  nixpkgs.overlays = [(final: prev: {
+    rofi-calc = prev.rofi-calc.override { rofi-unwrapped = prev.rofi-wayland; };
+  })];
+
   programs.rofi = {
     enable = true;
     cycle = true;
     location = "center";
     pass = { };
-    plugins = [
-      pkgs.rofi-calc
-      pkgs.rofi-emoji
-      pkgs.rofi-systemd
+    plugins = with pkgs; [
+      rofi-calc
+      rofi-emoji
+      rofi-systemd
+      rofi-bluetooth
+      rofi-power-menu
     ];
     package = pkgs.rofi-wayland;
+    extraConfig = {
+        modes = "drun,calc,recursivebrowser";
+    };
 
     theme = let
       inherit (config.lib.formats.rasi) mkLiteral;
