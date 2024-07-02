@@ -19,6 +19,7 @@
     package = pkgs.rofi-wayland;
     extraConfig = {
         modes = "drun,calc,recursivebrowser";
+        show-icons = true;
     };
 
     theme = let
