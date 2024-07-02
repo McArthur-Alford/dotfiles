@@ -54,7 +54,7 @@
     bitwarden
 
     # Obsidian!
-    # obsidian
+    obsidian
 
     # keyring stuff
     # TODO is this necessary?

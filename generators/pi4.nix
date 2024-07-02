@@ -6,6 +6,10 @@ let
   overlays = [
     (_final: super: { })
   ];
+  system = "aarch64-linux";
+  pkgs = import nixpkgs {
+    inherit system;
+  };
 in
 {
   imports = [
@@ -29,13 +33,23 @@ in
         };
       };
     };
+  imports = [
+    "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+  ];
+
+  networking = {
     useDHCP = true;
     hostName = hostname;
+    wireless = {
+      enable = true;
+      networks = { };
+    };
   };
 
   # environment.systemPackages = with pkgs; [ helix ];
 
   # SSH Config
+  environment.systemPackages = with pkgs; [ helix git ];
   services.openssh = {
     enable = true;
     settings = {

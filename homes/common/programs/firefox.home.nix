@@ -44,6 +44,15 @@ in
               ];
             }];
           };
+          "Rust Docs" = {
+            definedAliases = [ "@rs" ];
+            urls = [{
+              template = "https://docs.rs";
+              params = [
+                { name = "/"; value = "{searchTerms}"; }
+              ];
+            }];
+          };
         };
       };
     };

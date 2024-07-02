@@ -1,0 +1,4 @@
+_:
+{
+  xdg.mimeApps.defaultApplications = { };
+}
