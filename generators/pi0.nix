@@ -1,19 +1,15 @@
-{ nixpkgs, pkgs, ... }:
+{ nixpkgs, pkgs, lib, ... }:
 let
-  user = "pi4";
-  password = "pi4";
-  hostname = "pi4";
+  user = "pi0";
+  password = "pi0";
+  hostname = "pi0";
   overlays = [
     (_final: super: { })
   ];
-  system = "aarch64-linux";
-  pkgs = import nixpkgs {
-    inherit system;
-  };
 in
 {
   imports = [
-    "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+    "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-raspberrypi.nix"
   ];
 
   time.timeZone = "Australia/brisbane";
@@ -23,14 +19,10 @@ in
   
   nixpkgs.overlays = overlays;
 
-  # Automatic WIFI connection
-  networking = {
-    useDHCP = true;
-    hostName = hostname;
-  };
+  boot.loader.grub.efiSupport = lib.mkForce false;
+  isoImage.makeEfiBootable = lib.mkForce false;
 
   # SSH Config
-  environment.systemPackages = with pkgs; [ helix git ];
   services.openssh = {
     enable = true;
     settings = {
@@ -43,7 +35,21 @@ in
   programs.ssh.startAgent = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
 
-  # Basic user
+  # Automatic Wifi
+  networking = {
+    wireless = {
+      enable = true;
+      networks = {
+        ammwbase = {
+          psk = "Z57TH2JCYW";
+        };
+      };
+    };
+    useDHCP = true;
+    hostName = hostname;
+  };
+
+  # Basic user, not very secure though
   users = {
     mutableUsers = false;
     users."${user}" = {
@@ -55,6 +61,7 @@ in
       inherit password;
     };
   };
+
 
   hardware.enableRedistributableFirmware = true;
 

@@ -18,15 +18,19 @@
     ] ++ (inputs.nixpkgs.lib.optionals (installer != null) [ installer ]);
   };
 
-  mkGenerator = { name, format, system }: inputs.nixos-generators.nixosGenerate {
+  mkGenerator = { name, format, system }: 
+  let
+    pkgs = (import nixpkgs {
+      inherit system;
+    });
+  in
+  inputs.nixos-generators.nixosGenerate {
     specialArgs = {
-      inherit inputs outputs name system stateVersion nixpkgs;
+      inherit inputs outputs name system stateVersion nixpkgs pkgs;
     };
     inherit system;
     inherit format;
-    modules = [
-      ../generators/${name}.nix
-    ];
+    modules = [../generators/${name}.nix];
   };
 
   forAllSystems = inputs.nixpkgs.lib.genAttrs [
@@ -35,5 +39,7 @@
     "x86_64-linux"
     "aarch64-darwin"
     "x86_64-darwin"
+    "armv6l-linux"
+    "armv7l-linux"
   ];
 }

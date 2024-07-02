@@ -1,4 +1,4 @@
-{ pkgs, cfg, username, lib, config, ... }:
+{ pkgs, lib, config, ... }:
 {
   environment = {
     variables = {
@@ -25,6 +25,7 @@
       swww
       qt6.full
       xwayland
+      xdg-utils
     ];
   };
 
@@ -43,8 +44,8 @@
     enable = true;
     xdgOpenUsePortal = true;
     config = {
-      common.default = ["gtk"];
-      hyprland.default = ["gtk" "hyprland"];
+      common.default = ["*"];
+      hyprland.default = ["hyprland" "gtk"];
     };
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk

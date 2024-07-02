@@ -1,8 +1,8 @@
-{ hostname, pkgs, ... }:
+{ hostname, inputs, system, ... }:
 let
   workspaces =
     if hostname == "thaumaturge" then ''
-      monitor=MAIN,5120x1440@120,5140x0,1
+      monitor=MAIN,5120x1440@240,0x0,1
     '' else if hostname == "grimoire" then ''
       monitor=MAIN,3840x2160@60,3840x0,1
     '' else "";
@@ -24,7 +24,16 @@ in
     # package = inputs.hyprland.packages.${system}.default;
     xwayland.enable = true;
     systemd.enable = true;
+
+    # plugins = [
+      # inputs.Hyprspace.packages.${system}.Hyprspace
+    # ];
+    
     settings = {
+      misc = {
+        vrr=1;
+      };
+    
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "~/.config/hypr/hyprmonitors.conf"
@@ -32,8 +41,9 @@ in
         # "if ! [ command nm-applet ] then nm-applet --indicator fi"
       ];
       exec = [
-        "pkill .eww-wrapped && eww open bar"
-        "eww daemon"
+        "unset NIXOS_XDG_OPEN_USE_PORTAL"
+        # "pkill .eww-wrapped && eww open bar"
+        # "eww daemon"
         # "eww reload"
       ];
 
@@ -93,10 +103,9 @@ in
       animations = {
         enabled = "true";
 
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-
         animation = [
-          "windows,     1, 10, myBezier"
+          "windows,1,8,default,popin 90%"
+          "windowsMove,1,0.4,default"
           # "windowsOut,  1, 10, default"
           "border,      1, 10, default"
           "borderangle, 1, 8,  default"
@@ -156,7 +165,7 @@ in
 
         "$mainMod CTRL, M, exit,"
         "$mainMod, V, togglefloating,"
-        "$mainMod, D, exec, wofi --show drun"
+        "$mainMod, D, exec, rofi -show drun"
         "$mainMod, P, pseudo,"
         "$mainMod CTRL, J, togglesplit,"
         "$mainMod, F, fullscreen"

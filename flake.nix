@@ -11,6 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    # Hyprspace = {
+    #   url = "github:KZDKM/Hyprspace";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
     spicetify-nix.url = "github:the-argus/spicetify-nix";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -111,7 +115,12 @@
         pi4 = lib.mkGenerator {
           name = "pi4";
           system = "aarch64-linux";
-          format = "sd-aarch64";
+          format = "iso";
+        };
+        pi0 = lib.mkGenerator {
+          name = "pi0";
+          system = "armv6l-linux";
+          format = "iso";
         };
       };
 

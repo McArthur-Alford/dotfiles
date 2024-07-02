@@ -1,7 +1,5 @@
 { lib, system, stateVersion, pkgs, nixpkgs, ... }:
 {
-  nixpkgs.hostPlatform = lib.mkDefault system;
-
   i18n = {
     defaultLocale = "en_GB.UTF-8";
     extraLocaleSettings = {
@@ -66,6 +64,7 @@
   environment.etc."nix/inputs/nixpkgs".source = nixpkgs.outPath;
 
   nixpkgs = {
+    hostPlatform = lib.mkDefault system;
     overlays = [
       # outputs.overlays.<overlay>
     ];
@@ -73,6 +72,8 @@
       allowUnfree = true;
     };
   };
+
+  boot.tmp.cleanOnBoot = true;
 
   # We cant use command-not-found because nix-index is installed!
   programs.command-not-found.enable = false;
