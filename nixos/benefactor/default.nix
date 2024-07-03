@@ -18,7 +18,7 @@
   # Use the GRUB 2 boot loader.
   # TODO refactor this into a module
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
+  # boot.loader.grub.version = 2;
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
