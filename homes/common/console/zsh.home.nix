@@ -27,17 +27,32 @@
     };
     zsh = {
       enable = true;
+      enableCompletion = true;
       oh-my-zsh = {
         enable = true;
-        theme = "agnoster";
       };
-      zplug = {
-        enable = true;
-        plugins = [
-          { name = "dracula/zsh"; tags = [ "as:theme" "depth:1" ]; }
-          { name = "plugins/colored-man-pages"; tags = [ "from:oh-my-zsh" ]; }
-        ];
-      };
+      plugins = [
+        { 
+          name = "zsh-nix-shell"; 
+          src = pkgs.zsh-nix-shell;
+          file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
+        }
+        {
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }
+        {
+          name = "powerlevel10k-config";
+          src = ../../../dotfiles/p10k;
+          file = "p10k.zsh";
+        }
+        {
+          name = "zsh-auto-suggestions";
+          src = pkgs.zsh-autosuggestions;
+          file = "share/zsh-autosuggestions/zsh-autosuggestions.zsh";
+        }
+      ];
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       historySubstringSearch = {

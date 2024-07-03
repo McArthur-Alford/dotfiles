@@ -11,10 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
-    # Hyprspace = {
-    #   url = "github:KZDKM/Hyprspace";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
     spicetify-nix.url = "github:the-argus/spicetify-nix";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -23,9 +23,9 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     helix.url = "github:helix-editor/helix/2cadec0";
     ags.url = "github:Aylur/ags";
-    matugen = {
-      url = "github:/InioX/Matugen";
-    };
+    # matugen = {
+    #   url = "github:/InioX/Matugen";
+    # };
   };
 
   outputs = { nixpkgs, self, ... }@inputs:

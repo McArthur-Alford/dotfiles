@@ -73,7 +73,7 @@ in
 
       general = {
         gaps_in = "2";
-        gaps_out = "3";
+        gaps_out = "0";
         border_size = "0";
         "col.inactive_border" = "rgba(44475A00)"; #rgba(ff555520) 90deg";
         "col.active_border" = "rgba(6272A4FF)"; #rgba(ff79c680) 90deg";
@@ -121,7 +121,7 @@ in
       };
 
       master = {
-        new_is_master = "true";
+        new_status = "master";
       };
 
       gestures = {
