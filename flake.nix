@@ -11,10 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
-    # Hyprspace = {
-    #   url = "github:KZDKM/Hyprspace";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
     spicetify-nix.url = "github:the-argus/spicetify-nix";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
