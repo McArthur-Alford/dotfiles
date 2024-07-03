@@ -1,4 +1,15 @@
 { pkgs, ... }:
+let
+  # agnoster-nix-theme = ./agnoster-nix.zsh-theme;
+  # customDir = pkgs.stdenv.mkDerivation {
+  #   name = "oh-my-zsh-custom-dir";
+  #   phases = [ "buildPhase" ];
+  #   buildPhase = ''
+  #     mkdir -p $out/themes
+  #     cp ${agnoster-nix-theme} $out/themes/agnoster-nix.zsh-theme  
+  #   '';
+  # };
+in
 {
   imports = [ ../services/direnv.home.nix ];
   home.packages = with pkgs; [
@@ -27,17 +38,28 @@
     };
     zsh = {
       enable = true;
+      enableCompletion = true;
       oh-my-zsh = {
         enable = true;
-        theme = "agnoster";
+        # theme = "agnoster-nix";
+        # custom = "${customDir}";
+        theme = "powerlevel10k";
       };
       zplug = {
         enable = true;
         plugins = [
-          { name = "dracula/zsh"; tags = [ "as:theme" "depth:1" ]; }
           { name = "plugins/colored-man-pages"; tags = [ "from:oh-my-zsh" ]; }
+          { name = "chisui/zsh-nix-shell"; tags = [ "as:plugin" ]; }
+          { name = "romkatv/powerlevel10k"; tags = ["as:theme" "depth:1"]; }
         ];
       };
+      plugins = [
+        {
+          name = "powerlevel10k-config";
+          src = ../../../dotfiles/p10k;
+          file = "p10k.zsh";
+        }
+      ];
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       historySubstringSearch = {
