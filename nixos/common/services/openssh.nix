@@ -13,6 +13,7 @@
     ../../../sshKeys/desktop.pub
     ../../../sshKeys/laptop.pub
     ../../../sshKeys/server.pub
+    ../../../sshKeys/mosaic.pub
   ];
   programs.ssh.startAgent = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
