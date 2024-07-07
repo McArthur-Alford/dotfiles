@@ -9,3 +9,7 @@ creation_rules:
           - *thaumaturge_mcarthur
           - *mosaic_mcarthur
           - *benefactor_mcarthur
+  - path_regex: secrets/tunnel-credentials$
+    key_groups:
+      - age:
+          - *benefactor_mcarthur

@@ -14,10 +14,4 @@
   sops.defaultSopsFormat = "yaml";
 
   sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
-
-  sops.secrets.example-key = {
-    owner = "${username}";
-    key = "example-key";
-  };
-  sops.secrets."myservice/my_subdir/my_secret" = { };
 }

@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ./programs/sops.home.nix ];
+  imports = [
+    ./programs/sops.home.nix
+    ./services/ssh.home.nix
+  ];
 }
