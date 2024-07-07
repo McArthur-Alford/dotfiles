@@ -12,7 +12,6 @@
     ../programs/kitty.home.nix
     # ../services/swaylock.home.nix
     ../services/xdg-mime.home.nix
-    ../programs/helix.home.nix
   ];
 
   services.mako = {
