@@ -31,6 +31,10 @@
       oh-my-zsh = {
         enable = true;
       };
+      # initExtra = ''
+      #   (cat ~/.cache/wal/sequences &)
+      #   source ~/.cache/wal/colors-tty.sh
+      # '';
       plugins = [
         { 
           name = "zsh-nix-shell"; 
@@ -81,7 +85,7 @@
           } + "/Dracula.tmTheme");
       };
       config = {
-        theme = "Dracula";
+        # theme = "Dracula";
       };
     };
     fzf = {

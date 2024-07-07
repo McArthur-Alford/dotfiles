@@ -3,10 +3,12 @@
   imports = [
     ./hyprland.home.nix
     ../programs/rofi.home.nix
+    ../programs/stylix.home.nix
     ../services/eww.home.nix
     ../programs/kitty.home.nix
-    ../services/swaylock.home.nix
+    # ../services/swaylock.home.nix
     ../services/xdg-mime.home.nix
+    ../programs/helix.home.nix
   ];
 
   services.mako = {
@@ -21,9 +23,6 @@
     zathura = {
       enable = true;
     };
-    pywal = {
-      # enable = true;
-    };
   };
 
   home.packages = with pkgs; [
@@ -36,25 +35,25 @@
     libnotify
   ];
 
-  home.pointerCursor = {
-    name = "Dracula-cursors";
-    package = pkgs.dracula-theme;
-    size = 16;
-  };
+  # home.pointerCursor = {
+  #   name = "Dracula-cursors";
+  #   package = pkgs.dracula-theme;
+  #   size = 16;
+  # };
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
+    # theme = {
+    #   name = "Dracula";
+    #   package = pkgs.dracula-theme;
+    # };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    font = {
-      name = "FiraCode Nerd Font Mono Medium";
-    };
+    # font = {
+    #   name = "FiraCode Nerd Font Mono Medium";
+    # };
     gtk4.extraConfig = {
       settings = ''
         gtk-application-prefer-dark-theme=1
@@ -64,9 +63,9 @@
   home.sessionVariables.GTK_THEME = "Dracula";
 
   # Helix
-  xdg.configFile."helix/config.toml".source = ../../../dotfiles/helix/config.toml;
-  xdg.configFile."helix/themes/alucard.toml".source = ../../../dotfiles/helix/themes/alucard.toml;
-  xdg.configFile."helix/languages.toml".source = ../../../dotfiles/helix/languages.toml;
+  # xdg.configFile."helix/config.toml".source = ../../../dotfiles/helix/config.toml;
+  # xdg.configFile."helix/themes/alucard.toml".source = ../../../dotfiles/helix/themes/alucard.toml;
+  # xdg.configFile."helix/languages.toml".source = ../../../dotfiles/helix/languages.toml;
 
   # Ranger
   xdg.configFile."ranger/rifle/rifle.conf".source = ../../../dotfiles/ranger/rifle/rifle.conf;
@@ -78,7 +77,7 @@
 
   # Vencord
   # xdg.configFile."BetterDiscord/plugins".source = ../../../dotfiles/BetterDiscord/plugins;
-  xdg.configFile."vesktop/themes".source = ../../../dotfiles/BetterDiscord/themes;
+  # xdg.configFile."vesktop/themes".source = ../../../dotfiles/BetterDiscord/themes;
 
   # btop theme
   xdg.configFile."bashtop".source = ../../../dotfiles/bashtop;

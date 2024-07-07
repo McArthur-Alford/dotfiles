@@ -58,7 +58,7 @@
 
     # keyring stuff
     # TODO is this necessary?
-    gnome.gnome-keyring
+    gnome-keyring
     libsecret
     libgnome-keyring
 
@@ -73,7 +73,7 @@
     # texlive.combined.scheme-full
 
     anki-bin
-    gnome.nautilus
+    nautilus
     usbutils
     xorg.libXxf86vm
     nautilus-open-any-terminal

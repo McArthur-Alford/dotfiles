@@ -23,16 +23,30 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     helix.url = "github:helix-editor/helix/2cadec0";
     ags.url = "github:Aylur/ags";
-    # matugen = {
-    #   url = "github:/InioX/Matugen";
-    # };
+
+    base16.url = "github:SenchoPens/base16.nix";
+
+    base16-helix.url = "github:McArthur-Alford/base16-helix";
+    base16-helix.flake = false;
+
+    stylix.url = "github:danth/stylix";
+    # stylix.inputs.base16.follows = "base16";
+    stylix.inputs.base16-helix.follows = "base16-helix";
   };
 
-  outputs = { nixpkgs, self, ... }@inputs:
+  outputs =
+    { nixpkgs, self, ... }@inputs:
     let
       inherit (self) outputs;
       stateVersion = "22.11";
-      lib = import ./lib { inherit inputs stateVersion outputs nixpkgs; };
+      lib = import ./lib {
+        inherit
+          inputs
+          stateVersion
+          outputs
+          nixpkgs
+          ;
+      };
       templates = import ./templates { };
     in
     {
@@ -92,12 +106,16 @@
         };
       };
 
-      devShells = lib.forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./shell.nix { inherit pkgs; }
+      devShells = lib.forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        import ./shell.nix { inherit pkgs; }
       );
 
-      formatter = lib.forAllSystems (system:
+      formatter = lib.forAllSystems (
+        system:
         inputs.nix-formatter-pack.lib.mkFormatter {
           pkgs = nixpkgs.legacyPackages.${system};
           config.tools = {
@@ -124,9 +142,12 @@
         };
       };
 
-      packages = lib.forAllSystems (system:
-        let pkgs = nixpkgs.legacyPackages.${system};
-        in import ./pkgs { inherit pkgs inputs; }
+      packages = lib.forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        import ./pkgs { inherit pkgs inputs; }
       );
 
       inherit templates;

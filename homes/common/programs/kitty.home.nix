@@ -5,13 +5,13 @@
       enable = true;
       theme = "Dracula";
       shellIntegration.enableZshIntegration = true;
-      font = {
-        package = pkgs.fira-code;
-        name = "Fira Code";
-      };
+      # font = {
+      #   package = pkgs.fira-code;
+      #   name = "Fira Code";
+      # };
       settings = {
-        background_opacity = "1.0";
-        background_blur = "10";
+        # background_opacity = "1.0";
+        # background_blur = "10";
         confirm_os_window_close = 0;
       };
     };

@@ -1,11 +1,22 @@
-{ hostname, inputs, system, ... }:
+{
+  hostname,
+  inputs,
+  system,
+  pkgs,
+  ...
+}:
 let
   workspaces =
-    if hostname == "thaumaturge" then ''
-      monitor=MAIN,5120x1440@240,0x0,1
-    '' else if hostname == "grimoire" then ''
-      monitor=MAIN,3840x2160@60,3840x0,1
-    '' else "";
+    if hostname == "thaumaturge" then
+      ''
+        monitor=MAIN,5120x1440@240,0x0,1
+      ''
+    else if hostname == "grimoire" then
+      ''
+        monitor=MAIN,3840x2160@60,3840x0,1
+      ''
+    else
+      "";
 in
 {
   # xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/desktop/hypr/hyprland.conf;
@@ -26,14 +37,14 @@ in
     systemd.enable = true;
 
     # plugins = [
-      # inputs.Hyprspace.packages.${system}.Hyprspace
+    # inputs.Hyprspace.packages.${system}.Hyprspace
     # ];
-    
+
     settings = {
       misc = {
-        vrr=1;
+        vrr = 1;
       };
-    
+
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "~/.config/hypr/hyprmonitors.conf"
@@ -45,17 +56,23 @@ in
         # "pkill .eww-wrapped && eww open bar"
         # "eww daemon"
         # "eww reload"
+        # "wal -R"
       ];
 
-      env = [ "XCURSOR_SIZE,24" ]
-        ++ (if hostname == "grimoire" then
-        [
-          "LIBVA_DRIVER_NAME,nvidia"
-          "XDG_SESSION_TYPE,wayland"
-          "GBM_BACKEND,nvidia-drm"
-          "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-          "WLR_NO_HARDWARE_CURSORS,1"
-        ] else [ ]);
+      env =
+        [ "XCURSOR_SIZE,24" ]
+        ++ (
+          if hostname == "grimoire" then
+            [
+              "LIBVA_DRIVER_NAME,nvidia"
+              "XDG_SESSION_TYPE,wayland"
+              "GBM_BACKEND,nvidia-drm"
+              "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+              "WLR_NO_HARDWARE_CURSORS,1"
+            ]
+          else
+            [ ]
+        );
 
       input = {
         kb_layout = "us";
@@ -75,8 +92,8 @@ in
         gaps_in = "2";
         gaps_out = "0";
         border_size = "0";
-        "col.inactive_border" = "rgba(44475A00)"; #rgba(ff555520) 90deg";
-        "col.active_border" = "rgba(6272A4FF)"; #rgba(ff79c680) 90deg";
+        "col.inactive_border" = "rgba(44475A00)"; # rgba(ff555520) 90deg";
+        "col.active_border" = "rgba(6272A4FF)"; # rgba(ff79c680) 90deg";
         layout = "dwindle";
       };
 
@@ -150,9 +167,7 @@ in
 
       "$mainMod" = "SUPER";
 
-      bindl = [
-        ",switch:on:Lid Switch,exec,systemctl suspend"
-      ];
+      bindl = [ ",switch:on:Lid Switch,exec,systemctl suspend" ];
 
       bind = [
         "$mainMod, Q, exec, kitty"

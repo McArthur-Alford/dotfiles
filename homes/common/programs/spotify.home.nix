@@ -1,22 +1,25 @@
 { pkgs, inputs, ... }:
+let
+  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+in
 {
   imports = [ inputs.spicetify-nix.homeManagerModule ];
 
   home.packages = with pkgs; [
-    spotify
+    # spotify
   ];
 
   programs.spicetify = {
-    # enable = true;
+    enable = true;
 
-    # enabledExtensions = with spicePkgs.extensions; [
-    #   fullAppDisplay
-    #   shuffle
-    #   hidePodcasts
-    # ];
-    # enabledCustomApps = with spicePkgs.apps; [
-    #   new-releases
-    # ];
+    enabledExtensions = with spicePkgs.extensions; [
+      fullAppDisplay
+      shuffle
+      hidePodcasts
+    ];
+    enabledCustomApps = with spicePkgs.apps; [
+      new-releases
+    ];
     # custom Dribbblish theme
     # theme = spicePkgs.themes.Dracula;
     # colorScheme = "custom";
