@@ -11,12 +11,12 @@
       mosaic = {
         host = "mosaic";
         hostname = "mosaic.thaumaturgy.tech";
-        proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+        # proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
       };
       thaumaturge = {
         host = "thaumaturge";
         hostname = "thaumaturge.thaumaturgy.tech";
-        proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
+        # proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
       };
     };
   };
