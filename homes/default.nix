@@ -1,14 +1,26 @@
-{ desktop, shell, hostname, inputs, lib, pkgs, stateVersion, username, ... }:
+{
+  desktop,
+  shell,
+  hostname,
+  inputs,
+  lib,
+  pkgs,
+  stateVersion,
+  username,
+  ...
+}:
 {
   programs.home-manager.enable = true;
 
-  imports = [
-    inputs.nix-index-database.hmModules.nix-index
-  ]
-  ++ lib.optional (builtins.isPath (./. + "common/users/${username}")) ./common/users/${username}
-  ++ lib.optional (builtins.isPath (./. + "common/users/${username}/hosts/${hostname}")) ./common/users/${username}/hosts/${hostname}
-  ++ lib.optional (desktop != null) ./common/desktop
-  ++ lib.optional (shell != null) ./common/console;
+  imports =
+    [ inputs.nix-index-database.hmModules.nix-index ]
+    ++ lib.optional (builtins.isPath (./. + "common/users/${username}")) ./common/users/${username}
+    ++ lib.optional (builtins.isPath (
+      ./. + "common/users/${username}/hosts/${hostname}"
+    )) ./common/users/${username}/hosts/${hostname}
+    ++ lib.optional (desktop != null) ./common/desktop
+    ++ lib.optional (shell != null) ./common/console
+    ++ [ ./common/default.home.nix ];
 
   home = {
     username = "${username}";
@@ -34,7 +46,10 @@
     package = pkgs.nixFlakes;
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
 }

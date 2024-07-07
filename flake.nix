@@ -32,6 +32,8 @@
     stylix.url = "github:danth/stylix";
     # stylix.inputs.base16.follows = "base16";
     stylix.inputs.base16-helix.follows = "base16-helix";
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
