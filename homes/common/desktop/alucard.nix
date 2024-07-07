@@ -1,9 +1,13 @@
-{ pkgs, inputs, system, ... }:
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 {
   imports = [
     ./hyprland.home.nix
     ../programs/rofi.home.nix
-    ../programs/stylix.home.nix
     ../services/eww.home.nix
     ../programs/kitty.home.nix
     # ../services/swaylock.home.nix
