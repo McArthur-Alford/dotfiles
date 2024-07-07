@@ -4,15 +4,18 @@
     enable = true;
     matchBlocks = {
       benefactor = {
-        host = "benefactor.thaumaturgy.tech";
+        host = "benefactor";
+        hostname = "benefactor.thaumaturgy.tech";
         proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
       };
       mosaic = {
-        host = "mosaic.thaumaturgy.tech";
+        host = "mosaic";
+        hostname = "mosaic.thaumaturgy.tech";
         proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
       };
       thaumaturge = {
-        host = "thaumaturge.thaumaturgy.tech";
+        host = "thaumaturge";
+        hostname = "thaumaturge.thaumaturgy.tech";
         proxyCommand = "${pkgs.cloudflared}/bin/cloudflared access ssh --hostname %h";
       };
     };
