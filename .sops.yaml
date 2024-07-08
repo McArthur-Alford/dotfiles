@@ -13,3 +13,7 @@ creation_rules:
     key_groups:
       - age:
           - *benefactor_mcarthur
+  - path_regex: secrets/attic-server-token$
+    key_groups:
+      - age:
+          - *benefactor_mcarthur
