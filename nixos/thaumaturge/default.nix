@@ -9,7 +9,7 @@
     ../../nixos/common/services/bluetooth.nix
     ../../nixos/common/programs/steam.nix
     ../../nixos/common/programs/vencord.nix
-    ../../nixos/common/programs/cachix.nix
+    ../../nixos/common/programs/caching.nix
     ../../nixos/common/services/virtualisation.nix
     ../../nixos/common/services/avahi.nix
     ../../nixos/common/services/ratbag.nix
@@ -18,16 +18,27 @@
   ];
 
   # Enable binfmt emulation of aarch64-linux.
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "armv6l-linux"
+  ];
 
   networking = {
     hostName = "thaumaturge";
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 25565 25566 3000 5432 ];
+      allowedTCPPorts = [
+        25565
+        25566
+        3000
+        5432
+      ];
       allowedUDPPortRanges = [
-        { from = 25565; to = 25566; }
+        {
+          from = 25565;
+          to = 25566;
+        }
       ];
       allowedUDPPorts = [ 3000 ];
     };
@@ -36,7 +47,6 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
-
 
   systemd.services.magic = {
     enable = true;
