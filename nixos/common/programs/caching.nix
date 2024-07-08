@@ -1,6 +1,9 @@
 { pkgs, config, ... }:
 {
-  environment.systemPackages = with pkgs; [ cachix ];
+  environment.systemPackages = with pkgs; [
+    cachix
+    attic-client
+  ];
 
   nix.settings.extra-trusted-public-keys = [ ];
 

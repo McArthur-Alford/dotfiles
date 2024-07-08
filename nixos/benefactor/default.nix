@@ -162,14 +162,10 @@
       listen = "[::]:8080";
 
       chunking = {
-        # nar-size-threshold = 64 * 1024; # 64 KiB
-        # min-size = 16 * 1024; # 16 KiB
-        # avg-size = 64 * 1024; # 64 KiB
-        # max-size = 256 * 1024; # 256 KiB
-        nar-size-threshold = 0;
-        min-size = 0;
-        avg-size = 0;
-        max-size = 0;
+        nar-size-threshold = 64 * 1024; # 64 KiB
+        min-size = 16 * 1024; # 16 KiB
+        avg-size = 64 * 1024; # 64 KiB
+        max-size = 256 * 1024; # 256 KiB
       };
 
       storage = {
