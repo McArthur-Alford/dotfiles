@@ -3,6 +3,7 @@
   username,
   config,
   inputs,
+  lib,
   ...
 }:
 {
@@ -16,7 +17,11 @@
     inputs.attic.nixosModules.atticd
   ];
 
-  environment.systemPackages = with pkgs; [ nginx ];
+  environment.systemPackages = with pkgs; [
+    nginx
+    attic-client
+    attic-server
+  ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -33,49 +38,49 @@
   networking = {
     hostName = "benefactor";
     networkmanager.enable = true;
-  };
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
-      80
-      443
-      22
-      3000
-      8080
-      8000
-      9000
-      27016
-      27015
-      27031
-      27036
-    ];
-    allowedTCPPortRanges = [
-      {
-        from = 27031;
-        to = 27036;
-      }
-    ];
-    allowedUDPPorts = [
-      27015
-      27016
-      27031
-      27036
-    ];
-    allowedUDPPortRanges = [
-      {
-        from = 4000;
-        to = 4007;
-      }
-      {
-        from = 8000;
-        to = 8010;
-      }
-      {
-        from = 9876;
-        to = 9877;
-      }
-    ];
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        80
+        443
+        22
+        3000
+        8080
+        8000
+        9000
+        27016
+        27015
+        27031
+        27036
+      ];
+      allowedTCPPortRanges = [
+        {
+          from = 27031;
+          to = 27036;
+        }
+      ];
+      allowedUDPPorts = [
+        27015
+        27016
+        27031
+        27036
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 4000;
+          to = 4007;
+        }
+        {
+          from = 8000;
+          to = 8010;
+        }
+        {
+          from = 9876;
+          to = 9877;
+        }
+      ];
+    };
   };
 
   # nginx TODO factor this out into a module
@@ -130,7 +135,51 @@
           "benefactor.thaumaturgy.tech".service = "ssh://localhost:22";
           "mosaic.thaumaturgy.tech".service = "ssh://mosaic.local:22";
           "thaumaturge.thaumaturgy.tech".service = "ssh://thaumaturge.local:22";
+          "attic.thaumaturgy.tech".service = "http://localhost:8080";
         };
+      };
+    };
+  };
+
+  sops.secrets.attic-server-token = {
+    name = "attic-server-token";
+    format = "binary";
+    sopsFile = ../../secrets/attic-server-token;
+  };
+
+  systemd.services.atticd = {
+    serviceConfig.ReadWritePaths = "/mnt/sdb/attic/storage";
+  };
+
+  services.atticd = {
+    enable = true;
+
+    credentialsFile = config.sops.secrets.attic-server-token.path;
+
+    mode = "monolithic";
+
+    settings = {
+      listen = "[::]:8080";
+
+      chunking = {
+        # nar-size-threshold = 64 * 1024; # 64 KiB
+        # min-size = 16 * 1024; # 16 KiB
+        # avg-size = 64 * 1024; # 64 KiB
+        # max-size = 256 * 1024; # 256 KiB
+        nar-size-threshold = 0;
+        min-size = 0;
+        avg-size = 0;
+        max-size = 0;
+      };
+
+      storage = {
+        type = "local";
+        path = "/mnt/sdb/attic/storage";
+      };
+
+      garbage-collection = {
+        interval = "1 days";
+        default-retention-period = "3 months";
       };
     };
   };
