@@ -2,6 +2,7 @@
   pkgs,
   username,
   config,
+  inputs,
   ...
 }:
 {
@@ -12,6 +13,7 @@
     ../../nixos/common/services/bluetooth.nix
     ../../nixos/common/services/virtualisation.nix
     ../../nixos/common/services/avahi.nix
+    inputs.attic.nixosModules.atticd
   ];
 
   environment.systemPackages = with pkgs; [ nginx ];
@@ -32,6 +34,7 @@
     hostName = "benefactor";
     networkmanager.enable = true;
   };
+
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [

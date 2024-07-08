@@ -34,6 +34,8 @@
     stylix.inputs.base16-helix.follows = "base16-helix";
 
     sops-nix.url = "github:Mic92/sops-nix";
+
+    attic.url = "github:zhaofengli/attic";
   };
 
   outputs =
