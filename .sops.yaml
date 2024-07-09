@@ -13,14 +13,7 @@ creation_rules:
     key_groups:
       - age:
           - *benefactor_mcarthur
-  - path_regex: secrets/attic-server-token$
+  - path_regex: secrets/harmonia.secret
     key_groups:
       - age:
-          - *benefactor_mcarthur
-  - path_regex: secrets/netrc-file$
-    key_groups:
-      - age:
-          - *benefactor_mcarthur
-          - *mosaic_mcarthur
-          - *thaumaturge_mcarthur
-
+        - *benefactor_mcarthur

@@ -9,12 +9,11 @@
 {
   imports = [
     ./hardware.nix
-    # ../../nixos/common/hardware/systemd-boot.nix
     ../../nixos/common/services/gnome-keyring.nix
     ../../nixos/common/services/bluetooth.nix
     ../../nixos/common/services/virtualisation.nix
     ../../nixos/common/services/avahi.nix
-    inputs.attic.nixosModules.atticd
+    ../../nixos/common/programs/caching.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -84,35 +83,35 @@
   };
 
   # nginx TODO factor this out into a module
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-    # other Nginx options
-    virtualHosts = {
-      "thaumaturgy.tech" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://localhost:30000";
-      };
-      "apples.thaumaturgy.tech" = {
-        locations."/".proxyPass = "http://127.0.0.1:30001";
-        locations."/".proxyWebsockets = true;
-        forceSSL = true;
-        enableACME = true;
-      };
-      "overlord.thaumaturgy.tech" = {
-        locations."/".proxyPass = "http://127.0.0.1:30000";
-        locations."/".proxyWebsockets = true;
-        forceSSL = true;
-        enableACME = true;
-      };
-      # "cloud.thaumaturgy.tech" = {
-      #   forceSSL = true;
-      #   enableACME = true;
-      # };
-    };
-  };
+  # services.nginx = {
+  #   enable = true;
+  #   recommendedProxySettings = true;
+  #   recommendedTlsSettings = true;
+  #   # other Nginx options
+  #   virtualHosts = {
+  #     "thaumaturgy.tech" = {
+  #       forceSSL = true;
+  #       enableACME = true;
+  #       locations."/".proxyPass = "http://localhost:30000";
+  #     };
+  #     "apples.thaumaturgy.tech" = {
+  #       locations."/".proxyPass = "http://127.0.0.1:30001";
+  #       locations."/".proxyWebsockets = true;
+  #       forceSSL = true;
+  #       enableACME = true;
+  #     };
+  #     "overlord.thaumaturgy.tech" = {
+  #       locations."/".proxyPass = "http://127.0.0.1:30000";
+  #       locations."/".proxyWebsockets = true;
+  #       forceSSL = true;
+  #       enableACME = true;
+  #     };
+  #     # "cloud.thaumaturgy.tech" = {
+  #     #   forceSSL = true;
+  #     #   enableACME = true;
+  #     # };
+  #   };
+  # };
 
   sops.secrets.tunnel-credentials = {
     owner = "cloudflared";
@@ -135,50 +134,21 @@
           "benefactor.thaumaturgy.tech".service = "ssh://localhost:22";
           "mosaic.thaumaturgy.tech".service = "ssh://mosaic.local:22";
           "thaumaturge.thaumaturgy.tech".service = "ssh://thaumaturge.local:22";
-          "attic.thaumaturgy.tech".service = "http://localhost:8080";
+          "cache.thaumaturgy.tech".service = "http://localhost:5000";
+          "apples.thaumaturgy.tech".service = "http://localhost:30001";
         };
       };
     };
   };
 
-  sops.secrets.attic-server-token = {
-    name = "attic-server-token";
+  sops.secrets.harmonia-key = {
+    name = "harmonia.secret";
     format = "binary";
-    sopsFile = ../../secrets/attic-server-token;
+    sopsFile = ../../secrets/harmonia.secret;
   };
 
-  systemd.services.atticd = {
-    serviceConfig.ReadWritePaths = "/mnt/sdb/attic/storage";
-  };
-
-  services.atticd = {
-    enable = true;
-
-    credentialsFile = config.sops.secrets.attic-server-token.path;
-
-    mode = "monolithic";
-
-    settings = {
-      listen = "[::]:8080";
-
-      chunking = {
-        nar-size-threshold = 64 * 1024; # 64 KiB
-        min-size = 16 * 1024; # 16 KiB
-        avg-size = 64 * 1024; # 64 KiB
-        max-size = 256 * 1024; # 256 KiB
-      };
-
-      storage = {
-        type = "local";
-        path = "/mnt/sdb/attic/storage";
-      };
-
-      garbage-collection = {
-        interval = "1 days";
-        default-retention-period = "3 months";
-      };
-    };
-  };
+  services.harmonia.enable = true;
+  services.harmonia.signKeyPath = config.sops.secrets.harmonia-key.path;
 
   security.acme = {
     acceptTerms = true;
