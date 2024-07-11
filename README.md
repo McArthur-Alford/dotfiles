@@ -8,8 +8,13 @@ These are my personal dotfiles. Public, feel free to take inspiration from them 
 That said, they will almost certainly require adapting, they are not designed for other people to use. There are secrets, and hardware specific things everywhere.
 It is originally based on [this](https://github.com/wimpysworld/nix-config/tree/main) config, though has diverged a lot since.
 
+Home manager and Nixos configurations are seperate. It uses pretty nifty mkHost and mkHome helpers to let me hotswap certain features. Those being the shell, system, username, hostname and desktop.
+The only available atm shell/desktop is alucard. It uses *hyprland*, *kitty*, *helix*, etc. Dracula theme, hence the name.
+
+Stylix is done with stylix. Secrets are managed by SOPS.
+
 ```mint
-    🌿 NixOS / Home-Manager Configuration 🌿
+    ❄️ NixOS / Home-Manager Configuration ❄️
 ------------------------------------------------
  ╭─ Hosts
  │  ├─ Benefactor
