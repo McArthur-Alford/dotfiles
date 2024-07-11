@@ -16,11 +16,7 @@
     ../../nixos/common/programs/caching.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    nginx
-    attic-client
-    attic-server
-  ];
+  environment.systemPackages = with pkgs; [ nginx ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
