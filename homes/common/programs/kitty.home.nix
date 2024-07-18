@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs = {
     kitty = {
@@ -10,8 +10,8 @@
       #   name = "Fira Code";
       # };
       settings = {
-        # background_opacity = "1.0";
-        # background_blur = "10";
+        background_opacity = lib.mkForce "0.9";
+        background_blur = lib.mkForce "10";
         confirm_os_window_close = 0;
       };
     };

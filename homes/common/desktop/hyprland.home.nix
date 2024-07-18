@@ -19,7 +19,7 @@ let
       "";
 in
 {
-  # xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/desktop/hypr/hyprland.conf;
+  # xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/hypr/hyprland.conf;
   xdg.configFile."hypr/hyprmonitors.conf".text = workspaces;
 
   home.sessionVariables = {
@@ -32,13 +32,15 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${system}.default;
+    package = inputs.hyprland.packages.${system}.default;
     xwayland.enable = true;
     systemd.enable = true;
 
-    # plugins = [
-    # inputs.Hyprspace.packages.${system}.Hyprspace
-    # ];
+    # plugins = [ inputs.Hyprspace.packages.${system}.Hyprspace ];
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # ...
+    ];
 
     settings = {
       misc = {
@@ -102,10 +104,12 @@ in
 
         blur = {
           enabled = "true";
-          size = "3";
-          passes = "1";
-          noise = "0.0025";
-          contrast = "1";
+          size = "5";
+          passes = "2";
+          noise = "0.0125";
+          contrast = "1.0";
+          brightness = "1.0";
+          vibrancy = "1.0";
           new_optimizations = "true";
         };
 
@@ -170,6 +174,8 @@ in
       bindl = [ ",switch:on:Lid Switch,exec,systemctl suspend" ];
 
       bind = [
+        # "$mainMod, W, overview:toggle"
+        "$mainMod, W, hyprexpo:expo, toggle"
         "$mainMod, Q, exec, kitty"
         "$mainMod, C, killactive,"
         # "$mainMod, S, exec, grimshot copy area"
