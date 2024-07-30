@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, hostname, ... }:
 {
   imports = [ ../services/direnv.home.nix ];
   home.packages = with pkgs; [
@@ -15,6 +15,7 @@
     tldr
     sshs
     rm-improved
+    figlet
 
     meslo-lgs-nf
     dejavu_fonts
@@ -46,10 +47,9 @@
       oh-my-zsh = {
         enable = true;
       };
-      # initExtra = ''
-      #   (cat ~/.cache/wal/sequences &)
-      #   source ~/.cache/wal/colors-tty.sh
-      # '';
+      initExtra = ''
+        banner "#bd93f9" "#50fa7b" "$(figlet ${hostname})"
+      '';
       plugins = [
         {
           name = "zsh-nix-shell";
