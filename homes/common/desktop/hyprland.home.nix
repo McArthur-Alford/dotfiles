@@ -38,7 +38,7 @@ in
 
     # plugins = [ inputs.Hyprspace.packages.${system}.Hyprspace ];
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       # ...
     ];
 
@@ -55,6 +55,7 @@ in
       ];
       exec = [
         "unset NIXOS_XDG_OPEN_USE_PORTAL"
+        "env WLR_NO_HARDWARE_CURSORS=1"
         # "pkill .eww-wrapped && eww open bar"
         # "eww daemon"
         # "eww reload"
@@ -62,7 +63,10 @@ in
       ];
 
       env =
-        [ "XCURSOR_SIZE,24" ]
+        [
+          "XCURSOR_SIZE,24"
+          # "WLR_NO_HARDWARE_CURSORS,1"
+        ]
         ++ (
           if hostname == "grimoire" then
             [
@@ -117,7 +121,7 @@ in
         drop_shadow = "yes";
         shadow_range = "60";
         shadow_offset = "1 2";
-        shadow_render_power = "3";
+        shadow_render_power = "10";
         shadow_scale = "0.97";
       };
 
@@ -175,7 +179,7 @@ in
 
       bind = [
         # "$mainMod, W, overview:toggle"
-        "$mainMod, W, hyprexpo:expo, toggle"
+        # "$mainMod, W, hyprexpo:expo, toggle"
         "$mainMod, Q, exec, kitty"
         "$mainMod, C, killactive,"
         # "$mainMod, S, exec, grimshot copy area"

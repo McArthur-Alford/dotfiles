@@ -83,7 +83,7 @@
   programs = {
     regreet = {
       enable = true;
-      settings = ./regreet-config.toml;
+      # settings = ./regreet-config.toml;
     };
     hyprland = {
       package = inputs.hyprland.packages.${system}.default;

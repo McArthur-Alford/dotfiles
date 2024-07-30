@@ -41,9 +41,13 @@ in
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
     base16Scheme = "${dracula}";
     image = ../../../wallpapers/PhantomThieves-Ultrawide.png;
-    cursor.name = "Breeze-gtk";
-    cursor.package = pkgs.breeze-gtk;
-    cursor.size = 16;
+    # cursor.name = "Breeze-gtk";
+    # cursor.package = pkgs.breeze-gtk;
+    cursor = {
+      package = pkgs.qogir-icon-theme;
+      name = "Qogir";
+      size = 16;
+    };
     fonts = {
       monospace = {
         package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
