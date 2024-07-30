@@ -23,6 +23,8 @@
     "armv6l-linux"
   ];
 
+  time.timeZone = "Australia/brisbane";
+
   networking = {
     hostName = "thaumaturge";
     networkmanager.enable = true;
