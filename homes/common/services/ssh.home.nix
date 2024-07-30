@@ -33,7 +33,7 @@
       };
       comp3301-control = {
         host = "comp3301-control";
-        user = "s4696730";
+        user = "control";
         hostname = "comp3301-vm1.eait.uq.edu.au";
         proxyJump = "moss";
       };

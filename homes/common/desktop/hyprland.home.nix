@@ -10,6 +10,7 @@ let
     if hostname == "thaumaturge" then
       ''
         monitor=MAIN,5120x1440@240,0x0,1
+        monitor=,preferred,auto,1
       ''
     else if hostname == "grimoire" then
       ''

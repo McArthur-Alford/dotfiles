@@ -50,8 +50,10 @@ in
     };
     fonts = {
       monospace = {
-        package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
-        name = "FiraCode Nerd Font Mono Medium";
+        # package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; });
+        # name = "FiraCode Nerd Font Mono Medium";
+        package = pkgs.meslo-lgs-nf;
+        name = "MesloLGS NF";
       };
       sansSerif = {
         package = pkgs.dejavu_fonts;

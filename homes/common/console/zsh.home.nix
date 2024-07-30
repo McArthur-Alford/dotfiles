@@ -15,7 +15,22 @@
     tldr
     sshs
     rm-improved
+
+    meslo-lgs-nf
+    dejavu_fonts
+    font-awesome
+    powerline-fonts
+    powerline-symbols
+    (nerdfonts.override {
+      fonts = [
+        "NerdFontsSymbolsOnly"
+        "FiraCode"
+        "DroidSansMono"
+      ];
+    })
   ];
+
+  fonts.fontconfig.enable = true;
 
   programs = {
     lazygit = {
@@ -36,8 +51,8 @@
       #   source ~/.cache/wal/colors-tty.sh
       # '';
       plugins = [
-        { 
-          name = "zsh-nix-shell"; 
+        {
+          name = "zsh-nix-shell";
           src = pkgs.zsh-nix-shell;
           file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
         }
@@ -76,13 +91,15 @@
     bat = {
       enable = true;
       themes = {
-        dracula = builtins.readFile (pkgs.fetchFromGitHub
-          {
+        dracula = builtins.readFile (
+          pkgs.fetchFromGitHub {
             owner = "dracula";
             repo = "sublime"; # Bat uses sublime syntax for its themes
             rev = "26c57ec282abcaa76e57e055f38432bd827ac34e";
             sha256 = "019hfl4zbn4vm4154hh3bwk6hm7bdxbr1hdww83nabxwjn99ndhv";
-          } + "/Dracula.tmTheme");
+          }
+          + "/Dracula.tmTheme"
+        );
       };
       config = {
         # theme = "Dracula";
