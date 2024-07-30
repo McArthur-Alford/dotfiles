@@ -22,11 +22,14 @@ pkgs.writeScriptBin "banner" ''
 
   # Function to center text
   center_text() {
-    local text="$1"
-    local width=$(tput cols)
-    local text_length=''${#text}
-    local padding=$(( (width - text_length) / 2 ))
-    printf "%''${padding}s%s\n" "" "$text"
+      # Get terminal width
+      term_width=$(tput cols)
+
+      while IFS= read -r line || [[ -n "$line" ]]; do
+          line_length=''${#line}
+          padding=''$(( (term_width - line_length) / 2 ))
+          printf "%*s%s\n" "$padding" "" "$line"
+      done
   }
 
   # Gradient function
@@ -46,7 +49,7 @@ pkgs.writeScriptBin "banner" ''
       local ratio=$(awk "BEGIN {printf \"%.2f\", $i / ($num_lines - 1)}")
       local color=$(interpolate_color "''${start_rgb[*]}" "''${end_rgb[*]}" $ratio)
       local colored_line=$(echo -e "\e[38;2;$((16#''${color:0:2}));$((16#''${color:2:2}));$((16#''${color:4:2}))m''${lines[$i]}")
-      center_text "$colored_line"
+      echo -e "$colored_line"
     done
   }
 
