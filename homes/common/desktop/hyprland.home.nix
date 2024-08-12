@@ -166,6 +166,8 @@ in
     # plugins = [ inputs.Hyprspace.packages.${system}.Hyprspace ];
     plugins = [
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # inputs.Hyprscroller.packages.${pkgs.system}.hyprscroller
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprscroller
       # ...
     ];
 

@@ -38,6 +38,18 @@
         hostname = "10.138.64.131";
         proxyJump = "moss";
       };
+      getafix = {
+        host = "getafix";
+        user = "s4696730";
+        hostname = "getafix.smp.uq.edu.au";
+        proxyJump = "moss";
+      };
+      rangpur = {
+        host = "rangpur";
+        user = "s4696730";
+        hostname = "rangpur";
+        proxyJump = "moss";
+      };
     };
   };
 }

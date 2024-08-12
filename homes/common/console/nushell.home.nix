@@ -51,7 +51,7 @@
         palette = "custom";
 
         format = lib.concatStrings [
-          "[](bg:black)$character$username$directory$git_branch$git_status[](fg:prev_bg)$fill[$battery](bold bg:6)\n"
+          "[](bg:black)$character$username$nix_shell$directory$git_branch$git_status[](fg:prev_bg)$fill[$battery](bold bg:6)\n"
           "[ ](bg:black)[$shell](fg:black bg:prev_bg)[](fg:prev_bg bg:white)[](fg:white)\n"
         ];
 
@@ -72,12 +72,10 @@
 
         nix_shell = {
           disabled = false;
-          impure_msg = "[impure](fg: bold red bg:#fe6142)";
-          pure_msg = "[pure](fg: bold green)";
-          unknown_msg = "[unknown](bold yellow)";
-          format = lib.concatStrings [
-            "[](fg:#fe6142 bg:#6f6565)[$state (\($name\))](fg:#fff1cf bg:#fe6142)[](fg:#fe6142 bg:#6f6565)[  ](fg:#fe6142 bg:#6f6565)[](fg:#6f6565)"
-          ];
+          format = "$state[](fg:prev_bg bg:cyan)[(($name))](fg:black bold bg:cyan)[](fg:prev_bg bg:black)";
+          impure_msg = "[](fg:prev_bg bg:red)[impure](bg:prev_bg fg:bold black)";
+          pure_msg = "[](fg:prev_bg bg:green)[pure](bg:prev_bg fg:bold black)";
+          unknown_msg = "[](fg:prev_bg bg:orange)[unknown](bg:prev_bg fg:bold black)";
         };
 
         line_break = {

@@ -25,6 +25,10 @@
       url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
+    Hyprscroller = {
+      url = "github:dawsers/hyprscroller";
+      inputs.hyprland.follows = "hyprland";
+    };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
