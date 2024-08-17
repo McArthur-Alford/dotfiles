@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   imports = [
     ./hardware.nix
@@ -11,7 +16,13 @@
     ../../nixos/common/services/avahi.nix
   ];
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv6l-linux" "armv7l-linux" ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "armv6l-linux"
+    "armv7l-linux"
+  ];
+
+  time.timeZone = "Australia/Brisbane";
 
   networking = {
     hostName = "mosaic";
@@ -20,7 +31,11 @@
       enable = true;
       allowedTCPPorts = [ 3000 ];
       allowedUDPPortRanges = [ ];
-      allowedUDPPorts = [ 3000 53 67 ];
+      allowedUDPPorts = [
+        3000
+        53
+        67
+      ];
     };
   };
 

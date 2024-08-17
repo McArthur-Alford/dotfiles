@@ -1,4 +1,11 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  system,
+  ...
+}:
 {
   environment = {
     variables = {
@@ -44,13 +51,16 @@
     enable = true;
     xdgOpenUsePortal = true;
     config = {
-      common.default = ["*"];
-      hyprland.default = ["hyprland" "gtk"];
+      common.default = [ "*" ];
+      hyprland.default = [
+        "hyprland"
+        "gtk"
+      ];
     };
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-hyprland
+      # pkgs.xdg-desktop-portal-wlr
+      # pkgs.xdg-desktop-portal-hyprland
     ];
   };
 
@@ -73,11 +83,15 @@
   programs = {
     regreet = {
       enable = true;
-      settings = ./regreet-config.toml;
+      # settings = ./regreet-config.toml;
     };
     hyprland = {
+      package = inputs.hyprland.packages.${system}.default;
       enable = true;
     };
+    # hyprlock = {
+    #   enable = true;
+    # };
     xwayland.enable = true;
   };
 }

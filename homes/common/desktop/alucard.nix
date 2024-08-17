@@ -11,6 +11,7 @@
     ../services/eww.home.nix
     ../programs/kitty.home.nix
     # ../services/swaylock.home.nix
+    ../services/ags.home.nix
     ../services/xdg-mime.home.nix
   ];
 

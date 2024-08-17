@@ -1,5 +1,10 @@
 # A nice way to setup cool scripts for myself!
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 let
   switch-all = import ./switch-all.nix { inherit pkgs; };
   switch-home = import ./switch-home.nix { inherit pkgs; };

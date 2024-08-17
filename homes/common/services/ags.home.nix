@@ -1,5 +1,20 @@
 { inputs, pkgs, ... }:
 {
+  nixpkgs.overlays = [
+    (final: prev: {
+      ags = prev.ags.overrideAttrs (old: {
+        buildInputs = old.buildInputs ++ [ pkgs.libdbusmenu-gtk3 ];
+      });
+    })
+  ];
+
+  home.packages = with pkgs; [
+    bun
+    libnotify
+    dart-sass
+    libdbusmenu-gtk3
+  ];
+
   # add the home manager module
   imports = [ inputs.ags.homeManagerModules.default ];
 

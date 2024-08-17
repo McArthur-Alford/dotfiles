@@ -10,6 +10,7 @@ let
     if hostname == "thaumaturge" then
       ''
         monitor=MAIN,5120x1440@240,0x0,1
+        monitor=,preferred,auto,1
       ''
     else if hostname == "grimoire" then
       ''
@@ -19,7 +20,7 @@ let
       "";
 in
 {
-  # xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/desktop/hypr/hyprland.conf;
+  # xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/hypr/hyprland.conf;
   xdg.configFile."hypr/hyprmonitors.conf".text = workspaces;
 
   home.sessionVariables = {
@@ -30,15 +31,145 @@ in
     WLR_NO_HARDWARE_CURSORS = "1";
   };
 
+  programs.hyprlock = {
+    enable = true;
+    sourceFirst = true;
+    settings = {
+      general = {
+        disable_loading_bar = false;
+        grace = 0;
+        no_fade_in = false;
+      };
+
+      background = [
+        {
+          monitor = "";
+          # path = "~/.config/hypr/hyprlock.png";
+          path = "screenshot";
+          blur_passes = 3;
+          contrast = 0.8916;
+          brightness = 0.8172;
+          vibrancy = 0.1696;
+          vibrancy_darkness = 0.0;
+        }
+      ];
+
+      image = [
+        {
+          monitor = "";
+          path = "~/.config/hypr/vivek.png";
+          border_size = 2;
+          border_color = "rgba(255, 255, 255, 0)";
+          size = 130;
+          rounding = -1;
+          rotate = 0;
+          reload_time = -1;
+          reload_cmd = "";
+          position = "0, 40";
+          halign = "center";
+          valign = "center";
+        }
+      ];
+
+      label = [
+        {
+          monitor = "";
+          text = ''cmd[update:1000] echo -e "$(date +"%A, %B %d")"'';
+          color = "rgba(216, 222, 233, 0.70)";
+          font_size = 25;
+          font_family = "SF Pro Display Bold";
+          position = "0, 350";
+          halign = "center";
+          valign = "center";
+        }
+        {
+          monitor = "";
+          text = ''cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"'';
+          color = "rgba(216, 222, 233, 0.70)";
+          font_size = 120;
+          font_family = "SF Pro Display Bold";
+          position = "0, 250";
+          halign = "center";
+          valign = "center";
+        }
+        {
+          monitor = "";
+          text = ''cmd[update:1000] echo "$(~/.config/hypr/Scripts/songdetail.sh)"'';
+          color = "rgba(255, 255, 255, 0.6)";
+          font_size = 18;
+          font_family = "JetBrains Mono Nerd, SF Pro Display Bold";
+          position = "0, 50";
+          halign = "center";
+          valign = "bottom";
+        }
+        {
+          monitor = "";
+          text = "    $USER";
+          color = "rgba(216, 222, 233, 0.80)";
+          outline_thickness = 2;
+          dots_size = 0.2;
+          dots_spacing = 0.2;
+          dots_center = true;
+          font_size = 18;
+          font_family = "SF Pro Display Bold";
+          position = "0, -130";
+          halign = "center";
+          valign = "center";
+        }
+      ];
+
+      shape = [
+        {
+          monitor = "";
+          size = "300, 60";
+          color = "rgba(255, 255, 255, 0.1)";
+          rounding = -1;
+          border_size = 0;
+          border_color = "rgba(253, 198, 135, 0)";
+          rotate = 0;
+          xray = false;
+          position = "0, -130";
+          halign = "center";
+          valign = "center";
+        }
+      ];
+
+      input-field = [
+        {
+          monitor = "";
+          size = "300, 60";
+          outline_thickness = 2;
+          dots_size = 0.2;
+          dots_spacing = 0.2;
+          dots_center = true;
+          outer_color = "rgba(0, 0, 0, 0)";
+          inner_color = "rgba(255, 255, 255, 0.1)";
+          font_color = "rgb(200, 200, 200)";
+          fade_on_empty = false;
+          font_family = "SF Pro Display Bold";
+          placeholder_text = ''<i><span foreground="##ffffff99">🔒 Enter Pass</span></i>'';
+          hide_input = false;
+          position = "0, -210";
+          halign = "center";
+          valign = "center";
+        }
+      ];
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${system}.default;
+    package = inputs.hyprland.packages.${system}.default;
     xwayland.enable = true;
     systemd.enable = true;
 
-    # plugins = [
-    # inputs.Hyprspace.packages.${system}.Hyprspace
-    # ];
+    # plugins = [ inputs.Hyprspace.packages.${system}.Hyprspace ];
+    plugins = [
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # inputs.Hyprscroller.packages.${pkgs.system}.hyprscroller
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprscroller
+      # ...
+    ];
 
     settings = {
       misc = {
@@ -53,6 +184,7 @@ in
       ];
       exec = [
         "unset NIXOS_XDG_OPEN_USE_PORTAL"
+        "env WLR_NO_HARDWARE_CURSORS=1"
         # "pkill .eww-wrapped && eww open bar"
         # "eww daemon"
         # "eww reload"
@@ -60,7 +192,10 @@ in
       ];
 
       env =
-        [ "XCURSOR_SIZE,24" ]
+        [
+          "XCURSOR_SIZE,24"
+          # "WLR_NO_HARDWARE_CURSORS,1"
+        ]
         ++ (
           if hostname == "grimoire" then
             [
@@ -102,10 +237,12 @@ in
 
         blur = {
           enabled = "true";
-          size = "3";
-          passes = "1";
-          noise = "0.0025";
-          contrast = "1";
+          size = "5";
+          passes = "2";
+          noise = "0.0125";
+          contrast = "1.0";
+          brightness = "1.0";
+          vibrancy = "1.0";
           new_optimizations = "true";
         };
 
@@ -113,7 +250,7 @@ in
         drop_shadow = "yes";
         shadow_range = "60";
         shadow_offset = "1 2";
-        shadow_render_power = "3";
+        shadow_render_power = "10";
         shadow_scale = "0.97";
       };
 
@@ -170,6 +307,9 @@ in
       bindl = [ ",switch:on:Lid Switch,exec,systemctl suspend" ];
 
       bind = [
+        # "$mainMod, W, overview:toggle"
+        # "$mainMod, W, hyprexpo:expo, toggle"
+        "$mainMod, escape&L, exec, hyprlock"
         "$mainMod, Q, exec, kitty"
         "$mainMod, C, killactive,"
         # "$mainMod, S, exec, grimshot copy area"

@@ -10,12 +10,26 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      # url = "github:hyprwm/Hyprland";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      # type = "git";
+      # submodules = true;
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
     Hyprspace = {
       url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    Hyprscroller = {
+      url = "github:dawsers/hyprscroller";
+      inputs.hyprland.follows = "hyprland";
+    };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
