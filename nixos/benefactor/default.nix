@@ -131,7 +131,7 @@
           "mosaic.thaumaturgy.tech".service = "ssh://mosaic.local:22";
           "thaumaturge.thaumaturgy.tech".service = "ssh://thaumaturge.local:22";
           "cache.thaumaturgy.tech".service = "http://localhost:5000";
-          "apples.thaumaturgy.tech".service = "http://localhost:30001";
+          "foundry.thaumaturgy.tech".service = "http://localhost:30001";
         };
       };
     };
