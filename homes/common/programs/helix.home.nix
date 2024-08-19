@@ -9,6 +9,7 @@
       editor.lsp.display-inlay-hints = true;
       editor.soft-wrap.enable = true;
       editor.bufferline = "multiple";
+      # lsp.display-messages = true;
     };
 
     languages.language = [
