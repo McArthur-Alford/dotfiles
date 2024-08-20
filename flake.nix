@@ -48,6 +48,11 @@
     stylix.inputs.base16-helix.follows = "base16-helix";
 
     sops-nix.url = "github:Mic92/sops-nix";
+
+    peerix = {
+      url = "github:cid-chan/peerix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

@@ -17,3 +17,15 @@ creation_rules:
     key_groups:
       - age:
         - *benefactor_mcarthur
+  - path_regex: secrets/peerix-private$
+    key_groups:
+      - age:
+          - *thaumaturge_mcarthur
+          - *mosaic_mcarthur
+          - *benefactor_mcarthur
+  - path_regex: secrets/peerix-public$
+    key_groups:
+      - age:
+          - *thaumaturge_mcarthur
+          - *mosaic_mcarthur
+          - *benefactor_mcarthur
