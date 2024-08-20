@@ -52,10 +52,7 @@
 
           # Extra inputs (only used for interactive development)
           # can be added here; cargo and rustc are provided by default.
-          packages = [
-            pkgs.cargo-audit
-            pkgs.cargo-watch
-          ];
+          packages = [ pkgs.cargo-watch ];
         };
       }
     );
