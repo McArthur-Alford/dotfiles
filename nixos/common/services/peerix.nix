@@ -17,9 +17,9 @@ in
 
   imports = [ peerix.nixosModules.peerix ];
   services.peerix = {
-    enable = true;
+    enable = false;
     package = peerix.packages.x86_64-linux.peerix;
-    openFirewall = true; # UDP/12304
+    openFirewall = true;
     privateKeyFile = config.sops.secrets.peerix-private.path;
     publicKeyFile = config.sops.secrets.peerix-public.path;
   };

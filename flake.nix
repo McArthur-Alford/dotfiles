@@ -51,6 +51,7 @@
 
     peerix = {
       url = "github:cid-chan/peerix";
+      # url = "github:mipmip/peerix"; # temporary fix for python
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
