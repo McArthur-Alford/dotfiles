@@ -11,6 +11,7 @@
       "wheel"
       "audio"
       "corectrl"
+      "daemon"
     ];
   };
   nix.settings.trusted-users = [

@@ -16,6 +16,11 @@
     ../../nixos/common/services/avahi.nix
   ];
 
+  # Enable Perf
+  # boot.kernel.sysctl."kernel.perf_event_paranoid" = -1;
+  # boot.kernel.sysctl."kernel.kptr_restrict" = lib.mkForce 0;
+  # systemd.tmpfiles.rules = [ "L /lib - - - - /run/current/system/lib" ];
+
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
     "armv6l-linux"
