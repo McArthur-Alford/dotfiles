@@ -22,6 +22,13 @@ in
 {
   # xdg.configFile."hypr/hyprland.conf".source = ../../../dotfiles/hypr/hyprland.conf;
   xdg.configFile."hypr/hyprmonitors.conf".text = workspaces;
+  xdg.configFile."hypr/hypridle.conf".text = ''
+    general {
+        lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
+        before_sleep_cmd = loginctl lock-session    # lock before suspend.
+        after_sleep_cmd = hyprctl dispatch dpms on  # to avoid having to press a key twice to turn on the display.
+    }  
+  '';
 
   home.sessionVariables = {
     GDK_BACKEND = "wayland,x11";
@@ -29,6 +36,10 @@ in
     #SDL_VIDEODRIVER = "x11";
     CLUTTER_BACKEND = "wayland";
     WLR_NO_HARDWARE_CURSORS = "1";
+  };
+
+  services.hypridle = {
+    enable = true;
   };
 
   programs.hyprlock = {
@@ -172,14 +183,19 @@ in
     ];
 
     settings = {
+      monitor = ",preferred,auto,1.333333";
+
       misc = {
         vrr = 1;
+        disable_splash_rendering = true;
+        disable_hyprland_logo = true;
       };
 
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "~/.config/hypr/hyprmonitors.conf"
+        "${pkgs.hypridle}/bin/hypridle"
         "swww init"
+        "${pkgs.hyprlock}/bin/hyprlock"
         # "if ! [ command nm-applet ] then nm-applet --indicator fi"
       ];
       exec = [
@@ -309,7 +325,7 @@ in
       bind = [
         # "$mainMod, W, overview:toggle"
         # "$mainMod, W, hyprexpo:expo, toggle"
-        "$mainMod, escape&L, exec, hyprlock"
+        "$mainMod CTRL, L, exec, hyprlock"
         "$mainMod, Q, exec, kitty"
         "$mainMod, C, killactive,"
         # "$mainMod, S, exec, grimshot copy area"
