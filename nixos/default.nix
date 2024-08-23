@@ -18,6 +18,7 @@
       ./common/programs/sops.nix # SOPS secret management
       ./common/users/root # sudo/root user configuration
       ./common/kernels/${kernel} # kernel selection
+      ./common/programs/nh.nix # nix helper
       ./${hostname} # host specific configuration
     ]
     ++ lib.optional (builtins.pathExists (

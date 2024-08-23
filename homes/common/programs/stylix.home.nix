@@ -46,7 +46,7 @@ in
     cursor = {
       package = pkgs.qogir-icon-theme;
       name = "Qogir";
-      size = 16;
+      size = 24;
     };
     fonts = {
       monospace = {
