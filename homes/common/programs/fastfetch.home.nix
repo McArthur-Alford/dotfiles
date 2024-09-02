@@ -1,10 +1,9 @@
-_:
-{
+_: {
   programs.fastfetch = {
     enable = true;
     settings = {
       display = {
-        binaryPrefix = "si";
+        size.binaryPrefix = "si";
         color = "blue";
         separator = "  ";
       };

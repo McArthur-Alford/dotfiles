@@ -9,6 +9,7 @@
 {
   imports = [
     ./hardware.nix
+    ../../nixos/common/services/peerix.nix
     ../../nixos/common/services/gnome-keyring.nix
     ../../nixos/common/services/bluetooth.nix
     ../../nixos/common/services/virtualisation.nix

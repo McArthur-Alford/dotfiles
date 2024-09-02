@@ -5,6 +5,7 @@
     ../../nixos/common/hardware/systemd-boot.nix
     ../../nixos/common/hardware/amd.nix
     ../../nixos/common/services/audio.nix
+    ../../nixos/common/services/peerix.nix
     ../../nixos/common/services/gnome-keyring.nix
     ../../nixos/common/services/bluetooth.nix
     ../../nixos/common/programs/steam.nix
@@ -110,9 +111,9 @@
   '';
 
   systemd.targets = {
-    sleep.enable = false;
-    suspend.enable = false;
-    hibernate.enable = false;
-    hybrid-sleep.enable = false;
+    sleep.enable = true;
+    suspend.enable = true;
+    hibernate.enable = true;
+    hybrid-sleep.enable = true;
   };
 }

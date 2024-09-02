@@ -20,6 +20,7 @@
       extraConfig = ''
         use ~/.cache/starship/init.nu
         alias rn = ${pkgs.ranger}/bin/ranger
+        cd $env.HOME
       '';
     };
 

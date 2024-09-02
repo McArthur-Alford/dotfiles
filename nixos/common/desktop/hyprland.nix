@@ -4,6 +4,7 @@
   config,
   inputs,
   system,
+  username,
   ...
 }:
 {
@@ -34,6 +35,10 @@
       xwayland
       xdg-utils
     ];
+    etc."greetd/environments".text = ''
+      Hyprland
+    '';
+
   };
 
   systemd.services.greetd.serviceConfig = {
@@ -69,13 +74,15 @@
     fprintd.enable = true;
     greetd = {
       enable = true;
-      settings = {
-        default_session = {
-          command = "
-            dbus-run-session ${pkgs.cage}/bin/cage -s -- ${lib.getExe config.programs.regreet.package}
-          ";
-          user = "greeter";
+      settings = rec {
+        initial_session = {
+          # command = "
+          #   dbus-run-session ${pkgs.cage}/bin/cage -s -- ${lib.getExe config.programs.regreet.package}
+          # ";
+          command = "${inputs.hyprland.packages.${system}.default}/bin/Hyprland";
+          user = "${username}";
         };
+        default_session = initial_session;
       };
     };
   };

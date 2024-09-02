@@ -1,3 +1,8 @@
 modules/editors/wonderdraft/*.zip
 # modules/editors/dungeondraft/*.zip
 result
+<<<<<<< HEAD
+/.direnv
+=======
+.direnv
+>>>>>>> 27e0252ab8f0b94ddd78fea95ace41cea1f0ec75
