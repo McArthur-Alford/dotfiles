@@ -15,6 +15,7 @@
     ../../nixos/common/services/virtualisation.nix
     ../../nixos/common/services/avahi.nix
     ../../nixos/common/programs/caching.nix
+    ../../nixos/common/foundryvtt/fvtt_mod.nix
   ];
 
   environment.systemPackages = with pkgs; [ nginx ];
@@ -137,10 +138,29 @@
           "mosaic.thaumaturgy.tech".service = "ssh://mosaic.local:22";
           "thaumaturge.thaumaturgy.tech".service = "ssh://thaumaturge.local:22";
           "cache.thaumaturgy.tech".service = "http://localhost:5000";
-          "foundry.thaumaturgy.tech".service = "http://localhost:30001";
+          # "overlord.thaumaturgy.tech".service = "http://192.168.100.2:30000";
           "overlord.thaumaturgy.tech".service = "http://localhost:30000";
+          "foundry.thaumaturgy.tech".service = "http://192.168.100.3:30000";
         };
       };
+    };
+  };
+
+  fvtt.enable = true;
+  fvtt.instances = {
+    "overlord" = {
+      # This key doesn't get used anywhere, use it for your clarity
+      # This gets used for the container ident (eg fvtt-extern) as well as subdomain.
+      ident = "overlord";
+      # This is a /24 block, assumedly this won't be used for over 253 instances :P
+      ip = "192.168.100.2";
+      # Foundry version
+      version = "12.331";
+    };
+    "apples" = {
+      ident = "apples";
+      ip = "192.168.100.3";
+      version = "12.331";
     };
   };
 

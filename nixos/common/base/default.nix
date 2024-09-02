@@ -1,4 +1,12 @@
-{ lib, system, stateVersion, pkgs, nixpkgs, ... }:
+{
+  lib,
+  system,
+  stateVersion,
+  pkgs,
+  nixpkgs,
+  outputs,
+  ...
+}:
 {
   i18n = {
     defaultLocale = "en_GB.UTF-8";
@@ -65,9 +73,9 @@
 
   nixpkgs = {
     hostPlatform = lib.mkDefault system;
-    overlays = [
-      # outputs.overlays.<overlay>
-    ];
+    overlays =
+      [
+      ];
     config = {
       allowUnfree = true;
     };
@@ -88,7 +96,10 @@
 
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       sandbox = true;
     };
 

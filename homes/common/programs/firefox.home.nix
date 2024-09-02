@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  outputs,
+  system,
+  ...
+}:
 let
   profileName = "mcarthur.alford@proton.me";
   mozillaPath = ".mozilla/firefox/${profileName}";
@@ -15,6 +20,9 @@ let
 in
 {
   home.file."${mozillaPath}/chrome".source = chrome;
+  home.packages = [
+    outputs.packages.${system}.zen
+  ];
   # home.file."${mozillaPath}/user.js".source = userjs;
 
   home.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
