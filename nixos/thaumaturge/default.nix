@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./hardware.nix
@@ -16,6 +16,7 @@
     ../../nixos/common/services/ratbag.nix
     ../../nixos/common/services/cachix.nix
     ../../nixos/common/kernels/patches/odysseyg9.nix
+    ../../nixos/common/foundryvtt/fvtt_mod.nix
   ];
 
   # Enable binfmt emulation of aarch64-linux.
@@ -59,6 +60,37 @@
       ExecStart = ''${pkgs.bash}/bin/bash -c "echo magic"'';
     };
   };
+
+  fvtt.enable = true;
+  fvtt.instances = {
+    "key" = {
+      # This key doesn't get used anywhere, use it for your clarity
+      # This gets used for the container ident (eg fvtt-extern) as well as subdomain.
+      ident = "extern";
+      # This is a /24 block, assumedly this won't be used for over 253 instances :P
+      ip = "192.168.100.2";
+      # Foundry version
+      version = "12.331";
+    };
+  };
+
+  # containers.magic = {
+  #   privateNetwork = true;
+  #   hostBridge = "br0"; # Specify the bridge name
+  #   localAddress = "192.168.100.5/24";
+  #   config = {
+  #     system.stateVersion = "23.11";
+
+  #     networking = {
+  #       firewall = {
+  #         enable = true;
+  #         allowedTCPPorts = [ 80 ];
+  #       };
+  #       useHostResolvConf = lib.mkForce false;
+  #     };
+  #     services.resolved.enable = true;
+  #   };
+  # };
 
   # hardware.fancontrol.enable = true;
   # hardware.fancontrol.config = ''
