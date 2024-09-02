@@ -41,6 +41,7 @@
         443
         22
         3000
+        3001
         8080
         8000
         9000
@@ -53,6 +54,10 @@
         {
           from = 27031;
           to = 27036;
+        }
+        {
+          from = 29999;
+          to = 30003;
         }
       ];
       allowedUDPPorts = [
@@ -132,6 +137,7 @@
           "thaumaturge.thaumaturgy.tech".service = "ssh://thaumaturge.local:22";
           "cache.thaumaturgy.tech".service = "http://localhost:5000";
           "foundry.thaumaturgy.tech".service = "http://localhost:30001";
+          "overlord.thaumaturgy.tech".service = "http://localhost:30000";
         };
       };
     };
