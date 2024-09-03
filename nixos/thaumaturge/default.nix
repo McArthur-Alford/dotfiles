@@ -16,7 +16,6 @@
     ../../nixos/common/services/ratbag.nix
     ../../nixos/common/services/cachix.nix
     ../../nixos/common/kernels/patches/odysseyg9.nix
-    ../../nixos/common/foundryvtt/fvtt_mod.nix
   ];
 
   # Enable binfmt emulation of aarch64-linux.
@@ -58,15 +57,6 @@
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = ''${pkgs.bash}/bin/bash -c "echo magic"'';
-    };
-  };
-
-  fvtt.enable = true;
-  fvtt.instances = {
-    "test" = {
-      ident = "test";
-      ip = "192.168.100.2";
-      version = "12.331";
     };
   };
 
