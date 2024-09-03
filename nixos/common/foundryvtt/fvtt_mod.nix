@@ -25,20 +25,7 @@ in
       nat = {
         enable = true;
         internalInterfaces = [ "ve-fvtt-*" ];
-        externalInterface = "en01";
-      };
-      macvlans.mv-en01-host = {
-        interface = "en01";
-        mode = "bridge";
-      };
-      interfaces.en01.ipv4.addresses = lib.mkForce [ ];
-      interfaces.mv-en01-host = {
-        ipv4.addresses = [
-          {
-            address = "192.168.100.1";
-            prefixLength = 24;
-          }
-        ];
+        externalInterface = "enp10s0";
       };
     };
 
@@ -48,8 +35,24 @@ in
         443
       ];
       checkReversePath = false;
-      # I don't remember why this is necessary, but it is.
-      extraCommands = "iptables -t nat -A POSTROUTING -o en01 -j MASQUERADE";
+      extraCommands = "iptables -t nat -A POSTROUTING -o enp10s0 -j MASQUERADE";
+    };
+
+    # networking.useDHCP = false;
+    networking.bridges = {
+      "br0".interfaces = [ "enp10s0" ];
+    };
+    networking.interfaces = {
+      "br0" = {
+        useDHCP = true;
+        ipv4.routes = [
+          {
+            address = "0.0.0.0";
+            prefixLength = 24;
+            via = "192.168.100.1";
+          }
+        ];
+      };
     };
 
     containers = listToAttrs (
@@ -59,39 +62,10 @@ in
           ephemeral = true;
           autoStart = true;
           privateNetwork = true;
-          hostAddress = "192.168.100.1";
-          macvlans = [ "eno1" ];
-          localAddress = x.ip;
-          forwardPorts = [
-            {
-              containerPort = 22;
-              hostPort = 2222;
-              protocol = "tcp";
-            }
-            {
-              containerPort = 80;
-              hostPort = 8080;
-              protocol = "tcp";
-            }
-            {
-              containerPort = 30000;
-              hostPort = 30000;
-              protocol = "tcp";
-            }
-          ];
-
-          # We make each instance's folder a subfolder on the host. Convenient for backups!
-          bindMounts."/opt/fvtt/" = {
-            hostPath = "/opt/fvtt/${x.ident}/";
-            isReadOnly = false;
-          };
-
-          # The cache holds the base copy of Foundry. Just need it to bootstrap the instance.
-          bindMounts."/opt/fvtt_static" = {
-            hostPath = "/opt/fvtt_static/";
-            isReadOnly = true; # It's still modifyable from the host, this is for correctness
-          };
-
+          hostBridge = "br0";
+          # localAddress = "192.168.0.2/24";
+          localAddress = "${x.ip}/24";
+          # localAddress = "10.231.136.2/24"; # IP address with netmask
           config =
             { config, pkgs, ... }:
             {
@@ -102,7 +76,25 @@ in
                 22
                 30000
               ];
-              # And finally, FOUNDRY
+              networking.networkmanager.enable = true;
+              networking.networkmanager.appendNameservers = [
+                "1.1.1.1"
+                "8.8.8.8"
+                "8.8.4.4"
+              ];
+              networking.search = [
+                "1.1.1.1"
+                "8.8.8.8"
+                "8.8.4.4"
+              ];
+              networking.interfaces."eth0".ipv4.routes = [
+                {
+                  address = "0.0.0.0";
+                  prefixLength = 0;
+                  via = "192.168.0.1";
+                }
+              ];
+
               systemd.services.foundry = {
                 description = "FoundryVTT";
                 after = [ "network.target" ];
@@ -131,9 +123,21 @@ in
 
               environment.systemPackages = with pkgs; [
                 helix
+                busybox
               ];
-
             };
+
+          # We make each instance's folder a subfolder on the host. Convenient for backups!
+          bindMounts."/opt/fvtt/" = {
+            hostPath = "/opt/fvtt/${x.ident}/";
+            isReadOnly = false;
+          };
+
+          # The cache holds the base copy of Foundry. Just need it to bootstrap the instance.
+          bindMounts."/opt/fvtt_static" = {
+            hostPath = "/opt/fvtt_static/";
+            isReadOnly = true; # It's still modifyable from the host, this is for correctness
+          };
         }
       ) (builtins.attrValues instances)
     );

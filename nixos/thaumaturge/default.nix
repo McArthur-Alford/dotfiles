@@ -63,13 +63,9 @@
 
   fvtt.enable = true;
   fvtt.instances = {
-    "key" = {
-      # This key doesn't get used anywhere, use it for your clarity
-      # This gets used for the container ident (eg fvtt-extern) as well as subdomain.
-      ident = "extern";
-      # This is a /24 block, assumedly this won't be used for over 253 instances :P
+    "test" = {
+      ident = "test";
       ip = "192.168.100.2";
-      # Foundry version
       version = "12.331";
     };
   };
