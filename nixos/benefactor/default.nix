@@ -139,7 +139,7 @@
           "thaumaturge.thaumaturgy.tech".service = "ssh://thaumaturge.local:22";
           "cache.thaumaturgy.tech".service = "http://localhost:5000";
           # "overlord.thaumaturgy.tech".service = "http://192.168.100.2:30000";
-          "overlord.thaumaturgy.tech".service = "http://localhost:30000";
+          "overlord.thaumaturgy.tech".service = "http://192.168.100.4:30000";
           "foundry.thaumaturgy.tech".service = "http://192.168.100.5:30000";
         };
       };
@@ -153,11 +153,13 @@
       ident = "overlord";
       ip = "192.168.100.4";
       version = "12.331";
+      dir = "/mnt/sdd/fvtt";
     };
     "apples" = {
       ident = "apples";
       ip = "192.168.100.5";
       version = "12.331";
+      dir = "/mnt/sdd/fvtt";
     };
   };
 

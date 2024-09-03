@@ -104,7 +104,8 @@ in
             };
           };
           bindMounts."/opt/fvtt/" = {
-            hostPath = "/opt/fvtt/${x.ident}/";
+            # hostPath = "/opt/fvtt/${x.ident}/";
+            hostPath = "${x.dir}/${x.ident}";
             isReadOnly = false;
           };
           bindMounts."/opt/fvtt_static" = {
