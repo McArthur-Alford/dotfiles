@@ -17,12 +17,13 @@ in
     enable = mkEnableOption "foundry vtt";
     instances = mkOption { type = types.anything; };
     tunnel = mkOption { type = types.string; };
+    interface = mkOption { type = types.string; };
   };
 
   # If Foundry is enabled, we make all of the below happen
   config = mkIf cfg.enable {
     networking = {
-      bridges.br0.interfaces = [ "enp10s0" ];
+      bridges.br0.interfaces = [ "${interface}" ];
 
       useDHCP = false;
       interfaces."br0".useDHCP = true;
@@ -39,7 +40,7 @@ in
       nat = {
         enable = true;
         internalInterfaces = [ "ve-fvtt-*" ];
-        externalInterface = "enp10s0";
+        externalInterface = "${interface}";
       };
 
       firewall = {
@@ -49,7 +50,7 @@ in
         ];
         extraCommands = ''
           iptables -t nat -F POSTROUTING  # Clears existing POSTROUTING rules \n
-          iptables -t nat -A POSTROUTING -o enp10s0 -j MASQUERADE
+          iptables -t nat -A POSTROUTING -o ${interface} -j MASQUERADE
         '';
       };
     };

@@ -147,6 +147,7 @@
   };
 
   fvtt.enable = true;
+  fvtt.interface = "eno1";
   fvtt.instances = {
     "overlord" = {
       ident = "overlord";
