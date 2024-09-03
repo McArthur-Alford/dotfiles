@@ -9,6 +9,7 @@ let
   # Extract a few options for readability
   cfg = config.fvtt;
   instances = cfg.instances;
+  interface = cfg.interface;
   host = config.networking.hostName;
 in
 {
