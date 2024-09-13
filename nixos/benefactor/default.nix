@@ -132,7 +132,7 @@
       "e8e9f688-e79d-44d6-a871-02656fc3dd8e" = {
         credentialsFile = config.sops.secrets.tunnel-credentials.path;
         default = "http_status:404";
-        # warp-routing.enabled = true;
+        warp-routing.enabled = true;
         ingress = {
           "benefactor.thaumaturgy.tech".service = "ssh://localhost:22";
           "mosaic.thaumaturgy.tech".service = "ssh://mosaic.local:22";
