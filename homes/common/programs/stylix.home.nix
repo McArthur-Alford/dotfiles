@@ -49,43 +49,22 @@ let
 
     base00: "201430" # background - a darker purple, subtle but rich
     base01: "483160" # Lighter Background - matches the background separator for smooth contrast
-    base02: "5B2B41" # Selection Background - lcl, a slightly more muted tone for selection
-    base03: "666666" # Comments, Invisibles, Line Highlighting - soft gray (lost)
+    base02: "660831" # Selection Background - lcl, a slightly more muted tone for selection
+    base03: "9590bd" # Comments, Invisibles, Line Highlighting - soft gray (lost)
     base04: "E1D6F8" # Dark Foreground - slightly brighter white for text highlights
     base05: "AB92FC" # Default Foreground, Caret, Delimiters, Operators - primary text color, pastel purple
-    base06: "9CDA7C" # Light Foreground - mint, adds vibrancy without overpowering
+    base06: "c7fba5" # Light Foreground - mint, adds vibrancy without overpowering
     base07: "F8F8FF" # Light Background - off-white, softens the overall look
-    base08: "D99145" # Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted - warm orange
+    base08: "d65c30" # Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted - warm orange
     base09: "875FAF" # Integers, Boolean, Constants, XML Attributes, Markup Link Url - attribute color, dark purple
     base0A: "AB92FC" # Classes, Markup Bold, Search Text Background - vibrant and lively purple
     base0B: "87FF5F" # Strings, Inherited Class, Markup Code, Diff Inserted - bright green
     base0C: "6D7BA6" # Support, Regular Expressions, Escape Characters, Markup Quotes - teal blue, subtle but distinct
     base0D: "875FAF" # Functions, Methods, Attribute IDs, Headings - consistent dark purple for visibility
     base0E: "AB92FC" # Keywords, Storage, Selector, Markup Italic, Diff Changed - matching vibrant purple
-    base0F: "BF2D2D" # Deprecated, Opening/Closing Embedded Language Tags - bright nerv color for strong emphasis
+    base0F: "f7262b" # Deprecated, Opening/Closing Embedded Language Tags - bright nerv color for strong emphasis
   '';
 in
-# # Base16 EVA Refined Theme
-# scheme: "EVA Refined"
-# author: "Based on EVA color scheme"
-
-# base00: "201430" # background - a darker purple, subtle but rich
-# base01: "483160" # Lighter Background - matches the background separator for smooth contrast
-# base02: "5B2B41" # Selection Background - lcl, a slightly more muted tone for selection
-# base03: "666666" # Comments, Invisibles, Line Highlighting - soft gray (lost)
-# base04: "E1D6F8" # Dark Foreground - slightly brighter white for text highlights
-# base05: "AB92FC" # Default Foreground, Caret, Delimiters, Operators - primary text color, pastel purple
-# base06: "9CDA7C" # Light Foreground - mint, adds vibrancy without overpowering
-# base07: "F8F8FF" # Light Background - off-white, softens the overall look
-# base08: "D99145" # Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted - warm orange
-# base09: "875FAF" # Integers, Boolean, Constants, XML Attributes, Markup Link Url - attribute color, dark purple
-# base0A: "AB92FC" # Classes, Markup Bold, Search Text Background - vibrant and lively purple
-# base0B: "87FF5F" # Strings, Inherited Class, Markup Code, Diff Inserted - bright green
-# base0C: "6D7BA6" # Support, Regular Expressions, Escape Characters, Markup Quotes - teal blue, subtle but distinct
-# base0D: "875FAF" # Functions, Methods, Attribute IDs, Headings - consistent dark purple for visibility
-# base0E: "AB92FC" # Keywords, Storage, Selector, Markup Italic, Diff Changed - matching vibrant purple
-# base0F: "BF2D2D" # Deprecated, Opening/Closing Embedded Language Tags - bright nerv color for strong emphasis
-
 {
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 

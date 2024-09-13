@@ -1,4 +1,10 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with config.lib.stylix.colors;
 {
   programs.helix = {
     enable = true;
@@ -34,37 +40,56 @@
         ui.background = "{}";
         ui.virtual.inlay-hint.fg = "cyan";
       };
-      eva = {
-        attribute = "#875FAF";
-        keyword = "#AB92FC";
-        "keyword.directive" = "#875FAF";
-        namespace = "#875FAF";
-        punctuation = "#AB92FC";
-        "punctuation.delimiter" = "#AB92FC";
-        operator = "#875FAF";
-        special = "#D99145";
-        "variable.other.member" = "#E1D6F8";
-        variable = "#AB92FC";
-        "variable.parameter" = {
-          fg = "#AB92FC";
+      eva = rec {
+        palette = {
+          purple_primary = "#875FAF";
+          purple_secondary = "#AB92FC";
+          orange_primary = "#D99145";
+          light_purple = "#d1c3f4";
+          green_light = "#adf182";
+          gray_dark = "#9590bd";
+          green_bright = "#87FF5F";
+          red_primary = "#f7262b";
+          background_dark = "#201430";
+          purple_dark = "#483160";
+          black = "#000000";
+          brown_dark = "#660831"; # base02
+          purple_muted = "#67478A";
+          blue_gray = "#6D7BA6";
+          black_lighter = "#212121";
+          brown_primary = "#6E4C28";
         };
-        "variable.builtin" = "#9CDA7C";
-        type = "#E1D6F8";
-        "type.builtin" = "#E1D6F8";
-        constructor = "#875FAF";
-        function = "#E1D6F8";
-        "function.macro" = "#875FAF";
-        "function.builtin" = "#E1D6F8";
-        tag = "#D99145";
-        comment = "#666666";
-        constant = "#E1D6F8";
-        "constant.builtin" = "#E1D6F8";
-        string = "#9CDA7C";
-        "constant.numeric" = "#D99145";
-        "constant.character.escape" = "#D99145";
-        label = "#D99145";
 
-        "markup.heading" = "#875FAF";
+        attribute = palette.purple_primary;
+        keyword = palette.purple_secondary;
+        "keyword.directive" = palette.purple_primary;
+        namespace = palette.purple_primary;
+        punctuation = palette.purple_secondary;
+        "punctuation.delimiter" = palette.purple_secondary;
+        operator = palette.purple_primary;
+        special = palette.orange_primary;
+        "variable.other.member" = palette.light_purple;
+        variable = palette.purple_secondary;
+        "variable.parameter" = {
+          fg = palette.purple_secondary;
+        };
+        "variable.builtin" = palette.green_light;
+        type = palette.light_purple;
+        "type.builtin" = palette.light_purple;
+        constructor = palette.purple_primary;
+        function = palette.light_purple;
+        "function.macro" = palette.purple_primary;
+        "function.builtin" = palette.light_purple;
+        tag = palette.orange_primary;
+        comment = palette.gray_dark;
+        constant = palette.light_purple;
+        "constant.builtin" = palette.light_purple;
+        string = palette.green_light;
+        "constant.numeric" = palette.orange_primary;
+        "constant.character.escape" = palette.orange_primary;
+        label = palette.orange_primary;
+
+        "markup.heading" = palette.purple_primary;
         "markup.bold" = {
           modifiers = [ "bold" ];
         };
@@ -75,141 +100,141 @@
           modifiers = [ "crossed_out" ];
         };
         "markup.link.url" = {
-          fg = "#9CDA7C";
+          fg = palette.green_light;
           modifiers = [ "underlined" ];
         };
-        "markup.link.text" = "#D99145";
-        "markup.raw" = "#D99145";
+        "markup.link.text" = palette.orange_primary;
+        "markup.raw" = palette.orange_primary;
 
-        "diff.plus" = "#87FF5F";
-        "diff.minus" = "#BF2D2D";
-        "diff.delta" = "#875FAF";
+        "diff.plus" = palette.green_bright;
+        "diff.minus" = palette.red_primary;
+        "diff.delta" = palette.purple_primary;
 
         "ui.background" = {
-          bg = "#201430";
+          bg = palette.background_dark;
         };
         "ui.background.separator" = {
-          fg = "#483160";
+          fg = palette.purple_dark;
         };
         "ui.linenr" = {
-          fg = "#483160";
+          fg = palette.purple_dark;
         };
         "ui.linenr.selected" = {
-          fg = "#875FAF";
+          fg = palette.purple_primary;
         };
         "ui.statusline" = {
-          fg = "#875FAF";
-          bg = "#000000";
+          fg = palette.purple_primary;
+          bg = palette.black;
         };
         "ui.statusline.inactive" = {
-          fg = "#AB92FC";
-          bg = "#000000";
+          fg = palette.purple_secondary;
+          bg = palette.black;
         };
         "ui.popup" = {
-          bg = "#000000";
+          bg = palette.black;
         };
         "ui.window" = {
-          fg = "#5B2B41";
+          fg = palette.brown_dark;
         };
         "ui.help" = {
-          bg = "#67478A";
-          fg = "#201430";
+          bg = palette.purple_muted;
+          fg = palette.background_dark;
         };
         "ui.text" = {
-          fg = "#AB92FC";
+          fg = palette.purple_secondary;
         };
         "ui.text.focus" = {
-          fg = "#E1D6F8";
+          fg = palette.light_purple;
         };
-        "ui.text.inactive" = "#666666";
+        "ui.text.inactive" = palette.gray_dark;
         "ui.virtual" = {
-          fg = "#483160";
+          fg = palette.purple_dark;
         };
         "ui.virtual.ruler" = {
-          bg = "#5B2B41";
+          bg = palette.brown_dark;
         };
         "ui.virtual.jump-label" = {
-          fg = "#D99145";
+          fg = palette.orange_primary;
           modifiers = [ "bold" ];
         };
         "ui.virtual.indent-guide" = {
-          fg = "#483160";
+          fg = palette.purple_dark;
         };
 
         "ui.selection" = {
-          bg = "#5B2B41";
+          bg = palette.brown_dark;
         };
         "ui.selection.primary" = {
-          bg = "#5B2B41";
+          bg = palette.brown_dark;
         };
         "ui.cursor.select" = {
-          bg = "#AB92FC";
+          bg = palette.purple_secondary;
         };
         "ui.cursor.insert" = {
-          bg = "#E1D6F8";
+          bg = palette.light_purple;
         };
         "ui.cursor.primary.select" = {
-          bg = "#AB92FC";
+          bg = palette.purple_secondary;
         };
         "ui.cursor.primary.insert" = {
-          bg = "#E1D6F8";
+          bg = palette.light_purple;
         };
         "ui.cursor.match" = {
-          fg = "#212121";
-          bg = "#6D7BA6";
+          fg = palette.black_lighter;
+          bg = palette.blue_gray;
         };
         "ui.cursor" = {
           modifiers = [ "reversed" ];
         };
         "ui.cursorline.primary" = {
-          bg = "#5B2B41";
+          bg = palette.brown_dark;
         };
         "ui.highlight" = {
-          bg = "#5B2B41";
+          bg = palette.brown_dark;
         };
         "ui.highlight.frameline" = {
-          bg = "#6E4C28";
+          bg = palette.brown_primary;
         };
         "ui.debug" = {
-          fg = "#6E4C28";
+          fg = palette.brown_primary;
         };
         "ui.debug.breakpoint" = {
-          fg = "#D99145";
+          fg = palette.orange_primary;
         };
         "ui.menu" = {
-          fg = "#AB92FC";
-          bg = "#000000";
+          fg = palette.purple_secondary;
+          bg = palette.black;
         };
         "ui.menu.selected" = {
-          fg = "#000000";
-          bg = "#E1D6F8";
+          fg = palette.black;
+          bg = palette.light_purple;
         };
         "ui.menu.scroll" = {
-          fg = "#AB92FC";
-          bg = "#483160";
+          fg = palette.purple_secondary;
+          bg = palette.purple_dark;
         };
 
         "diagnostic.hint" = {
           underline = {
-            color = "#9CDA7C";
+            color = palette.green_light;
             style = "curl";
           };
         };
         "diagnostic.info" = {
           underline = {
-            color = "#AB92FC";
+            color = palette.purple_secondary;
             style = "curl";
           };
         };
         "diagnostic.warning" = {
           underline = {
-            color = "#D99145";
+            color = palette.orange_primary;
             style = "curl";
           };
         };
         "diagnostic.error" = {
           underline = {
-            color = "#BF2D2D";
+            color = palette.red_primary;
             style = "curl";
           };
         };
@@ -220,27 +245,11 @@
           modifiers = [ "crossed_out" ];
         };
 
-        warning = "#D99145";
-        error = "#BF2D2D";
-        info = "#AB92FC";
-        hint = "#9CDA7C";
-
-        palette = {
-          black = "#000000";
-          magenta = "#483160";
-          green = "#87FF5F";
-          lost = "#666666";
-          unit01 = "#67478A";
-          selee = "#875FAF";
-          mint = "#9CDA7C";
-          hazard = "#D99145";
-          purple = "#AB92FC";
-          lcl = "#5B2B41";
-          nerv = "#BF2D2D";
-          rei = "#E1D6F8";
-        };
+        warning = palette.orange_primary;
+        error = palette.red_primary;
+        info = palette.purple_secondary;
+        hint = palette.green_light;
       };
-
     };
   };
 }

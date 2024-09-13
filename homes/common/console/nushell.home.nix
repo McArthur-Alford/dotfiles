@@ -53,7 +53,7 @@
 
         format = lib.concatStrings [
           "[](bg:black)$character$username$nix_shell$directory$git_branch$git_status[](fg:prev_bg)$fill[$battery](bold bg:6)\n"
-          "[ ](bg:black)[$shell](fg:black bg:prev_bg)[](fg:prev_bg bg:white)[](fg:white)\n"
+          "[ ](bg:none)[$shell](fg:black bg:prev_bg)[](fg:prev_bg bg:white)[](fg:white)\n"
         ];
 
         palettes.custom = {
@@ -90,8 +90,8 @@
 
         character = {
           format = "$symbol";
-          success_symbol = "[](fg:green bg:black)[](bg:prev_fg fg:black)[](bg:prev_bg fg:comment)[](bg:prev_fg)";
-          error_symbol = "[](fg:red)[](bg:prev_fg fg:black)[](bg:prev_bg fg:comment)[](bg:prev_fg)";
+          success_symbol = "[](fg:green bg:none)[](bg:prev_fg fg:black)[](bg:prev_bg fg:comment)[](bg:prev_fg)";
+          error_symbol = "[](fg:red bg:none)[](bg:prev_fg fg:black)[](bg:prev_bg fg:comment)[](bg:prev_fg)";
         };
 
         battery = {
@@ -128,9 +128,9 @@
         };
 
         shell = {
-          bash_indicator = "[](bg:cyan fg:prev_bg)[ BSH](fg:black bold bg:prev_bg)";
-          nu_indicator = "[](bg:green fg:prev_bg)[ NSH](fg:black bold bg:prev_bg)";
-          zsh_indicator = "[](bg:purple fg:prev_bg)[ ZSH](fg:black bold bg:prev_bg)";
+          bash_indicator = "[](bg:cyan fg:purple)[BSH](fg:black bold bg:prev_bg)";
+          nu_indicator = "[](bg:green fg:purple)[NSH](fg:black bold bg:prev_bg)";
+          zsh_indicator = "[](bg:purple fg:purple)[ZSH](fg:black bold bg:prev_bg)";
           disabled = false;
         };
 
@@ -160,7 +160,7 @@
         };
 
         username = {
-          format = "[](fg:purple bg:prev_fg)[  [$user ](fg:black bg:prev_bg)](fg:black bg:prev_fg)[](fg:prev_bg bg:comment bold)";
+          format = "[](fg:purple bg:prev_fg)[  [$user ](fg:white bg:prev_bg)](fg:black bg:prev_fg)[](fg:prev_bg bg:comment bold)";
           show_always = true;
           disabled = false;
         };
