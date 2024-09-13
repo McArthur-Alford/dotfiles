@@ -5,6 +5,7 @@
   ...
 }:
 let
+
   eva = pkgs.writeText "eva.yaml" ''
     # Base16 EVA Refined Theme
     scheme: "EVA Refined"

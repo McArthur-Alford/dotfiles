@@ -12,8 +12,6 @@ in
 {
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
-  # home.packages = with pkgs; [ spotify ];
-
   programs.spicetify = {
     enable = true;
     theme = spicePkgs.themes.lucid;
@@ -40,19 +38,19 @@ in
     #   # sidebarConfig = true;
     # };
 
-    # enabledExtensions = with spicePkgs.extensions; [
-    #   # fullAppDisplay
-    #   # shuffle
-    #   # hidePodcasts
-    # ];
-    # enabledCustomApps = with spicePkgs.apps; [ new-releases ];
+    enabledExtensions = with spicePkgs.extensions; [
+      shuffle
+      popupLyrics
+      betterGenres
+    ];
+    enabledCustomApps = with spicePkgs.apps; [ newReleases ];
 
     # official dracula:
     # theme = spicePkgs.themes.Dracula;
 
     colorScheme = "custom";
     customColorScheme = {
-      "text" = "${magenta}";
+      "text" = "${base07}";
       "subtext" = "${base05}";
       "nav-active-text" = "${bright-green}";
       "main" = "${base00}";

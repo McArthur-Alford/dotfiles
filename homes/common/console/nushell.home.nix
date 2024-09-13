@@ -4,6 +4,90 @@
   pkgs,
   ...
 }:
+let
+  fade =
+    {
+      fromColor ? "prev_fg",
+      toColor ? "prev_bg",
+      fadeType ? "between",
+    }:
+    let
+      shades = {
+        # ╳
+        # l = "░";
+        # m = "▒";
+        # h = "▓";
+        # f = "█";
+        l = "🮨";
+        m = "🮙";
+        h = "╱";
+        f = "█";
+      };
+
+      formatStep =
+        {
+          shade,
+          fgColor,
+          bgColor,
+        }:
+        "[${shade}](fg:${fgColor} bold bg:${bgColor})";
+
+      fadeBetween = [
+        (formatStep {
+          shade = shades.l;
+          fgColor = toColor;
+          bgColor = fromColor;
+        })
+        (formatStep {
+          shade = shades.m;
+          fgColor = "prev_fg";
+          bgColor = "prev_bg";
+        })
+        (formatStep {
+          shade = shades.m;
+          fgColor = "prev_bg";
+          bgColor = "prev_fg";
+        })
+        (formatStep {
+          shade = shades.l;
+          fgColor = "prev_fg";
+          bgColor = "prev_bg";
+        })
+        (formatStep {
+          shade = shades.f;
+          fgColor = toColor;
+          bgColor = "prev_fg";
+        })
+      ];
+
+      fadeIn = [
+        (formatStep {
+          shade = "${shades.l}${shades.m}";
+          fgColor = toColor;
+          bgColor = fromColor;
+        })
+      ];
+
+      fadeOut = [
+        (formatStep {
+          shade = "${shades.m}${shades.l}";
+          fgColor = fromColor;
+          bgColor = toColor;
+        })
+      ];
+
+      selectedFade =
+        if fadeType == "between" then
+          fadeBetween
+        else if fadeType == "in" then
+          fadeIn
+        else if fadeType == "out" then
+          fadeOut
+        else
+          throw "Invalid fade type: ${fadeType}. Use fadeIn, fadeOut, or fadeBetween.";
+    in
+    lib.concatStringsSep "" selectedFade;
+in
 {
   imports = [
     ../services/direnv.home.nix
@@ -39,133 +123,173 @@
 
     direnv.enableNushellIntegration = true;
 
-    starship = {
-      enable = true;
-      enableNushellIntegration = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      enableTransience = true;
-      settings = {
-        add_newline = false;
-        scan_timeout = 10;
-
-        palette = "custom";
-
-        format = lib.concatStrings [
-          "[](bg:black)$character$username$nix_shell$directory$git_branch$git_status[](fg:prev_bg)$fill[$battery](bold bg:6)\n"
-          "[ ](bg:none)[$shell](fg:black bg:prev_bg)[](fg:prev_bg bg:white)[](fg:white)\n"
-        ];
-
-        palettes.custom = {
-          none = "0";
-          red = "1";
-          green = "2";
-          yellow = "3";
-          purple = "4";
-          magenta = "5";
-          cyan = "6";
-          white = "7";
-          comment = "10";
-          black = "11";
-          orange = "9";
-          light_comment = "103";
+    starship =
+      let
+        rhs = fade {
+          fromColor = "none";
+          toColor = "black";
+          fadeType = "in";
         };
-
-        nix_shell = {
-          disabled = false;
-          format = "$state[](fg:prev_bg bg:cyan)[(($name))](fg:black bold bg:cyan)[](fg:prev_bg bg:black)";
-          impure_msg = "[](fg:prev_bg bg:red)[impure](bg:prev_bg fg:bold black)";
-          pure_msg = "[](fg:prev_bg bg:green)[pure](bg:prev_bg fg:bold black)";
-          unknown_msg = "[](fg:prev_bg bg:orange)[unknown](bg:prev_bg fg:bold black)";
+        plhs = fade {
+          fromColor = "none";
+          toColor = "cyan";
+          fadeType = "in";
         };
-
-        line_break = {
-          disabled = false;
+        prhs = fade {
+          fromColor = "cyan";
+          toColor = "none";
+          fadeType = "out";
         };
+        into =
+          a: b:
+          fade {
+            fromColor = "${a}";
+            toColor = "${b}";
+            fadeType = "in";
+          };
+        out =
+          a: b:
+          fade {
+            fromColor = "${a}";
+            toColor = "${b}";
+            fadeType = "out";
+          };
+        between =
+          a: b:
+          fade {
+            fromColor = "${a}";
+            toColor = "${b}";
+            fadeType = "between";
+          };
+        solid = a: "[█](fg:${a} bg:prev_bg)";
+      in
+      {
+        enable = true;
+        enableNushellIntegration = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        enableTransience = true;
+        settings = {
+          add_newline = false;
+          scan_timeout = 10;
 
-        fill = {
-          symbol = "·";
-          style = "fg:comment bg:none";
-        };
+          palette = "custom";
 
-        character = {
-          format = "$symbol";
-          success_symbol = "[](fg:green bg:none)[](bg:prev_fg fg:black)[](bg:prev_bg fg:comment)[](bg:prev_fg)";
-          error_symbol = "[](fg:red bg:none)[](bg:prev_fg fg:black)[](bg:prev_bg fg:comment)[](bg:prev_fg)";
-        };
-
-        battery = {
-          full_symbol = "";
-          format = "[](fg:comment)[ $symbol$percentage ]($style bg:comment)";
-
-          display = [
-            {
-              threshold = 25;
-              style = "bold red";
-            }
-            {
-              threshold = 50;
-              style = "bold yellow";
-            }
-            {
-              threshold = 100;
-              style = "bold green";
-            }
+          format = lib.concatStrings [
+            "$username${solid "prev_bg"}$nix_shell${solid "prev_bg"}$directory$git_branch${solid "prev_bg"}$git_status${solid "prev_bg"}${out "prev_bg" "none"}$fill$battery${rhs}\n"
+            "${plhs}$shell${prhs}"
           ];
-        };
 
-        time = {
-          format = "[\[$time\] ](fg:#fff1cf bg:#6f6565)";
-          utc_time_offset = "local";
-          time_format = "%T";
-          disabled = false;
-          time_range = "-";
-        };
+          palettes.custom = {
+            none = "0";
+            red = "1";
+            green = "2";
+            yellow = "3";
+            purple = "4";
+            magenta = "5";
+            cyan = "6";
+            white = "7";
+            comment = "10";
+            black = "11";
+            orange = "9";
+            light_comment = "103";
+          };
 
-        git_branch = {
-          format = "[](fg:prev_bg bg:comment)[$symbol$branch](bg:prev_bg)";
-          symbol = "  ";
-        };
+          nix_shell = {
+            disabled = false;
+            format = "$state${solid "black"}[$name](fg:white bg:black)";
+            impure_msg = "${between "prev_bg" "black"}[impure](bg:black fg:bold red)";
+            pure_msg = "${between "prev_bg" "black"}[pure](bg:black fg:bold green)";
+            unknown_msg = "${between "prev_bg" "black"}[unknown](bg:black fg:bold orange)";
+          };
 
-        shell = {
-          bash_indicator = "[](bg:cyan fg:purple)[BSH](fg:black bold bg:prev_bg)";
-          nu_indicator = "[](bg:green fg:purple)[NSH](fg:black bold bg:prev_bg)";
-          zsh_indicator = "[](bg:purple fg:purple)[ZSH](fg:black bold bg:prev_bg)";
-          disabled = false;
-        };
+          line_break = {
+            disabled = false;
+          };
 
-        directory = {
-          format = "[ ](fg:prev_bg bg:2)[$path]($style)[$read_only ](fg:1 bg:prev_bg)";
-          style = "fg:0 bg:2";
-          truncation_symbol = "…/";
-          truncate_to_repo = false;
-          truncation_length = 100;
-          home_symbol = " ";
-          read_only = " ";
-        };
+          fill = {
+            symbol = "◢◤";
+            style = "fg:comment bg:none";
+          };
 
-        git_status = {
-          format = "[\\[[$all_status$ahead_behind](bg:prev_bg)\\]](bg:prev_bg)";
-          conflicted = "🏳";
-          ahead = "🏎💨";
-          behind = "😰";
-          diverged = "😵";
-          up_to_date = "✓";
-          untracked = "🤷";
-          stashed = "📦";
-          modified = "📝";
-          staged = "[++\($count\)](fg:green bg:prev_bg)";
-          renamed = "👅";
-          deleted = "🗑";
-        };
+          character = {
+            format = "$symbol";
+            success_symbol = "[](fg:green bg:prev_bg)";
+            error_symbol = "[](fg:red bg:prev_bg)";
+          };
 
-        username = {
-          format = "[](fg:purple bg:prev_fg)[  [$user ](fg:white bg:prev_bg)](fg:black bg:prev_fg)[](fg:prev_bg bg:comment bold)";
-          show_always = true;
-          disabled = false;
+          battery = {
+            full_symbol = "";
+            format = "[](fg:comment)[ $symbol$percentage ]($style bg:comment)";
+
+            display = [
+              {
+                threshold = 25;
+                style = "bold red";
+              }
+              {
+                threshold = 50;
+                style = "bold yellow";
+              }
+              {
+                threshold = 100;
+                style = "bold green";
+              }
+            ];
+          };
+
+          time = {
+            format = "[\[$time\] ](fg:#fff1cf bg:#6f6565)";
+            utc_time_offset = "local";
+            time_format = "%T";
+            disabled = false;
+            time_range = "-";
+          };
+
+          git_branch = {
+            format = "${between "prev_bg" "black"}[$symbol$branch](fg:white bg:black)";
+            symbol = " ";
+          };
+
+          shell = {
+            format = "$indicator";
+            bash_indicator = "[BSH](fg:prev_bg bold bg:prev_fg)";
+            nu_indicator = "[NSH](fg:prev_bg bold bg:prev_fg)";
+            zsh_indicator = "[ZSH](fg:prev_bg bold bg:prev_fg)";
+            disabled = false;
+          };
+
+          directory = {
+            format = "${between "prev_fg" "cyan"}[$read_only](fg:red bg:prev_bg)[$path](fg:black bg:cyan)";
+            style = "fg:0 bg:2";
+            truncation_symbol = "…/";
+            truncate_to_repo = true;
+            truncation_length = 50;
+            home_symbol = "";
+            read_only = "";
+          };
+
+          git_status = {
+            format = "[\\[[$all_status$ahead_behind](bg:prev_bg)\\]](bg:prev_bg)";
+            conflicted = "🏳";
+            ahead = "";
+            behind = "";
+            diverged = "";
+            up_to_date = "✓";
+            untracked = "U";
+            stashed = "S";
+            modified = "M";
+            staged = "[++\($count\)](fg:green bg:prev_bg)";
+            renamed = "R";
+            deleted = "🗑";
+          };
+
+          username = {
+            format = "${into "prev_bg" "green"}${solid "green"}[ $user](fg:black bg:green)";
+            show_always = true;
+            disabled = false;
+          };
         };
       };
-
-    };
   };
 }

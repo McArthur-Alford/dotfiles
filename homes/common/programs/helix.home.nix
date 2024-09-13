@@ -44,7 +44,8 @@ with config.lib.stylix.colors;
         palette = {
           purple_primary = "#875FAF";
           purple_secondary = "#AB92FC";
-          orange_primary = "#D99145";
+          # orange_primary = "#D99145";
+          orange_primary = "${orange}";
           light_purple = "#d1c3f4";
           green_light = "#adf182";
           gray_dark = "#9590bd";
