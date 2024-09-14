@@ -256,21 +256,22 @@ in
     direnv.enableNushellIntegration = true;
 
     starship =
+      with config.lib.stylix.colors;
       let
         rhs = fade {
           fromColor = "none";
-          toColor = "black";
+          toColor = "#${base01}";
           fadeType = "fadeIn";
           style = "empty";
         };
         plhs = fade {
           fromColor = "none";
-          toColor = "cyan";
+          toColor = "#${green}";
           fadeType = "fadeIn";
           style = "slash";
         };
         prhs = fade {
-          fromColor = "cyan";
+          fromColor = "#${green}";
           toColor = "none";
           fadeType = "fadeOut";
           style = "slash";
@@ -320,25 +321,16 @@ in
 
           palettes.custom = {
             none = "0";
-            red = "1";
-            green = "2";
-            yellow = "3";
-            purple = "4";
-            magenta = "5";
-            cyan = "6";
-            white = "7";
             comment = "10";
-            black = "11";
-            orange = "9";
             light_comment = "103";
           };
 
           nix_shell = {
             disabled = false;
-            format = "${seperator "black"}$state${solid "black"}[$name](fg:white bg:black)${solid "prev_bg"}";
-            impure_msg = "[impure](bg:black fg:bold red)";
-            pure_msg = "[pure](bg:black fg:bold green)";
-            unknown_msg = "[unknown](bg:black fg:bold orange)";
+            format = "${seperator "#${base01}"}$state${solid "#${base01}"}[$name](fg:#${base07} bg:#${base01})${solid "prev_bg"}";
+            impure_msg = "[impure](bg:#${base01} fg:bold #${red})";
+            pure_msg = "[pure](bg:#${base01} fg:bold #${green})";
+            unknown_msg = "[unknown](bg:#${base01} fg:bold #${orange})";
           };
 
           line_break = {
@@ -350,13 +342,13 @@ in
               fadeType = "fill";
               style = "slash";
             };
-            style = "fg:red bg:none";
+            style = "fg:#${red} bg:none";
           };
 
           character = {
             format = "$symbol";
-            success_symbol = "[](fg:green bg:prev_bg)";
-            error_symbol = "[](fg:red bg:prev_bg)";
+            success_symbol = "[](fg:#${green} bg:prev_bg)";
+            error_symbol = "[](fg:#${red} bg:prev_bg)";
           };
 
           battery = {
@@ -366,15 +358,15 @@ in
             display = [
               {
                 threshold = 25;
-                style = "bold red";
+                style = "bold #${red}";
               }
               {
                 threshold = 50;
-                style = "bold yellow";
+                style = "bold #${yellow}";
               }
               {
                 threshold = 100;
-                style = "bold green";
+                style = "bold #${green}";
               }
             ];
           };
@@ -388,7 +380,7 @@ in
           };
 
           git_branch = {
-            format = "${seperator "black"}[$symbol$branch](fg:white bg:black)${solid "prev_bg"}";
+            format = "${seperator "#${base01}"}[$symbol$branch](fg:#${base07} bg:#${base01})${solid "prev_bg"}";
             symbol = " ";
           };
 
@@ -401,7 +393,7 @@ in
           };
 
           directory = {
-            format = "${seperator "cyan"}[$read_only](fg:red bg:prev_bg)[$path](fg:black bg:cyan)${solid "prev_bg"}";
+            format = "${seperator "#${orange}"}[$read_only](fg:#${red} bg:prev_bg)[$path](fg:#${base00} bg:#${orange})${solid "prev_bg"}";
             style = "fg:0 bg:2";
             truncation_symbol = "…/";
             truncate_to_repo = true;
@@ -420,13 +412,13 @@ in
             untracked = "U";
             stashed = "S";
             modified = "M";
-            staged = "[++\($count\)](fg:green bg:prev_bg)";
+            staged = "[++\($count\)](fg:#${green} bg:prev_bg)";
             renamed = "R";
             deleted = "🗑";
           };
 
           username = {
-            format = "${into "prev_bg" "green"}${solid "green"}[ $user](fg:black bg:green)${solid "prev_bg"}";
+            format = "${into "prev_bg" "#${green}"}${solid "#${green}"}[ $user](fg:#${base01} bg:#${green})${solid "prev_bg"}";
             show_always = true;
             disabled = false;
           };

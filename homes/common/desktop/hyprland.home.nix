@@ -15,11 +15,7 @@ let
     else if hostname == "grimoire" then
       [ ''monitor=MAIN,3840x2160@60,3840x0,1'' ]
     else if hostname == "mosaic" then
-      [
-        ''
-          monitor = ",preferred,auto,1.333333";
-        ''
-      ]
+      [ ''monitor=,preferred,auto,1'' ]
     else
       "";
 in
