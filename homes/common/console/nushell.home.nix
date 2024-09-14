@@ -361,7 +361,7 @@ in
 
           battery = {
             full_symbol = "";
-            format = "[](fg:comment)[ $symbol$percentage ]($style bg:comment)";
+            format = "${into "prev_bg" "comment"}[ $symbol$percentage ]($style bg:comment)";
 
             display = [
               {
