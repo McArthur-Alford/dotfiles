@@ -55,13 +55,13 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    config = {
-      common.default = [ "*" ];
-      hyprland.default = [
-        "hyprland"
-        "gtk"
-      ];
-    };
+    # config = {
+    #   common.default = [ "*" ];
+    #   hyprland.default = [
+    #     "hyprland"
+    #     "gtk"
+    #   ];
+    # };
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
       # pkgs.xdg-desktop-portal-wlr
@@ -79,7 +79,7 @@
           # command = "
           #   dbus-run-session ${pkgs.cage}/bin/cage -s -- ${lib.getExe config.programs.regreet.package}
           # ";
-          command = "${inputs.hyprland.packages.${system}.default}/bin/Hyprland";
+          command = "dbus-run-session ${inputs.hyprland.packages.${system}.default}/bin/Hyprland";
           user = "${username}";
         };
         default_session = initial_session;
