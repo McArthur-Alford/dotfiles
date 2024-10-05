@@ -21,5 +21,8 @@
     # gaming stuff
     lutris
     protonup-ng
+
+    # minecraft
+    prismlauncher
   ];
 }

@@ -34,6 +34,7 @@
       allowedTCPPorts = [
         25565
         25566
+        25049
         3000
         5432
       ];
@@ -43,7 +44,10 @@
           to = 25566;
         }
       ];
-      allowedUDPPorts = [ 3000 ];
+      allowedUDPPorts = [
+        3000
+        25049
+      ];
     };
   };
 
@@ -93,6 +97,7 @@
   #     MAXPWM=255
   # '';
   programs.corectrl.enable = true;
+  programs.coolercontrol.enable = true;
 
   programs.steam.extest.enable = true;
 
