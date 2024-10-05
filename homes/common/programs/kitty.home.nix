@@ -5,10 +5,11 @@
       enable = true;
       theme = "Dracula";
       shellIntegration.enableZshIntegration = true;
-      # font = {
-      #   package = pkgs.fira-code;
-      #   name = "Fira Code";
-      # };
+      font = {
+        # package = pkgs.fira-code;
+        # name = "Fira Code";
+        size = lib.mkForce 14;
+      };
       settings = {
         background_opacity = lib.mkForce "0.9";
         background_blur = lib.mkForce "10";

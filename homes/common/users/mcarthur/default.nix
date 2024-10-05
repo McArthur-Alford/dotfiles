@@ -4,6 +4,7 @@
     ../../programs/spotify.home.nix
     ../../programs/firefox.home.nix
     ../../programs/fastfetch.home.nix
+    ../../programs/vencord.home.nix
   ];
 
   home.packages = with pkgs; [
