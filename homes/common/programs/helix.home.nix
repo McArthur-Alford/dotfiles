@@ -24,14 +24,31 @@ with config.lib.stylix.colors;
         formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
         language-servers = [ "nil" ];
       }
-    ];
-
-    languages.language-servers = [
       {
-        name = "nil";
-        command = "${pkgs.nil}/bin/nil";
+        name = "toml";
+        auto-format = true;
+        language-servers = [ "taplo" ];
       }
     ];
+
+    languages.language-server = {
+      nil = {
+        command = "${pkgs.nil}/bin/nil";
+        config = {
+          nix.flake = {
+            autoEvalInputs = true;
+            autoArchive = true;
+          };
+        };
+      };
+      taplo = {
+        command = "${pkgs.taplo}/bin/taplo";
+        args = [
+          "lsp"
+          "stdio"
+        ];
+      };
+    };
 
     themes = {
       alucard = {

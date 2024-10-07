@@ -2,7 +2,6 @@
   description = "Magical NixOS/Home-Manager Configuration";
 
   inputs = {
-    # All flake references used to build NixOS
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Nix Packages
     nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack";
     nix-index-database.url = "github:Mic92/nix-index-database";
@@ -11,11 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      # url = "github:hyprwm/Hyprland";
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      # type = "git";
-      # submodules = true;
-      # inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
@@ -37,23 +32,17 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     helix.url = "github:helix-editor/helix/2cadec0";
     ags.url = "github:Aylur/ags";
-
     base16.url = "github:SenchoPens/base16.nix";
-
     base16-helix.url = "github:McArthur-Alford/base16-helix";
     base16-helix.flake = false;
-
     stylix.url = "github:danth/stylix";
-    # stylix.inputs.base16.follows = "base16";
     stylix.inputs.base16-helix.follows = "base16-helix";
-
     sops-nix.url = "github:Mic92/sops-nix";
-
     peerix = {
       url = "github:cid-chan/peerix";
-      # url = "github:mipmip/peerix"; # temporary fix for python
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lan-mouse.url = "github:feschber/lan-mouse";
   };
 
   outputs =

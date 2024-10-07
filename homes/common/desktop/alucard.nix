@@ -8,6 +8,7 @@
   imports = [
     ./hyprland.home.nix
     ../programs/rofi.home.nix
+    ../programs/lan-mouse.home.nix
     ../services/eww.home.nix
     ../programs/kitty.home.nix
     # ../services/swaylock.home.nix
