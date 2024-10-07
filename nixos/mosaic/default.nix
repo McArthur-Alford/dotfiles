@@ -49,6 +49,7 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.power-profiles-daemon.enable = true;
+  services.dnsmasq.enable = true;
 
   fonts = {
     enableDefaultPackages = true;
