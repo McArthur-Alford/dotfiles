@@ -37,6 +37,7 @@
         25049
         3000
         5432
+        4242
       ];
       allowedUDPPortRanges = [
         {
