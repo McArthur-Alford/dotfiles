@@ -10,16 +10,16 @@
 
     settings = {
       release_bind = [
-        "Z"
+        "KeyZ"
       ];
       top = {
         hostname = "thaumaturge";
-        ips = "thaumaturge.local";
+        ips = [ "thaumaturge.local" ];
         activate_on_startup = true;
       };
       bottom = {
         hostname = "mosaic";
-        ips = "mosaic.local";
+        ips = [ "mosaic.local" ];
         activate_on_startup = true;
       };
     };
