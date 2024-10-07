@@ -15,7 +15,7 @@
           "KeyZ"
         ];
       }
-      ++ (
+      // (
         if hostname == "thaumaturge" then
           {
             bottom = {
