@@ -13,7 +13,7 @@
         "KeyZ"
       ];
       top = {
-        hostname = "thaumaturge";
+        hostname = "thaumaturge.local";
         # ips = [ "thaumaturge.local" ];
         activate_on_startup = true;
       };
