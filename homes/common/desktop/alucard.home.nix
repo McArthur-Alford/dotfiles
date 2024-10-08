@@ -14,6 +14,7 @@
     # ../services/swaylock.home.nix
     ../services/ags.home.nix
     ../services/xdg-mime.home.nix
+    ./niri.nix
   ];
 
   services.mako = {

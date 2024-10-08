@@ -43,6 +43,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lan-mouse.url = "github:feschber/lan-mouse";
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs =
