@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./hyprland.home.nix
+    ./niri.home.nix
     ./hyprlock.home.nix
     ../programs/rofi.home.nix
     ../programs/lan-mouse.home.nix

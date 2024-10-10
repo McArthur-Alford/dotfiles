@@ -4,6 +4,7 @@
     ../../programs/spotify.home.nix
     ../../programs/firefox.home.nix
     ../../programs/fastfetch.home.nix
+    ../../programs/zathura.home.nix
     ../../programs/vencord.home.nix
   ];
 
@@ -86,5 +87,10 @@
     polkit
     qsynth
     radeontop
+
+    # Other random stuff that may or may not be used
+    brightnessctl
+    acpi
+    playerctl
   ];
 }

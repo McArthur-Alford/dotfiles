@@ -80,7 +80,7 @@
           hostname = "mosaic";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop = "alucard";
+          desktop = "alucard-niri";
           shell = "alucard";
         };
         "mcarthur@thaumaturge" = lib.mkHome {
