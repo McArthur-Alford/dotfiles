@@ -7,6 +7,7 @@
 {
   imports = [
     ./hyprland.home.nix
+    ./hyprlock.home.nix
     ../programs/rofi.home.nix
     ../programs/lan-mouse.home.nix
     ../services/eww.home.nix

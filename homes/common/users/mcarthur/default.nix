@@ -17,7 +17,7 @@
     feh # Image Viewer
     mpv # Media Player
     obs-studio # Recording
-    # pavucontrol # Audio Control
+    pavucontrol # Audio Control
     easyeffects
     vlc # Media Player
 
