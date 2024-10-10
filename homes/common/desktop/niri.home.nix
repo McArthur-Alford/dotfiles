@@ -24,14 +24,39 @@
           "XDG_CURRENT_DESKTOP"
         ];
       }
+      {
+        command = [
+          "swww"
+          "init"
+        ];
+      }
       { command = [ "${pkgs.hypridle}/bin/hypridle" ]; }
-      { command = [ "swww init" ]; }
       { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
     ];
 
     input = {
       focus-follows-mouse.enable = true;
       warp-mouse-to-focus = true;
+    };
+
+    outputs."eDP-1".scale = 1.2;
+
+    layout = {
+      focus-ring = {
+        enable = true;
+        width = 2;
+      };
+      border = {
+        enable = false;
+        width = 2;
+      };
+      gaps = 8;
+      struts = {
+        bottom = 1;
+        top = 1;
+        left = 1;
+        right = 1;
+      };
     };
 
     binds = with config.lib.niri.actions; rec {
@@ -50,10 +75,10 @@
       "Mod+Shift+M".action = quit { skip-confirmation = true; };
       "Mod+E".action = center-column;
       # Navigation:
-      "Mod+H".action = focus-column-left;
-      "Mod+L".action = focus-column-right;
-      "Mod+K".action = focus-window-up;
-      "Mod+J".action = focus-window-down;
+      "Mod+H".action = focus-column-left-or-last;
+      "Mod+L".action = focus-column-right-or-first;
+      "Mod+K".action = focus-window-or-workspace-up;
+      "Mod+J".action = focus-window-or-workspace-down;
       "Mod+Left".action = focus-column-left;
       "Mod+Right".action = focus-column-right;
       "Mod+Up".action = focus-window-up;
@@ -61,8 +86,8 @@
       # Moving Windows:
       "Mod+Shift+H".action = move-column-left;
       "Mod+Shift+L".action = move-column-right;
-      "Mod+Shift+K".action = move-window-up;
-      "Mod+Shift+J".action = move-window-down;
+      "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
+      "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
       "Mod+Shift+Left".action = move-column-left;
       "Mod+Shift+Right".action = move-column-right;
       "Mod+Shift+Up".action = move-window-up;

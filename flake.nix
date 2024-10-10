@@ -108,7 +108,7 @@
           hostname = "mosaic";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop = "alucard";
+          desktop = "alucard-niri";
         };
         thaumaturge = lib.mkHost {
           hostname = "thaumaturge";
