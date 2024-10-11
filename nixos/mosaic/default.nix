@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware.nix
+    ../../nixos/common/programs/steam.nix
     ../../nixos/common/services/peerix.nix
     ../../nixos/common/hardware/systemd-boot.nix
     ../../nixos/common/services/audio.nix
