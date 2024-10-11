@@ -19,9 +19,7 @@
       NIXOS_OZONE_WL = "1";
     };
     systemPackages = with pkgs; [
-      grim
       mpvpaper
-      slurp
       swappy
       wl-clipboard
       wlr-randr
@@ -32,20 +30,16 @@
     ];
   };
 
+  programs.dconf.enable = true;
+
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
-    # config = {
-    #   common.default = [ "*" ];
-    #   hyprland.default = [
-    #     "hyprland"
-    #     "gtk"
-    #   ];
-    # };
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      # pkgs.xdg-desktop-portal-wlr
-      # pkgs.xdg-desktop-portal-hyprland
+    # xdgOpenUsePortal = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+      # xdg-desktop-portal-hyprland
     ];
   };
 }

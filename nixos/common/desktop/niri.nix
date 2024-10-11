@@ -17,7 +17,6 @@
   services = {
     fprintd.enable = true;
     greetd = {
-      enable = true;
       settings = rec {
         initial_session = {
           command = "${pkgs.niri-unstable}/bin/niri-session";

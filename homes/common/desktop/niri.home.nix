@@ -16,22 +16,24 @@
     prefer-no-csd = true;
 
     spawn-at-startup = [
-      {
-        command = [
-          "dbus-update-activation-environment"
-          "--systemd"
-          "WAYLAND_DISPLAY"
-          "XDG_CURRENT_DESKTOP"
-        ];
-      }
+      # {
+      # command = [
+      #   "dbus-update-activation-environment"
+      #   "--systemd"
+      #   "WAYLAND_DISPLAY"
+      #   "XDG_CURRENT_DESKTOP"
+      # ];
+      # }
+      { command = [ "${pkgs.xwayland-satellite}/bin/xwayland-satellite" ]; }
+      { command = [ "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" ]; }
+      { command = [ "${pkgs.hypridle}/bin/hypridle" ]; }
+      # { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
       {
         command = [
           "swww"
           "init"
         ];
       }
-      { command = [ "${pkgs.hypridle}/bin/hypridle" ]; }
-      { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
     ];
 
     input = {
@@ -40,6 +42,11 @@
     };
 
     outputs."eDP-1".scale = 1.2;
+
+    environment = {
+      QT_QPA_PLATFORM = "wayland";
+      DISPLAY = ":0";
+    };
 
     layout = {
       focus-ring = {

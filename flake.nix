@@ -87,7 +87,7 @@
           hostname = "thaumaturge";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop = "alucard";
+          desktop = "alucard-niri";
           shell = "alucard";
         };
       };
@@ -114,7 +114,7 @@
           hostname = "thaumaturge";
           username = "mcarthur";
           system = "x86_64-linux";
-          desktop = "alucard";
+          desktop = "alucard-niri";
         };
       };
 
