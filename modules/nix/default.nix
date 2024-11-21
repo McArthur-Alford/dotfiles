@@ -1,4 +1,9 @@
-{ systemSettings, pkgs, ... }:
+{
+  systemSettings,
+  pkgs,
+  lib,
+  ...
+}:
 {
   nix = {
     gc = {
@@ -28,6 +33,16 @@
         id = "devtemplates";
         type = "indirect";
       };
+    };
+  };
+
+  nixpkgs = {
+    hostPlatform = lib.mkDefault systemSettings.system;
+    overlays =
+      [
+      ];
+    config = {
+      allowUnfree = true;
     };
   };
 

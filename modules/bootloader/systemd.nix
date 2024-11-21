@@ -1,5 +1,4 @@
-_:
-{
+_: {
   boot = {
     loader = {
       systemd-boot = {
@@ -9,5 +8,6 @@ _:
       efi.canTouchEfiVariables = true;
       timeout = 5; # Grub auto select time
     };
+
   };
 }

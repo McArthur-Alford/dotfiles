@@ -17,9 +17,9 @@
     "${self}/modules/services/avahi.nix"
     "${self}/modules/services/ratbag.nix"
     "${self}/modules/services/cachix.nix"
-    # "${self}/modules/programs/steam.nix"
-    # "${self}/modules/programs/vencord.nix"
-    # "${self}/modules/programs/caching.nix"
+    "${self}/modules/programs/steam.nix"
+    "${self}/modules/programs/vencord.nix"
+    "${self}/modules/programs/caching.nix"
     "${self}/modules/kernel/patches/odysseyg9.nix"
   ];
 
@@ -96,6 +96,8 @@
       ];
     };
   };
+
+  boot.tmp.cleanOnBoot = true;
 
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="12e0", TAG+="uaccess"

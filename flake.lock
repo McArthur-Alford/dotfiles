@@ -200,8 +200,8 @@
     },
     "commonix": {
       "locked": {
-        "lastModified": 1732185920,
-        "narHash": "sha256-VKEtURW+iz8wZajcWY+3mdc3OmeMcQZJdQ8lyxVNctQ=",
+        "lastModified": 1732194570,
+        "narHash": "sha256-CMQq7DeHuNIzaNvfimnptdd1bNdMBLXofhOSGVgK4ZE=",
         "path": "/home/mcarthur/Dev/commonix",
         "type": "path"
       },

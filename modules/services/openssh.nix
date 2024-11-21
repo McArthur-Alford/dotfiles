@@ -1,4 +1,9 @@
-{ username, pkgs, ... }:
+{
+  systemSettings,
+  pkgs,
+  self,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [ sshfs ];
 
@@ -12,12 +17,22 @@
       X11Forwarding = true;
     };
   };
-  users.users.${username}.openssh.authorizedKeys.keyFiles = [
-    ../../../sshKeys/desktop.pub
-    ../../../sshKeys/laptop.pub
-    ../../../sshKeys/server.pub
-    ../../../sshKeys/mosaic.pub
-  ];
+
+  # A jank solution for the time being
+  users.users = builtins.listToAttrs (
+    map (username: {
+      name = username;
+      value = {
+        openssh.authorizedKeys.keyFiles = [
+          "${self}/assets/sshKeys/${username}/desktop.pub"
+          "${self}/assets/sshKeys/${username}/laptop.pub"
+          "${self}/assets/sshKeys/${username}/server.pub"
+          "${self}/assets/sshKeys/${username}/mosaic.pub"
+        ];
+      };
+    }) systemSettings.users
+  );
+
   programs.ssh.startAgent = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
 }

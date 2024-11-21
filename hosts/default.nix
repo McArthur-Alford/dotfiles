@@ -9,19 +9,53 @@
   imports = [
     inputs.nix-index-database.nixosModules.nix-index
     "${self}/modules/nix" # Configuration of nix itself!
-    # "${self}/modules/base" # Core configuration for ALL nixos systems
-    # "${self}/modules/scripts" # Useful scripts to have on path
-    # "${self}/modules/services/firewall.nix" # firewall configuration
-    # "${self}/modules/services/openssh.nix" # openssh configuration
+    "${self}/modules/scripts" # Useful scripts to have on path
+    "${self}/modules/services/openssh.nix" # openssh configuration
     "${self}/modules/programs/sops.nix" # SOPS secret management
-    # "${self}/modules/users/root" # sudo/root user configuration
-    # "${self}/modules/programs/nh.nix" # nix helper
+    "${self}/modules/programs/nh.nix" # nix helper
+  ];
+
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_AU.UTF-8";
+      LC_IDENTIFICATION = "en_AU.UTF-8";
+      LC_MEASUREMENT = "en_AU.UTF-8";
+      LC_MONETARY = "en_AU.UTF-8";
+      LC_NAME = "en_AU.UTF-8";
+      LC_NUMERIC = "en_AU.UTF-8";
+      LC_PAPER = "en_AU.UTF-8";
+      LC_TELEPHONE = "en_AU.UTF-8";
+      LC_TIME = "en_AU.UTF-8";
+    };
+  };
+
+  documentation = {
+    enable = true;
+    nixos.enable = true;
+    man.enable = true;
+    info.enable = true;
+    doc.enable = true;
+  };
+
+  fonts.packages = with pkgs; [
+    source-code-pro
+    font-awesome
+    corefonts
+    material-design-icons
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+      ];
+    })
+    jetbrains-mono
+    nerdfonts
+    comic-mono
   ];
 
   environment = {
     systemPackages = with pkgs; [
       git
-      # inputs.helix.packages.${system}.default
       helix
       helix-gpt
       nil
