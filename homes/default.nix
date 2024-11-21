@@ -43,7 +43,7 @@
     # To make nix3 commands consistent with your flake
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
 
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     settings = {
       auto-optimise-store = true;
       experimental-features = [

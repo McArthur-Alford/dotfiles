@@ -16,14 +16,14 @@
     prefer-no-csd = true;
 
     spawn-at-startup = [
-      # {
-      # command = [
-      #   "dbus-update-activation-environment"
-      #   "--systemd"
-      #   "WAYLAND_DISPLAY"
-      #   "XDG_CURRENT_DESKTOP"
-      # ];
-      # }
+      {
+        command = [
+          "dbus-update-activation-environment"
+          "--systemd"
+          "WAYLAND_DISPLAY"
+          "XDG_CURRENT_DESKTOP"
+        ];
+      }
       { command = [ "${pkgs.xwayland-satellite}/bin/xwayland-satellite" ]; }
       { command = [ "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" ]; }
       { command = [ "${pkgs.hypridle}/bin/hypridle" ]; }
@@ -65,6 +65,16 @@
         right = 1;
       };
     };
+
+    window-rules = [
+      {
+        matches = [
+          { app-id = "firefox"; }
+          { app-id = "vesktop"; }
+        ];
+        block-out-from = "screencast";
+      }
+    ];
 
     binds = with config.lib.niri.actions; rec {
       "Mod+C".action = close-window;

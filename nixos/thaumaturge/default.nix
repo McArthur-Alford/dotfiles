@@ -24,7 +24,8 @@
     "armv6l-linux"
   ];
 
-  time.timeZone = "Australia/brisbane";
+  time.timeZone = lib.mkForce "Australia/brisbane";
+  services.automatic-timezoned.enable = true;
 
   networking = {
     hostName = "thaumaturge";

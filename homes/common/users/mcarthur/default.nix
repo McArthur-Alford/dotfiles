@@ -24,6 +24,9 @@
 
     # Apps
     appimage-run
+    protonmail-desktop
+    protonmail-bridge
+    protonmail-bridge-gui
 
     # comma
     comma

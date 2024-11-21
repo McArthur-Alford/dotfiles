@@ -92,7 +92,7 @@
       options = "--delete-older-than 10d";
     };
 
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
 
     settings = {
       auto-optimise-store = true;
