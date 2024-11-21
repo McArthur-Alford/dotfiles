@@ -198,6 +198,18 @@
         "type": "github"
       }
     },
+    "commonix": {
+      "locked": {
+        "lastModified": 1732185920,
+        "narHash": "sha256-VKEtURW+iz8wZajcWY+3mdc3OmeMcQZJdQ8lyxVNctQ=",
+        "path": "/home/mcarthur/Dev/commonix",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/mcarthur/Dev/commonix",
+        "type": "path"
+      }
+    },
     "crane": {
       "inputs": {
         "nixpkgs": [
@@ -1121,6 +1133,7 @@
         "ags": "ags",
         "base16": "base16",
         "base16-helix": "base16-helix",
+        "commonix": "commonix",
         "helix": "helix",
         "home-manager": "home-manager",
         "hyprland": "hyprland",

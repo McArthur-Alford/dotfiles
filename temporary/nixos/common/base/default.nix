@@ -85,36 +85,4 @@
 
   # We cant use command-not-found because nix-index is installed!
   programs.command-not-found.enable = false;
-
-  nix = {
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 10d";
-    };
-
-    package = pkgs.nixVersions.stable;
-
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      sandbox = true;
-    };
-
-    registry.devtemplates = {
-      to = {
-        owner = "McArthur-Alford";
-        repo = "nix-templates";
-        type = "github";
-      };
-      from = {
-        id = "devtemplates";
-        type = "indirect";
-      };
-    };
-  };
-
-  system.stateVersion = stateVersion;
 }
