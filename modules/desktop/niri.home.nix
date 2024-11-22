@@ -11,7 +11,8 @@
     inputs.niri.homeModules.stylix
     "${self}/modules/services/hyprlock.home.nix"
     "${self}/modules/services/hypridle.home.nix"
-    "${self}/modules/programs/rofi.home.nix"
+    # "${self}/modules/programs/rofi.home.nix"
+    "${self}/modules/programs/anyrun.home.nix"
     "${self}/modules/programs/lan-mouse.home.nix"
     "${self}/modules/programs/kitty.home.nix"
     "${self}/modules/services/xdg-mime.home.nix"
@@ -95,7 +96,8 @@
       "Mod+WheelScrollRight".action = focus-column-right;
       "Mod+WheelScrollLeft".action = focus-column-left;
       "Mod+Q".action = spawn "kitty";
-      "Mod+D".action = spawn "rofi" "-show" "drun";
+      # "Mod+D".action = spawn "rofi" "-show" "drun";
+      "Mod+D".action = spawn "anyrun";
       "Mod+Escape".action = spawn "hyprlock";
       "Mod+Shift+M".action = quit { skip-confirmation = true; };
       "Mod+E".action = center-column;
