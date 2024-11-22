@@ -39,8 +39,6 @@
         ++ [ inputs.anyrun-nixos-options.packages.${pkgs.system}.default ];
     };
 
-    # Inline comments are supported for language injection into
-    # multi-line strings with Treesitter! (Depends on your editor)
     extraCss = # css
       ''
         * {
@@ -62,32 +60,6 @@
           padding: 12px;
         }
       '';
-    # #match.activatable {
-    #   border-radius: 8px;
-    #   margin: 4px 0;
-    #   padding: 4px;
-    #   /* transition: 100ms ease-out; */
-    # }
-    # #match.activatable:first-child {
-    #   margin-top: 12px;
-    # }
-    # #match.activatable:last-child {
-    #   margin-bottom: 0;
-    # }
-
-    # #match:hover {
-    #   background: rgba(255, 255, 255, 0.05);
-    # }
-    # #match:selected {
-    #   background: rgba(255, 255, 255, 0.1);
-    # }
-
-    # #entry {
-    #   background: rgba(255, 255, 255, 0.05);
-    #   border: 1px solid rgba(255, 255, 255, 0.1);
-    #   border-radius: 8px;
-    #   padding: 4px 8px;
-    # }
 
     extraConfigFiles."nixos-options.ron".text =
       let
