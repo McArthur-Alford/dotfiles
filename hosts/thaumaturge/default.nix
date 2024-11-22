@@ -18,7 +18,6 @@
     "${self}/modules/services/ratbag.nix"
     "${self}/modules/services/cachix.nix"
     "${self}/modules/programs/steam.nix"
-    "${self}/modules/programs/vencord.nix"
     "${self}/modules/programs/caching.nix"
     "${self}/modules/kernel/patches/odysseyg9.nix"
   ];

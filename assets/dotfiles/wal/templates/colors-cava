@@ -1,0 +1,25 @@
+;[color]
+
+;background = {background}
+;foreground = {foreground}
+
+;gradient = 1
+;gradient_count = 4
+;gradient_color_1 = '{color10}'
+;gradient_color_2 = '{color11}'
+;gradient_color_3 = '{color12}'
+;gradient_color_4 = '{color13}'
+
+
+[color]
+
+gradient = 1
+
+gradient_color_1 = '{color0}'
+gradient_color_2 = '{color2}'
+gradient_color_3 = '{color3}'
+gradient_color_4 = '{color5}'
+gradient_color_5 = '{color7}'
+gradient_color_6 = '{color12}'
+gradient_color_7 = '{color13}'
+gradient_color_8 = '{color15}'
