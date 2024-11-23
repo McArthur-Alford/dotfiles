@@ -5,4 +5,6 @@
   users = [ "mcarthur" ];
   stateVersion = "22.11";
   trustedUsers = [ "mcarthur" ];
+  nixPath = "/etc/nixos";
+  misc = { };
 }

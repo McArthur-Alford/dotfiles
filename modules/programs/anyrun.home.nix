@@ -25,7 +25,7 @@
       layer = "overlay";
       hidePluginInfo = true;
       closeOnClick = false;
-      showResultsImmediately = false;
+      showResultsImmediately = true;
       maxEntries = 10;
 
       plugins =

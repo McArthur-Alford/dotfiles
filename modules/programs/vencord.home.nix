@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 with config.lib.stylix.colors;
 {
-  xdg.configFile."vesktop/themes/system24.theme.css".source = pkgs.writeText "system24.theme.css" ''
+  xdg.configFile."Vencord/themes/system24.theme.css".source = pkgs.writeText "system24.theme.css" ''
     /* import theme modules */
     @import url('https://refact0r.github.io/system24/src/main.css'); /* main theme css. DO NOT REMOVE */
     @import url('https://refact0r.github.io/system24/src/unrounding.css'); /* gets rid of all rounded corners. remove if you want rounded corners. */

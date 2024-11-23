@@ -5,9 +5,9 @@
     "${self}/modules/programs/firefox.home.nix"
     "${self}/modules/programs/fastfetch.home.nix"
     "${self}/modules/programs/zathura.home.nix"
-    # "${self}/modules/programs/vencord.home.nix"
-    "${self}/modules/terminal/alucard.home.nix"
+    "${self}/modules/programs/vencord.home.nix"
     "${self}/modules/programs/nixcord.home.nix"
+    "${self}/modules/terminal/alucard.home.nix"
   ];
 
   home.packages = with pkgs; [
@@ -50,7 +50,6 @@
     materia-kde-theme
     sway-contrib.grimshot
     satty
-    betterdiscordctl
 
     libsForQt5.okular
 
