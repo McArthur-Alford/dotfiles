@@ -50,6 +50,7 @@
       warp-mouse-to-focus = true;
     };
 
+    outputs."HDMI-A-1".scale = 1.0;
     outputs."eDP-1".scale = 1.2;
 
     environment = {
@@ -111,8 +112,8 @@
       "Mod+Up".action = focus-window-up;
       "Mod+Down".action = focus-window-down;
       # Moving Windows:
-      "Mod+Shift+H".action = move-column-left;
-      "Mod+Shift+L".action = move-column-right;
+      "Mod+Shift+H".action = move-column-left-or-to-monitor-left;
+      "Mod+Shift+L".action = move-column-right-or-to-monitor-right;
       "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
       "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
       "Mod+Shift+Left".action = move-column-left;

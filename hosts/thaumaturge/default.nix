@@ -20,6 +20,8 @@
     "${self}/modules/programs/steam.nix"
     "${self}/modules/programs/caching.nix"
     "${self}/modules/kernel/patches/odysseyg9.nix"
+    "${self}/modules/services/printing.nix"
+    "${self}/modules/hardware/pentablet.nix"
   ];
 
   # Enable binfmt emulation of aarch64-linux.
@@ -100,6 +102,7 @@
 
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1038", ATTRS{idProduct}=="12e0", TAG+="uaccess"
+    SUBSYSTEM=="usb", MODE="0660", GROUP="usb"
   '';
 
   systemd.targets = {

@@ -17,6 +17,7 @@
     # gaming stuff
     lutris
     protonup-ng
+    heroic
 
     # minecraft
     prismlauncher

@@ -2,7 +2,9 @@
   user = "mcarthur";
   theme = "eva";
   gui = {
-    desktop = "niri";
-    protocol = "wayland";
+    default = {
+      desktop = "niri";
+      protocol = "wayland";
+    };
   };
 }

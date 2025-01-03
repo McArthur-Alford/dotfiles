@@ -9,5 +9,6 @@ _: {
       addresses = true;
       workstation = true;
     };
+    openFirewall = true;
   };
 }

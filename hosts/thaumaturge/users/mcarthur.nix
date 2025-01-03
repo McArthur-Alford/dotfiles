@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  users.groups.usb = { };
   users.users."mcarthur" = {
     shell = pkgs.nushell; # cannot be set in home manager! very sad
     isNormalUser = true;
@@ -11,6 +12,7 @@
       "audio"
       "corectrl"
       "daemon"
+      "usb"
     ];
   };
 

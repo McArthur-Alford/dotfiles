@@ -81,12 +81,8 @@
     font-awesome
     powerline-fonts
     powerline-symbols
-    (nerdfonts.override {
-      fonts = [
-        "NerdFontsSymbolsOnly"
-        "FiraCode"
-        "DroidSansMono"
-      ];
-    })
+    nerd-fonts.symbols-only
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
   ];
 }

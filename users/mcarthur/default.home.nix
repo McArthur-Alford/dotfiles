@@ -1,4 +1,10 @@
-{ pkgs, self, ... }:
+{
+  pkgs,
+  self,
+  inputs,
+  systemSettings,
+  ...
+}:
 {
   imports = [
     "${self}/modules/programs/spotify.home.nix"
@@ -23,6 +29,8 @@
     pavucontrol # Audio Control
     easyeffects
     vlc # Media Player
+
+    inputs.zen-browser.packages."${systemSettings.system}".default
 
     # Apps
     appimage-run

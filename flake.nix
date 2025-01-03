@@ -25,10 +25,10 @@
       url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
-    Hyprscroller = {
-      url = "github:dawsers/hyprscroller";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # Hyprscroller = {
+    #   url = "github:dawsers/hyprscroller";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -51,6 +51,7 @@
     niri.url = "github:sodiboo/niri-flake";
     commonix.url = "path:/home/mcarthur/Dev/commonix";
     nixcord.url = "github:kaylorben/nixcord";
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   outputs =
