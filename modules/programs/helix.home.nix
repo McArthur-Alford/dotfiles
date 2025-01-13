@@ -15,6 +15,8 @@ with config.lib.stylix.colors;
       editor.lsp.display-inlay-hints = true;
       editor.soft-wrap.enable = true;
       editor.bufferline = "multiple";
+      editor.end-of-line-diagnostics = "hint";
+      editor.inline-diagnostics.cursor-line = "error";
     };
 
     languages.language = [
