@@ -49,7 +49,7 @@
     };
     lan-mouse.url = "github:feschber/lan-mouse";
     niri.url = "github:sodiboo/niri-flake";
-    commonix.url = "path:/home/mcarthur/Dev/commonix";
+    commonix.url = "github:mcarthur-alford/commonix";
     nixcord.url = "github:kaylorben/nixcord";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
