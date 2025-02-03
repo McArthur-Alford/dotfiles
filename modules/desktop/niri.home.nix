@@ -84,6 +84,12 @@
         ];
         block-out-from = "screencast";
       }
+      {
+        matches = [
+          { app-id = "planets"; }
+        ];
+        open-floating = true;
+      }
     ];
 
     binds = with config.lib.niri.actions; rec {

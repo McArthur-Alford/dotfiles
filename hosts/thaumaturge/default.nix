@@ -22,6 +22,7 @@
     "${self}/modules/kernel/patches/odysseyg9.nix"
     "${self}/modules/services/printing.nix"
     "${self}/modules/hardware/pentablet.nix"
+    "${self}/modules/services/ollama.nix"
   ];
 
   # Enable binfmt emulation of aarch64-linux.

@@ -1,8 +1,8 @@
 _: {
-  hardware.pulseaudio.enable = false;
   nixpkgs.config.pulseaudio = true;
 
   security.rtkit.enable = true;
+  # services.pulseaudio.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
