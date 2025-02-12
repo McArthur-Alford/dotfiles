@@ -40,7 +40,8 @@
     base16.url = "github:SenchoPens/base16.nix";
     base16-helix.url = "github:McArthur-Alford/base16-helix";
     base16-helix.flake = false;
-    stylix.url = "github:danth/stylix/ed91a20c84a80a525780dcb5ea3387dddf6cd2de";
+    # stylix.url = "github:danth/stylix/ed91a20c84a80a525780dcb5ea3387dddf6cd2de";
+    stylix.url = "github:danth/stylix";
     stylix.inputs.base16-helix.follows = "base16-helix";
     sops-nix.url = "github:Mic92/sops-nix";
     peerix = {

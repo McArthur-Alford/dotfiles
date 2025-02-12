@@ -25,7 +25,7 @@ success_symbol = "[](fg:green bg:black)[](bg:prev_fg fg:black)[](bg:pre
 
 [directory]
 format = "[ ](fg:prev_bg bg:2)[$path]($style)[$read_only ](fg:1 bg:prev_bg)"
-home_symbol = " "
+home_symbol = "~ "
 read_only = " "
 style = "fg:0 bg:2"
 truncate_to_repo = false
@@ -95,4 +95,3 @@ utc_time_offset = "local"
 disabled = false
 format = "[](fg:purple bg:prev_fg)[  [$user ](fg:black bg:prev_bg)](fg:black bg:prev_fg)[](fg:prev_bg bg:comment bold)"
 show_always = true
-

@@ -60,8 +60,8 @@
 
     layout = {
       focus-ring = {
-        enable = true;
-        width = 2;
+        enable = false;
+        width = 1;
       };
       border = {
         enable = false;

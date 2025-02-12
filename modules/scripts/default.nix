@@ -9,6 +9,7 @@ let
   # switch-all = import ./switch-all.nix { inherit pkgs; };
   # switch-home = import ./switch-home.nix { inherit pkgs; };
   switch = import ./switch.nix { inherit pkgs; };
+  uqvpn = import ./uqvpn.nix { inherit pkgs; };
 in
 {
   environment.systemPackages = [
@@ -16,5 +17,6 @@ in
     # switch-home
     # pkgs.nh
     switch
+    uqvpn
   ];
 }

@@ -6,6 +6,7 @@
     };
     zoxide = {
       enable = true;
+      enableNushellIntegration = true;
     };
     bat = {
       enable = true;
@@ -29,6 +30,8 @@
     };
     eza = {
       enable = true;
+      enableNushellIntegration = true;
+      icons = true;
     };
     tmux = {
       enable = true;

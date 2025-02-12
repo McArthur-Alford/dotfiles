@@ -9,7 +9,7 @@ with config.lib.stylix.colors;
   programs.helix = {
     enable = true;
     settings = {
-      theme = lib.mkForce "eva";
+      # theme = lib.mkForce "eva";
       editor.undercurl = true;
       editor.true-color = true;
       editor.lsp.display-inlay-hints = true;
