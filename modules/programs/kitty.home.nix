@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 {
   programs = {
+    ghostty.enable = true;
     kitty = {
       enable = true;
       shellIntegration.enableZshIntegration = true;

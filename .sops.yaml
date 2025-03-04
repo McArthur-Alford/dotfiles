@@ -1,0 +1,37 @@
+keys:
+  - &thaumaturge_mcarthur age1r7q68p48lrlqmg6pdylmaqw46lqu7zwhjm8wf0fup9l44f2td32shyzlvt
+  - &mosaic_mcarthur age1yl8cydf35em9d37tjuuqmx5husz2njz5897z5hy4a7ewx04mpqcsk0pqwk
+  - &benefactor_mcarthur age19drw44fj0t50cl8pyn7gpkpvefapque755sp82kedy7megn4fu6qxwj25t
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+      - age:
+          - *thaumaturge_mcarthur
+          - *mosaic_mcarthur
+          - *benefactor_mcarthur
+  - path_regex: secrets/tunnel-credentials$
+    key_groups:
+      - age:
+          - *benefactor_mcarthur
+  - path_regex: secrets/harmonia.secret
+    key_groups:
+      - age:
+        - *benefactor_mcarthur
+  - path_regex: secrets/peerix-private$
+    key_groups:
+      - age:
+          - *thaumaturge_mcarthur
+          - *mosaic_mcarthur
+          - *benefactor_mcarthur
+  - path_regex: secrets/peerix-public$
+    key_groups:
+      - age:
+          - *thaumaturge_mcarthur
+          - *mosaic_mcarthur
+          - *benefactor_mcarthur
+  - path_regex: secrets/pg_pass.txt
+    key_groups:
+      - age:
+          - *thaumaturge_mcarthur
+          - *mosaic_mcarthur
+          - *benefactor_mcarthur

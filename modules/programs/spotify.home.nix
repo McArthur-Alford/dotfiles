@@ -15,7 +15,7 @@ in
 
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.lucid;
+    # theme = spicePkgs.themes.lucid;
     # theme = spicePkgs.themes.catppuccin;
     # colorScheme = "dracula";
 

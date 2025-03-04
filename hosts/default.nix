@@ -13,6 +13,10 @@
     "${self}/modules/services/openssh.nix" # openssh configuration
     "${self}/modules/programs/sops.nix" # SOPS secret management
     "${self}/modules/programs/nh.nix" # nix helper
+
+    # Making my life easier!
+    "${self}/modules/services/envfs.nix"
+    "${self}/modules/nix/nix-ld.nix"
   ];
 
   i18n = {

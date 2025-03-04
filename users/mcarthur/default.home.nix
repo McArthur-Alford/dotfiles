@@ -87,6 +87,9 @@
     # texlive
     # texlive.combined.scheme-full
 
+    # Pomodoro!!!
+    pomodoro-gtk
+
     anki-bin
     nautilus
     usbutils
