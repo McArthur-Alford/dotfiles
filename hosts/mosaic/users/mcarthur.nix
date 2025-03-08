@@ -13,6 +13,8 @@
       "corectrl"
       "daemon"
       "usb"
+      "uucp"
+      "dialout"
     ];
   };
 

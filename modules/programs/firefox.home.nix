@@ -21,7 +21,7 @@ let
   };
 in
 {
-  home.file."${mozillaPath}/chrome".source = chrome;
+  # home.file."${mozillaPath}/chrome".source = chrome;
   # home.file."${mozillaPath}/user.js".source = userjs;
 
   home.sessionVariables.DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
