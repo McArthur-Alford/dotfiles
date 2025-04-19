@@ -18,7 +18,7 @@
 
   home.packages = with pkgs; [
     # Terminal
-    btop # Resource Management
+    btop-rocm # Resource Management
     ranger # File management
     unzip # Unzipper
 

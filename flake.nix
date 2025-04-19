@@ -59,6 +59,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.systems.follows = "systems";
     };
+    solaar.url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
   };
 
   outputs =

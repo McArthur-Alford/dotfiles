@@ -31,9 +31,22 @@ in
     package = pkgs-pinned.ollama-rocm;
     rocmOverrideGfx = "10.3.0";
     loadModels = [
-      "deepseek-r1"
+      "deepseek-r1:32b"
     ];
     acceleration = "rocm";
+  };
+
+  services.open-webui = {
+    package = pkgs-pinned.open-webui;
+    enable = true;
+    port = 49152;
+    environment = {
+      ANONYMIZED_TELEMETRY = "False";
+      DO_NOT_TRACK = "True";
+      SCARF_NO_ANALYTICS = "True";
+      OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
+      OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+    };
   };
 
   environment.systemPackages = [

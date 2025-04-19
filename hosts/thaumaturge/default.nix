@@ -24,6 +24,7 @@
     "${self}/modules/hardware/pentablet.nix"
     "${self}/modules/services/ollama.nix"
     "${self}/modules/services/openconnect-sso.nix"
+    "${self}/modules/services/docker.nix"
 
     # temporary for INFS7205:
     "${self}/modules/services/postgresql.nix"

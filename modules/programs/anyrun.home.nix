@@ -3,10 +3,12 @@
   inputs,
   pkgs,
   config,
+  lib,
   ...
 }:
 {
-  imports = [ inputs.anyrun.homeManagerModules.default ];
+  # imports = [ inputs.anyrun.homeManagerModules.default ];
+  # Obsolete, got merged into home manager
 
   programs.anyrun = {
     enable = true;

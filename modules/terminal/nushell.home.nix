@@ -309,7 +309,7 @@ in
           add_newline = false;
           scan_timeout = 10;
 
-          palette = "custom";
+          # palette = "custom";
 
           format = lib.concatStrings [
             "$username$nix_shell$directory$git_branch$git_status${out "prev_fg" "none"}$fill$battery${rhs}\n"

@@ -13,7 +13,7 @@
       "corectrl"
       "daemon"
       "usb"
+      "docker"
     ];
   };
-
 }
