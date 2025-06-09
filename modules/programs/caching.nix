@@ -23,6 +23,7 @@
       "https://cache.thaumaturgy.tech"
       "https://nixos-rocm.cachix.org"
       "https://anyrun.cachix.org"
+      "https://install.determinate.systems"
     ];
     trusted-public-keys = [
       "mmwave.cachix.org-1:51WVqkk3jgt8S5rmsTZVsFvPw06FpTd1niyrFzJ6ucQ="
@@ -30,6 +31,7 @@
       "cache.thaumaturgy.tech:KswERuauGw8ewXdUROeAYYZwPXLBhp7n3pxUBdr+H3A="
       "nixos-rocm.cachix.org-1:VEpsf7pRIijjd8csKjFNBGzkBqOmw8H9PRmgAq14LnE="
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
+      "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
     ];
   };
 }

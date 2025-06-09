@@ -51,7 +51,9 @@
     };
 
     outputs."HDMI-A-1".scale = 1.0;
+    outputs."HDMI-A-1".variable-refresh-rate = true;
     outputs."eDP-1".scale = 1.2;
+    outputs."eDP-1".variable-refresh-rate = true;
 
     environment = {
       QT_QPA_PLATFORM = "wayland";

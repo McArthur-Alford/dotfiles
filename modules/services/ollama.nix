@@ -16,7 +16,8 @@ let
     # rev = "501e3f0dec99ea54c3e2c2e0a8b3041e9c0ca830";
     # sha256 = "sha256-Z54jflalVgi5RJhdOMrz909RyB8sqaKo3/Yq5SRPNP8=";
   };
-  pkgs-pinned = import nixpkgs-pinned { inherit system; };
+  # pkgs-pinned = import nixpkgs-pinned { inherit system; };
+  pkgs-pinned = pkgs;
 in
 {
   # a temporary helpful thing?

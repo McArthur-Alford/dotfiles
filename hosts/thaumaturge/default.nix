@@ -2,6 +2,7 @@
   pkgs,
   self,
   lib,
+  inputs,
   ...
 }:
 {
@@ -22,9 +23,11 @@
     "${self}/modules/kernel/patches/odysseyg9.nix"
     "${self}/modules/services/printing.nix"
     "${self}/modules/hardware/pentablet.nix"
-    "${self}/modules/services/ollama.nix"
+    # "${self}/modules/services/ollama.nix"
     "${self}/modules/services/openconnect-sso.nix"
     "${self}/modules/services/docker.nix"
+
+    # inputs.determinate.nixosModules.default
 
     # temporary for INFS7205:
     "${self}/modules/services/postgresql.nix"
@@ -36,6 +39,9 @@
     "armv6l-linux"
   ];
 
+  # boot.kernelPackages = pkgs.linuxPackages_6_15;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
+
   time.timeZone = lib.mkForce "Australia/brisbane";
   services.automatic-timezoned.enable = true;
 
@@ -45,6 +51,8 @@
       enable = true;
       allowedTCPPorts = [
         25565
+        25564
+        24454
         25566
         25049
         3000
@@ -53,8 +61,12 @@
       ];
       allowedUDPPortRanges = [
         {
-          from = 25565;
+          from = 25564;
           to = 25566;
+        }
+        {
+          from = 24454;
+          to = 24456;
         }
       ];
       allowedUDPPorts = [

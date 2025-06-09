@@ -1,6 +1,7 @@
 { inputs, pkgs, ... }:
 {
   imports = [
+    # inputs.nixcord.homeModules.nixcord
     inputs.nixcord.homeManagerModules.nixcord
   ];
 
