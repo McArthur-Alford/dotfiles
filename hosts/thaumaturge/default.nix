@@ -86,8 +86,6 @@
   programs.corectrl.enable = true;
   programs.coolercontrol.enable = true;
 
-  programs.steam.extest.enable = true;
-
   services.dnsmasq.enable = true;
 
   fonts = {

@@ -31,11 +31,24 @@
     services.lactd.wantedBy = [ "multi-user.target" ];
   };
 
+  # temporary capsysnice fix?
+  services.ananicy = {
+    enable = true;
+    package = pkgs.ananicy-cpp;
+    rulesProvider = pkgs.ananicy-cpp;
+    extraRules = [
+      {
+        "name" = "gamescope";
+        "nice" = -20;
+      }
+    ];
+  };
+
   programs = {
     gamescope = {
       package = pkgs.gamescope;
       enable = true;
-      capSysNice = true;
+      capSysNice = false;
     };
 
     steam = {
@@ -46,6 +59,8 @@
         enable = true;
         package = pkgs.protontricks;
       };
+
+      extest.enable = true;
 
       package = pkgs.steam.override {
         extraPkgs =
