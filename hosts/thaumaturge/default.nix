@@ -18,7 +18,7 @@
     "${self}/modules/services/avahi.nix"
     "${self}/modules/services/ratbag.nix"
     "${self}/modules/services/cachix.nix"
-    "${self}/modules/programs/steam.nix"
+    "${self}/modules/gaming/gaming.nix"
     "${self}/modules/programs/caching.nix"
     "${self}/modules/kernel/patches/odysseyg9.nix"
     "${self}/modules/services/printing.nix"
@@ -39,8 +39,10 @@
     "armv6l-linux"
   ];
 
-  # boot.kernelPackages = pkgs.linuxPackages_6_15;
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_6_15;
+  # boot.kernelPackages = pkgs.linuxPackages_6_12;
+
+  boot.kernelParams = [ "intel_pstate=disable" ];
 
   time.timeZone = lib.mkForce "Australia/brisbane";
   services.automatic-timezoned.enable = true;

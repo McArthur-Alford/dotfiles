@@ -18,6 +18,7 @@
     "${self}/modules/services/xdg-mime.home.nix"
     "${self}/modules/services/mako.home.nix"
   ];
+  services.swww.enable = true;
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   programs.niri.package = pkgs.niri-unstable;
   programs.niri.enable = true;
@@ -39,8 +40,7 @@
       # { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
       {
         command = [
-          "swww"
-          "init"
+          "swww-daemon"
         ];
       }
     ];

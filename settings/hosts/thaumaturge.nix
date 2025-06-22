@@ -6,5 +6,14 @@
   stateVersion = "22.11";
   trustedUsers = [ "mcarthur" ];
   nixPath = "/etc/nixos";
-  misc = { };
+  misc = {
+    primaryMonitor = {
+      width = 5120;
+      height = 1440;
+      steamWidth = 2560;
+      refreshRate = 240;
+      vrr = false;
+      hdr = false;
+    };
+  };
 }

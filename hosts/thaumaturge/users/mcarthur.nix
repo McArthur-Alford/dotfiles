@@ -14,6 +14,7 @@
       "daemon"
       "usb"
       "docker"
+      "gamemode"
     ];
   };
 }

@@ -1,5 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, self, ... }:
 {
+  imports = [
+    "${self}/modules/gaming/steam.home.nix"
+  ];
+
   home.packages = with pkgs; [
     # Fan control stuff
     lm_sensors
