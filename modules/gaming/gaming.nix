@@ -6,8 +6,10 @@
   lib,
   config,
   inputs,
+  self,
   ...
 }:
+
 {
   hardware.graphics = {
     enable = true;

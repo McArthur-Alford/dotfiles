@@ -2,6 +2,7 @@
 {
   imports = [
     "${self}/modules/gaming/steam.home.nix"
+    "${self}/modules/gaming/games/vintage-story.home.nix"
   ];
 
   home.packages = with pkgs; [

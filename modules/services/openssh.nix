@@ -33,6 +33,6 @@
     }) systemSettings.users
   );
 
-  programs.ssh.startAgent = true;
+  # programs.ssh.startAgent = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
 }

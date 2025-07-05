@@ -1,4 +1,0 @@
-{ pkgs, ... }:
-{
-  xdg.mimeApps.defaultApplications = { };
-}

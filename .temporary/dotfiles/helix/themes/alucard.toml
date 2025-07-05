@@ -1,3 +1,0 @@
-inherits = "dracula"
-"ui.background" = {}
-"ui.virtual.inlay-hint" = { fg = "cyan" }

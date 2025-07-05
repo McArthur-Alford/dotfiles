@@ -45,10 +45,12 @@ let
       "${toString REFRESH_RATE}"
       "-f"
       "--expose-wayland"
-      "--backend"
-      "sdl"
+      # "--backend"
+      # "sdl"
       "--rt"
       "--immediate-flips"
+      "--force-grab-cursor"
+
     ]
     ++ lib.optionals HDR [
       "--hdr-enabled"
@@ -109,13 +111,26 @@ let
     # All arguments passed to this script are forwarded.
     exec ${gamescope-run}/bin/gamescope-run -x "-e" ${lib.getExe pkgs.steam} -tenfoot -steamdeck -gamepadui $argv
   '';
+  steam-desktop-wrapper = pkgs.writeScriptBin "steam-desktop" ''
+    #!${lib.getExe pkgs.fish}
+    ${lib.getExe pkgs.steam}
+  '';
 in
 {
   home.packages = with pkgs; [
     steam-run
     gamescope-run
     steam-wrapper
+    steam-desktop-wrapper
+    mangohud
   ];
+
+  # programs.mangohud = {
+  #   enable = true;
+  #   settings = {
+  #     font_size = lib.mkForce 16;
+  #   };
+  # };
 
   xdg.desktopEntries =
     let

@@ -1,4 +1,0 @@
-_:
-{
-  users.users.root = { };
-}

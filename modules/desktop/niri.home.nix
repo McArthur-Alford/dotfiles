@@ -17,6 +17,7 @@
     "${self}/modules/programs/kitty.home.nix"
     "${self}/modules/services/xdg-mime.home.nix"
     "${self}/modules/services/mako.home.nix"
+    "${self}/modules/protocol/wayland.home.nix"
   ];
   services.swww.enable = true;
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];

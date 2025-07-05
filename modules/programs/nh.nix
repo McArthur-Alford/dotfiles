@@ -11,6 +11,6 @@
   };
 
   environment.sessionVariables = {
-    FLAKE = lib.mkForce "/etc/nixos";
+    NH_FLAKE = lib.mkForce "/etc/nixos";
   };
 }

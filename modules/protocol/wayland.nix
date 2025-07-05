@@ -6,6 +6,7 @@
     variables = {
       XDG_SESSION_TYPE = "wayland";
       NIXOS_OZONE_WL = "1";
+      XDG_CURRENT_DESKTOP = "sway";
     };
     sessionVariables = {
       QT_QPA_PLATFORM = "wayland";
@@ -25,6 +26,7 @@
       qt6.full
       xwayland
       xdg-utils
+      xdg-desktop-portal
     ];
   };
 
@@ -33,7 +35,7 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    config.common.default = "*";
+    config.common.default = "gnome;gtk;wlr;";
     extraPortals = with pkgs; [
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk

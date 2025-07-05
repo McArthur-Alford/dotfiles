@@ -45,7 +45,7 @@
         enable = true;
       };
       shellAliases = {
-        ls = "eza";
+        # ls = "eza";
         cat = "bat";
         # grep = "rga";
         find = "fd";

@@ -68,7 +68,7 @@ let
     '';
 in
 {
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
+  imports = [ inputs.stylix.homeModules.stylix ];
   home.packages = with pkgs; [ palette ];
 
   stylix = {
