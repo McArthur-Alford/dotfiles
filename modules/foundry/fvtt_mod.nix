@@ -15,8 +15,8 @@ in
   options.fvtt = {
     enable = mkEnableOption "foundry vtt";
     instances = mkOption { type = types.anything; };
-    tunnel = mkOption { type = types.string; };
-    interface = mkOption { type = types.string; };
+    tunnel = mkOption { type = types.str; };
+    interface = mkOption { type = types.str; };
   };
 
   config = mkIf cfg.enable {
@@ -115,4 +115,3 @@ in
     );
   };
 }
-

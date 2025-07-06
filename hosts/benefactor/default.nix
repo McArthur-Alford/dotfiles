@@ -9,7 +9,6 @@
 {
   imports = [
     ./hardware.nix
-    "${self}/modules/hardware/amd.nix"
     "${self}/modules/services/pipewire.nix"
     "${self}/modules/services/peerix.nix"
     "${self}/modules/services/gnome-keyring.nix"
@@ -149,20 +148,21 @@
 
   # Server hosting stuff below this point:
   sops.secrets.tunnel-credentials = {
-    owner = "cloudflared";
-    group = "cloudflared";
+    owner = "mcarthur";
+    group = "mcarthur";
     name = "tunnel-credentials.json";
     format = "binary";
-    sopsFile = ../../secrets/tunnel-credentials;
+    sopsFile = "${self}/secrets/tunnel-credentials";
+    # restartUnits = [ "cloudflared-tunnel-e8e9f688-e79d-44d6-a871-02656fc3dd8e.service" ];
   };
 
   services.cloudflared = {
     enable = true;
-    user = "cloudflared";
-    group = "cloudflared";
+    # user = "cloudflared";
+    # group = "cloudflared";
     tunnels = {
       "e8e9f688-e79d-44d6-a871-02656fc3dd8e" = {
-        credentialsFile = config.sops.secrets.tunnel-credentials.path;
+        credentialsFile = "${config.sops.secrets.tunnel-credentials.path}";
         default = "http_status:404";
         # warp-routing.enabled = true;
         ingress = {
@@ -181,6 +181,12 @@
       };
     };
   };
+
+  # systemd.services.cloudflared-tunnel-e8e9f688-e79d-44d6-a871-02656fc3dd8e.serviceConfig = {
+  #   DynamicUser = lib.mkForce false;
+  #   User = "cloudflared";
+  #   Group = "cloudflared";
+  # };
 
   security.acme = {
     acceptTerms = true;

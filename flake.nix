@@ -2,6 +2,7 @@
   description = "Magical NixOS/Home-Manager Configuration";
 
   inputs = {
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; # Nix Packages
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # Nix Packages
     nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack";
     # determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";

@@ -6,6 +6,7 @@
   lib,
   pkgs,
   modulesPath,
+  systemSettings,
   ...
 }:
 
@@ -13,6 +14,8 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+
+  system.stateVersion = systemSettings.stateVersion;
 
   boot.initrd.availableKernelModules = [
     "ata_generic"
