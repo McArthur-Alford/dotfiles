@@ -4,6 +4,10 @@ let
   VSPkgs = inputs.vintagestory-nix.packages.${systemSettings.system}.net8;
 in
 {
+  imports = [
+    inputs.vintagestory-nix.homeManagerModules.default
+  ];
+
   programs.vs-launcher = {
     enable = true;
     gameVersionsDir = ".config/VSLGameVersions";

@@ -1708,7 +1708,7 @@
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
-        "vintage-story-nix": "vintage-story-nix",
+        "vintagestory-nix": "vintagestory-nix",
         "zen-browser": "zen-browser"
       }
     },
@@ -2119,7 +2119,7 @@
         "type": "github"
       }
     },
-    "vintage-story-nix": {
+    "vintagestory-nix": {
       "inputs": {
         "nixpkgs": "nixpkgs_15"
       },

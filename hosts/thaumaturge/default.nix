@@ -23,14 +23,10 @@
     "${self}/modules/kernel/patches/odysseyg9.nix"
     "${self}/modules/services/printing.nix"
     "${self}/modules/hardware/pentablet.nix"
-    # "${self}/modules/services/ollama.nix"
     "${self}/modules/services/openconnect-sso.nix"
     "${self}/modules/services/docker.nix"
 
     # inputs.determinate.nixosModules.default
-
-    # temporary for INFS7205:
-    "${self}/modules/services/postgresql.nix"
   ];
 
   # Enable binfmt emulation of aarch64-linux.
@@ -60,6 +56,7 @@
         3000
         5432
         4242
+        42420
       ];
       allowedUDPPortRanges = [
         {
@@ -75,6 +72,7 @@
         3000
         25049
         4242
+        42420
       ];
     };
   };

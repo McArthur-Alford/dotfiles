@@ -61,7 +61,7 @@
       # inputs.systems.follows = "systems";
     };
     solaar.url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
-    vintage-story-nix.url = "github:PierreBorine/vintagestory-nix";
+    vintagestory-nix.url = "github:PierreBorine/vintagestory-nix";
   };
 
   outputs =
