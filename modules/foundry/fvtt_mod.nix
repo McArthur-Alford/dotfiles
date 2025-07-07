@@ -21,10 +21,12 @@ in
 
   config = mkIf cfg.enable {
     networking = {
-      bridges.br0.interfaces = [ "${interface}" ];
+      # bridges.br0.interfaces = [ "${interface}" ];
+      bridges.br0.interfaces = [ ];
 
       useDHCP = false;
-      interfaces."br0".useDHCP = true;
+      interfaces."${interface}".useDHCP = true;
+      # interfaces."br0".useDHCP = true;
 
       interfaces."br0".ipv4.addresses = [
         {
@@ -71,7 +73,7 @@ in
                 30000
               ];
             };
-            networking.useDHCP = lib.mkForce true;
+            networking.useDHCP = lib.mkForce false;
             networking.useHostResolvConf = lib.mkForce false;
             services.resolved.enable = true;
             environment.systemPackages = with pkgs; [

@@ -20,9 +20,13 @@
     "${self}/modules/services/openconnect-sso.nix"
     "${self}/modules/services/docker.nix"
     "${self}/modules/foundry/fvtt_mod.nix"
+    "${self}/modules/services/peerix.nix"
 
     # inputs.determinate.nixosModules.default
   ];
+
+  hardware.graphics.enable = true;
+  # services.xserver.videoDrivers = [ "nvidia" ];
 
   environment.systemPackages = with pkgs; [ nginx ];
 
@@ -41,6 +45,7 @@
   services.automatic-timezoned.enable = true;
 
   networking = {
+    hostName = "benefactor";
     networkmanager.enable = true;
 
     firewall = {
@@ -148,12 +153,12 @@
 
   # Server hosting stuff below this point:
   sops.secrets.tunnel-credentials = {
-    owner = "mcarthur";
-    group = "mcarthur";
+    owner = "cloudflared";
+    group = "cloudflared";
     name = "tunnel-credentials.json";
     format = "binary";
     sopsFile = "${self}/secrets/tunnel-credentials";
-    # restartUnits = [ "cloudflared-tunnel-e8e9f688-e79d-44d6-a871-02656fc3dd8e.service" ];
+    restartUnits = [ "cloudflared-tunnel-e8e9f688-e79d-44d6-a871-02656fc3dd8e.service" ];
   };
 
   services.cloudflared = {
@@ -182,11 +187,15 @@
     };
   };
 
-  # systemd.services.cloudflared-tunnel-e8e9f688-e79d-44d6-a871-02656fc3dd8e.serviceConfig = {
-  #   DynamicUser = lib.mkForce false;
-  #   User = "cloudflared";
-  #   Group = "cloudflared";
-  # };
+  users.users.cloudflared.group = "cloudflared";
+  users.users.cloudflared.isSystemUser = true;
+  users.groups.cloudflared = { };
+
+  systemd.services.cloudflared-tunnel-e8e9f688-e79d-44d6-a871-02656fc3dd8e.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    User = "cloudflared";
+    Group = "cloudflared";
+  };
 
   security.acme = {
     acceptTerms = true;
