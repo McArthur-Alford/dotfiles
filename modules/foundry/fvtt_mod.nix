@@ -24,6 +24,7 @@ in
       bridges.br0.interfaces = [ "${interface}" ];
 
       useDHCP = false;
+      interfaces."${interface}".useDHCP = true;
       interfaces."br0".useDHCP = true;
 
       interfaces."br0".ipv4.addresses = [
@@ -115,4 +116,3 @@ in
     );
   };
 }
-
