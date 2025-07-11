@@ -20,7 +20,7 @@
       "https://mmwave.cachix.org"
       "https://cache.nixos.org/"
       "https://nix-community.cachix.org"
-      "https://cache.thaumaturgy.tech"
+      # "https://cache.thaumaturgy.tech"
       "https://nixos-rocm.cachix.org"
       "https://anyrun.cachix.org"
       "https://install.determinate.systems"
