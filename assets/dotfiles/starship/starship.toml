@@ -1,0 +1,97 @@
+add_newline = false
+format = "[](bg:black)$character$username$nix_shell$directory$git_branch$git_status[](fg:prev_bg)$fill[$battery](bold bg:6)\n[ ](bg:black)[$shell](fg:black bg:prev_bg)[](fg:prev_bg bg:white)[](fg:white)\n"
+palette = "custom"
+scan_timeout = 10
+
+[battery]
+format = "[](fg:comment)[ $symbol$percentage ]($style bg:comment)"
+full_symbol = ""
+[[battery.display]]
+style = "bold red"
+threshold = 25
+
+[[battery.display]]
+style = "bold yellow"
+threshold = 50
+
+[[battery.display]]
+style = "bold green"
+threshold = 100
+
+[character]
+error_symbol = "[](fg:red)[](bg:prev_fg fg:black)[](bg:prev_bg fg:comment)[](bg:prev_fg)"
+format = "$symbol"
+success_symbol = "[](fg:green bg:black)[](bg:prev_fg fg:black)[](bg:prev_bg fg:comment)[](bg:prev_fg)"
+
+[directory]
+format = "[ ](fg:prev_bg bg:2)[$path]($style)[$read_only ](fg:1 bg:prev_bg)"
+home_symbol = "~ "
+read_only = " "
+style = "fg:0 bg:2"
+truncate_to_repo = false
+truncation_length = 100
+truncation_symbol = "…/"
+
+[fill]
+style = "fg:comment bg:none"
+symbol = "·"
+
+[git_branch]
+format = "[](fg:prev_bg bg:comment)[$symbol$branch](bg:prev_bg)"
+symbol = "  "
+
+[git_status]
+ahead = "🏎💨"
+behind = "😰"
+conflicted = "🏳"
+deleted = "🗑"
+diverged = "😵"
+format = "[\\[[$all_status$ahead_behind](bg:prev_bg)\\]](bg:prev_bg)"
+modified = "📝"
+renamed = "👅"
+staged = "[++($count)](fg:green bg:prev_bg)"
+stashed = "📦"
+untracked = "🤷"
+up_to_date = "✓"
+
+[line_break]
+disabled = false
+
+[nix_shell]
+disabled = false
+format = "$state[](fg:prev_bg bg:cyan)[(($name))](fg:black bold bg:cyan)[](fg:prev_bg bg:black)"
+impure_msg = "[](fg:prev_bg bg:red)[impure](bg:prev_bg fg:bold black)"
+pure_msg = "[](fg:prev_bg bg:green)[pure](bg:prev_bg fg:bold black)"
+unknown_msg = "[](fg:prev_bg bg:orange)[unknown](bg:prev_bg fg:bold black)"
+
+[palettes.custom]
+black = "11"
+comment = "10"
+cyan = "6"
+green = "2"
+light_comment = "103"
+magenta = "5"
+none = "0"
+orange = "9"
+purple = "4"
+red = "1"
+white = "7"
+yellow = "3"
+
+[shell]
+bash_indicator = "[](bg:cyan fg:prev_bg)[ BSH](fg:black bold bg:prev_bg)"
+disabled = false
+nu_indicator = "[](bg:green fg:prev_bg)[ NSH](fg:black bold bg:prev_bg)"
+zsh_indicator = "[](bg:purple fg:prev_bg)[ ZSH](fg:black bold bg:prev_bg)"
+
+[time]
+disabled = false
+format = "[[$time] ](fg:#fff1cf bg:#6f6565)"
+time_format = "%T"
+time_range = "-"
+utc_time_offset = "local"
+
+[username]
+disabled = false
+format = "[](fg:purple bg:prev_fg)[  [$user ](fg:black bg:prev_bg)](fg:black bg:prev_fg)[](fg:prev_bg bg:comment bold)"
+show_always = true

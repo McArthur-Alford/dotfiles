@@ -1,0 +1,8 @@
+{ ... }:
+{
+  services = {
+    greetd = {
+      enable = true;
+    };
+  };
+}

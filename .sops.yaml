@@ -29,3 +29,9 @@ creation_rules:
           - *thaumaturge_mcarthur
           - *mosaic_mcarthur
           - *benefactor_mcarthur
+  - path_regex: secrets/pg_pass.txt
+    key_groups:
+      - age:
+          - *thaumaturge_mcarthur
+          - *mosaic_mcarthur
+          - *benefactor_mcarthur
