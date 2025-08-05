@@ -11,7 +11,7 @@
         size = lib.mkForce 14;
       };
       settings = {
-        background_opacity = lib.mkForce "1.0";
+        background_opacity = lib.mkForce "0.95";
         background_blur = lib.mkForce "1";
         confirm_os_window_close = 0;
         disable_ligatures = "cursor";

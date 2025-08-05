@@ -1,5 +1,5 @@
 {
-  hostname = "benefactor";
+  hostname = "thaumaturge";
   system = "x86_64-linux";
   kernel = "latest";
   users = [ "mcarthur" ];

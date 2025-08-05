@@ -82,7 +82,7 @@
     window-rules = [
       {
         matches = [
-          { app-id = "firefox"; }
+          # { app-id = "firefox"; }
           { app-id = "vesktop"; }
         ];
         block-out-from = "screencast";

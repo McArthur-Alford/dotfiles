@@ -6,7 +6,7 @@
   ...
 }:
 let
-  primaryMonitor = systemSettings.misc.primaryMonitor;
+  primaryMonitor = builtins.trace systemSettings.misc systemSettings.misc.primaryMonitor;
   WIDTH = primaryMonitor.steamWidth or primaryMonitor.width or 1980;
   HEIGHT = primaryMonitor.steamHeight or primaryMonitor.height or 1080;
   REFRESH_RATE = primaryMonitor.refreshRate or 60;
@@ -49,7 +49,7 @@ let
       # "sdl"
       "--rt"
       "--immediate-flips"
-      "--force-grab-cursor"
+      # "--force-grab-cursor"
 
     ]
     ++ lib.optionals HDR [

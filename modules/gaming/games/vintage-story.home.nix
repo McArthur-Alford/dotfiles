@@ -1,7 +1,8 @@
 # home.nix
 { inputs, systemSettings, ... }:
 let
-  VSPkgs = inputs.vintagestory-nix.packages.${systemSettings.system}.net8;
+  # VSPkgs = inputs.vintagestory-nix.packages.${systemSettings.system}.net8;
+  VSPkgs = inputs.vintagestory-nix.packages.${systemSettings.system}.v1-20-12-net8;
 in
 {
   imports = [
@@ -11,10 +12,14 @@ in
   programs.vs-launcher = {
     enable = true;
     gameVersionsDir = ".config/VSLGameVersions";
-    installedVersions = with VSPkgs; [
-      v1-20-12-m
+    installedVersions = [
+      # v1-20-12-m
+      inputs.vintagestory-nix.packages.${systemSettings.system}.v1-20-12-net8
     ];
   };
 
-  home.packages = [ VSPkgs.latest ];
+  home.packages = [
+
+    inputs.vintagestory-nix.packages.${systemSettings.system}.v1-20-12-net8
+  ];
 }

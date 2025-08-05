@@ -47,7 +47,7 @@
     font-awesome
     corefonts
     material-design-icons
-    # nerd-fonts.fira-code
+    nerd-fonts.fira-code
     jetbrains-mono
     # nerdfonts
     comic-mono
