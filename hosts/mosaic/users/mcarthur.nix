@@ -15,6 +15,7 @@
       "usb"
       "uucp"
       "dialout"
+      "docker"
     ];
   };
 

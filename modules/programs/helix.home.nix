@@ -31,6 +31,16 @@ with config.lib.stylix.colors;
         auto-format = true;
         language-servers = [ "taplo" ];
       }
+      {
+        name = "python";
+        auto-format = true;
+        language-servers = [
+          "ruff"
+          "ty"
+          # "pylsp"
+          "jedi"
+        ];
+      }
     ];
 
     languages.language-server = {
@@ -48,6 +58,12 @@ with config.lib.stylix.colors;
         args = [
           "lsp"
           "stdio"
+        ];
+      };
+      ty = {
+        command = "${pkgs.ty}/bin/ty";
+        args = [
+          "server"
         ];
       };
     };
