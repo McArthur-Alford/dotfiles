@@ -38,6 +38,8 @@
     easyeffects
     vlc # Media Player
 
+    uv
+
     inputs.zen-browser.packages."${systemSettings.system}".default
 
     # Apps
