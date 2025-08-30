@@ -17,7 +17,6 @@
     "${self}/modules/programs/kitty.home.nix"
     "${self}/modules/services/xdg-mime.home.nix"
     "${self}/modules/services/mako.home.nix"
-    "${self}/modules/protocol/wayland.home.nix"
   ];
   services.swww.enable = true;
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
@@ -70,7 +69,7 @@
         enable = false;
         width = 2;
       };
-      gaps = 8;
+      gaps = 5;
       struts = {
         bottom = 1;
         top = 1;
@@ -78,6 +77,8 @@
         right = 1;
       };
     };
+
+    overview.backdrop-color = "#282A36";
 
     window-rules = [
       {
@@ -92,6 +93,10 @@
           { app-id = "planets"; }
         ];
         open-floating = true;
+      }
+      {
+        matches = [ { app-id = "^kitty$"; } ];
+        default-column-width.proportion = 0.5;
       }
     ];
 

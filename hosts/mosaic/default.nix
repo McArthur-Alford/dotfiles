@@ -19,6 +19,7 @@
     "${self}/modules/programs/caching.nix"
     "${self}/modules/services/printing.nix"
     "${self}/modules/services/openconnect-sso.nix"
+    "${self}/modules/services/docker.nix"
   ];
 
   services.fprintd.enable = true;

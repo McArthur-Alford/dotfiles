@@ -34,7 +34,7 @@
 #   fi
 # ''
 
-{ pkgs }:
+{ pkgs, nix-path }:
 let
   nh = "${pkgs.nh}/bin/nh";
 in
@@ -45,8 +45,8 @@ pkgs.writeScriptBin "switch" ''
     --os (-o) # Optional parameter to switch only os configuration
     --hm (-h) # Optional parameter to switch only home configuration
   ] {
-    if not ("/etc/nixos/flake.nix" | path exists) {
-      error make { msg: "No nix-config found in /etc/nixos" };
+    if not ("${nix-path}/flake.nix" | path exists) {
+      error make { msg: "No nix-config found in ${nix-path}" };
     }
     $env.NIXPKGS_ALLOW_INSECURE = "1";
 
@@ -60,11 +60,11 @@ pkgs.writeScriptBin "switch" ''
     };
     if $os {
       print "Switching OS";
-      ${nh} os switch /etc/nixos --ask;
+      ${nh} os switch ${nix-path} --ask;
     };
     if $hm {
       print "Switching HM";
-      ${nh} home switch /etc/nixos --ask -- --impure;
+      ${nh} home switch ${nix-path} --ask -- --impure;
     };
   }
 ''

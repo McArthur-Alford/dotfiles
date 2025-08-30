@@ -26,6 +26,12 @@
   };
 
   home.packages = with pkgs; [
+    uv
+    ty
+    ruff
+    python313Packages.python-lsp-server
+    python313Packages.jedi-language-server
+
     # Terminal
     btop-rocm # Resource Management
     ranger # File management
