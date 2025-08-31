@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 {
   imports = [
     inputs.impermanence.nixosModules.impermanence
@@ -13,6 +13,7 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
+      "/etc/nixos"
       {
         directory = "/var/lib/colord";
         user = "colord";
@@ -39,6 +40,14 @@
           mode = "0700";
         }
         {
+          directory = ".config";
+          mode = "0700";
+        }
+        {
+          directory = ".cache";
+          mode = "0700";
+        }
+        {
           directory = ".local/share/keyrings";
           mode = "0700";
         }
@@ -49,5 +58,35 @@
       ];
     };
   };
+
+  boot.initrd.postResumeCommands = lib.mkAfter ''
+    mkdir -p /btrfs_tmp
+    mount -t btrfs -o subvolid=5 /dev/disk/by-uuid/aebb0614-e6d9-49a1-a398-86059cd7b8f6 /btrfs_tmp
+
+    if [[ -e /btrfs_tmp/rootfs ]]; then
+      mkdir -p /btrfs_tmp/old_roots
+      timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/rootfs)" "+%Y-%m-%-d_%H:%M:%S")
+      mv /btrfs_tmp/rootfs "/btrfs_tmp/old_roots/$timestamp"
+    fi
+
+    delete_subvolume_recursively() {
+      IFS=$'\n'
+      for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+        delete_subvolume_recursively "/btrfs_tmp/$i"
+      done
+      btrfs subvolume delete "$1"
+    }
+
+    # prune old snapshots (>30 days)
+    if [[ -d /btrfs_tmp/old_roots ]]; then
+      for i in $(find /btrfs_tmp/old_roots/ -maxdepth 1 -mindepth 1 -mtime +30); do
+        delete_subvolume_recursively "$i"
+      done
+    fi
+
+    # recreate the active rootfs
+    btrfs subvolume create /btrfs_tmp/rootfs
+    umount /btrfs_tmp
+  '';
 
 }

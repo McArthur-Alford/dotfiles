@@ -27,7 +27,7 @@
     "${self}/modules/services/docker.nix"
 
     ./disko.nix
-    # ./impermanence.nix
+    ./impermanence.nix
     # inputs.determinate.nixosModules.default
   ];
 
