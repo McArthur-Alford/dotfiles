@@ -14,7 +14,6 @@ in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./disko.nix
   ];
 
   boot.initrd.availableKernelModules = [
@@ -30,37 +29,7 @@ in
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  # fileSystems."/" = {
-  #   device = "/dev/disk/by-uuid/f78726c9-5be3-4aa1-940f-969f401a93d6";
-  #   fsType = "btrfs";
-  # };
-
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  # fileSystems."/boot/efi" = {
-  #   device = "/dev/disk/by-uuid/94D9-F57D";
-  #   fsType = "vfat";
-  # };
-
   # Mount drives
-  # fileSystems."/mnt/storage" = {
-  #   # device = "/dev/nvme0n1p1";
-  #   device = "/dev/disk/by-uuid/02f0b38a-ef48-4aaa-be05-028502f6c929";
-  #   fsType = "ext4";
-  # };
-
-  # fileSystems."/mnt/storage2" = {
-  #   # device = "/dev/nvme2n1p3";
-  #   device = "/dev/disk/by-uuid/e64fdf2d-57cc-487f-872b-95cdc8fd3639";
-  #   fsType = "ext4";
-  # };
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 64 * 1024; # 64GB
-    }
-  ];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction

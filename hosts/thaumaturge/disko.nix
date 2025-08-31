@@ -64,12 +64,11 @@
                   };
                 };
 
-                mountpoint = "/partition-root";
-                swap = {
-                  swapfile = {
-                    size = "32G";
-                  };
-                };
+                # swap = {
+                #   swapfile = {
+                #     size = "32G";
+                #   };
+                # };
               };
             };
           };
@@ -77,4 +76,22 @@
       };
     };
   };
+
+  fileSystems."/mnt/storage" = {
+    device = "/dev/disk/by-id/nvme-Corsair_MP600_CORE_2104790700013036587B_1-part1";
+    fsType = "ext4";
+  };
+
+  fileSystems."/mnt/storage2" = {
+    device = "/dev/disk/by-id/nvme-nvme.1987-3231303638323939303030313239313934314246-466f726365204d50353130-00000001";
+    fsType = "ext4";
+  };
+
+  swapDevices = [
+    {
+      device = "/.swapvol";
+      size = 32 * 1024;
+    }
+  ];
+
 }

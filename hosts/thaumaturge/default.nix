@@ -26,6 +26,7 @@
     "${self}/modules/services/openconnect-sso.nix"
     "${self}/modules/services/docker.nix"
 
+    ./disko.nix
     # ./impermanence.nix
     # inputs.determinate.nixosModules.default
   ];
