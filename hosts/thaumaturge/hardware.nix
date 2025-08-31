@@ -30,17 +30,17 @@ in
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/f78726c9-5be3-4aa1-940f-969f401a93d6";
-    fsType = "ext4";
-  };
+  # fileSystems."/" = {
+  #   device = "/dev/disk/by-uuid/f78726c9-5be3-4aa1-940f-969f401a93d6";
+  #   fsType = "btrfs";
+  # };
 
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/94D9-F57D";
-    fsType = "vfat";
-  };
+  # fileSystems."/boot/efi" = {
+  #   device = "/dev/disk/by-uuid/94D9-F57D";
+  #   fsType = "vfat";
+  # };
 
   # Mount drives
   # fileSystems."/mnt/storage" = {
