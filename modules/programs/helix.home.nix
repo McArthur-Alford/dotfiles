@@ -37,8 +37,8 @@ with config.lib.stylix.colors;
         language-servers = [
           "ruff"
           "ty"
-          # "pylsp"
-          "jedi"
+          "pylsp"
+          # "jedi"
         ];
       }
     ];
@@ -61,7 +61,8 @@ with config.lib.stylix.colors;
         ];
       };
       ty = {
-        command = "${pkgs.ty}/bin/ty";
+        # command = "${pkgs.ty}/bin/ty";
+        command = "ty";
         args = [
           "server"
         ];

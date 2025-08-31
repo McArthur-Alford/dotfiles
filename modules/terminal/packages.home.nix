@@ -30,7 +30,7 @@
     };
     eza = {
       enable = true;
-      enableNushellIntegration = true;
+      # enableNushellIntegration = true;
       icons = true;
     };
     tmux = {

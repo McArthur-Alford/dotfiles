@@ -27,10 +27,10 @@
 
   home.packages = with pkgs; [
     uv
-    ty
-    ruff
-    python313Packages.python-lsp-server
-    python313Packages.jedi-language-server
+    # ty
+    # ruff
+    # python313Packages.python-lsp-server
+    # python313Packages.jedi-language-server
 
     # Terminal
     btop-rocm # Resource Management
@@ -43,8 +43,6 @@
     pavucontrol # Audio Control
     easyeffects
     vlc # Media Player
-
-    uv
 
     inputs.zen-browser.packages."${systemSettings.system}".default
 
