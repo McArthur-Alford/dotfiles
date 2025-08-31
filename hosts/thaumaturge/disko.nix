@@ -8,7 +8,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-uuid/f78726c9-5be3-4aa1-940f-969f401a93d6";
+        device = "/dev/disk/by-id/nvme-nvme.1987-3231323337393038303030313330333734323730-436f7273616972204d5036303020434f5245-00000001";
         content = {
           type = "gpt";
           partitions = {
