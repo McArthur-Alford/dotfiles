@@ -16,9 +16,8 @@
       "/var/lib/systemd/coredump"
       "/root"
       "/etc/nixos"
-      "/etc/passwd"
-      # "/etc/group"
-      "/etc/shadow"
+      "/home/sops"
+      "/var/db/sudo"
       {
         directory = "/var/lib/colord";
         user = "colord";
@@ -29,13 +28,6 @@
     files = [
       "/etc/machine-id"
     ];
-    users.sops = {
-      directories = [
-        {
-          directory = ".config";
-        }
-      ];
-    };
     users.mcarthur = {
       directories = [
         "Downloads"
@@ -58,6 +50,12 @@
       files = [
       ];
     };
+  };
+
+  environment.etc = {
+    "group".source = "/nix/persist/etc/group";
+    "passwd".source = "/nix/persist/etc/passwd";
+    "shadow".source = "/nix/persist/etc/shadow";
   };
 
   # fileSystems."/persistent".neededForBoot = true;
