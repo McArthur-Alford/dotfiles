@@ -4,7 +4,7 @@
     inputs.impermanence.nixosModules.impermanence
   ];
 
-  environment.persistence."/persistent" = {
+  environment.persistence."/nix/persist" = {
     enable = true;
     hideMounts = true;
     directories = [
@@ -12,7 +12,7 @@
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
+      "/root"
       "/etc/nixos"
       {
         directory = "/var/lib/colord";
@@ -22,13 +22,7 @@
       }
     ];
     files = [
-      # "/etc/machine-id"
-      # {
-      #   file = "/var/keys/secret_file";
-      #   parentDirectory = {
-      #     mode = "u=rwx,g=,o=";
-      #   };
-      # }
+      "/etc/machine-id"
     ];
     users.mcarthur = {
       directories = [
@@ -37,27 +31,25 @@
         "Videos"
         {
           directory = ".ssh";
-          mode = "0700";
         }
         {
           directory = ".config";
-          mode = "0700";
         }
         {
           directory = ".cache";
-          mode = "0700";
         }
         {
           directory = ".local/share/keyrings";
-          mode = "0700";
         }
         ".local/share/direnv"
       ];
       files = [
-        ".screenrc"
       ];
     };
   };
+
+  # fileSystems."/persistent".neededForBoot = true;
+  # fileSystems."/nix".neededForBoot = true;
 
   boot.initrd.postResumeCommands = lib.mkAfter ''
     mkdir -p /btrfs_tmp
