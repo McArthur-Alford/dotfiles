@@ -87,11 +87,11 @@
     fsType = "ext4";
   };
 
-  swapDevices = [
-    {
-      device = "/.swapvol";
-      size = 32 * 1024;
-    }
-  ];
+  # swapDevices = [
+  #   {
+  #     device = "/.swapvol";
+  #     size = 32 * 1024;
+  #   }
+  # ];
 
 }

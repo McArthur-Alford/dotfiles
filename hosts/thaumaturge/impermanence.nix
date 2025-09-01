@@ -4,6 +4,8 @@
     inputs.impermanence.nixosModules.impermanence
   ];
 
+  users.users."root".password = "root";
+
   environment.persistence."/nix/persist" = {
     enable = true;
     hideMounts = true;
@@ -14,6 +16,9 @@
       "/var/lib/systemd/coredump"
       "/root"
       "/etc/nixos"
+      "/etc/passwd"
+      # "/etc/group"
+      "/etc/shadow"
       {
         directory = "/var/lib/colord";
         user = "colord";
@@ -24,6 +29,13 @@
     files = [
       "/etc/machine-id"
     ];
+    users.sops = {
+      directories = [
+        {
+          directory = ".config";
+        }
+      ];
+    };
     users.mcarthur = {
       directories = [
         "Downloads"
@@ -49,7 +61,7 @@
   };
 
   # fileSystems."/persistent".neededForBoot = true;
-  # fileSystems."/nix".neededForBoot = true;
+  fileSystems."/nix".neededForBoot = true;
 
   boot.initrd.postResumeCommands = lib.mkAfter ''
     mkdir -p /btrfs_tmp
