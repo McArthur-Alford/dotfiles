@@ -4,8 +4,6 @@
     inputs.impermanence.nixosModules.impermanence
   ];
 
-  users.users."root".password = "root";
-
   environment.persistence."/nix/persist" = {
     enable = true;
     hideMounts = true;
@@ -50,12 +48,6 @@
       files = [
       ];
     };
-  };
-
-  environment.etc = {
-    "group".source = "/nix/persist/etc/group";
-    "passwd".source = "/nix/persist/etc/passwd";
-    "shadow".source = "/nix/persist/etc/shadow";
   };
 
   # fileSystems."/persistent".neededForBoot = true;

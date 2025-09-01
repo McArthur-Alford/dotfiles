@@ -37,6 +37,9 @@
     "armv6l-linux"
   ];
 
+  users.users."root".password =
+    "$y$j9T$UdB1XvpbUhh1svbuj.x/9.$KWanlI29j5CqnfOAbdtDNAD0pGAuS174UH/tmJIMcc4";
+
   boot.kernelPackages = pkgs.linuxPackages_6_15;
   # boot.kernelPackages = pkgs.linuxPackages_6_12;
 
