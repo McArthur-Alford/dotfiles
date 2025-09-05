@@ -3,6 +3,7 @@
   inputs,
   config,
   self,
+  systemSettings,
   ...
 }:
 {
@@ -96,7 +97,7 @@
       }
       {
         matches = [ { app-id = "^kitty$"; } ];
-        default-column-width.proportion = 0.5;
+        default-column-width.proportion = if (systemSettings.hostname == "thaumaturge") then 0.25 else 0.5;
       }
     ];
 

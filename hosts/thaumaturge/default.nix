@@ -20,7 +20,7 @@
     "${self}/modules/services/cachix.nix"
     "${self}/modules/gaming/gaming.nix"
     "${self}/modules/programs/caching.nix"
-    # "${self}/modules/kernel/patches/odysseyg9.nix"
+    "${self}/modules/kernel/patches/odysseyg9.nix"
     "${self}/modules/services/printing.nix"
     "${self}/modules/hardware/pentablet.nix"
     "${self}/modules/services/openconnect-sso.nix"

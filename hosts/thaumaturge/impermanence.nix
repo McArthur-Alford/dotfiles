@@ -31,6 +31,7 @@
         "Downloads"
         "Development"
         "Videos"
+        "Wallpapers"
         {
           directory = ".ssh";
         }
