@@ -30,15 +30,14 @@
       showResultsImmediately = true;
       maxEntries = 10;
 
-      plugins =
-        (with inputs.anyrun.packages.${pkgs.system}; [
-          applications
-          rink
-          shell
-          translate
-          websearch
-        ])
-        ++ [ inputs.anyrun-nixos-options.packages.${pkgs.system}.default ];
+      plugins = ([
+        "${pkgs.anyrun}/lib/libapplications.so"
+        # "${pkgs.anyrun}/lib/librink.so"
+        # "${pkgs.anyrun}/lib/libshell.so"
+        # "${pkgs.anyrun}/lib/libtranslate.so"
+        # "${pkgs.anyrun}/lib/libwebsearch.so"
+      ])
+      ++ [ inputs.anyrun-nixos-options.packages.${pkgs.system}.default ];
     };
 
     extraCss = # css

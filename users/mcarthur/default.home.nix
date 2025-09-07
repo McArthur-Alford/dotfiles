@@ -74,8 +74,6 @@
     sway-contrib.grimshot
     satty
 
-    libsForQt5.okular
-
     # image editors
     gimp
     krita
@@ -110,7 +108,6 @@
     usbutils
     xorg.libXxf86vm
     nautilus-open-any-terminal
-    libsForQt5.qt5ct
     dnsmasq
     wineWowPackages.stable
     winetricks

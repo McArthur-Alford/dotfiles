@@ -23,7 +23,7 @@
     "${self}/modules/kernel/patches/odysseyg9.nix"
     "${self}/modules/services/printing.nix"
     "${self}/modules/hardware/pentablet.nix"
-    "${self}/modules/services/openconnect-sso.nix"
+    # "${self}/modules/services/openconnect-sso.nix"
     "${self}/modules/services/docker.nix"
 
     ./disko.nix
@@ -40,7 +40,7 @@
   users.users."root".password =
     "$y$j9T$UdB1XvpbUhh1svbuj.x/9.$KWanlI29j5CqnfOAbdtDNAD0pGAuS174UH/tmJIMcc4";
 
-  boot.kernelPackages = pkgs.linuxPackages_6_15;
+  # boot.kernelPackages = pkgs.linuxPackages_6_15;
   # boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   boot.kernelParams = [ "intel_pstate=disable" ];

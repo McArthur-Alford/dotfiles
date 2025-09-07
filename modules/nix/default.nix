@@ -38,11 +38,14 @@
 
   nixpkgs = {
     hostPlatform = lib.mkDefault systemSettings.system;
-    overlays =
-      [
-      ];
+    overlays = [
+    ];
     config = {
       allowUnfree = true;
+
+      permittedInsecurePackages = [
+        "qtwebkit-5.212.0-alpha4"
+      ];
     };
   };
 
