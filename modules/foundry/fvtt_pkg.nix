@@ -7,6 +7,13 @@
   version,
   ...
 }:
+let
+  mainJS =
+    if builtins.match "^13\\.[0-9]+$" version != null then
+      ''node "$INSTALL_DIR/main.js"''
+    else
+      ''node "$INSTALL_DIR/resources/app/main.js"'';
+in
 writeShellApplication {
   name = "foundryvtt-bootstrap";
   runtimeInputs = [
@@ -26,7 +33,7 @@ writeShellApplication {
     #   - extract Foundry from the cache
     #   - make the Config and Data directories
     #   - symlink the shared data 
-    if [ ! -d $INSTALL_DIR ]; then
+    if [ ! -d "$INSTALL_DIR" ] || [ -z "$(ls -A "$INSTALL_DIR")" ]; then
       unzip $INSTALL_CACHE -d $INSTALL_DIR
       mkdir -p $FOUNDRY_VTT_DATA_PATH/Config
       mkdir -p $FOUNDRY_VTT_DATA_PATH/Data
@@ -43,7 +50,6 @@ writeShellApplication {
     fi
     mv "$CURRENT_OPTIONS".tmp $CURRENT_OPTIONS
 
-    # Run Foundry itself
-    node $INSTALL_DIR/resources/app/main.js
+    ${mainJS}
   '';
 }

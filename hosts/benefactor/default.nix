@@ -232,7 +232,7 @@
     "foundry13" = {
       ident = "foundry13";
       ip = "192.168.100.8";
-      version = "13.341";
+      version = "13.346";
       dir = "/mnt/sdd/fvtt";
     };
   };

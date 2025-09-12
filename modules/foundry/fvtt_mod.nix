@@ -48,10 +48,10 @@ in
           80
           443
         ];
-        extraCommands = ''
-          iptables -t nat -F POSTROUTING  # Clears existing POSTROUTING rules \n
-          iptables -t nat -A POSTROUTING -o ${interface} -j MASQUERADE
-        '';
+        # extraCommands = ''
+        #   iptables -t nat -F POSTROUTING  # Clears existing POSTROUTING rules \n
+        #   iptables -t nat -A POSTROUTING -o ${interface} -j MASQUERADE
+        # '';
       };
     };
 
@@ -75,6 +75,7 @@ in
             };
             networking.useDHCP = lib.mkForce false;
             networking.useHostResolvConf = lib.mkForce false;
+            networking.defaultGateway = "192.168.100.3";
             services.resolved.enable = true;
             environment.systemPackages = with pkgs; [
               helix
