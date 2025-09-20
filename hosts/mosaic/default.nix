@@ -18,7 +18,7 @@
     "${self}/modules/services/cachix.nix"
     "${self}/modules/programs/caching.nix"
     "${self}/modules/services/printing.nix"
-    "${self}/modules/services/openconnect-sso.nix"
+    # "${self}/modules/services/openconnect-sso.nix"
     "${self}/modules/services/docker.nix"
   ];
 
