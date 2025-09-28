@@ -108,6 +108,17 @@
 
   services.dnsmasq.enable = true;
 
+  virtualisation.oci-containers.containers = {
+    chequewriter = {
+      pull = "newer";
+      image = "docker.io/mcarthuralford/chequewriter:main";
+      ports = [ "7475:7475" ];
+      environment = {
+        ASPNETCORE_URLS = "http://+:7475";
+      };
+    };
+  };
+
   fonts = {
     enableDefaultPackages = true;
 
@@ -182,6 +193,10 @@
           "foundry11.thaumaturgy.tech".service = "http://192.168.100.7:30000";
           "foundry13.thaumaturgy.tech".service = "http://192.168.100.8:30000";
           "minecraft.thaumaturgy.tech".service = "http://localhost:25565";
+          "chequewriter.thaumaturgy.tech" = {
+            service = "http://127.0.0.1:7475";
+            originRequest.httpHostHeader = "localhost";
+          };
         };
       };
     };
