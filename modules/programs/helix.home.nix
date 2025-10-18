@@ -6,6 +6,10 @@
 }:
 with config.lib.stylix.colors;
 {
+  home.packages = with pkgs; [
+    tinymist
+  ];
+
   programs.helix = {
     enable = true;
     settings = {
@@ -17,6 +21,13 @@ with config.lib.stylix.colors;
       editor.bufferline = "multiple";
       editor.end-of-line-diagnostics = "hint";
       editor.inline-diagnostics.cursor-line = "error";
+
+      # For tinymist, ctrl-p to set the current file as main typst file.
+      keys.normal = {
+        "C-p" = ''
+          :lsp-workspace-command tinymist.pinMain "%sh{realpath %{buffer_name}}"
+        '';
+      };
     };
 
     languages.language = [
@@ -40,6 +51,11 @@ with config.lib.stylix.colors;
           "pylsp"
           # "jedi"
         ];
+      }
+      {
+        name = "typst";
+        auto-format = true;
+        formatter.command = "${pkgs.typstyle}/bin/typstyle";
       }
     ];
 
@@ -66,6 +82,20 @@ with config.lib.stylix.colors;
         args = [
           "server"
         ];
+      };
+      tinymist = {
+        command = "${pkgs.tinymist}/bin/tinymist";
+        config = {
+          exportPdf = "onType";
+          preview.background = {
+            enabled = true;
+            args = [
+              "--data-plane-host=127.0.0.1:0"
+              "--invert-colors=never"
+              "--open"
+            ];
+          };
+        };
       };
     };
 

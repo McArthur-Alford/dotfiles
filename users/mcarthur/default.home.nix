@@ -40,6 +40,8 @@
     ranger # File management
     unzip # Unzipper
 
+    zed-editor
+
     # Video/Audio
     feh # Image Viewer
     mpv # Media Player
