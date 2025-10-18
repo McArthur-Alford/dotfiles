@@ -1,4 +1,20 @@
-_: {
+{
+  pkgs,
+  self,
+  ...
+}:
+let
+  brrtfetch = pkgs.callPackage "${self}/modules/programs/brrtfetch.home.nix" { };
+in
+{
+  home.packages = [
+    brrtfetch
+  ];
+
+  home.shellAliases = {
+    fastfetch = ''bash -c "brrtfetch --multiplier 90 --fps 5 ${self}/assets/brrtfetch.gif"'';
+  };
+
   programs.fastfetch = {
     enable = true;
     settings = {
