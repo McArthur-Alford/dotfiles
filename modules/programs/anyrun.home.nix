@@ -47,16 +47,16 @@
           font-size: 1.2rem;
         }
 
-        #window,
-        #match,
-        #entry,
-        #plugin,
-        #main {
+        window,
+        box.main,
+        text.match,
+        entry,
+        box.plugin {
           background: transparent;
         }
 
-        box#main {
-          background: "#${config.lib.stylix.colors.base02}";
+        box.main {
+          background-color: #${config.lib.stylix.colors.base02};
           border-radius: 10px;
           padding: 12px;
         }

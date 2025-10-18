@@ -26,6 +26,9 @@
   };
 
   home.packages = with pkgs; [
+    devenv
+    zed-editor
+
     uv
     # ty
     # ruff
@@ -63,7 +66,7 @@
     git-lfs
     jujutsu
 
-    jetbrains.rust-rover
+    # jetbrains.rust-rover
 
     zotero_7
 

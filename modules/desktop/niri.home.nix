@@ -14,7 +14,7 @@
     "${self}/modules/services/hypridle.home.nix"
     # "${self}/modules/programs/rofi.home.nix"
     "${self}/modules/programs/anyrun.home.nix"
-    "${self}/modules/programs/lan-mouse.home.nix"
+    # "${self}/modules/programs/lan-mouse.home.nix"
     "${self}/modules/programs/kitty.home.nix"
     "${self}/modules/services/xdg-mime.home.nix"
     "${self}/modules/services/mako.home.nix"
