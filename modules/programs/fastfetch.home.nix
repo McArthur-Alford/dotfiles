@@ -12,7 +12,7 @@ in
   ];
 
   home.shellAliases = {
-    fastfetch = ''bash -c "brrtfetch --multiplier 90 --fps 5 ${self}/assets/brrtfetch.gif"'';
+    fetch = ''bash -c "brrtfetch --multiplier 90 --fps 5 ${self}/assets/brrtfetch.gif"'';
   };
 
   programs.fastfetch = {
