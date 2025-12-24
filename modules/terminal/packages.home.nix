@@ -71,7 +71,7 @@
       doInstallCheck = false;
     }))
     procs
-    du-dust
+    dust
     delta
     kalker
     tldr

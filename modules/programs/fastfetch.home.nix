@@ -8,7 +8,7 @@ let
 in
 {
   home.packages = [
-    brrtfetch
+    # brrtfetch
   ];
 
   home.shellAliases = {

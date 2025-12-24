@@ -29,6 +29,8 @@
     devenv
     zed-editor
 
+    ytmdesktop
+
     uv
     # ty
     # ruff
@@ -84,7 +86,7 @@
     krita
 
     # Bitwarden!
-    bitwarden
+    bitwarden-desktop
 
     # Obsidian!
     obsidian
@@ -100,7 +102,7 @@
     zoom-us
 
     # Office
-    onlyoffice-bin
+    onlyoffice-desktopeditors
 
     # texlive
     # texlive.combined.scheme-full

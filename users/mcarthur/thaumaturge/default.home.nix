@@ -26,5 +26,7 @@
 
     # minecraft
     prismlauncher
+
+    osu-lazer-bin
   ];
 }

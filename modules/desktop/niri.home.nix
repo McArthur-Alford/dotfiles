@@ -103,7 +103,7 @@
 
     binds = with config.lib.niri.actions; rec {
       "Mod+C".action = close-window;
-      "Mod+S".action = screenshot;
+      "Mod+S".action.screenshot = [ ];
       "Mod+Period".action = consume-or-expel-window-right;
       "Mod+Comma".action = consume-or-expel-window-left;
       "Mod+F".action = fullscreen-window;
