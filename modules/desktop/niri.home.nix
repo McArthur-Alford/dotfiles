@@ -38,12 +38,12 @@
       { command = [ "${pkgs.xwayland-satellite}/bin/xwayland-satellite" ]; }
       { command = [ "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1" ]; }
       { command = [ "${pkgs.hypridle}/bin/hypridle" ]; }
-      # { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
       {
         command = [
           "swww-daemon"
         ];
       }
+      # { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
     ];
 
     input = {
