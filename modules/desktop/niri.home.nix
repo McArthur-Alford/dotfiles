@@ -18,7 +18,11 @@
     "${self}/modules/programs/kitty.home.nix"
     "${self}/modules/services/xdg-mime.home.nix"
     "${self}/modules/services/mako.home.nix"
+    inputs.noctalia.homeModules.default
   ];
+
+  programs.noctalia-shell.enable = true;
+
   services.swww.enable = true;
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   programs.niri.package = pkgs.niri-unstable;
@@ -43,7 +47,7 @@
           "swww-daemon"
         ];
       }
-      # { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
+      { command = [ "${pkgs.hyprlock}/bin/hyprlock" ]; }
     ];
 
     input = {

@@ -1499,6 +1499,26 @@
         "type": "gitlab"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767588718,
+        "narHash": "sha256-6ZZyvqJfKXRWSYFPynrwspn9nxcz/nN5qsYUbkIftAs=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "23af430dd883b9590295341ebb44fba186b2c3e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -1632,6 +1652,26 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1766725085,
+        "narHash": "sha256-O2aMFdDUYJazFrlwL7aSIHbUSEm3ADVZjmf41uBJfHs=",
+        "owner": "outfoxxed",
+        "repo": "quickshell",
+        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "outfoxxed",
+        "repo": "quickshell",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "Hyprspace": "Hyprspace",
@@ -1655,8 +1695,10 @@
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_10",
+        "noctalia": "noctalia",
         "openconnect-sso": "openconnect-sso",
         "peerix": "peerix",
+        "quickshell": "quickshell",
         "solaar": "solaar",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",

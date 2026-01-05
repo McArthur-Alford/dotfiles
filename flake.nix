@@ -66,6 +66,16 @@
     vintagestory-nix.url = "github:PierreBorine/vintagestory-nix";
     disko.url = "github:nix-community/disko/latest";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    quickshell = {
+      url = "github:outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
   };
 
   outputs =
