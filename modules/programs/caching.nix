@@ -24,6 +24,7 @@
       "https://nixos-rocm.cachix.org"
       "https://anyrun.cachix.org"
       "https://install.determinate.systems"
+      "https://pac-nix.cachix.org"
     ];
     trusted-public-keys = [
       "mmwave.cachix.org-1:51WVqkk3jgt8S5rmsTZVsFvPw06FpTd1niyrFzJ6ucQ="
@@ -32,6 +33,7 @@
       "nixos-rocm.cachix.org-1:VEpsf7pRIijjd8csKjFNBGzkBqOmw8H9PRmgAq14LnE="
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
       "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+      "pac-nix.cachix.org-1:l29Pc2zYR5yZyfSzk1v17uEZkhEw0gI4cXuOIsxIGpc="
     ];
   };
 }

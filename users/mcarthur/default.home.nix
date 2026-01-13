@@ -26,6 +26,11 @@
   };
 
   home.packages = with pkgs; [
+    devenv
+    zed-editor
+
+    ytmdesktop
+
     uv
     # ty
     # ruff
@@ -65,7 +70,7 @@
     git-lfs
     jujutsu
 
-    jetbrains.rust-rover
+    # jetbrains.rust-rover
 
     zotero_7
 
@@ -81,7 +86,7 @@
     krita
 
     # Bitwarden!
-    bitwarden
+    bitwarden-desktop
 
     # Obsidian!
     obsidian
@@ -97,7 +102,7 @@
     zoom-us
 
     # Office
-    onlyoffice-bin
+    onlyoffice-desktopeditors
 
     # texlive
     # texlive.combined.scheme-full

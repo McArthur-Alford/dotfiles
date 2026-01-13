@@ -916,3 +916,5 @@ $env.config = {
         }
     ]
 }
+
+$env.path ++= ["~/.cargo/bin"]

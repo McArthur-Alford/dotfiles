@@ -6,7 +6,7 @@
       enable = true;
       shellIntegration.enableZshIntegration = true;
       font = {
-        package = lib.mkForce pkgs.fira-code-nerdfont;
+        package = lib.mkForce pkgs.nerd-fonts.fira-code;
         name = lib.mkForce "Fira Code Nerd Font";
         size = lib.mkForce 14;
       };

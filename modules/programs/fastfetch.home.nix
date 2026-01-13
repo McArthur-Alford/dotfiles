@@ -4,15 +4,16 @@
   ...
 }:
 let
-  brrtfetch = pkgs.callPackage "${self}/modules/programs/brrtfetch.home.nix" { };
+  # brrtfetch = pkgs.callPackage "${self}/modules/programs/brrtfetch.home.nix" { };
 in
 {
   home.packages = [
-    brrtfetch
+    # brrtfetch
   ];
 
   home.shellAliases = {
-    fetch = ''bash -c "brrtfetch --multiplier 90 --fps 5 ${self}/assets/brrtfetch.gif"'';
+    # fetch = ''bash -c "brrtfetch --multiplier 90 --fps 5 ${self}/assets/brrtfetch.gif"'';
+    fetch = "${pkgs.fastfetch}/bin/fastfetch";
   };
 
   programs.fastfetch = {

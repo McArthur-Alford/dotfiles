@@ -37,6 +37,7 @@
       package = pkgs.vesktop.override { withTTS = false; };
     };
     config = {
+      # rpcServer = true;
       plugins = {
         alwaysTrust = {
           enable = true;
@@ -48,7 +49,7 @@
         };
         newGuildSettings = {
           enable = true;
-          messages = "only@Mentions";
+          messages = 1;
           everyone = false;
           role = false;
         };
@@ -65,7 +66,7 @@
         noMosaic.enable = true;
         noOnboardingDelay.enable = true;
         noProfileThemes.enable = true;
-        noRPC.enable = true;
+        # noRPC.enable = false;
         onePingPerDM.enable = true;
         plainFolderIcon.enable = true;
         stickerPaste.enable = true;

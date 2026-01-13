@@ -42,7 +42,7 @@ in
         isDefault = true;
 
         search.force = true;
-        search.default = "DuckDuckGo";
+        search.default = "ddg";
         search.engines = {
           "Nix Packages" = {
             urls = [

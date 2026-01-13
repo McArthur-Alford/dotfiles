@@ -16,6 +16,8 @@
       "usb"
       "docker"
       "gamemode"
+      "render"
+      "video"
     ];
   };
 }
